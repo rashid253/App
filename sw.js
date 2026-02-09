@@ -1,67 +1,134 @@
-// ===== FIXED SERVICE WORKER REGISTRATION =====
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    console.log('Registering Service Worker...');
-    
-    // Wait for page to load
-    window.addEventListener('load', function() {
-      // First, check if we need to clean old service workers
-      navigator.serviceWorker.getRegistrations().then(registrations => {
-        // Unregister ALL old service workers
-        for (let registration of registrations) {
-          registration.unregister();
-          console.log('Unregistered old service worker');
+// Service Worker for Digital Business App
+const CACHE_NAME = 'digital-business-app-v1';
+const urlsToCache = [
+  './',
+  './card.html',
+  './manifest.json'
+];
+
+// Install event
+self.addEventListener('install', event => {
+  console.log('Service Worker installing...');
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+// Activate event
+self.addEventListener('activate', event => {
+  console.log('Service Worker activating...');
+  // Remove old caches
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  return self.clients.claim();
+});
+
+// Fetch event
+self.addEventListener('fetch', event => {
+  console.log('Service Worker fetching:', event.request.url);
+  
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') return;
+  
+  // Skip Supabase and external requests
+  if (event.request.url.includes('supabase.co') || 
+      event.request.url.includes('fonts.googleapis.com') ||
+      event.request.url.includes('fonts.gstatic.com') ||
+      event.request.url.includes('cdnjs.cloudflare.com')) {
+    return;
+  }
+  
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Cache hit - return response
+        if (response) {
+          return response;
         }
         
-        // Clear ALL caches
-        return caches.keys().then(cacheNames => {
-          return Promise.all(
-            cacheNames.map(cacheName => {
-              console.log('Deleting cache:', cacheName);
-              return caches.delete(cacheName);
-            })
-          );
-        });
-      }).then(() => {
-        // Wait a bit before registering new one
-        setTimeout(() => {
-          // Register NEW service worker
-          navigator.serviceWorker.register('./sw.js', {
-            scope: './',
-            updateViaCache: 'none'
-          })
-          .then(registration => {
-            console.log('✅ Service Worker registered successfully!');
-            console.log('Scope:', registration.scope);
-            
-            // Force it to activate immediately
-            if (registration.waiting) {
-              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        // Clone the request
+        const fetchRequest = event.request.clone();
+        
+        return fetch(fetchRequest).then(
+          response => {
+            // Check if we received a valid response
+            if(!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
             }
             
-            // Listen for updates
-            registration.addEventListener('updatefound', () => {
-              console.log('New service worker found!');
-              const newWorker = registration.installing;
-              
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('New content available!');
-                  showNotification('🔄 App updated! Please refresh.');
-                }
+            // Clone the response
+            const responseToCache = response.clone();
+            
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
               });
-            });
-          })
-          .catch(error => {
-            console.log('❌ Service Worker registration failed:', error);
-            showNotification('⚠️ PWA features limited. Please refresh page.');
-          });
-        }, 500);
-      }).catch(error => {
-        console.log('Error during cleanup:', error);
-      });
-    });
-  } else {
-    console.log('❌ Service Worker not supported');
+            
+            return response;
+          }
+        );
+      })
+  );
+});
+
+// Handle push notifications
+self.addEventListener('push', event => {
+  console.log('Push notification received:', event);
+  
+  const title = 'Digital Business App';
+  const options = {
+    body: 'You have a new notification!',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
+    vibrate: [200, 100, 200],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    }
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
+});
+
+// Handle notification click
+self.addEventListener('notificationclick', event => {
+  console.log('Notification click received:', event);
+  event.notification.close();
+  
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then(windowClients => {
+        for (const client of windowClients) {
+          if (client.url === './' && 'focus' in client) {
+            return client.focus();
+          }
+        }
+        if (clients.openWindow) {
+          return clients.openWindow('./');
+        }
+      })
+  );
+});
+
+// Handle messages from main thread
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
-}
+});
