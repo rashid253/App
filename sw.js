@@ -1,26 +1,34 @@
 // Service Worker for Digital Business App
-const CACHE_NAME = 'digital-business-app-v1';
+const CACHE_NAME = 'digital-business-app-v2';
 const urlsToCache = [
   './',
   './card.html',
-  './manifest.json'
+  './manifest.json',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'
 ];
 
 // Install event
 self.addEventListener('install', event => {
-  console.log('Service Worker installing...');
+  console.log('Service Worker installing v2...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        console.log('Opened cache v2');
+        return cache.addAll(urlsToCache).catch(err => {
+          console.log('Cache addAll failed:', err);
+        });
+      })
+      .then(() => {
+        console.log('All resources cached successfully');
+        return self.skipWaiting();
       })
   );
 });
 
 // Activate event
 self.addEventListener('activate', event => {
-  console.log('Service Worker activating...');
+  console.log('Service Worker activating v2...');
   // Remove old caches
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -32,23 +40,19 @@ self.addEventListener('activate', event => {
           }
         })
       );
+    }).then(() => {
+      return self.clients.claim();
     })
   );
-  return self.clients.claim();
 });
 
 // Fetch event
 self.addEventListener('fetch', event => {
-  console.log('Service Worker fetching:', event.request.url);
-  
   // Skip non-GET requests
   if (event.request.method !== 'GET') return;
   
-  // Skip Supabase and external requests
-  if (event.request.url.includes('supabase.co') || 
-      event.request.url.includes('fonts.googleapis.com') ||
-      event.request.url.includes('fonts.gstatic.com') ||
-      event.request.url.includes('cdnjs.cloudflare.com')) {
+  // Skip Supabase and external requests (cache only essential ones)
+  if (event.request.url.includes('supabase.co')) {
     return;
   }
   
@@ -75,12 +79,31 @@ self.addEventListener('fetch', event => {
             
             caches.open(CACHE_NAME)
               .then(cache => {
-                cache.put(event.request, responseToCache);
+                try {
+                  cache.put(event.request, responseToCache);
+                } catch (err) {
+                  console.log('Cache put error:', err);
+                }
               });
             
             return response;
           }
-        );
+        ).catch(err => {
+          console.log('Fetch failed:', err);
+          // Return offline page or fallback
+          if (event.request.url.endsWith('.html') || 
+              event.request.url === self.location.origin + '/' ||
+              event.request.url === self.location.origin + './card.html') {
+            return caches.match('./card.html');
+          }
+          return new Response('Offline', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: new Headers({
+              'Content-Type': 'text/html'
+            })
+          });
+        });
       })
   );
 });
@@ -115,12 +138,12 @@ self.addEventListener('notificationclick', event => {
     clients.matchAll({ type: 'window', includeUncontrolled: true })
       .then(windowClients => {
         for (const client of windowClients) {
-          if (client.url === './' && 'focus' in client) {
+          if (client.url.includes('card.html') && 'focus' in client) {
             return client.focus();
           }
         }
         if (clients.openWindow) {
-          return clients.openWindow('./');
+          return clients.openWindow('./card.html');
         }
       })
   );
@@ -130,5 +153,9 @@ self.addEventListener('notificationclick', event => {
 self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: 'v2' });
   }
 });
