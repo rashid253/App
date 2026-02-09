@@ -7,7 +7,9 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "./",
-  "start_url": "./card.html",
+  "start_url": "./card.html?source=pwa",
+  "id": "/card.html",
+  "categories": ["business", "shopping", "productivity"],
   "icons": [
     {
       "src": "icon-192.png",
