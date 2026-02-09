@@ -1,161 +1,152 @@
-// Service Worker for Digital Business App
-const CACHE_NAME = 'digital-business-app-v2';
-const urlsToCache = [
+// Service Worker for Digital Business App - FIXED VERSION
+const APP_VERSION = 'v5.0';
+const CACHE_NAME = 'business-app-cache-' + APP_VERSION;
+
+// Files to cache immediately
+const PRECACHE_FILES = [
   './',
   './card.html',
   './manifest.json',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-  'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'
+  './icon-192.png',
+  './icon-512.png'
 ];
 
-// Install event
+// Install event - Cache essential files
 self.addEventListener('install', event => {
-  console.log('Service Worker installing v2...');
+  console.log('[SW] Install event v5.0');
+  
+  // Force the waiting service worker to become active
+  self.skipWaiting();
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v2');
-        return cache.addAll(urlsToCache).catch(err => {
-          console.log('Cache addAll failed:', err);
-        });
-      })
-      .then(() => {
-        console.log('All resources cached successfully');
-        return self.skipWaiting();
+        console.log('[SW] Caching app shell');
+        return cache.addAll(PRECACHE_FILES)
+          .then(() => {
+            console.log('[SW] All files cached successfully');
+          })
+          .catch(error => {
+            console.log('[SW] Cache error:', error);
+          });
       })
   );
 });
 
-// Activate event
+// Activate event - Clean up old caches
 self.addEventListener('activate', event => {
-  console.log('Service Worker activating v2...');
-  // Remove old caches
+  console.log('[SW] Activate event v5.0');
+  
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
+          // Delete all old caches
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+            console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => {
+    })
+    .then(() => {
+      console.log('[SW] Claiming clients');
       return self.clients.claim();
     })
   );
 });
 
-// Fetch event
+// Fetch event - Network first, cache fallback
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
+  const request = event.request;
   
-  // Skip Supabase and external requests (cache only essential ones)
-  if (event.request.url.includes('supabase.co')) {
+  // Skip non-GET requests
+  if (request.method !== 'GET') return;
+  
+  // Skip Supabase API calls
+  if (request.url.includes('supabase.co')) {
     return;
   }
   
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
+  // For HTML pages - try network first, then cache
+  if (request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // Cache the response for future
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME)
+            .then(cache => cache.put(request, responseClone));
           return response;
+        })
+        .catch(error => {
+          // Network failed, try cache
+          console.log('[SW] Network failed, trying cache:', error);
+          return caches.match(request)
+            .then(cachedResponse => {
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              // Return card.html for all HTML requests
+              return caches.match('./card.html');
+            });
+        })
+    );
+    return;
+  }
+  
+  // For other resources - cache first, network fallback
+  event.respondWith(
+    caches.match(request)
+      .then(cachedResponse => {
+        if (cachedResponse) {
+          // Update cache in background
+          fetch(request)
+            .then(response => {
+              const responseClone = response.clone();
+              caches.open(CACHE_NAME)
+                .then(cache => cache.put(request, responseClone));
+            })
+            .catch(() => { /* Ignore background update errors */ });
+          return cachedResponse;
         }
         
-        // Clone the request
-        const fetchRequest = event.request.clone();
-        
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
+        // Not in cache, fetch from network
+        return fetch(request)
+          .then(response => {
+            // Don't cache external resources that failed
+            if (!response.ok) return response;
             
-            // Clone the response
-            const responseToCache = response.clone();
-            
+            // Cache successful responses
+            const responseClone = response.clone();
             caches.open(CACHE_NAME)
-              .then(cache => {
-                try {
-                  cache.put(event.request, responseToCache);
-                } catch (err) {
-                  console.log('Cache put error:', err);
-                }
-              });
-            
+              .then(cache => cache.put(request, responseClone));
             return response;
-          }
-        ).catch(err => {
-          console.log('Fetch failed:', err);
-          // Return offline page or fallback
-          if (event.request.url.endsWith('.html') || 
-              event.request.url === self.location.origin + '/' ||
-              event.request.url === self.location.origin + './card.html') {
-            return caches.match('./card.html');
-          }
-          return new Response('Offline', {
-            status: 503,
-            statusText: 'Service Unavailable',
-            headers: new Headers({
-              'Content-Type': 'text/html'
-            })
+          })
+          .catch(error => {
+            console.log('[SW] Fetch failed:', error);
+            return new Response('Offline', { 
+              status: 503, 
+              statusText: 'Service Unavailable' 
+            });
           });
-        });
       })
   );
 });
 
 // Handle push notifications
 self.addEventListener('push', event => {
-  console.log('Push notification received:', event);
+  console.log('[SW] Push received');
   
-  const title = 'Digital Business App';
   const options = {
-    body: 'You have a new notification!',
+    body: 'New update from Business App',
     icon: './icon-192.png',
     badge: './icon-192.png',
-    vibrate: [200, 100, 200],
+    vibrate: [100, 50, 100],
     data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
+      url: './card.html'
     }
   };
   
   event.waitUntil(
-    self.registration.showNotification(title, options)
-  );
-});
-
-// Handle notification click
-self.addEventListener('notificationclick', event => {
-  console.log('Notification click received:', event);
-  event.notification.close();
-  
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true })
-      .then(windowClients => {
-        for (const client of windowClients) {
-          if (client.url.includes('card.html') && 'focus' in client) {
-            return client.focus();
-          }
-        }
-        if (clients.openWindow) {
-          return clients.openWindow('./card.html');
-        }
-      })
-  );
-});
-
-// Handle messages from main thread
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-  
-  if (event.data && event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: 'v2' });
-  }
-});
+    self.registration.showNotification
