@@ -6,8 +6,8 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
-  "start_url": "./",
+  "scope": "./",
+  "start_url": "./card.html",
   "icons": [
     {
       "src": "icon-192.png",
