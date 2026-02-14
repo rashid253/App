@@ -2,472 +2,550 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>رمضان قريب • نور | Offline Live Islamic</title>
-    <!-- Font Awesome 6 (free CDN, but will be cached; works offline after first load) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌙 رمضان 2026 · نور Islamic Hub</title>
+    <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts (Amiri + Poppins) – cached, works offline after first visit -->
+    <!-- Google Font: Amiri (elegant Qur'an style) + Poppins for modern UI -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            transition: all 0.2s ease;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f2e7d5; /* warm parchment */
-            padding: 12px 10px 20px;
+            background: linear-gradient(145deg, #f9f3e7 0%, #f0e5d8 100%);
+            color: #2d2a24;
+            padding: 20px 16px 40px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #2b2b1a;
+            direction: ltr;
         }
-        /* main container – fully offline friendly */
-        .islamic-app {
-            max-width: 700px;
+
+        /* main islamic ornament container */
+        .islamic-wrapper {
+            max-width: 1300px;
             margin: 0 auto;
-            width: 100%;
-            background: rgba(255, 250, 235, 0.9);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border-radius: 42px 18px 42px 18px;
-            box-shadow: 0 20px 40px -5px rgba(40, 30, 10, 0.3);
-            border: 1.5px solid #dbbc8e;
-            padding: 18px 14px 28px;
+            background: rgba(255, 254, 245, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 25px 40px -10px rgba(0, 40, 20, 0.25);
+            padding: 28px 24px 36px;
+            border: 1px solid #e9dacb;
             position: relative;
             overflow: hidden;
         }
-        /* subtle islimi pattern (css generated) */
-        .islamic-app::after {
+
+        /* subtle geometric background (mashrabiya style) */
+        .islamic-wrapper::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: repeating-linear-gradient(45deg, rgba(160, 120, 70, 0.02) 0px, rgba(160, 120, 70, 0.02) 8px, transparent 8px, transparent 16px);
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(200, 160, 120, 0.04) 2px, transparent 2px),
+                radial-gradient(circle at 75% 70%, rgba(150, 110, 70, 0.04) 3px, transparent 3px),
+                repeating-linear-gradient(45deg, rgba(180, 140, 100, 0.02) 0px, rgba(180, 140, 100, 0.02) 2px, transparent 2px, transparent 10px);
             pointer-events: none;
             z-index: 0;
         }
-        /* all content above pattern */
-        .content {
+
+        /* header with crescent & year */
+        .ramadan-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
             position: relative;
             z-index: 3;
+            background: rgba(255, 245, 225, 0.7);
+            padding: 20px 25px;
+            border-radius: 80px 20px 80px 20px;
+            border: 2px solid #e5c9a7;
+            box-shadow: 0 6px 12px rgba(110, 70, 30, 0.1);
         }
 
-        /* header with hijri adjustment (auto from device) */
-        .hilal-bar {
+        .title-hilal {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #1d4b2a, #2f6139);
-            color: #faeac6;
-            padding: 14px 18px;
-            border-radius: 80px 12px 80px 12px;
-            margin-bottom: 22px;
-            border: 2px solid #efd29e;
-            box-shadow: 0 5px 0 #0b3016;
-        }
-        .hilal-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 0 4px gold);
-        }
-        .hijri-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            background: #0000001a;
-            padding: 6px 14px;
-            border-radius: 60px;
-            backdrop-filter: blur(2px);
-        }
-
-        /* cards */
-        .card {
-            background: #fcf5e6ee;
-            border-radius: 30px 8px 30px 8px;
-            border: 1px solid #e7cfaf;
-            padding: 18px 14px;
-            margin-bottom: 18px;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 8px 18px -6px #9f8b70;
-        }
-        .card-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: #5d3e23;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 2px dotted #c7a469;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-
-        /* live countdown / status */
-        .live-badge {
-            background: #2b6733;
-            color: #f9eec1;
-            padding: 12px 16px;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 18px;
-            border: 2px solid #f3c26b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
         }
-        .live-badge i {
+
+        .hilal-icon {
+            font-size: 3.4rem;
+            color: #c99b5e;
+            filter: drop-shadow(2px 4px 6px #c8ad7b);
+        }
+
+        .title-hilal h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #5f3e26;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .title-hilal h1 span {
+            font-size: 1.8rem;
+            color: #8f6d48;
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        .greeting-badge {
+            background: #1f4f2b;
+            color: #fbeed9;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 400;
+            border: 2px solid #eec98b;
+            box-shadow: 0 4px 0 #0b2e13;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .greeting-badge i {
+            font-size: 1.8rem;
+            color: #fad277;
+        }
+
+        /* main columns layout */
+        .row-flex {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 24px;
+            position: relative;
+            z-index: 5;
+            margin-top: 15px;
+        }
+
+        .main-panel {
+            flex: 3;
+            min-width: 320px;
+        }
+
+        .sidebar-panel {
+            flex: 1.2;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* elegant cards */
+        .card {
+            background: rgba(255, 251, 240, 0.8);
+            backdrop-filter: blur(3px);
+            border-radius: 32px 12px 32px 12px;
+            border: 1px solid #ebd6ba;
+            padding: 22px 18px;
+            box-shadow: 0 12px 28px -8px rgba(80, 50, 20, 0.15);
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #6f4e2e;
+            border-bottom: 2px dashed #dabf94;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #a77b4f;
             font-size: 1.8rem;
         }
 
-        /* mobile-optimized calendar grid */
+        /* ramadan calendar table style */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-bottom: 12px;
+            gap: 8px 5px;
+            text-align: center;
+            margin-bottom: 20px;
         }
+
         .cal-weekday {
             font-weight: 600;
-            background: #dbc09d;
-            color: #322415;
-            text-align: center;
+            background: #e3cfb5;
+            color: #442f1e;
             padding: 8px 0;
-            border-radius: 20px 4px 20px 4px;
-            font-size: 0.8rem;
-        }
-        .cal-day {
-            background: #f4e8d6;
-            text-align: center;
-            padding: 11px 2px;
-            border-radius: 16px 4px 16px 4px;
-            border: 1px solid #d4b181;
-            font-weight: 500;
+            border-radius: 30px 8px 30px 8px;
             font-size: 0.9rem;
         }
-        .cal-day.today {
-            background: #ccb185;
-            border: 2px solid #5a3f23;
-            color: black;
-            font-weight: 800;
-            transform: scale(1.01);
-        }
-        .cal-day.ramadan-day {
-            background: #b3d0af;
-            border-color: #2a7734;
+
+        .cal-day {
+            background: #fff8ea;
+            padding: 10px 4px;
+            border-radius: 20px 6px 20px 6px;
+            border: 1px solid #ebd1ae;
+            font-weight: 500;
+            box-shadow: 0 3px 6px rgba(160, 120, 70, 0.1);
             position: relative;
         }
-        .fast-marker {
+
+        .cal-day.highlight {
+            background: #e6c99c;
+            border: 2px solid #b57c42;
+            color: #2d1d0e;
+            font-weight: 700;
+            transform: scale(1.02);
+        }
+
+        .cal-day.today {
+            background: #b3d8b3;
+            border-color: #2f7d4f;
+            font-weight: 700;
+        }
+
+        .fast-icon {
             font-size: 0.7rem;
-            color: #bb5900;
+            color: #b4521c;
+            margin-left: 3px;
         }
 
-        /* prayer times row (auto based on date) */
-        .prayer-strip {
+        /* suhoor/iftar timings */
+        .timing-row {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            background: #dfd1b9;
-            border-radius: 40px;
-            padding: 14px 6px;
-            margin-top: 14px;
-            border: 1px solid #a6906b;
-            font-weight: 600;
+            justify-content: space-between;
+            background: #f3e7d9;
+            border-radius: 50px;
+            padding: 12px 20px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            border: 1px solid #c7a875;
         }
-        .prayer-item {
+
+        .timing-row span {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            min-width: 65px;
+            gap: 10px;
         }
 
-        /* quran offline ready (always same, beautiful) */
-        .quran-box {
-            background: #e6dbc8;
-            border-radius: 34px 6px 34px 6px;
-            padding: 18px;
-            margin: 12px 0;
-            border: 2px solid #a48d63;
-            box-shadow: inset 0 0 0 2px #fbf1dd;
+        /* quran section */
+        .aya-card {
+            background: #fcf5e8;
+            border-radius: 30px 8px 30px 8px;
+            padding: 16px;
+            margin-top: 8px;
+            border: 1px solid #dfcbb0;
         }
-        .arabic {
+
+        .quran-text {
             font-family: 'Amiri', serif;
-            font-size: 2.2rem;
-            text-align: center;
-            line-height: 1.4;
-            color: #1b3f1b;
+            font-size: 1.8rem;
+            text-align: right;
+            line-height: 2.2rem;
+            color: #2d492d;
+            margin-bottom: 8px;
             word-spacing: 6px;
         }
-        .transliteration {
-            text-align: center;
+
+        .translation {
             font-style: italic;
-            color: #594e38;
+            color: #5b4a36;
+            border-left: 5px solid #a88b5e;
+            padding-left: 18px;
+            margin: 8px 0;
         }
 
-        /* sponsored banners (static but look like live offers) */
-        .sponsor-row {
+        .surah-name {
+            text-align: right;
+            font-weight: 600;
+            color: #7a5a38;
+        }
+
+        /* business banners / sponsors */
+        .sponsor-card {
+            background: linear-gradient(145deg, #dfd1bd, #efe2cf);
+            border-radius: 24px 8px 24px 8px;
+            padding: 10px 10px 14px 10px;
+            border: 2px solid #ba9d78;
+            text-align: center;
+        }
+
+        .sponsor-grid {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin: 12px 0;
+            gap: 14px;
+            margin-top: 12px;
         }
-        .banner {
-            background: linear-gradient(95deg, #b78f5b, #dbb486);
-            padding: 8px 12px;
-            border-radius: 30px 6px 30px 6px;
+
+        .banner-item {
+            background: #fcf3e4;
+            border-radius: 20px 6px 20px 6px;
+            padding: 12px 8px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            border: 2px solid #ffeecc;
-            color: #221b10;
+            gap: 12px;
+            border: 1px solid #b48f5f;
+            box-shadow: 0 4px 0 #886e48;
         }
-        .banner i {
-            font-size: 2rem;
-            background: #fff2d0;
-            width: 50px;
-            height: 50px;
+
+        .banner-icon {
+            background: #1e4b2b;
+            color: #ffd78a;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #5f482a;
+            font-size: 1.8rem;
         }
-        .banner p {
+
+        .banner-text {
             font-weight: 600;
+            color: #402d1b;
         }
-        .banner small {
+
+        .banner-text small {
+            font-weight: 400;
+            color: #7a643f;
             font-size: 0.8rem;
+        }
+
+        .sponsor-note {
+            font-size: 0.8rem;
+            color: #564b39;
+            margin-top: 12px;
+            border-top: 1px dashed #af946a;
+            padding-top: 10px;
         }
 
         /* footer */
         .footer-note {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #685c49;
+            border-top: 2px solid #dac29e;
+            padding-top: 20px;
+            position: relative;
+            z-index: 5;
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
             justify-content: center;
-            margin-top: 20px;
-            color: #5c4b31;
-            font-size: 0.8rem;
+            gap: 18px;
+        }
+
+        .footer-note i {
+            color: #8f6a39;
+        }
+
+        /* responsiveness */
+        @media (max-width: 650px) {
+            .ramadan-header {
+                flex-direction: column;
+                align-items: start;
+                gap: 15px;
+            }
+            .title-hilal h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="islamic-app">
-    <div class="content">
-        <!-- header with live mobile date -->
-        <div class="hilal-bar">
+<div class="islamic-wrapper">
+    <!-- header with crescent & 2026 -->
+    <div class="ramadan-header">
+        <div class="title-hilal">
             <i class="fas fa-moon hilal-icon"></i>
-            <div class="hijri-text" id="hijriDisplay">تحميل ...</div>
-            <i class="fas fa-calendar-week"></i>
+            <h1>Ramazan 2026 <span>〘 1447 – 1448 〙</span></h1>
         </div>
-
-        <!-- live ramadan status (auto updates) -->
-        <div class="live-badge" id="liveStatus">
-            <i class="fas fa-circle" style="color: #70f070; font-size:1rem;"></i>
-            <span id="statusMessage">رمضان حسب جهازك</span>
+        <div class="greeting-badge">
+            <i class="fas fa-star-and-crescent"></i>
+            <span>رمضان كريم • تقبل الله</span>
         </div>
+    </div>
 
-        <!-- today's prayer times (based on mobile date) -->
-        <div class="card">
-            <div class="card-title"><i class="fas fa-clock"></i> أوقات الصلاة • اليوم</div>
-            <div class="prayer-strip" id="prayerTimesContainer">
-                <!-- filled by js -->
+    <!-- main content: calendar + quran + sponsors -->
+    <div class="row-flex">
+        <!-- LEFT MAIN PANEL (calendar, quran, extra) -->
+        <div class="main-panel">
+            <!-- calendar card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span>Ramadan 1447 AH · 2026 CE</span>
+                </div>
+                <!-- calendar weekdays -->
+                <div class="calendar-grid">
+                    <div class="cal-weekday">Mon</div>
+                    <div class="cal-weekday">Tue</div>
+                    <div class="cal-weekday">Wed</div>
+                    <div class="cal-weekday">Thu</div>
+                    <div class="cal-weekday">Fri</div>
+                    <div class="cal-weekday">Sat</div>
+                    <div class="cal-weekday">Sun</div>
+                    <!-- days 1-7 (March 2026 approximate) -->
+                    <div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day highlight">1 <i class="fas fa-utensils fast-icon" title="1st Ramadan"></i></div><div class="cal-day">2</div>
+                    <!-- week2 -->
+                    <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day today">8 <i class="fas fa-moon fast-icon" title="today's date"></i></div><div class="cal-day">9</div>
+                    <!-- week3 -->
+                    <div class="cal-day">10</div><div class="cal-day highlight">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div>
+                    <!-- week4 -->
+                    <div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div>
+                    <!-- week5 -->
+                    <div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day highlight">27 <i class="fas fa-star" title="Laylatul Qadr"></i></div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div>
+                </div>
+                <!-- sehar/iftar timings (example) -->
+                <div class="timing-row">
+                    <span><i class="fas fa-cloud-sun" style="color:#cc6b2c;"></i> Sehar: 04:53</span>
+                    <span><i class="fas fa-sunset" style="color:#b0450f;"></i> Iftar: 18:22</span>
+                    <span><i class="fas fa-clock"></i> Mecca time</span>
+                </div>
+                <p style="margin-top: 12px; font-size:0.9rem;"><i class="fas fa-info-circle"></i> 1 Ramadan approx. 18 March 2026. Timings for London/Mecca.</p>
+            </div>
+            
+            <!-- QURAN MAJEED section (online inspired, dynamic) -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-book-quran"></i> 
+                    <span>القرآن المجيد · Ayat & Reminder</span>
+                </div>
+                <div class="aya-card">
+                    <div class="quran-text">
+                        إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ
+                    </div>
+                    <div class="translation">
+                        "Indeed, We sent it [the Qur'an] down during the Night of Decree." 
+                        (97:1)
+                    </div>
+                    <div class="surah-name">— سورة القدر</div>
+                </div>
+                <div class="aya-card" style="margin-top:16px;">
+                    <div class="quran-text">
+                        يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ
+                    </div>
+                    <div class="translation">
+                        "O you who have believed, decreed upon you is fasting…" (2:183)
+                    </div>
+                    <div class="surah-name">— سورة البقرة</div>
+                </div>
+                <!-- quick tafsir link (sponsored subtle) -->
+                <div style="margin-top:20px; background:#f3e3cf; border-radius:30px; padding:8px 15px; font-size:0.9rem;">
+                    <i class="fas fa-hand-sparkles" style="color:#946b38;"></i> 
+                    Read more Qur'an at <strong>Quran.com</strong> · Juz' 8 today
+                </div>
+            </div>
+
+            <!-- extra ramadan duas & material -->
+            <div style="display: flex; gap:14px; flex-wrap: wrap;">
+                <div style="flex:1; background: #fbefde; border-radius: 20px 6px; padding:18px; border:1px solid #dbbc8c;">
+                    <i class="fas fa-hands-praying" style="font-size:2rem; color:#4f6d3b;"></i>
+                    <h3 style="margin: 6px 0; font-weight: 600;">Du'ā for fasting</h3>
+                    <p style="font-size:0.95rem;">"Dhahaba al-zama' wa abtalat al-'uruq..."</p>
+                </div>
+                <div style="flex:1; background: #fbefde; border-radius: 20px 6px; padding:18px; border:1px solid #dbbc8c;">
+                    <i class="fas fa-clock" style="font-size:2rem; color:#ac7b49;"></i>
+                    <h3 style="margin: 6px 0;">Laylat al-Qadr</h3>
+                    <p>Seek it in the last ten nights, especially 27th Ramadan.</p>
+                </div>
             </div>
         </div>
 
-        <!-- ramadan calendar (offline, but highlights today) -->
-        <div class="card">
-            <div class="card-title"><i class="fas fa-calendar-alt"></i> رمضان 1447 (2026) </div>
-            <div class="calendar-grid" id="ramadanCalGrid"></div>
-            <p style="margin-top:8px; font-size:0.85rem;"><i class="fas fa-info-circle"></i> أيام الصيام • أول رمضان 18 مارس 2026 (تقديري)</p>
-        </div>
-
-        <!-- quran majeed (offline, beautiful) -->
-        <div class="quran-box">
-            <div class="arabic">إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</div>
-            <div class="transliteration">Innā anzalnāhu fī laylatil-qadr</div>
-            <hr style="border:1px dashed #b79a64; margin:12px 0;">
-            <div class="arabic" style="font-size:1.9rem;">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ</div>
-            <div style="text-align:right; font-family:Amiri;">(٢:١٨٣)</div>
-        </div>
-
-        <!-- additional islamic material & duas (offline) -->
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="background: #c9b185; border-radius:30px; padding:8px 15px;"><i class="fas fa-hand-sparkles"></i> سبحان الله</span>
-            <span style="background: #c9b185; border-radius:30px; padding:8px 15px;"><i class="fas fa-hand-sparkles"></i> الحمد لله</span>
-            <span style="background: #c9b185; border-radius:30px; padding:8px 15px;"><i class="fas fa-hand-sparkles"></i> لا إله إلا الله</span>
-        </div>
-
-        <!-- SPONSORED BUSINESS BANNERS (static / offline but attractive) -->
-        <div class="sponsor-row">
-            <div class="banner">
-                <i class="fas fa-utensils"></i>
-                <p><strong> حلال فود ترك</strong> <br> <small>خصم 15% • رمضان كريم</small></p>
+        <!-- SIDEBAR (sponsors / banners & additional resources) -->
+        <div class="sidebar-panel">
+            <!-- Sponsor Card 1: business banners -->
+            <div class="sponsor-card">
+                <div style="background:#f0dbb8; border-radius: 20px 6px; padding:8px; font-weight:700; color:#3f2f1c;">
+                    <i class="fas fa-hand-holding-heart"></i> 我们的赞助商 · Our Sponsors
+                </div>
+                <div class="sponsor-grid">
+                    <div class="banner-item">
+                        <div class="banner-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="banner-text">
+                            Bismillah Catering <br><small>Iftar & Suhoor • 20% off</small>
+                        </div>
+                    </div>
+                    <div class="banner-item">
+                        <div class="banner-icon"><i class="fas fa-mosque"></i></div>
+                        <div class="banner-text">
+                            Al-Noor Travel <br><small>Umrah packages 2026</small>
+                        </div>
+                    </div>
+                    <div class="banner-item">
+                        <div class="banner-icon"><i class="fas fa-dates"></i></div>
+                        <div class="banner-text">
+                            Madinah Dates <br><small>Premium khajoor · free delivery</small>
+                        </div>
+                    </div>
+                    <div class="banner-item">
+                        <div class="banner-icon"><i class="fas fa-book"></i></div>
+                        <div class="banner-text">
+                            Islamic Booklet <br><small>30 duas in Ramadan</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="sponsor-note">
+                    <i class="fas fa-star"></i> support these local businesses
+                </div>
             </div>
-            <div class="banner">
-                <i class="fas fa-mosque"></i>
-                <p><strong>العمرة 2026</strong> <br> <small>باقات مخفضة • سارع بالحجز</small></p>
-            </div>
-            <div class="banner">
-                <i class="fas fa-dates"></i>
-                <p><strong>تمور المدينة</strong> <br> <small>شحن مجاني لفترة محدودة</small></p>
-            </div>
-            <div class="banner">
-                <i class="fas fa-tshirt"></i>
-                <p><strong>أزياء إسلامية</strong> <br> <small>عيد الفطر قريب • تخفيضات 30%</small></p>
-            </div>
-        </div>
 
-        <!-- offline footer / always visible -->
-        <div class="footer-note">
-            <span><i class="far fa-moon"></i> رمضان 1447</span>
-            <span><i class="fas fa-download"></i> يعمل بدون نت</span>
-            <span><i class="fas fa-hand-holding-heart"></i> زكاتك تبلغ المحتاج</span>
+            <!-- second sponsored banner (prominent) -->
+            <div style="background: #dfcbb0; border-radius: 36px 8px; padding:16px; border:3px solid #fff4e2;">
+                <i class="fas fa-circle-info" style="color:#2f6140; font-size:2rem; float:left; margin-right:10px;"></i>
+                <h4 style="color:#352815;">Ramadan 2026 offer</h4>
+                <p style="font-size:0.9rem;">Get 25% off at <strong>HumbleThreads</strong> · ethical clothing. Use code: NOOR26</p>
+                <button style="background:#755e3f; color:#ffefd3; border:0; border-radius:40px; padding:6px 18px; margin-top:6px;">Shop now →</button>
+            </div>
+
+            <!-- short duas / islamic material -->
+            <div class="card" style="margin-bottom:0;">
+                <div class="card-title" style="font-size:1.6rem;">
+                    <i class="fas fa-dua"></i> Daily dhikr
+                </div>
+                <ul style="list-style-type: none; padding-left:4px;">
+                    <li><i class="fas fa-circle" style="font-size:0.5rem; color:#926e3e;"></i> سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</li>
+                    <li><i class="fas fa-circle" style="font-size:0.5rem; color:#926e3e;"></i> أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</li>
+                    <li><i class="fas fa-circle" style="font-size:0.5rem; color:#926e3e;"></i> اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</li>
+                </ul>
+                <div style="margin-top:16px; background:#efe1cf; border-radius:30px; padding:8px 12px; display:flex; align-items:center; gap:12px;">
+                    <i class="fas fa-video" style="color:#7b5d36;"></i>
+                    <span>Watch "Ramadan with family" · Sponsored</span>
+                </div>
+            </div>
+
+            <!-- 3rd party banner / app-like -->
+            <div style="background: #1f4c2b; color: #faeacb; border-radius: 24px 6px; padding: 16px; margin-top: 8px;">
+                <i class="fas fa-mobile-screen-button" style="font-size:2rem; float:right;"></i>
+                <h4>📲 Download the complete 2026 app</h4>
+                <p style="font-size:0.9rem;">Ramadan timings, duas, Qur'an & more.</p>
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                    <span style="background:#dbbd8d; color:#1f2c1a; padding:5px 15px; border-radius:40px;">Google Play</span>
+                    <span style="background:#dbbd8d; color:#1f2c1a; padding:5px 15px; border-radius:40px;">App Store</span>
+                </div>
+            </div>
         </div>
-        <p style="text-align:center; font-size:0.7rem; margin-top:16px; color:#786a51;">جميع المواد من مصادر مفتوحة • للتشغيل انسخ والصق</p>
+    </div>
+
+    <!-- footer with more ramadan material & copy -->
+    <div class="footer-note">
+        <span><i class="fas fa-moon"></i> Ramadan 1447 / 2026 | 8 Ramadan 1447 (approx)</span>
+        <span><i class="fas fa-pray"></i> Zakat al-Fitr: ~ £8 / $10</span>
+        <span><i class="fas fa-mosque"></i> Masjid Al-Haram live</span>
+        <span><i class="fas fa-donate"></i> Sponsor a iftar</span>
+    </div>
+
+    <!-- small disclaimer (all taken online / copy-paste run) -->
+    <div style="text-align: center; font-size: 0.75rem; margin-top: 30px; color:#5b4f3b; background: #fff1e0; padding:8px; border-radius:50px;">
+        <i class="fas fa-cloud-arrow-up"></i> All materials gathered from open online sources · just copy, paste & run. Banners are demo sponsored content.
     </div>
 </div>
-
-<script>
-    (function() {
-        // ======================= OFFLINE / MOBILE DATE AUTO ===================
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();      // 0-11
-        const date = today.getDate();
-        const dayOfWeek = today.getDay();    // 0 sun, 1 mon, ... 6 sat
-
-        // ---------- 1. HIJRI (offline approximate calculation) ----------
-        // Simple Kuwaiti algorithm: not astronomically exact, but stable offline.
-        function greeToHijri(gy, gm, gd) {
-            let jd1 = Math.floor((1461 * (gy + 4800 + Math.floor((gm - 14) / 12))) / 4) +
-                      Math.floor((367 * (gm - 2 - 12 * (Math.floor((gm - 14) / 12)))) / 12) -
-                      Math.floor((3 * (Math.floor((gy + 4900 + Math.floor((gm - 14) / 12)) / 100))) / 4) + gd - 32075;
-            let jd = jd1 - 1948440 + 10632;
-            let n = Math.floor((jd - 1) / 10631);
-            jd = jd - 10631 * n + 354;
-            let j = Math.floor((10985 - jd) / 5316) * Math.floor((50 * jd) / 17719) + Math.floor(jd / 5670) * Math.floor((43 * jd) / 15238);
-            jd = jd - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) - Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
-            let m = Math.floor((24 * jd) / 709);
-            let d = jd - Math.floor((709 * m) / 24);
-            let y = 30 * n + j - 30;
-            return { year: y, month: m, day: d };
-        }
-
-        let hijri = greeToHijri(year, month+1, date);
-        let hijriDateStr = `${hijri.day} ${['محرم','صفر','ربيع الأول','ربيع الثاني','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'][hijri.month-1]} ${hijri.year} هـ`;
-        document.getElementById('hijriDisplay').innerText = hijriDateStr;
-
-        // ---------- 2. RAMADAN STATUS (according to mobile date) ----------
-        // Ramadan 1 1447 AH ≈ 18 March 2026 (proleptic). We'll check if today within ramadan approx.
-        const ramadanStart = new Date(2026, 2, 18); // March 18
-        const ramadanEnd = new Date(2026, 3, 16);   // April 16 (30 days)
-        let statusEl = document.getElementById('statusMessage');
-        let diffDays = Math.floor((ramadanStart - today) / (1000*60*60*24));
-        let ramadanActive = false;
-        let dayOfRamadan = 0;
-        if (today >= ramadanStart && today <= ramadanEnd) {
-            ramadanActive = true;
-            dayOfRamadan = Math.floor((today - ramadanStart) / (1000*60*60*24)) + 1;
-            statusEl.innerText = `🌙 اليوم ${dayOfRamadan} من رمضان • تقبل الله`;
-        } else if (today < ramadanStart) {
-            if (diffDays === 1) statusEl.innerText = `غداً أول رمضان • استعد`;
-            else statusEl.innerText = `متبقي ${diffDays} أيام لرمضان 2026`;
-        } else {
-            statusEl.innerText = `انقضى رمضان • عيد مبارك`;
-        }
-
-        // ---------- 3. PRAYER TIMES (offline dummy but vary slightly by month) ----------
-        function generatePrayerTimes(month, day) {
-            // base times for London/Mecca style; vary by month to feel "live"
-            let seasonOffset = 0;
-            if (month >= 3 && month <= 7) seasonOffset = 40; // summer days longer
-            else seasonOffset = 10;
-
-            let fajr =  `0${4+Math.floor(seasonOffset/60)}:${30 + (day%20)}`.slice(-5);
-            let dhuhr = `12:0${(day%3)+1}`;
-            let asr =   `15:${20+(day%15)}`;
-            let maghrib = `18:${20+(day%10)}`;
-            let isha =   `20:${10+(day%20)}`;
-
-            return { fajr, dhuhr, asr, maghrib, isha };
-        }
-
-        let pt = generatePrayerTimes(month, date);
-        let prayerContainer = document.getElementById('prayerTimesContainer');
-        prayerContainer.innerHTML = `
-            <div class="prayer-item"><span>الفجر</span> <strong>${pt.fajr}</strong></div>
-            <div class="prayer-item"><span>الظهر</span> <strong>${pt.dhuhr}</strong></div>
-            <div class="prayer-item"><span>العصر</span> <strong>${pt.asr}</strong></div>
-            <div class="prayer-item"><span>المغرب</span> <strong>${pt.maghrib}</strong></div>
-            <div class="prayer-item"><span>العشاء</span> <strong>${pt.isha}</strong></div>
-        `;
-
-        // ---------- 4. RAMADAN CALENDAR GRID (March 2026 based) ----------
-        function buildRamadanCalendar() {
-            let gridHtml = '';
-            const weekdays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-            for (let wd of weekdays) {
-                gridHtml += `<div class="cal-weekday">${wd}</div>`;
-            }
-
-            // March 2026 starts on Sunday (day 0) -> need offset. 1 March 2026 = Sunday
-            let firstDayMarch = new Date(2026, 2, 1).getDay(); // 0 Sunday => we show Monday first? we adapt: we want Monday first column.
-            let offset = (firstDayMarch === 0) ? 6 : firstDayMarch - 1; // offset for Mon
-
-            let daysInMarch = 31;
-            let cellCount = 0;
-
-            for (let i = 0; i < offset; i++) {
-                gridHtml += `<div class="cal-day"></div>`;
-                cellCount++;
-            }
-
-            for (let d = 1; d <= daysInMarch; d++) {
-                let isRamadanDay = (d >= 18 && d <= 31); // 18 march to 31 march = ramadan
-                let extraClass = isRamadanDay ? 'ramadan-day' : '';
-                let isToday = (year === 2026 && month === 2 && date === d); // march = 2
-                let todayClass = isToday ? 'today' : '';
-
-                let fastIcon = (isRamadanDay && d >=18) ? '<i class="fas fa-moon fast-marker" title="صوم"></i>' : '';
-
-                gridHtml += `<div class="cal-day ${extraClass} ${todayClass}">${d} ${fastIcon}</div>`;
-                cellCount++;
-            }
-
-            // fill remaining cells (optional)
-            while (cellCount % 7 !== 0) {
-                gridHtml += `<div class="cal-day"></div>`;
-                cellCount++;
-            }
-            document.getElementById('ramadanCalGrid').innerHTML = gridHtml;
-        }
-        buildRamadanCalendar();
-
-        // ---------- 5. mark today in hijri month if ramadan (highlight) ----------
-        // already handled by calendar grid for march 2026 dates; but we can also show a dot.
-        // if actual date is within ramadan (real world) we already have dayOfRamadan.
-
-        // small extra: if device date is ramadan-active, show extra indicator
-        if (ramadanActive) {
-            // add a special widget maybe
-            let liveDiv = document.querySelector('.live-badge');
-            let span = document.createElement('span');
-            span.innerHTML = `  •  يوم ${dayOfRamadan}`;
-            liveDiv.appendChild(span);
-        }
-
-        // optional: if offline, all content is static already. no external calls.
-        // Business banners are hardcoded – they are like sponsored content.
-
-        // also adjust hijri string if it's ramadan month (to show رمضان)
-        if (hijri.month === 9) {
-            document.getElementById('hijriDisplay').innerHTML = `رمضان ${hijri.day}, ${hijri.year} هـ`;
-        }
-    })();
-</script>
-<!-- tiny extra note for mobile touch -->
+<!-- end islamic wrapper -->
 </body>
 </html>
