@@ -1,23 +1,25 @@
 {
   "name": "Ramadan Calendar 2026",
   "short_name": "Ramadan Cal",
-  "description": "Ramadan 2026 Calendar with Sehri & Iftar Timings",
+  "description": "Ramadan 2026 Calendar with Sehri & Iftar Timings - Installable App",
   "start_url": "calendar.html",
   "display": "standalone",
   "background_color": "#1a2e1a",
   "theme_color": "#1a2e1a",
   "orientation": "portrait",
+  "scope": "./",
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231a2e1a'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'>🌙</text></svg>",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231a2e1a'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'>🌙</text></svg>",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
