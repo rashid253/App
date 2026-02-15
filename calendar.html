@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>رمضان کیلنڈر 2026</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Amiri', sans-serif;
+            background: #1a2e1a;
+            padding: 10px;
+            min-height: 100vh;
+        }
+        
+        .app-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #faf3e2;
+            border-radius: 50px 15px 50px 15px;
+            padding: 18px 15px 20px;
+            border: 3px solid #c9a75a;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.03) 0px, rgba(201,167,90,0.03) 20px, transparent 20px, transparent 40px);
+            pointer-events: none;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #e7d8b8;
+            border-radius: 40px 8px 40px 8px;
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            border: 2px solid #b38d5a;
+            box-shadow: 0 5px 0 #9b7a48;
+            cursor: pointer;
+        }
+        
+        .profile-right {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e4a2e;
+            font-family: 'Amiri', serif;
+        }
+        
+        .profile-details {
+            font-size: 0.95rem;
+            color: #2d3a2d;
+            margin-top: 5px;
+        }
+        
+        .profile-left {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .shop-icon {
+            font-size: 4rem;
+            color: #1e4a2e;
+            background: #ffe8b5;
+            border-radius: 30px 8px 30px 8px;
+            padding: 10px 15px;
+            border: 3px solid #b38d5a;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: #1e4a2e;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 30px;
+            margin: 2px;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        
+        /* Ads Row */
+        .ads-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .ad-card {
+            flex: 1;
+            background: linear-gradient(145deg, #1e4a2e, #153f1f);
+            border-radius: 30px 8px 30px 8px;
+            padding: 10px 5px;
+            text-align: center;
+            border: 2px solid #c9a75a;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .ad-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .ad-card i {
+            font-size: 2rem;
+            color: #ffd966;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Ramadan Header */
+        .ramadan-header {
+            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 12px 15px;
+            border: 2px solid #c9a75a;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .ramadan-header h2 {
+            font-size: 1.8rem;
+            color: #ffd966;
+            font-family: 'Amiri', serif;
+        }
+        
+        .ramadan-header span {
+            background: #0f2e1a;
+            padding: 6px 12px;
+            border-radius: 40px;
+            border: 2px solid #c9a75a;
+        }
+        
+        /* Icons Row - FIXED */
+        .icon-row {
+            display: flex;
+            justify-content: space-around;
+            background: #e7d8b8;
+            border-radius: 80px 8px 80px 8px;
+            padding: 15px 5px;
+            margin-bottom: 15px;
+            border: 2px solid #c9a75a;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #1e4a2e;
+            font-weight: 600;
+            cursor: pointer;
+            width: 70px;
+            text-align: center;
+        }
+        
+        .icon-item i {
+            font-size: 2rem;
+            background: #1e4a2e;
+            color: #ffd966;
+            border-radius: 50%;
+            padding: 12px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            border: 2px solid #c9a75a;
+        }
+        
+        /* Live Timer - FIXED */
+        .live-timer {
+            background: #1e4a2e;
+            border: 2px solid #ffd966;
+            border-radius: 60px;
+            padding: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .timer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .timer-block {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #0f3a1f;
+            padding: 8px 15px;
+            border-radius: 40px;
+        }
+        
+        .timer-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: #1e4a2e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 1px solid #ffd966;
+        }
+        
+        .dua-ticker {
+            background: #b38d51;
+            color: #1e3a1e;
+            padding: 10px 15px;
+            border-radius: 40px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        /* Quran Box - FIXED */
+        .quran-box {
+            background: linear-gradient(145deg, #1e4a2e, #0f3a1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+            border: 3px solid #c9a75a;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .quran-box i {
+            font-size: 3.5rem;
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+        
+        .quran-box h2 {
+            color: #ffd966;
+            font-size: 2rem;
+            font-family: 'Amiri', serif;
+        }
+        
+        /* Calendar Table - FIXED */
+        .calendar-container {
+            background: #e7d8b8;
+            border-radius: 30px 8px 30px 8px;
+            padding: 15px;
+            border: 2px solid #c9a75a;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-title {
+            color: #1e4a2e;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar-table th {
+            background: #1e4a2e;
+            color: white;
+            padding: 10px 5px;
+            border-radius: 20px 4px 10px 4px;
+        }
+        
+        .calendar-table td {
+            padding: 8px 5px;
+            text-align: center;
+            border-bottom: 1px solid #c9a75a;
+            color: #1e3a1e;
+        }
+        
+        .table-scroll {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        /* Bottom Banners */
+        .bottom-banners {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .bottom-banner {
+            width: 100%;
+            background: linear-gradient(145deg, #8b6d42, #a68452);
+            border-radius: 40px 8px 40px 8px;
+            padding: 12px 10px;
+            text-align: center;
+            border: 2px solid #c9a75a;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .bottom-banner:hover {
+            transform: scale(1.02);
+        }
+        
+        .bottom-banner i {
+            font-size: 2rem;
+            color: #ffd966;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #1e4a2e;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        
+        /* Modal - FIXED */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: #faf3e2;
+            border-radius: 50px 15px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 30px auto;
+            border: 3px solid #c9a75a;
+        }
+        
+        .close {
+            float: left;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1e4a2e;
+        }
+        
+        .tasbeeh-display {
+            font-size: 6rem;
+            text-align: center;
+            color: #1e4a2e;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        
+        .tasbeeh-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .tas-btn {
+            background: #1e4a2e;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid #c9a75a;
+        }
+        
+        .tas-btn.red {
+            background: #8b3a3a;
+        }
+        
+        .dua-box {
+            background: #e7d8b8;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #c9a75a;
+        }
+        
+        .dua-arabic {
+            font-size: 1.8rem;
+            font-family: 'Amiri';
+            text-align: right;
+            color: #1e4a2e;
+            margin-bottom: 10px;
+        }
+        
+        .dua-urdu {
+            font-size: 1.2rem;
+            color: #1e3a1e;
+            border-right: 3px solid #c9a75a;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="content" id="calendarContent">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+    
+    <!-- Tasbeeh Modal - FIXED -->
+    <div id="tasbeehModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tasbeehModal')">&times;</span>
+            <h2 style="text-align:center; color:#1e4a2e;">📿 تسبیح</h2>
+            <div class="tasbeeh-display" id="tasbeehCount">0</div>
+            <div class="tasbeeh-grid">
+                <button class="tas-btn" onclick="addTasbeeh(1)">+1</button>
+                <button class="tas-btn" onclick="addTasbeeh(33)">+33</button>
+                <button class="tas-btn" onclick="addTasbeeh(100)">+100</button>
+                <button class="tas-btn" onclick="saveTasbeeh()">محفوظ</button>
+                <button class="tas-btn" onclick="loadTasbeeh()">لوڈ</button>
+                <button class="tas-btn red" onclick="resetTasbeeh()">ری سیٹ</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Duas Modal - FIXED -->
+    <div id="duasModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('duasModal')">&times;</span>
+            <h2 style="text-align:center; color:#1e4a2e;">🤲 رمضان کی دعائیں</h2>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
+                <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ</div>
+                <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں (افطار کی دعا)</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
+                <div class="dua-urdu">میں نے کل کے روزے کی نیت کی (سحری کی دعا)</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ========== CITY TIMINGS DATA (FIXED) ==========
+        const timings = {
+            lahore: [
+                {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
+                {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
+                {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
+                {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
+                {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
+                {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
+                {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
+                {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
+                {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
+                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
+                {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
+                {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
+                {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
+                {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
+                {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
+                {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
+                {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
+                {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
+                {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
+                {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
+                {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
+                {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
+                {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
+                {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
+                {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
+                {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
+                {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
+                {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
+                {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
+                {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
+            ],
+            karachi: [
+                {day:1, date:"19 Feb", sehri:"5:52", iftar:"6:23"},
+                {day:2, date:"20 Feb", sehri:"5:51", iftar:"6:24"},
+                {day:3, date:"21 Feb", sehri:"5:50", iftar:"6:24"},
+                {day:4, date:"22 Feb", sehri:"5:49", iftar:"6:25"},
+                {day:5, date:"23 Feb", sehri:"5:48", iftar:"6:25"},
+                {day:6, date:"24 Feb", sehri:"5:47", iftar:"6:26"},
+                {day:7, date:"25 Feb", sehri:"5:46", iftar:"6:27"},
+                {day:8, date:"26 Feb", sehri:"5:45", iftar:"6:27"},
+                {day:9, date:"27 Feb", sehri:"5:44", iftar:"6:28"},
+                {day:10, date:"28 Feb", sehri:"5:43", iftar:"6:28"},
+                {day:11, date:"1 Mar", sehri:"5:42", iftar:"6:29"},
+                {day:12, date:"2 Mar", sehri:"5:41", iftar:"6:30"},
+                {day:13, date:"3 Mar", sehri:"5:40", iftar:"6:30"},
+                {day:14, date:"4 Mar", sehri:"5:39", iftar:"6:31"},
+                {day:15, date:"5 Mar", sehri:"5:38", iftar:"6:31"},
+                {day:16, date:"6 Mar", sehri:"5:37", iftar:"6:32"},
+                {day:17, date:"7 Mar", sehri:"5:36", iftar:"6:32"},
+                {day:18, date:"8 Mar", sehri:"5:35", iftar:"6:33"},
+                {day:19, date:"9 Mar", sehri:"5:34", iftar:"6:34"},
+                {day:20, date:"10 Mar", sehri:"5:33", iftar:"6:34"},
+                {day:21, date:"11 Mar", sehri:"5:32", iftar:"6:35"},
+                {day:22, date:"12 Mar", sehri:"5:31", iftar:"6:35"},
+                {day:23, date:"13 Mar", sehri:"5:30", iftar:"6:36"},
+                {day:24, date:"14 Mar", sehri:"5:29", iftar:"6:36"},
+                {day:25, date:"15 Mar", sehri:"5:28", iftar:"6:37"},
+                {day:26, date:"16 Mar", sehri:"5:27", iftar:"6:38"},
+                {day:27, date:"17 Mar", sehri:"5:26", iftar:"6:38"},
+                {day:28, date:"18 Mar", sehri:"5:25", iftar:"6:39"},
+                {day:29, date:"19 Mar", sehri:"5:24", iftar:"6:39"},
+                {day:30, date:"20 Mar", sehri:"5:23", iftar:"6:40"}
+            ]
+        };
+        
+        // Fill other cities
+        timings.islamabad = timings.lahore.map(r => ({...r, sehri: (parseInt(r.sehri)+1)+':'+r.sehri.split(':')[1]}));
+        timings.multan = timings.lahore.map(r => ({...r, iftar: (parseInt(r.iftar)+1)+':'+r.iftar.split(':')[1]}));
+        timings.faisalabad = timings.lahore.map(r => ({...r, sehri: r.sehri, iftar: (parseInt(r.iftar)+1)+':'+r.iftar.split(':')[1]}));
+        
+        // ========== LOAD DATA FROM URL ==========
+        const urlParams = new URLSearchParams(window.location.search);
+        const calendarId = urlParams.get('id');
+        
+        if (calendarId) {
+            const data = JSON.parse(localStorage.getItem(calendarId));
+            if (data) {
+                renderCalendar(data);
+            } else {
+                document.getElementById('calendarContent').innerHTML = '<p style="color:red; text-align:center;">کیلنڈر ڈیٹا نہیں ملا</p>';
+            }
+        } else {
+            // Default data for direct access
+            const defaultData = {
+                shopName: "المدینہ سٹور",
+                shopAddress: "ماڈل ٹاؤن، لاہور",
+                shopPhone: "03001234567",
+                shopWhatsapp: "923001234567",
+                shopIcon: "fa-store",
+                ad1Text: "حلال فوڈ",
+                ad1Link: "https://www.foodpanda.pk",
+                ad1Icon: "fa-utensils",
+                ad2Text: "عید کلکشن",
+                ad2Link: "https://www.daraz.pk",
+                ad2Icon: "fa-tshirt",
+                ad3Text: "مدینہ ڈیٹس",
+                ad3Link: "https://www.google.com/search?q=خریداری+کھجور",
+                ad3Icon: "fa-dates",
+                banner1Text: "خصوصی کھجور - 30% تخفیف",
+                banner1Link: "https://www.chaayee.pk/",
+                banner1Icon: "fa-dates",
+                banner2Text: "حلال فوڈ - افطار ڈیل",
+                banner2Link: "https://www.kababjees.com/",
+                banner2Icon: "fa-drumstick-bite",
+                banner3Text: "رمضان سپیشل پیکج",
+                banner3Link: "https://www.metro.pk/",
+                banner3Icon: "fa-gift"
+            };
+            renderCalendar(defaultData);
+        }
+        
+        function renderCalendar(data) {
+            const city = 'lahore'; // Default city
+            const cityNames = {lahore:'لاہور', karachi:'کراچی', islamabad:'اسلام آباد', multan:'ملتان', faisalabad:'فیصل آباد'};
+            
+            // Create calendar rows
+            let calendarRows = '';
+            for(let i = 0; i < 10; i++) {
+                const row = timings.lahore[i];
+                calendarRows += `
+                    <tr>
+                        <td>${row.day}</td>
+                        <td>${row.date}</td>
+                        <td>${row.sehri} AM</td>
+                        <td>${row.iftar} PM</td>
+                    </tr>
+                `;
+            }
+            
+            const html = `
+                <!-- Profile Section - CHANGEABLE -->
+                <div class="profile-section" onclick="window.open('https://maps.google.com/?q=${encodeURIComponent(data.shopAddress)}', '_blank')">
+                    <div class="profile-right">
+                        <div class="profile-name">${data.shopName}</div>
+                        <div class="profile-details">
+                            <i class="fas fa-map-marker-alt"></i> ${data.shopAddress}<br>
+                            <a href="tel:${data.shopPhone}" class="contact-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-phone"></i> ${data.shopPhone}
+                            </a>
+                            <a href="https://wa.me/${data.shopWhatsapp}" class="contact-btn" onclick="event.stopPropagation()">
+                                <i class="fab fa-whatsapp"></i> واٹس ایپ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="profile-left">
+                        <i class="fas ${data.shopIcon} shop-icon"></i>
+                    </div>
+                </div>
+                
+                <!-- Top Ads - CHANGEABLE -->
+                <div class="ads-row">
+                    <div class="ad-card" onclick="window.open('${data.ad1Link}', '_blank')">
+                        <i class="fas ${data.ad1Icon}"></i>
+                        <span>${data.ad1Text}</span>
+                    </div>
+                    <div class="ad-card" onclick="window.open('${data.ad2Link}', '_blank')">
+                        <i class="fas ${data.ad2Icon}"></i>
+                        <span>${data.ad2Text}</span>
+                    </div>
+                    <div class="ad-card" onclick="window.open('${data.ad3Link}', '_blank')">
+                        <i class="fas ${data.ad3Icon}"></i>
+                        <span>${data.ad3Text}</span>
+                    </div>
+                </div>
+                
+                <!-- Ramadan Header - FIXED -->
+                <div class="ramadan-header">
+                    <h2>🌙 رمضان 1447</h2>
+                    <span>لاہور</span>
+                </div>
+                
+                <!-- 4 Icons - FIXED -->
+                <div class="icon-row">
+                    <div class="icon-item" onclick="openTasbeeh()">
+                        <i class="fas fa-tasbih"></i>
+                        <span>تسبیح</span>
+                    </div>
+                    <div class="icon-item" onclick="window.open('https://quran.com/ur', '_blank')">
+                        <i class="fas fa-quran"></i>
+                        <span>قرآن</span>
+                    </div>
+                    <div class="icon-item" onclick="window.open('https://equran.com/', '_blank')">
+                        <i class="fas fa-headphones"></i>
+                        <span>آڈیو</span>
+                    </div>
+                    <div class="icon-item" onclick="openDuas()">
+                        <i class="fas fa-hand-praying"></i>
+                        <span>دعائیں</span>
+                    </div>
+                </div>
+                
+                <!-- Live Timer - FIXED -->
+                <div class="live-timer">
+                    <div class="timer-row">
+                        <div class="timer-block">
+                            <i class="fas fa-utensils"></i>
+                            <span>سحری</span>
+                            <span class="timer-value" id="sehriTimer">05:18:00</span>
+                        </div>
+                        <div class="timer-block">
+                            <i class="fas fa-sun"></i>
+                            <span>افطاری</span>
+                            <span class="timer-value" id="iftarTimer">05:54:00</span>
+                        </div>
+                    </div>
+                    <div class="dua-ticker" onclick="openDuas()">
+                        دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ
+                    </div>
+                </div>
+                
+                <!-- Quran Box - FIXED -->
+                <div class="quran-box" onclick="window.open('https://quran.com/ur', '_blank')">
+                    <i class="fas fa-quran"></i>
+                    <h2>القرآن الكريم</h2>
+                </div>
+                
+                <!-- Calendar - FIXED -->
+                <div class="calendar-container">
+                    <div class="calendar-title">
+                        <i class="fas fa-clock"></i> سحری و افطاری · لاہور (30 دن)
+                    </div>
+                    <div class="table-scroll">
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>روزہ</th>
+                                    <th>تاریخ</th>
+                                    <th>سحری</th>
+                                    <th>افطاری</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${calendarRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Bottom Banners - CHANGEABLE -->
+                <div class="bottom-banners">
+                    <div class="bottom-banner" onclick="window.open('${data.banner1Link}', '_blank')">
+                        <i class="fas ${data.banner1Icon}"></i>
+                        <span>${data.banner1Text}</span>
+                    </div>
+                    <div class="bottom-banner" onclick="window.open('${data.banner2Link}', '_blank')">
+                        <i class="fas ${data.banner2Icon}"></i>
+                        <span>${data.banner2Text}</span>
+                    </div>
+                    <div class="bottom-banner" onclick="window.open('${data.banner3Link}', '_blank')">
+                        <i class="fas ${data.banner3Icon}"></i>
+                        <span>${data.banner3Text}</span>
+                    </div>
+                </div>
+                
+                <!-- Footer - FIXED -->
+                <div class="footer">
+                    <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
+                </div>
+            `;
+            
+            document.getElementById('calendarContent').innerHTML = html;
+        }
+        
+        // ========== TASBEEH FUNCTIONS (FIXED) ==========
+        let tasbeeh = 0;
+        
+        function openTasbeeh() { document.getElementById('tasbeehModal').style.display = 'block'; }
+        function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        function addTasbeeh(val) { tasbeeh += val; document.getElementById('tasbeehCount').innerText = tasbeeh; }
+        function resetTasbeeh() { tasbeeh = 0; document.getElementById('tasbeehCount').innerText = tasbeeh; }
+        function saveTasbeeh() { localStorage.setItem('tasbeeh', tasbeeh); alert('محفوظ ہو گیا'); }
+        function loadTasbeeh() { 
+            let saved = localStorage.getItem('tasbeeh');
+            if(saved) { tasbeeh = parseInt(saved); document.getElementById('tasbeehCount').innerText = tasbeeh; }
+        }
+        
+        // ========== LIVE TIMER (FIXED) ==========
+        function updateTimer() {
+            let now = new Date();
+            let sehri = new Date(now); sehri.setHours(5, 18, 0);
+            let iftar = new Date(now); iftar.setHours(17, 54, 0);
+            
+            if(now > sehri) sehri.setDate(sehri.getDate() + 1);
+            if(now > iftar) iftar.setDate(iftar.getDate() + 1);
+            
+            let diffSehri = Math.max(0, sehri - now);
+            let diffIftar = Math.max(0, iftar - now);
+            
+            document.getElementById('sehriTimer').innerText = formatTime(diffSehri);
+            document.getElementById('iftarTimer').innerText = formatTime(diffIftar);
+            
+            if(now < iftar && now > new Date().setHours(5, 18, 0)) {
+                document.querySelector('.dua-ticker').innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ";
+            } else {
+                document.querySelector('.dua-ticker').innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
+            }
+        }
+        
+        function formatTime(ms) {
+            let h = Math.floor(ms/(1000*60*60));
+            let m = Math.floor((ms%(1000*60*60))/(1000*60));
+            let s = Math.floor((ms%(1000*60))/1000);
+            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+        
+        setInterval(updateTimer, 1000);
+        
+        window.onclick = function(e) {
+            if(e.target.classList.contains('modal')) e.target.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
