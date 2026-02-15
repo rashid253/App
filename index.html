@@ -3,148 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Banner Generator</title>
+    <title>رمضان 2026 پاکستان | مکمل دعائیں + لائیو ٹائمر</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        
         body {
-            font-family: 'Inter', 'Amiri', sans-serif;
-            background: #1a2e1a;
-            padding: 20px;
+            font-family: 'Poppins', 'Nafees', 'Urdu Typesetting', sans-serif;
+            background: #e7dcc0;
+            padding: 12px 10px 25px;
+            min-height: 100vh;
+            color: #2d261b;
         }
-        
-        .container {
-            max-width: 600px;
+        .app-wrapper {
+            max-width: 700px;
             margin: 0 auto;
-            background: #faf3e2;
-            border-radius: 50px 15px 50px 15px;
-            padding: 25px;
-            border: 3px solid #c9a75a;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 100%;
+            background: rgba(255, 250, 235, 0.92);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 45px 15px 45px 15px;
+            border: 2px solid #c9ad7c;
+            padding: 16px 14px 28px;
+            box-shadow: 0 25px 35px -8px #4d3a24;
+            position: relative;
+            overflow: hidden;
         }
-        
-        h1 {
-            color: #1e4a2e;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 5px;
-            font-family: 'Amiri', serif;
+        .app-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(170, 130, 70, 0.03) 0px, rgba(170,130,70,0.03) 12px, transparent 12px, transparent 24px);
+            pointer-events: none;
         }
-        
-        .subtitle {
+        .content {
+            position: relative;
+            z-index: 5;
+        }
+
+        /* پروفیشنل اسپانسر سیکشن */
+        .sponsor-pro-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f3e1c2;
+            border-radius: 40px 8px 40px 8px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border: 2px solid #ad8d5a;
+            box-shadow: 0 6px 0 #8b6f42;
+            cursor: pointer;
+        }
+        .shop-info {
             text-align: center;
-            color: #4a5a4a;
-            margin-bottom: 25px;
+            flex: 3;
+        }
+        .shop-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1d401d;
+            line-height: 1.2;
+        }
+        .shop-details {
             font-size: 1rem;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed #c9a75a;
+            color: #2d281a;
+            margin-top: 5px;
         }
-        
-        .section {
-            background: white;
+        .shop-details i {
+            margin-left: 5px;
+            color: #ac7700;
+        }
+        .shop-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .shop-image i {
+            font-size: 5.5rem;
+            color: #2f5a38;
+            background: #ffe6af;
             border-radius: 30px 8px 30px 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 2px solid #c9a75a;
-            box-shadow: 0 5px 0 #9b7a48;
+            padding: 10px;
+            border: 3px solid #c8a255;
         }
-        
-        .section-title {
-            color: #1e4a2e;
-            font-size: 1.3rem;
-            font-weight: 600;
+
+        /* آئیکونز کی سنگل قطار */
+        .icon-strip {
+            display: flex;
+            justify-content: space-around;
+            background: #faf0db;
+            border-radius: 80px 8px 80px 8px;
+            padding: 8px 4px;
             margin-bottom: 20px;
+            border: 2px solid #b28f54;
+            flex-wrap: wrap;
+        }
+        .icon-strip-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #1f4a1f;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+            margin: 2px 0;
+            cursor: pointer;
+        }
+        .icon-strip-item i {
+            font-size: 1.8rem;
+            background: #1b562b;
+            color: #ffde91;
+            border-radius: 50%;
+            padding: 8px;
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 4px;
+            border: 2px solid #ffcd7e;
+        }
+
+        /* ہیڈر */
+        .header-pak {
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-right: 4px solid #c9a75a;
-            padding-right: 15px;
-            font-family: 'Amiri', serif;
-        }
-        
-        .section-title i {
-            color: #c9a75a;
-        }
-        
-        .profile-upload {
-            display: flex;
-            align-items: center;
-            gap: 25px;
+            justify-content: space-between;
+            background: linear-gradient(130deg, #0f4820, #236b31);
+            color: #f9efcf;
+            padding: 12px 18px;
+            border-radius: 50px 8px 50px 8px;
+            border: 2px solid #facb7b;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        
-        .profile-preview {
-            width: 100px;
-            height: 100px;
-            background: #e0e0e0;
+        .hilal-pak {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.5rem;
+        }
+        .urdu-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: #00000020;
+            padding: 5px 18px;
+            border-radius: 40px;
+        }
+
+        /* لائیو ٹائمر */
+        .live-timer-badge {
+            background: #1d4d2b;
+            border: 2px solid #ffd58c;
+            border-radius: 60px;
+            padding: 16px 14px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #fef4cf;
+            box-shadow: 0 5px 0 #0e3518;
+        }
+        .timer-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0000002e;
+            padding: 5px 15px;
+            border-radius: 60px;
+        }
+        .timer-label {
+            font-size: 1rem;
+        }
+        .timer-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            direction: ltr;
+            background: #243d19;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+        .dua-tag {
+            background: #b38d51;
+            color: #212618;
+            padding: 5px 12px;
+            border-radius: 60px;
+            font-size: 1rem;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        .card {
+            background: #fcf2dfea;
+            border-radius: 30px 8px 30px 8px;
+            border: 1px solid #dbbc8b;
+            padding: 18px 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px -8px #7d684b;
+        }
+        .card-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            color: #4f3a21;
+            border-bottom: 2px dashed #bb9d70;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sehri-iftar-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .sehri-iftar-table th {
+            background: #8f6d45;
+            color: white;
+            padding: 10px 5px;
+            font-weight: 500;
+            border-radius: 20px 4px 10px 4px;
+        }
+        .sehri-iftar-table td {
+            padding: 9px 4px;
+            text-align: center;
+            border-bottom: 1px solid #dac29c;
+        }
+        .sehri-iftar-table .today-row {
+            background: #ffe9c7;
+            font-weight: 700;
+            border: 2px solid #b67c2e;
+            border-radius: 30px;
+        }
+        .city-note {
+            font-size: 0.9rem;
+            background: #ebe1cd;
+            padding: 8px 15px;
+            border-radius: 30px;
+            margin-top: 12px;
+        }
+        .city-note select {
+            background: #5d482b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+        }
+
+        .quran-urdu-box {
+            background: #dacdb3;
+            border-radius: 40px 6px 40px 6px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 2px solid #ad8f60;
+            cursor: pointer;
+        }
+        .arabic-line {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            text-align: right;
+            color: #1d451d;
+            margin-bottom: 6px;
+        }
+        .urdu-translation {
+            font-size: 1.2rem;
+            color: #322a1b;
+            border-right: 4px solid #aa7e4b;
+            padding-right: 15px;
+            margin: 8px 0;
+        }
+        .surah-detail {
+            text-align: left;
+            font-weight: 600;
+            color: #5e462b;
+        }
+
+        .sponsor-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .sponsor-card {
+            background: linear-gradient(115deg, #a68452, #cfb185);
+            border-radius: 30px 6px 30px 6px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border: 2px solid #fff1ca;
+            color: #1d2b10;
+            cursor: pointer;
+        }
+        .sponsor-card i {
+            font-size: 2.2rem;
+            background: #f7e9cf;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            border: 3px dashed #c9a75a;
+            color: #7a582b;
         }
-        
-        .profile-preview i {
-            font-size: 3rem;
-            color: #888;
-        }
-        
-        .profile-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .upload-btn {
-            background: #1e4a2e;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-        
-        .upload-btn:hover {
-            background: #256635;
-        }
-        
-        .form-group {
-            margin-bottom: 18px;
-        }
-        
-        label {
-            display: block;
-            color: #1e4a2e;
+        .sponsor-text {
             font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
+        }
+        .sponsor-text small {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .footer-note {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #3f351f;
+        }
+        .btn {
+            background: #2f6b3a;
+            color: #fff2d4;
+            border: none;
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #154d1e;
+            cursor: pointer;
+        }
+        .offline-tag {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #7a6a4e;
+        }
+
+        /* Generator Form */
+        .generator-section {
+            background: #fcf2dfea;
+            border-radius: 30px 8px 30px 8px;
+            border: 2px solid #dbbc8b;
+            padding: 20px;
+            margin-bottom: 25px;
         }
         
-        input, textarea, select {
+        .generator-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #4f3a21;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #1d401d;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .input-group input, .input-group textarea, .input-group select {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            background: #fff9eb;
+            border: 2px solid #c9ad7c;
+            border-radius: 30px;
             font-size: 1rem;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .icon-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .icon-preview {
+            width: 50px;
+            height: 50px;
+            background: #1d401d;
+            color: #ffd58c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid #c9ad7c;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: #1d401d;
+            color: #ffd58c;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 0 10px;
+            box-shadow: 0 6px 0 #0f2e1a;
             transition: 0.3s;
         }
         
-        input:focus, textarea:focus, select:focus {
-            border-color: #c9a75a;
-            outline: none;
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #0f2e1a;
         }
         
         .grid-2 {
@@ -153,357 +443,168 @@
             gap: 15px;
         }
         
-        .banner-input {
-            background: #fff9e6;
-            border: 2px solid #c9a75a;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .color-select {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .color-preview {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            border: 2px solid #1e4a2e;
-        }
-        
-        .icon-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 5px;
-        }
-        
-        .icon-preview {
-            width: 45px;
-            height: 45px;
-            background: #1e4a2e;
-            color: #ffd966;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            border: 2px solid #c9a75a;
-        }
-        
-        .generate-btn {
-            width: 100%;
-            padding: 20px;
-            background: #1e4a2e;
-            color: #ffd966;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            margin: 20px 0 10px;
-            font-family: 'Amiri', serif;
-            box-shadow: 0 8px 0 #0f3a1f;
-        }
-        
-        .generate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 11px 0 #0f3a1f;
-            background: #256635;
-        }
-        
-        .footer {
-            text-align: center;
-            color: #faf3e2;
-            margin-top: 20px;
-        }
-        
-        .warning {
-            background: #e8f0e8;
-            border: 2px solid #1e4a2e;
-            border-radius: 40px;
-            padding: 12px;
-            margin: 15px 0;
-            color: #1e4a2e;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .warning i {
-            color: #c9a75a;
-            margin-right: 8px;
-        }
-        
         @media (max-width: 600px) {
             .grid-2 {
                 grid-template-columns: 1fr;
-            }
-            
-            .profile-upload {
-                flex-direction: column;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌙 رمضان 1447</h1>
-        <div class="subtitle">بینر جنریٹر - غیر کلک ایبل</div>
-        
-        <div class="warning">
-            <i class="fas fa-info-circle"></i> نوٹ: یہ app غیر کلک ایبل ہے - صرف ڈسپلے کے لیے
-        </div>
-        
-        <!-- Profile Section -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-store"></i>
-                کاروبار کی تفصیلات
+<div class="app-wrapper">
+    <div class="content">
+        <!-- Generator Section -->
+        <div class="generator-section">
+            <div class="generator-title">
+                <i class="fas fa-cog"></i> کیلنڈر جنریٹر
             </div>
             
-            <div class="profile-upload">
-                <div class="profile-preview" id="profilePreview">
-                    <i class="fas fa-store"></i>
-                </div>
-                <div>
-                    <input type="file" id="profilePic" accept="image/*" style="display:none;" onchange="previewImage(this)">
-                    <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
-                        <i class="fas fa-upload"></i> تصویر منتخب کریں
-                    </button>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>🏢 کاروبار کا نام</label>
-                <input type="text" id="businessName" value="المدینہ جیولرز" placeholder="مثلاً: المدینہ جیولرز">
+            <!-- Profile Data -->
+            <div class="input-group">
+                <label><i class="fas fa-store"></i> کاروبار کا نام</label>
+                <input type="text" id="businessName" value="المدینہ جنرل سٹور">
             </div>
             
             <div class="grid-2">
-                <div class="form-group">
-                    <label>📞 فون نمبر</label>
-                    <input type="text" id="phoneNumber" value="0300 1234567" placeholder="0300 1234567">
+                <div class="input-group">
+                    <label><i class="fas fa-phone"></i> فون نمبر</label>
+                    <input type="text" id="phoneNumber" value="0300 1234567">
                 </div>
                 
-                <div class="form-group">
-                    <label>🏷️ کاروبار کی قسم</label>
-                    <input type="text" id="businessType" value="Jewellery Store" placeholder="مثلاً: Jewellery Store">
+                <div class="input-group">
+                    <label><i class="fas fa-tag"></i> کاروبار کی قسم</label>
+                    <input type="text" id="businessType" value="جنرل سٹور">
                 </div>
             </div>
             
-            <div class="form-group">
-                <label>📍 مکمل پتہ</label>
-                <textarea id="address" rows="2" placeholder="ماڈل ٹاؤن، لاہور">ماڈل ٹاؤن، لاہور</textarea>
+            <div class="input-group">
+                <label><i class="fas fa-map-marker-alt"></i> مکمل پتہ</label>
+                <textarea id="address" rows="2">گھر نمبر 12، ماڈل ٹاؤن، لاہور</textarea>
             </div>
             
-            <div class="form-group">
-                <label>🎨 پروفائل آئیکون</label>
-                <div class="icon-selector">
-                    <div class="icon-preview" id="profileIconPreview">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <select id="profileIcon">
-                        <option value="fa-store">🏪 اسٹور</option>
-                        <option value="fa-gem">💎 جیولری</option>
-                        <option value="fa-stethoscope">⚕️ میڈیکل</option>
-                        <option value="fa-utensils">🍔 فوڈ</option>
-                        <option value="fa-tshirt">👕 گارمنٹس</option>
-                        <option value="fa-mosque">🕌 مسجد</option>
-                        <option value="fa-moon">🌙 رمضان</option>
-                        <option value="fa-star">⭐ ستارہ</option>
-                        <option value="fa-dates">🌴 کھجور</option>
-                        <option value="fa-quran">📖 قرآن</option>
-                        <option value="fa-tasbih">📿 تسبیح</option>
-                    </select>
+            <!-- Top Ads -->
+            <div style="margin: 30px 0 20px; border-top: 2px dashed #c9ad7c; padding-top: 20px;">
+                <h3 style="color: #1d401d; margin-bottom: 15px;"><i class="fas fa-ad"></i> ٹاپ ایڈز (3)</h3>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 1 متن</label>
+                    <input type="text" id="ad1Text" value="حلال فوڈ">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 1 لنک</label>
+                    <input type="text" id="ad1Link" value="https://www.foodpanda.pk">
                 </div>
             </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 2 متن</label>
+                    <input type="text" id="ad2Text" value="عید کلکشن">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 2 لنک</label>
+                    <input type="text" id="ad2Link" value="https://www.daraz.pk">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 3 متن</label>
+                    <input type="text" id="ad3Text" value="مدینہ ڈیٹس">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 3 لنک</label>
+                    <input type="text" id="ad3Link" value="https://www.google.com/search?q=خریداری+کھجور">
+                </div>
+            </div>
+            
+            <!-- Bottom Banners -->
+            <div style="margin: 30px 0 20px; border-top: 2px dashed #c9ad7c; padding-top: 20px;">
+                <h3 style="color: #1d401d; margin-bottom: 15px;"><i class="fas fa-images"></i> نیچے بینرز (3)</h3>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 1 متن</label>
+                    <input type="text" id="banner1Text" value="خصوصی کھجور - 30% تخفیف">
+                </div>
+                <div class="input-group">
+                    <label>بینر 1 لنک</label>
+                    <input type="text" id="banner1Link" value="https://www.chaayee.pk/">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 2 متن</label>
+                    <input type="text" id="banner2Text" value="حلال فوڈ - افطار ڈیل">
+                </div>
+                <div class="input-group">
+                    <label>بینر 2 لنک</label>
+                    <input type="text" id="banner2Link" value="https://www.kababjees.com/">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 3 متن</label>
+                    <input type="text" id="banner3Text" value="رمضان سپیشل پیکج">
+                </div>
+                <div class="input-group">
+                    <label>بینر 3 لنک</label>
+                    <input type="text" id="banner3Link" value="https://www.metro.pk/">
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateCalendar()">
+                <i class="fas fa-calendar-alt"></i> کیلنڈر جنریٹ کریں
+            </button>
+            
+            <p style="text-align: center; color: #7d684b; font-size: 0.9rem; margin-top: 10px;">
+                <i class="fas fa-external-link-alt"></i> کیلنڈر نئی ونڈو میں کھلے گا
+            </p>
         </div>
         
-        <!-- Banner 1 - Top -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-arrow-up"></i>
-                پہلا بینر (اوپر والا)
-            </div>
-            
-            <div class="form-group">
-                <label>📝 بینر کا متن</label>
-                <input type="text" id="banner1Text" value="✨ رمضان المبارک 1447ھ ✨" class="banner-input">
-            </div>
-            
-            <div class="form-group">
-                <label>🎨 پس منظر رنگ</label>
-                <select id="banner1Color">
-                    <option value="gold">🌟 سنہری</option>
-                    <option value="green">🌿 سبز</option>
-                    <option value="blue">💙 نیلا</option>
-                    <option value="purple">💜 جامنی</option>
-                    <option value="red">❤️ سرخ</option>
-                    <option value="orange">🧡 نارنجی</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Banner 2 - Middle -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-star"></i>
-                دوسرا بینر (درمیان میں)
-            </div>
-            
-            <div class="form-group">
-                <label>📝 بینر کا متن</label>
-                <input type="text" id="banner2Text" value="🕌 رمضان میں خیرات کا ثواب 70 گنا 🕌" class="banner-input">
-            </div>
-            
-            <div class="form-group">
-                <label>🎨 پس منظر رنگ</label>
-                <select id="banner2Color">
-                    <option value="gold">🌟 سنہری</option>
-                    <option value="green">🌿 سبز</option>
-                    <option value="blue">💙 نیلا</option>
-                    <option value="purple">💜 جامنی</option>
-                    <option value="red">❤️ سرخ</option>
-                    <option value="orange">🧡 نارنجی</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Banner 3 - Bottom -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-arrow-down"></i>
-                تیسرا بینر (نیچے والا)
-            </div>
-            
-            <div class="form-group">
-                <label>📝 بینر کا متن</label>
-                <input type="text" id="banner3Text" value="🌙 سحری 5:18 AM | افطاری 5:54 PM 🌙" class="banner-input">
-            </div>
-            
-            <div class="form-group">
-                <label>🎨 پس منظر رنگ</label>
-                <select id="banner3Color">
-                    <option value="gold">🌟 سنہری</option>
-                    <option value="green">🌿 سبز</option>
-                    <option value="blue">💙 نیلا</option>
-                    <option value="purple">💜 جامنی</option>
-                    <option value="red">❤️ سرخ</option>
-                    <option value="orange">🧡 نارنجی</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Banner 4 - Optional -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-gift"></i>
-                چوتھا بینر (اختیاری)
-            </div>
-            
-            <div class="form-group">
-                <label>📝 بینر کا متن (خالی چھوڑیں تو نظر نہیں آئے گا)</label>
-                <input type="text" id="banner4Text" value="🤲 رمضان کی خصوصی دعائیں 🤲" class="banner-input">
-            </div>
-            
-            <div class="form-group">
-                <label>🎨 پس منظر رنگ</label>
-                <select id="banner4Color">
-                    <option value="gold">🌟 سنہری</option>
-                    <option value="green">🌿 سبز</option>
-                    <option value="blue">💙 نیلا</option>
-                    <option value="purple">💜 جامنی</option>
-                    <option value="red">❤️ سرخ</option>
-                    <option value="orange">🧡 نارنجی</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Banner 5 - Optional -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-moon"></i>
-                پانچواں بینر (اختیاری)
-            </div>
-            
-            <div class="form-group">
-                <label>📝 بینر کا متن (خالی چھوڑیں تو نظر نہیں آئے گا)</label>
-                <input type="text" id="banner5Text" value="📿 تسبیح کا اہتمام کریں 📿" class="banner-input">
-            </div>
-            
-            <div class="form-group">
-                <label>🎨 پس منظر رنگ</label>
-                <select id="banner5Color">
-                    <option value="gold">🌟 سنہری</option>
-                    <option value="green">🌿 سبز</option>
-                    <option value="blue">💙 نیلا</option>
-                    <option value="purple">💜 جامنی</option>
-                    <option value="red">❤️ سرخ</option>
-                    <option value="orange">🧡 نارنجی</option>
-                </select>
-            </div>
-        </div>
-        
-        <button class="generate-btn" onclick="generateCalendar()">
-            <i class="fas fa-calendar-alt"></i>
-            کیلنڈر بنائیں
-        </button>
-        
-        <div class="footer">
-            <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
+        <div class="offline-tag">
+            <i class="fas fa-download"></i> تمام مواد آف لائن • لائیو ٹائمر خودکار
         </div>
     </div>
-    
-    <script>
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profilePreview').innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
-                    localStorage.setItem('profilePic', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        function generateCalendar() {
-            // Collect all data
-            const data = {
-                businessName: document.getElementById('businessName').value,
-                phoneNumber: document.getElementById('phoneNumber').value,
-                businessType: document.getElementById('businessType').value,
-                address: document.getElementById('address').value,
-                profileIcon: document.getElementById('profileIcon').value,
-                
-                banner1: {
-                    text: document.getElementById('banner1Text').value,
-                    color: document.getElementById('banner1Color').value
-                },
-                banner2: {
-                    text: document.getElementById('banner2Text').value,
-                    color: document.getElementById('banner2Color').value
-                },
-                banner3: {
-                    text: document.getElementById('banner3Text').value,
-                    color: document.getElementById('banner3Color').value
-                },
-                banner4: {
-                    text: document.getElementById('banner4Text').value,
-                    color: document.getElementById('banner4Color').value
-                },
-                banner5: {
-                    text: document.getElementById('banner5Text').value,
-                    color: document.getElementById('banner5Color').value
-                }
-            };
+</div>
+
+<script>
+    function generateCalendar() {
+        // Collect all data
+        const data = {
+            businessName: document.getElementById('businessName').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            businessType: document.getElementById('businessType').value,
+            address: document.getElementById('address').value,
             
-            const id = 'cal_' + Date.now();
-            localStorage.setItem(id, JSON.stringify(data));
-            window.open('calendar.html?id=' + id, '_blank');
-        }
-    </script>
+            ad1Text: document.getElementById('ad1Text').value,
+            ad1Link: document.getElementById('ad1Link').value,
+            
+            ad2Text: document.getElementById('ad2Text').value,
+            ad2Link: document.getElementById('ad2Link').value,
+            
+            ad3Text: document.getElementById('ad3Text').value,
+            ad3Link: document.getElementById('ad3Link').value,
+            
+            banner1Text: document.getElementById('banner1Text').value,
+            banner1Link: document.getElementById('banner1Link').value,
+            
+            banner2Text: document.getElementById('banner2Text').value,
+            banner2Link: document.getElementById('banner2Link').value,
+            
+            banner3Text: document.getElementById('banner3Text').value,
+            banner3Link: document.getElementById('banner3Link').value
+        };
+        
+        const id = 'cal_' + Date.now();
+        localStorage.setItem(id, JSON.stringify(data));
+        window.open('calendar.html?id=' + id, '_blank');
+    }
+</script>
 </body>
 </html>
