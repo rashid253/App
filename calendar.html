@@ -3,779 +3,608 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Calendar 2026 - Display</title>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231a2e1a'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'>🌙</text></svg>">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#1a2e1a">
-    
+    <title>رمضان 2026 پاکستان | مکمل دعائیں + لائیو ٹائمر</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        
         body {
-            font-family: 'Inter', 'Amiri', sans-serif;
-            background: #1a2e1a;
-            padding: 10px;
+            font-family: 'Poppins', 'Nafees', 'Urdu Typesetting', sans-serif;
+            background: #e7dcc0;
+            padding: 12px 10px 25px;
             min-height: 100vh;
+            color: #2d261b;
         }
-        
         .app-wrapper {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            background: #faf3e2;
-            border-radius: 50px 15px 50px 15px;
-            padding: 18px 15px 25px;
-            border: 3px solid #c9a75a;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 100%;
+            background: rgba(255, 250, 235, 0.92);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 45px 15px 45px 15px;
+            border: 2px solid #c9ad7c;
+            padding: 16px 14px 28px;
+            box-shadow: 0 25px 35px -8px #4d3a24;
             position: relative;
             overflow: hidden;
         }
-        
         .app-wrapper::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.03) 0px, rgba(201,167,90,0.03) 20px, transparent 20px, transparent 40px);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(170, 130, 70, 0.03) 0px, rgba(170,130,70,0.03) 12px, transparent 12px, transparent 24px);
             pointer-events: none;
         }
-        
         .content {
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
-        
-        /* Profile Card - NON CLICKABLE */
-        .profile-card {
-            background: white;
+
+        /* پروفیشنل اسپانسر سیکشن */
+        .sponsor-pro-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f3e1c2;
             border-radius: 40px 8px 40px 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 2px solid #b38d5a;
-            box-shadow: 0 5px 0 #9b7a48;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border: 2px solid #ad8d5a;
+            box-shadow: 0 6px 0 #8b6f42;
+            cursor: pointer;
         }
-        
-        .profile-pic {
-            width: 80px;
-            height: 80px;
-            background: #1e4a2e;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd966;
-            font-size: 2.5rem;
-            overflow: hidden;
-            border: 3px solid #c9a75a;
+        .shop-info {
+            text-align: center;
+            flex: 3;
         }
-        
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-info {
-            flex: 1;
-        }
-        
-        .profile-name {
+        .shop-name {
             font-size: 2rem;
             font-weight: 800;
-            color: #1e4a2e;
-            font-family: 'Amiri', serif;
+            color: #1d401d;
             line-height: 1.2;
         }
-        
-        .profile-detail {
-            color: #4a5a4a;
-            margin: 5px 0;
-            font-size: 0.95rem;
+        .shop-details {
+            font-size: 1rem;
+            color: #2d281a;
+            margin-top: 5px;
         }
-        
-        .profile-detail i {
-            color: #c9a75a;
-            width: 20px;
+        .shop-details i {
+            margin-left: 5px;
+            color: #ac7700;
         }
-        
-        .contact-badge {
-            display: inline-block;
-            background: #1e4a2e;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            margin: 2px;
-            border: 1px solid #c9a75a;
-        }
-        
-        /* Banner Styles - FULL WIDTH */
-        .banner {
-            width: 100%;
-            padding: 20px 15px;
-            margin-bottom: 15px;
-            border-radius: 40px 8px 40px 8px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            font-family: 'Amiri', serif;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            border: 2px solid #c9a75a;
-        }
-        
-        .banner-gold {
-            background: linear-gradient(145deg, #ffd966, #c9a75a);
-            color: #1a2e1a;
-        }
-        
-        .banner-green {
-            background: linear-gradient(145deg, #1e4a2e, #2a5a2a);
-            color: #ffd966;
-        }
-        
-        .banner-blue {
-            background: linear-gradient(145deg, #2a4a6a, #1a3a5a);
-            color: #ffd966;
-        }
-        
-        .banner-purple {
-            background: linear-gradient(145deg, #6a4a6a, #4a2a4a);
-            color: #ffd966;
-        }
-        
-        .banner-red {
-            background: linear-gradient(145deg, #a13d3d, #7a2a2a);
-            color: #ffd966;
-        }
-        
-        .banner-orange {
-            background: linear-gradient(145deg, #ff9f4a, #cc7a2a);
-            color: #1a2e1a;
-        }
-        
-        .banner i {
-            margin: 0 10px;
-            font-size: 1.5rem;
-        }
-        
-        /* Ramadan Header */
-        .ramadan-header {
-            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
-            border-radius: 40px 8px 40px 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid #c9a75a;
+        .shop-image {
+            flex: 1;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
+            justify-content: center;
         }
-        
-        .ramadan-header h2 {
-            font-size: 2rem;
-            color: #ffd966;
-            font-family: 'Amiri', serif;
+        .shop-image i {
+            font-size: 5.5rem;
+            color: #2f5a38;
+            background: #ffe6af;
+            border-radius: 30px 8px 30px 8px;
+            padding: 10px;
+            border: 3px solid #c8a255;
         }
-        
-        .ramadan-header span {
-            background: #0f2e1a;
-            padding: 8px 15px;
-            border-radius: 40px;
-            border: 2px solid #c9a75a;
-        }
-        
-        /* Icons Row - ONLY TASBEEH AND DUAS CLICKABLE */
-        .icon-row {
+
+        /* آئیکونز کی سنگل قطار */
+        .icon-strip {
             display: flex;
             justify-content: space-around;
-            background: #e7d8b8;
+            background: #faf0db;
             border-radius: 80px 8px 80px 8px;
-            padding: 15px 5px;
+            padding: 8px 4px;
             margin-bottom: 20px;
-            border: 2px solid #c9a75a;
+            border: 2px solid #b28f54;
             flex-wrap: wrap;
         }
-        
-        .icon-item {
+        .icon-strip-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #1e4a2e;
+            font-size: 0.75rem;
+            color: #1f4a1f;
             font-weight: 600;
-            min-width: 70px;
-        }
-        
-        .icon-item.clickable {
+            min-width: 60px;
+            text-align: center;
+            margin: 2px 0;
             cursor: pointer;
         }
-        
-        .icon-item i {
-            font-size: 2rem;
-            background: #1e4a2e;
-            color: #ffd966;
+        .icon-strip-item i {
+            font-size: 1.8rem;
+            background: #1b562b;
+            color: #ffde91;
             border-radius: 50%;
-            padding: 12px;
-            width: 50px;
-            height: 50px;
+            padding: 8px;
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 4px;
+            border: 2px solid #ffcd7e;
+        }
+
+        /* ہیڈر */
+        .header-pak {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 5px;
-            border: 2px solid #c9a75a;
-        }
-        
-        /* Live Timer */
-        .live-timer {
-            background: #1e4a2e;
-            border: 2px solid #ffd966;
-            border-radius: 60px;
-            padding: 15px;
-            margin-bottom: 20px;
-            color: white;
-            box-shadow: 0 5px 0 #0f3a1f;
-        }
-        
-        .timer-row {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(130deg, #0f4820, #236b31);
+            color: #f9efcf;
+            padding: 12px 18px;
+            border-radius: 50px 8px 50px 8px;
+            border: 2px solid #facb7b;
+            margin-bottom: 20px;
             flex-wrap: wrap;
-            gap: 10px;
         }
-        
+        .hilal-pak {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.5rem;
+        }
+        .urdu-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: #00000020;
+            padding: 5px 18px;
+            border-radius: 40px;
+        }
+
+        /* لائیو ٹائمر */
+        .live-timer-badge {
+            background: #1d4d2b;
+            border: 2px solid #ffd58c;
+            border-radius: 60px;
+            padding: 16px 14px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #fef4cf;
+            box-shadow: 0 5px 0 #0e3518;
+        }
         .timer-block {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: #0f3a1f;
-            padding: 8px 15px;
-            border-radius: 40px;
+            gap: 10px;
+            background: #0000002e;
+            padding: 5px 15px;
+            border-radius: 60px;
         }
-        
+        .timer-label {
+            font-size: 1rem;
+        }
         .timer-value {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             direction: ltr;
-            background: #1e4a2e;
+            background: #243d19;
             padding: 4px 12px;
-            border-radius: 30px;
-            border: 1px solid #ffd966;
-        }
-        
-        .dua-ticker {
-            background: #b38d51;
-            color: #1e3a1e;
-            padding: 10px 15px;
             border-radius: 40px;
-            text-align: center;
-            margin-top: 10px;
+        }
+        .dua-tag {
+            background: #b38d51;
+            color: #212618;
+            padding: 5px 12px;
+            border-radius: 60px;
+            font-size: 1rem;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             cursor: pointer;
-            font-weight: 600;
         }
-        
-        /* Quran Box - NON CLICKABLE */
-        .quran-box {
-            background: linear-gradient(145deg, #1e4a2e, #0f3a1f);
-            border-radius: 40px 8px 40px 8px;
-            padding: 20px 15px;
-            margin-bottom: 20px;
-            border: 3px solid #c9a75a;
-            text-align: center;
-        }
-        
-        .quran-box i {
-            font-size: 3.5rem;
-            color: #ffd966;
-            margin-bottom: 10px;
-        }
-        
-        .quran-box h2 {
-            color: #ffd966;
-            font-size: 2rem;
-            font-family: 'Amiri', serif;
-        }
-        
-        .quran-box p {
-            color: #fff5d6;
-            font-size: 1.2rem;
-            margin-top: 5px;
-        }
-        
-        /* Calendar Table */
-        .calendar-container {
-            background: #e7d8b8;
+
+        .card {
+            background: #fcf2dfea;
             border-radius: 30px 8px 30px 8px;
-            padding: 15px;
-            border: 2px solid #c9a75a;
+            border: 1px solid #dbbc8b;
+            padding: 18px 12px;
             margin-bottom: 20px;
+            box-shadow: 0 10px 20px -8px #7d684b;
         }
-        
-        .calendar-title {
+        .card-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            color: #4f3a21;
+            border-bottom: 2px dashed #bb9d70;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: #1e4a2e;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-        
-        .calendar-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .calendar-table th {
-            background: #1e4a2e;
-            color: white;
-            padding: 10px 5px;
-            border-radius: 20px 4px 10px 4px;
-            font-weight: 500;
-        }
-        
-        .calendar-table td {
-            padding: 8px 5px;
-            text-align: center;
-            border-bottom: 1px solid #c9a75a;
-            color: #1e3a1e;
-        }
-        
-        .today-row {
-            background: #ffd966;
-            font-weight: bold;
-        }
-        
-        .table-scroll {
-            max-height: 400px;
-            overflow-y: auto;
-            border-radius: 15px;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            color: #1e4a2e;
-            font-size: 0.9rem;
-            margin-top: 15px;
-        }
-        
-        .pwa-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-left: 5px;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background: #faf3e2;
-            border-radius: 50px 15px 50px 15px;
-            padding: 25px;
-            max-width: 500px;
-            margin: 30px auto;
-            border: 3px solid #c9a75a;
-        }
-        
-        .close {
-            float: left;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #1e4a2e;
-        }
-        
-        .tasbeeh-display {
-            font-size: 6rem;
-            text-align: center;
-            color: #1e4a2e;
-            margin: 30px 0;
-            font-weight: bold;
-        }
-        
-        .tasbeeh-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
         }
-        
-        .tas-btn {
-            background: #1e4a2e;
+
+        .sehri-iftar-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .sehri-iftar-table th {
+            background: #8f6d45;
             color: white;
-            padding: 15px;
+            padding: 10px 5px;
+            font-weight: 500;
+            border-radius: 20px 4px 10px 4px;
+        }
+        .sehri-iftar-table td {
+            padding: 9px 4px;
+            text-align: center;
+            border-bottom: 1px solid #dac29c;
+        }
+        .sehri-iftar-table .today-row {
+            background: #ffe9c7;
+            font-weight: 700;
+            border: 2px solid #b67c2e;
+            border-radius: 30px;
+        }
+        .city-note {
+            font-size: 0.9rem;
+            background: #ebe1cd;
+            padding: 8px 15px;
+            border-radius: 30px;
+            margin-top: 12px;
+        }
+        .city-note select {
+            background: #5d482b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 30px;
             border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .quran-urdu-box {
+            background: #dacdb3;
+            border-radius: 40px 6px 40px 6px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 2px solid #ad8f60;
             cursor: pointer;
-            border: 2px solid #c9a75a;
         }
-        
-        .tas-btn.red {
-            background: #8b3a3a;
-        }
-        
-        .dua-box {
-            background: #e7d8b8;
-            border-radius: 30px;
-            padding: 20px;
-            margin: 15px 0;
-            border: 2px solid #c9a75a;
-        }
-        
-        .dua-arabic {
-            font-size: 1.8rem;
-            font-family: 'Amiri';
+        .arabic-line {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
             text-align: right;
-            color: #1e4a2e;
-            margin-bottom: 10px;
+            color: #1d451d;
+            margin-bottom: 6px;
+        }
+        .urdu-translation {
+            font-size: 1.2rem;
+            color: #322a1b;
+            border-right: 4px solid #aa7e4b;
+            padding-right: 15px;
+            margin: 8px 0;
+        }
+        .surah-detail {
+            text-align: left;
+            font-weight: 600;
+            color: #5e462b;
+        }
+
+        .sponsor-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .sponsor-card {
+            background: linear-gradient(115deg, #a68452, #cfb185);
+            border-radius: 30px 6px 30px 6px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border: 2px solid #fff1ca;
+            color: #1d2b10;
+            cursor: pointer;
+        }
+        .sponsor-card i {
+            font-size: 2.2rem;
+            background: #f7e9cf;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a582b;
+        }
+        .sponsor-text {
+            font-weight: 600;
+        }
+        .sponsor-text small {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .footer-note {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #3f351f;
+        }
+        .btn {
+            background: #2f6b3a;
+            color: #fff2d4;
+            border: none;
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #154d1e;
+            cursor: pointer;
+        }
+        .offline-tag {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #7a6a4e;
+        }
+
+        /* Generator Form */
+        .generator-section {
+            background: #fcf2dfea;
+            border-radius: 30px 8px 30px 8px;
+            border: 2px solid #dbbc8b;
+            padding: 20px;
+            margin-bottom: 25px;
         }
         
-        .dua-urdu {
-            font-size: 1.2rem;
-            color: #1e3a1e;
-            border-right: 3px solid #c9a75a;
-            padding-right: 10px;
+        .generator-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #4f3a21;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #1d401d;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: #fff9eb;
+            border: 2px solid #c9ad7c;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .icon-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .icon-preview {
+            width: 50px;
+            height: 50px;
+            background: #1d401d;
+            color: #ffd58c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid #c9ad7c;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: #1d401d;
+            color: #ffd58c;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 0 10px;
+            box-shadow: 0 6px 0 #0f2e1a;
+            transition: 0.3s;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #0f2e1a;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-wrapper">
-        <div class="content" id="calendarContent">
-            <div style="text-align:center; padding:50px;">
-                <i class="fas fa-spinner fa-spin" style="font-size:3rem; color:#1e4a2e;"></i>
-                <p>لوڈ ہو رہا ہے...</p>
+<div class="app-wrapper">
+    <div class="content">
+        <!-- Generator Section -->
+        <div class="generator-section">
+            <div class="generator-title">
+                <i class="fas fa-cog"></i> کیلنڈر جنریٹر
             </div>
+            
+            <!-- Profile Data -->
+            <div class="input-group">
+                <label><i class="fas fa-store"></i> کاروبار کا نام</label>
+                <input type="text" id="businessName" value="المدینہ جنرل سٹور">
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label><i class="fas fa-phone"></i> فون نمبر</label>
+                    <input type="text" id="phoneNumber" value="0300 1234567">
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-tag"></i> کاروبار کی قسم</label>
+                    <input type="text" id="businessType" value="جنرل سٹور">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label><i class="fas fa-map-marker-alt"></i> مکمل پتہ</label>
+                <textarea id="address" rows="2">گھر نمبر 12، ماڈل ٹاؤن، لاہور</textarea>
+            </div>
+            
+            <!-- Top Ads -->
+            <div style="margin: 30px 0 20px; border-top: 2px dashed #c9ad7c; padding-top: 20px;">
+                <h3 style="color: #1d401d; margin-bottom: 15px;"><i class="fas fa-ad"></i> ٹاپ ایڈز (3)</h3>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 1 متن</label>
+                    <input type="text" id="ad1Text" value="حلال فوڈ">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 1 لنک</label>
+                    <input type="text" id="ad1Link" value="https://www.foodpanda.pk">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 2 متن</label>
+                    <input type="text" id="ad2Text" value="عید کلکشن">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 2 لنک</label>
+                    <input type="text" id="ad2Link" value="https://www.daraz.pk">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>ایڈ 3 متن</label>
+                    <input type="text" id="ad3Text" value="مدینہ ڈیٹس">
+                </div>
+                <div class="input-group">
+                    <label>ایڈ 3 لنک</label>
+                    <input type="text" id="ad3Link" value="https://www.google.com/search?q=خریداری+کھجور">
+                </div>
+            </div>
+            
+            <!-- Bottom Banners -->
+            <div style="margin: 30px 0 20px; border-top: 2px dashed #c9ad7c; padding-top: 20px;">
+                <h3 style="color: #1d401d; margin-bottom: 15px;"><i class="fas fa-images"></i> نیچے بینرز (3)</h3>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 1 متن</label>
+                    <input type="text" id="banner1Text" value="خصوصی کھجور - 30% تخفیف">
+                </div>
+                <div class="input-group">
+                    <label>بینر 1 لنک</label>
+                    <input type="text" id="banner1Link" value="https://www.chaayee.pk/">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 2 متن</label>
+                    <input type="text" id="banner2Text" value="حلال فوڈ - افطار ڈیل">
+                </div>
+                <div class="input-group">
+                    <label>بینر 2 لنک</label>
+                    <input type="text" id="banner2Link" value="https://www.kababjees.com/">
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>بینر 3 متن</label>
+                    <input type="text" id="banner3Text" value="رمضان سپیشل پیکج">
+                </div>
+                <div class="input-group">
+                    <label>بینر 3 لنک</label>
+                    <input type="text" id="banner3Link" value="https://www.metro.pk/">
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateCalendar()">
+                <i class="fas fa-calendar-alt"></i> کیلنڈر جنریٹ کریں
+            </button>
+            
+            <p style="text-align: center; color: #7d684b; font-size: 0.9rem; margin-top: 10px;">
+                <i class="fas fa-external-link-alt"></i> کیلنڈر نئی ونڈو میں کھلے گا
+            </p>
+        </div>
+        
+        <div class="offline-tag">
+            <i class="fas fa-download"></i> تمام مواد آف لائن • لائیو ٹائمر خودکار
         </div>
     </div>
-    
-    <!-- Tasbeeh Modal -->
-    <div id="tasbeehModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('tasbeehModal')">&times;</span>
-            <h2 style="text-align:center; color:#1e4a2e;">📿 تسبیح</h2>
-            <div class="tasbeeh-display" id="tasbeehCount">0</div>
-            <div class="tasbeeh-grid">
-                <button class="tas-btn" onclick="addTasbeeh(1)">+1</button>
-                <button class="tas-btn" onclick="addTasbeeh(33)">+33</button>
-                <button class="tas-btn" onclick="addTasbeeh(100)">+100</button>
-                <button class="tas-btn" onclick="saveTasbeeh()">محفوظ</button>
-                <button class="tas-btn" onclick="loadTasbeeh()">لوڈ</button>
-                <button class="tas-btn red" onclick="resetTasbeeh()">ری سیٹ</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Duas Modal -->
-    <div id="duasModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('duasModal')">&times;</span>
-            <h2 style="text-align:center; color:#1e4a2e;">🤲 رمضان کی دعائیں</h2>
+</div>
+
+<script>
+    function generateCalendar() {
+        // Collect all data
+        const data = {
+            businessName: document.getElementById('businessName').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            businessType: document.getElementById('businessType').value,
+            address: document.getElementById('address').value,
             
-            <div class="dua-box">
-                <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
-                <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
-            </div>
+            ad1Text: document.getElementById('ad1Text').value,
+            ad1Link: document.getElementById('ad1Link').value,
             
-            <div class="dua-box">
-                <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ</div>
-                <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں</div>
-            </div>
+            ad2Text: document.getElementById('ad2Text').value,
+            ad2Link: document.getElementById('ad2Link').value,
             
-            <div class="dua-box">
-                <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
-                <div class="dua-urdu">میں نے کل کے روزے کی نیت کی</div>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // ========== CALENDAR DATA ==========
-        const timings = [
-            {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
-            {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
-            {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
-            {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
-            {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
-            {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
-            {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
-            {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
-            {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
-            {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
-            {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
-            {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
-            {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
-            {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
-            {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
-            {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
-            {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
-            {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
-            {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
-            {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
-            {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
-            {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
-            {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
-            {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
-            {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
-            {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
-            {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
-            {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
-            {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
-            {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
-        ];
-        
-        let tasbeeh = parseInt(localStorage.getItem('tasbeeh')) || 0;
-        
-        // Function to get banner class based on color
-        function getBannerClass(color) {
-            switch(color) {
-                case 'gold': return 'banner-gold';
-                case 'green': return 'banner-green';
-                case 'blue': return 'banner-blue';
-                case 'purple': return 'banner-purple';
-                case 'red': return 'banner-red';
-                case 'orange': return 'banner-orange';
-                default: return 'banner-gold';
-            }
-        }
-        
-        // Load Calendar
-        function loadCalendar() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
+            ad3Text: document.getElementById('ad3Text').value,
+            ad3Link: document.getElementById('ad3Link').value,
             
-            let data = null;
+            banner1Text: document.getElementById('banner1Text').value,
+            banner1Link: document.getElementById('banner1Link').value,
             
-            if (id && localStorage.getItem(id)) {
-                data = JSON.parse(localStorage.getItem(id));
-            } else {
-                // Default data
-                data = {
-                    businessName: "المدینہ جیولرز",
-                    phoneNumber: "0300 1234567",
-                    businessType: "Jewellery Store",
-                    address: "ماڈل ٹاؤن، لاہور",
-                    profileIcon: "fa-store",
-                    
-                    banner1: { text: "✨ رمضان المبارک 1447ھ ✨", color: "gold" },
-                    banner2: { text: "🕌 رمضان میں خیرات کا ثواب 70 گنا 🕌", color: "green" },
-                    banner3: { text: "🌙 سحری 5:18 AM | افطاری 5:54 PM 🌙", color: "blue" },
-                    banner4: { text: "🤲 رمضان کی خصوصی دعائیں 🤲", color: "purple" },
-                    banner5: { text: "📿 تسبیح کا اہتمام کریں 📿", color: "orange" }
-                };
-            }
+            banner2Text: document.getElementById('banner2Text').value,
+            banner2Link: document.getElementById('banner2Link').value,
             
-            renderCalendar(data);
-        }
-        
-        function renderCalendar(data) {
-            const profilePic = localStorage.getItem('profilePic') || '';
-            const today = new Date();
-            const ramadanStart = new Date(2026, 1, 19);
-            const fastNum = Math.floor((today - ramadanStart) / (1000*60*60*24)) + 1;
-            
-            let rows = '';
-            timings.forEach(row => {
-                const cls = (fastNum === row.day) ? 'today-row' : '';
-                rows += `<tr class="${cls}">
-                    <td>${row.day}</td>
-                    <td>${row.date}</td>
-                    <td>${row.sehri} AM</td>
-                    <td>${row.iftar} PM</td>
-                </tr>`;
-            });
-            
-            const picHtml = profilePic ? 
-                `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : 
-                `<i class="fas ${data.profileIcon}"></i>`;
-            
-            // Generate banners HTML
-            let bannersHtml = '';
-            
-            if (data.banner1 && data.banner1.text) {
-                bannersHtml += `<div class="banner ${getBannerClass(data.banner1.color)}">
-                    <i class="fas fa-star"></i> ${data.banner1.text} <i class="fas fa-star"></i>
-                </div>`;
-            }
-            
-            if (data.banner2 && data.banner2.text) {
-                bannersHtml += `<div class="banner ${getBannerClass(data.banner2.color)}">
-                    <i class="fas fa-mosque"></i> ${data.banner2.text} <i class="fas fa-mosque"></i>
-                </div>`;
-            }
-            
-            if (data.banner3 && data.banner3.text) {
-                bannersHtml += `<div class="banner ${getBannerClass(data.banner3.color)}">
-                    <i class="fas fa-clock"></i> ${data.banner3.text} <i class="fas fa-clock"></i>
-                </div>`;
-            }
-            
-            if (data.banner4 && data.banner4.text) {
-                bannersHtml += `<div class="banner ${getBannerClass(data.banner4.color)}">
-                    <i class="fas fa-hand-praying"></i> ${data.banner4.text} <i class="fas fa-hand-praying"></i>
-                </div>`;
-            }
-            
-            if (data.banner5 && data.banner5.text) {
-                bannersHtml += `<div class="banner ${getBannerClass(data.banner5.color)}">
-                    <i class="fas fa-tasbih"></i> ${data.banner5.text} <i class="fas fa-tasbih"></i>
-                </div>`;
-            }
-            
-            const html = `
-                <!-- Profile Card - NON CLICKABLE -->
-                <div class="profile-card">
-                    <div class="profile-pic">${picHtml}</div>
-                    <div class="profile-info">
-                        <div class="profile-name">${data.businessName} <span class="pwa-badge">رمضان</span></div>
-                        <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
-                        <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
-                        <div>
-                            <span class="contact-badge"><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- BANNERS - FULL WIDTH -->
-                ${bannersHtml}
-                
-                <!-- Ramadan Header -->
-                <div class="ramadan-header">
-                    <h2>🌙 رمضان 1447</h2>
-                    <span>لاہور</span>
-                </div>
-                
-                <!-- Icons Row - ONLY TASBEEH AND DUAS CLICKABLE -->
-                <div class="icon-row">
-                    <div class="icon-item clickable" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
-                    <div class="icon-item clickable" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
-                </div>
-                
-                <!-- Live Timer -->
-                <div class="live-timer">
-                    <div class="timer-row">
-                        <div class="timer-block"><i class="fas fa-utensils"></i><span>سحری</span><span class="timer-value" id="sehriTimer">05:18:00</span></div>
-                        <div class="timer-block"><i class="fas fa-sun"></i><span>افطاری</span><span class="timer-value" id="iftarTimer">05:54:00</span></div>
-                    </div>
-                    <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
-                </div>
-                
-                <!-- Quran Box - NON CLICKABLE -->
-                <div class="quran-box">
-                    <i class="fas fa-quran"></i>
-                    <h2>القرآن الكريم</h2>
-                    <p>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-                </div>
-                
-                <!-- Calendar -->
-                <div class="calendar-container">
-                    <div class="calendar-title"><i class="fas fa-clock"></i> سحری و افطاری · لاہور</div>
-                    <div class="table-scroll">
-                        <table class="calendar-table">
-                            <thead><tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr></thead>
-                            <tbody>${rows}</tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="footer">
-                    <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
-                </div>
-            `;
-            
-            document.getElementById('calendarContent').innerHTML = html;
-            updateTimer();
-        }
-        
-        // Timer Functions
-        function updateTimer() {
-            const sehri = document.getElementById('sehriTimer');
-            const iftar = document.getElementById('iftarTimer');
-            const dua = document.getElementById('duaTicker');
-            
-            if (!sehri || !iftar) return;
-            
-            const now = new Date();
-            const sehriTime = new Date(now); sehriTime.setHours(5, 18, 0);
-            const iftarTime = new Date(now); iftarTime.setHours(17, 54, 0);
-            
-            if (now > sehriTime) sehriTime.setDate(sehriTime.getDate() + 1);
-            if (now > iftarTime) iftarTime.setDate(iftarTime.getDate() + 1);
-            
-            sehri.innerText = formatTime(sehriTime - now);
-            iftar.innerText = formatTime(iftarTime - now);
-            
-            if (now < iftarTime && now > new Date().setHours(5, 18, 0)) {
-                dua.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ";
-            } else {
-                dua.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
-            }
-        }
-        
-        function formatTime(ms) {
-            if (ms < 0) return "00:00:00";
-            const h = Math.floor(ms / (1000*60*60));
-            const m = Math.floor((ms % (1000*60*60)) / (1000*60));
-            const s = Math.floor((ms % (1000*60)) / 1000);
-            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-        }
-        
-        // Modal Functions
-        function openTasbeeh() { document.getElementById('tasbeehModal').style.display = 'block'; }
-        function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function addTasbeeh(val) { tasbeeh += val; document.getElementById('tasbeehCount').innerText = tasbeeh; }
-        function resetTasbeeh() { tasbeeh = 0; document.getElementById('tasbeehCount').innerText = tasbeeh; }
-        function saveTasbeeh() { localStorage.setItem('tasbeeh', tasbeeh); alert('محفوظ ہو گیا'); }
-        function loadTasbeeh() { 
-            const saved = localStorage.getItem('tasbeeh');
-            if (saved) { tasbeeh = parseInt(saved); document.getElementById('tasbeehCount').innerText = tasbeeh; }
-        }
-        
-        window.onclick = (e) => {
-            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+            banner3Text: document.getElementById('banner3Text').value,
+            banner3Link: document.getElementById('banner3Link').value
         };
         
-        // Initialize
-        loadCalendar();
-        setInterval(updateTimer, 1000);
-        document.getElementById('tasbeehCount').innerText = tasbeeh;
-    </script>
+        const id = 'cal_' + Date.now();
+        localStorage.setItem(id, JSON.stringify(data));
+        window.open('calendar.html?id=' + id, '_blank');
+    }
+</script>
 </body>
 </html>
