@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Calendar 2026 - Non-Clickable</title>
+    <title>Ramadan Calendar 2026</title>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -65,7 +65,7 @@
             overflow: hidden;
         }
         
-        /* NON-CLICKABLE - تمام links ہٹا دیے */
+        /* Profile Card */
         .profile-card {
             background: white;
             border-radius: 40px 8px 40px 8px;
@@ -77,7 +77,7 @@
             align-items: center;
             gap: 20px;
             flex-wrap: wrap;
-            /* cursor: default; - clickable nahi */
+            cursor: pointer;
         }
         
         .profile-pic {
@@ -120,10 +120,10 @@
             font-size: 0.85rem;
             margin: 2px;
             border: 1px solid #c9a75a;
-            /* cursor: default; - clickable nahi */
+            cursor: pointer;
         }
         
-        /* Ads Row - NON-CLICKABLE */
+        /* Ads Row */
         .ads-row {
             display: flex;
             gap: 8px;
@@ -140,7 +140,7 @@
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            /* cursor: default; - clickable nahi */
+            cursor: pointer;
         }
         
         .ad-card i {
@@ -149,6 +149,8 @@
             display: block;
             margin-bottom: 5px;
         }
+        
+        .ad-card.non-clickable { opacity: 0.8; cursor: default; }
         
         /* Ramadan Header */
         .ramadan-header {
@@ -169,7 +171,7 @@
             font-family: 'Amiri', serif;
         }
         
-        /* Icons Row - صرف تسبیح اور دعائیں clickable ہوں گی */
+        /* Icons Row */
         .icon-row {
             display: flex;
             justify-content: space-around;
@@ -187,11 +189,8 @@
             align-items: center;
             color: #1e4a2e;
             font-weight: 600;
-            min-width: 70px;
-        }
-        
-        .icon-item.clickable {
             cursor: pointer;
+            min-width: 70px;
         }
         
         .icon-item i {
@@ -254,15 +253,15 @@
             cursor: pointer;
         }
         
-        /* Quran Box - NON-CLICKABLE */
+        /* Quran Box */
         .quran-box {
             background: linear-gradient(145deg, #1e4a2e, #0f3a1f);
             border-radius: 40px 8px 40px 8px;
             padding: 20px 15px;
             margin-bottom: 15px;
             border: 3px solid #c9a75a;
+            cursor: pointer;
             text-align: center;
-            /* cursor: default; - clickable nahi */
         }
         
         .quran-box i { font-size: 3.5rem; color: #ffd966; }
@@ -299,7 +298,7 @@
         .today-row { background: #ffd966; font-weight: bold; }
         .table-scroll { max-height: 400px; overflow-y: auto; }
         
-        /* Bottom Banners - NON-CLICKABLE */
+        /* Bottom Banners */
         .bottom-banners {
             display: flex;
             flex-direction: column;
@@ -315,14 +314,15 @@
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            /* cursor: default; - clickable nahi */
         }
         
         .bottom-banner i { font-size: 2rem; color: #ffd966; }
+        .bottom-banner.non-clickable { opacity: 0.8; cursor: default; }
         
         .footer {
             text-align: center;
@@ -439,7 +439,7 @@
         </div>
     </div>
     
-    <!-- Tasbeeh Modal -->
+    <!-- Modals -->
     <div id="tasbeehModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('tasbeehModal')">&times;</span>
@@ -456,7 +456,6 @@
         </div>
     </div>
     
-    <!-- Duas Modal -->
     <div id="duasModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('duasModal')">&times;</span>
@@ -477,6 +476,27 @@
     </div>
     
     <script>
+        // ========== UNIVERSAL LINK OPENER - 100% WORKING ==========
+        function openLink(url) {
+            if (!url || url === '#' || url === '') return;
+            
+            // Create a temporary anchor element
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.style.display = 'none';
+            
+            // Add to body, click, remove
+            document.body.appendChild(link);
+            link.click();
+            
+            // Remove after a short delay
+            setTimeout(() => {
+                document.body.removeChild(link);
+            }, 100);
+        }
+
         // ========== PWA INSTALLATION ==========
         let deferredPrompt;
         const installContainer = document.getElementById('installContainer');
@@ -555,12 +575,12 @@
                     address: "ماڈل ٹاؤن، لاہور",
                     businessDetails: "سونے چاندی کی مصنوعات",
                     profileIcon: "fa-store",
-                    ad1: { text: "نئی گولڈ کلکشن", link: "#", icon: "fa-gem", clickable: false, deleted: false },
-                    ad2: { text: "شادی بیاہ ڈیلز", link: "#", icon: "fa-heart", clickable: false, deleted: false },
-                    ad3: { text: "رمضان سپیشل", link: "#", icon: "fa-moon", clickable: false, deleted: false },
-                    banner1: { text: "25% تخفیف", link: "#", icon: "fa-percent", clickable: false, deleted: false },
-                    banner2: { text: "فری ڈلیوری", link: "#", icon: "fa-truck", clickable: false, deleted: false },
-                    banner3: { text: "لکی ڈرا", link: "#", icon: "fa-trophy", clickable: false, deleted: false }
+                    ad1: { text: "نئی گولڈ کلکشن", link: "https://example.com/gold", icon: "fa-gem", clickable: true, deleted: false },
+                    ad2: { text: "شادی بیاہ ڈیلز", link: "https://example.com/wedding", icon: "fa-heart", clickable: true, deleted: false },
+                    ad3: { text: "رمضان سپیشل", link: "https://example.com/ramadan", icon: "fa-moon", clickable: true, deleted: false },
+                    banner1: { text: "25% تخفیف", link: "https://example.com/discount", icon: "fa-percent", clickable: true, deleted: false },
+                    banner2: { text: "فری ڈلیوری", link: "https://example.com/delivery", icon: "fa-truck", clickable: true, deleted: false },
+                    banner3: { text: "لکی ڈرا", link: "https://example.com/lucky", icon: "fa-trophy", clickable: true, deleted: false }
                 };
             }
             
@@ -581,17 +601,16 @@
             
             const picHtml = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : `<i class="fas ${data.profileIcon}"></i>`;
             
-            // NON-CLICKABLE HTML - تمام links ہٹا دیے
             const html = `
-                <div class="profile-card">
+                <div class="profile-card" onclick='openLink("https://maps.google.com/?q=${encodeURIComponent(data.address)}")'>
                     <div class="profile-pic">${picHtml}</div>
                     <div class="profile-info">
                         <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
-                            <span class="contact-badge"><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
-                            ${data.email ? `<span class="contact-badge"><i class="fas fa-envelope"></i></span>` : ''}
+                            <span class="contact-badge" onclick='openLink("tel:${data.phoneNumber}")'><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
+                            ${data.email ? `<span class="contact-badge" onclick='openLink("mailto:${data.email}")'><i class="fas fa-envelope"></i></span>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
                     </div>
@@ -599,15 +618,18 @@
                 
                 <div class="ads-row">
                     ${data.ad1 && !data.ad1.deleted ? 
-                        `<div class="ad-card">
+                        `<div class="ad-card ${data.ad1.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.ad1.clickable ? `openLink("${data.ad1.link}")` : ""}'>
                             <i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>
                         </div>` : ''}
                     ${data.ad2 && !data.ad2.deleted ? 
-                        `<div class="ad-card">
+                        `<div class="ad-card ${data.ad2.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.ad2.clickable ? `openLink("${data.ad2.link}")` : ""}'>
                             <i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>
                         </div>` : ''}
                     ${data.ad3 && !data.ad3.deleted ? 
-                        `<div class="ad-card">
+                        `<div class="ad-card ${data.ad3.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.ad3.clickable ? `openLink("${data.ad3.link}")` : ""}'>
                             <i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>
                         </div>` : ''}
                 </div>
@@ -618,10 +640,10 @@
                 </div>
                 
                 <div class="icon-row">
-                    <div class="icon-item clickable" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
-                    <div class="icon-item clickable" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
+                    <div class="icon-item" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
+                    <div class="icon-item" onclick='openLink("https://quran.com/ur")'><i class="fas fa-quran"></i><span>قرآن</span></div>
+                    <div class="icon-item" onclick='openLink("https://equran.com/")'><i class="fas fa-headphones"></i><span>آڈیو</span></div>
+                    <div class="icon-item" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
                 </div>
                 
                 <div class="live-timer">
@@ -632,7 +654,7 @@
                     <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
                 </div>
                 
-                <div class="quran-box">
+                <div class="quran-box" onclick='openLink("https://quran.com/ur")'>
                     <i class="fas fa-quran"></i>
                     <h2>القرآن الكريم</h2>
                 </div>
@@ -649,15 +671,18 @@
                 
                 <div class="bottom-banners">
                     ${data.banner1 && !data.banner1.deleted ? 
-                        `<div class="bottom-banner">
+                        `<div class="bottom-banner ${data.banner1.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.banner1.clickable ? `openLink("${data.banner1.link}")` : ""}'>
                             <i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>
                         </div>` : ''}
                     ${data.banner2 && !data.banner2.deleted ? 
-                        `<div class="bottom-banner">
+                        `<div class="bottom-banner ${data.banner2.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.banner2.clickable ? `openLink("${data.banner2.link}")` : ""}'>
                             <i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>
                         </div>` : ''}
                     ${data.banner3 && !data.banner3.deleted ? 
-                        `<div class="bottom-banner">
+                        `<div class="bottom-banner ${data.banner3.clickable ? '' : 'non-clickable'}" 
+                            onclick='${data.banner3.clickable ? `openLink("${data.banner3.link}")` : ""}'>
                             <i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>
                         </div>` : ''}
                 </div>
