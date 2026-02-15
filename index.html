@@ -7,29 +7,18 @@
     
     <!-- Primary Meta Tags -->
     <meta name="title" content="رمضان کیلنڈر جنریٹر - ایڈمن پینل">
-    <meta name="description" content="اپنا رمضان کیلنڈر بنائیں اور PWA کے طور پر انسٹال کریں">
-    <meta name="keywords" content="رمضان, کیلنڈر, PWA, ایڈمن, calendar">
+    <meta name="description" content="اپنا رمضان کیلنڈر بنائیں">
+    <meta name="keywords" content="رمضان, کیلنڈر, ایڈمن">
     <meta name="author" content="Ramadan Calendar">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ramadan-calendar.com/">
-    <meta property="og:title" content="رمضان کیلنڈر جنریٹر - ایڈمن پینل">
-    <meta property="og:description" content="اپنا رمضان کیلنڈر بنائیں اور PWA کے طور پر انسٹال کریں">
-    <meta property="og:image" content="https://ramadan-calendar.com/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ramadan-calendar.com/">
-    <meta property="twitter:title" content="رمضان کیلنڈر جنریٹر - ایڈمن پینل">
-    <meta property="twitter:description" content="اپنا رمضان کیلنڈر بنائیں اور PWA کے طور پر انسٹال کریں">
-    
-    <!-- PWA -->
+    <!-- For Add to Home Screen (Not PWA Install) -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a2e1a">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="رمضان کیلنڈر">
+    <link rel="apple-touch-icon" href="kaaba.svg">
+    <link rel="apple-touch-icon" sizes="512x512" href="mosque.svg">
+    <meta name="theme-color" content="#1a2e1a">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +27,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS Variables for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         :root {
             --primary-dark: #1a2e1a;
             --primary-medium: #1e4a2e;
@@ -56,12 +50,6 @@
             --border-radius-full: 50px;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Inter', 'Amiri', sans-serif;
             background: var(--primary-dark);
@@ -74,7 +62,7 @@
             margin: 0 auto;
         }
         
-        /* Header Styles */
+        /* Header */
         .header {
             background: linear-gradient(135deg, var(--primary-medium), #0f3a1f);
             border-radius: var(--border-radius-xl) var(--border-radius-md) var(--border-radius-xl) var(--border-radius-md);
@@ -84,31 +72,12 @@
             color: white;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,217,102,0.1) 0%, transparent 70%);
-            animation: shimmer 15s infinite linear;
-        }
-        
-        @keyframes shimmer {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         
         .header h1 {
             font-size: clamp(2rem, 5vw, 2.8rem);
             color: var(--accent-light);
             font-family: 'Amiri', serif;
-            position: relative;
-            z-index: 1;
         }
         
         .header p {
@@ -144,12 +113,6 @@
             padding: 25px;
             margin-bottom: 30px;
             border: 2px solid var(--accent-gold);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .section-title {
@@ -177,10 +140,6 @@
             gap: 25px;
         }
         
-        .form-group {
-            margin-bottom: 5px;
-        }
-        
         .form-group.full-width {
             grid-column: 1 / -1;
         }
@@ -190,7 +149,6 @@
             color: var(--primary-medium);
             font-weight: 600;
             margin-bottom: 8px;
-            font-size: 1rem;
         }
         
         .required {
@@ -209,15 +167,10 @@
             background: #f9f9f9;
         }
         
-        input:hover, textarea:hover, select:hover {
-            border-color: var(--accent-gold);
-        }
-        
         input:focus, textarea:focus, select:focus {
             border-color: var(--accent-gold);
             outline: none;
             box-shadow: 0 0 0 4px rgba(201, 167, 90, 0.2);
-            background: white;
         }
         
         /* Profile Upload */
@@ -242,7 +195,6 @@
             justify-content: center;
             overflow: hidden;
             border: 4px solid var(--accent-gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         .profile-preview i {
@@ -268,17 +220,11 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: all 0.3s;
             border: 2px solid var(--accent-gold);
         }
         
         .upload-btn:hover {
             background: var(--primary-light);
-            transform: scale(1.05);
-        }
-        
-        .upload-btn i {
-            font-size: 1.2rem;
         }
         
         /* Icon Selector */
@@ -312,18 +258,11 @@
         }
         
         .card {
-            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            background: white;
             border-radius: 25px;
             padding: 20px;
             border: 2px solid var(--accent-gold);
             position: relative;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
         .card h4 {
@@ -344,16 +283,6 @@
             padding: 10px 15px;
             background: #e8f0e8;
             border-radius: 40px;
-            border: 1px solid var(--accent-gold);
-        }
-        
-        .toggle-label {
-            font-size: 0.95rem;
-            color: var(--primary-dark);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         
         .toggle-switch {
@@ -416,27 +345,17 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
             z-index: 10;
         }
         
-        .delete-btn:hover {
-            background: #c53030;
-            transform: scale(1.15) rotate(90deg);
-        }
-        
-        /* Hidden Card State */
         .hidden-card {
             opacity: 0.5;
             background: #e0e0e0;
             pointer-events: none;
-            filter: grayscale(0.5);
         }
         
         .hidden-card .delete-btn {
             pointer-events: auto;
-            background: var(--primary-medium);
         }
         
         /* Status Badges */
@@ -468,42 +387,28 @@
             font-size: 1.4rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             margin-top: 15px;
-            position: relative;
-            overflow: hidden;
+            border: 3px solid var(--accent-gold);
         }
         
         .generate-btn {
             background: var(--primary-medium);
             color: var(--accent-light);
-            border: 3px solid var(--accent-gold);
-        }
-        
-        .generate-btn:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(30, 74, 46, 0.4);
         }
         
         .export-btn {
             background: var(--success);
             color: white;
-            border: 3px solid var(--accent-gold);
             font-size: 1.2rem;
+            margin-top: 10px;
         }
         
-        .export-btn:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-        }
-        
-        .generate-btn:active, .export-btn:active {
-            transform: translateY(0);
+        .export-btn.secondary {
+            background: #9b7a48;
         }
         
         /* Warning Box */
@@ -517,11 +422,18 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1rem;
         }
         
-        .warning i {
-            font-size: 1.5rem;
+        /* Add to Home Screen Hint */
+        .add-hint {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
         }
         
         /* Footer */
@@ -530,91 +442,45 @@
             color: var(--background-cream);
             margin-top: 30px;
             padding: 20px;
-            font-size: 1.1rem;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             body { padding: 10px; }
-            
             .generator-container { padding: 20px; }
-            
-            .section { padding: 20px; }
-            
-            .section-title { font-size: 1.4rem; }
-            
-            .profile-upload { 
-                justify-content: center;
-                gap: 20px;
-            }
-            
-            .cards-grid { 
-                grid-template-columns: 1fr; 
-            }
-            
-            .generate-btn, .export-btn { 
-                font-size: 1.2rem;
-                padding: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header h1 { font-size: 1.8rem; }
-            
-            .admin-badge { font-size: 0.9rem; }
-            
-            .section-title { font-size: 1.2rem; }
-            
-            .profile-preview { 
-                width: 100px;
-                height: 100px;
-            }
-        }
-        
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Print Styles */
-        @media print {
-            .generate-btn, .export-btn, .upload-btn, .delete-btn, .admin-badge {
-                display: none;
-            }
+            .form-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="admin-container">
-        <!-- Header Section -->
+        <!-- Add to Home Screen Hint -->
+        <div style="text-align: center;">
+            <span class="add-hint">
+                <i class="fas fa-plus-circle"></i> 
+                موبائل پر: مینو میں "Add to Home Screen" دبائیں
+            </span>
+        </div>
+        
+        <!-- Header -->
         <div class="header">
             <h1>🌙 رمضان 1447ھ</h1>
             <p>کیلنڈر جنریٹر - ایڈمن پینل</p>
             <div class="admin-badge">
                 <i class="fas fa-lock"></i> صرف ایڈمن کے لیے
-                <span class="loading" style="display: none;"></span>
             </div>
         </div>
         
-        <!-- Main Generator Container -->
+        <!-- Main Container -->
         <div class="generator-container">
             <div class="warning">
                 <i class="fas fa-info-circle"></i>
-                <span>نوٹ: بننے والا کیلنڈر PWA کے طور پر انسٹال ہو سکتا ہے۔ تمام ڈیٹا لوکل اسٹوریج میں محفوظ ہو گا۔</span>
+                <span>نوٹ: بننے والا کیلنڈر Home Screen پر شارٹ کٹ بنا سکتے ہیں۔</span>
             </div>
             
             <!-- Business Profile Section -->
-            <div class="section" id="businessSection">
+            <div class="section">
                 <div class="section-title">
                     <i class="fas fa-store"></i>
                     کاروبار کی تفصیلات
@@ -629,58 +495,51 @@
                         <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
                             <i class="fas fa-upload"></i> تصویر منتخب کریں
                         </button>
-                        <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">
-                            <i class="fas fa-info-circle"></i> PNG, JPG, GIF (زیادہ سے زیادہ 2MB)
-                        </p>
                     </div>
                 </div>
                 
                 <div class="form-grid">
                     <div class="form-group">
                         <label><span class="required">*</span> کاروبار کا نام</label>
-                        <input type="text" id="businessName" value="المدینہ جیولرز" placeholder="کاروبار کا نام درج کریں">
+                        <input type="text" id="businessName" value="المدینہ جیولرز">
                     </div>
                     
                     <div class="form-group">
                         <label><span class="required">*</span> فون نمبر</label>
-                        <input type="tel" id="phoneNumber" value="03001234567" placeholder="0300 1234567">
+                        <input type="tel" id="phoneNumber" value="03001234567">
                     </div>
                     
                     <div class="form-group">
-                        <label>ای میل (اختیاری)</label>
-                        <input type="email" id="email" value="info@example.com" placeholder="example@domain.com">
+                        <label>ای میل</label>
+                        <input type="email" id="email" value="info@example.com">
                     </div>
                     
                     <div class="form-group">
                         <label><span class="required">*</span> کاروبار کی قسم</label>
-                        <input type="text" id="businessType" value="Jewellery Store" placeholder="مثلاً: جیولری، میڈیکل، فوڈ">
+                        <input type="text" id="businessType" value="Jewellery Store">
                     </div>
                     
                     <div class="form-group full-width">
                         <label><span class="required">*</span> مکمل پتہ</label>
-                        <textarea id="address" rows="2" placeholder="مکمل پتہ لکھیں">ماڈل ٹاؤن، لاہور</textarea>
+                        <textarea id="address" rows="2">ماڈل ٹاؤن، لاہور</textarea>
                     </div>
                     
                     <div class="form-group full-width">
-                        <label>تفصیل (اختیاری)</label>
-                        <textarea id="businessDetails" rows="2" placeholder="کاروبار کے بارے میں مزید تفصیل">سونے چاندی کی خالص مصنوعات</textarea>
+                        <label>تفصیل</label>
+                        <textarea id="businessDetails" rows="2">سونے چاندی کی خالص مصنوعات</textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label>پروفائل آئیکون</label>
+                        <label>آئیکون</label>
                         <div class="icon-selector">
                             <div class="icon-preview" id="profileIconPreview">
                                 <i class="fas fa-store"></i>
                             </div>
-                            <select id="profileIcon" onchange="updateIconPreview(this.value)">
-                                <option value="fa-store">🏪 اسٹور / دکان</option>
-                                <option value="fa-gem">💎 جیولری / زیورات</option>
-                                <option value="fa-stethoscope">🩺 میڈیکل / کلینک</option>
-                                <option value="fa-utensils">🍽️ فوڈ / ریسٹورنٹ</option>
-                                <option value="fa-tshirt">👕 گارمنٹس / کپڑے</option>
-                                <option value="fa-mobile-alt">📱 موبائل / الیکٹرانکس</option>
-                                <option value="fa-book">📚 کتابیں / اسٹیشنری</option>
-                                <option value="fa-car">🚗 گاڑیاں / ٹرانسپورٹ</option>
+                            <select id="profileIcon">
+                                <option value="fa-store">🏪 اسٹور</option>
+                                <option value="fa-gem">💎 جیولری</option>
+                                <option value="fa-stethoscope">🩺 میڈیکل</option>
+                                <option value="fa-utensils">🍽️ فوڈ</option>
                             </select>
                         </div>
                     </div>
@@ -691,59 +550,49 @@
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-ad"></i>
-                    ٹاپ ایڈز (اوپر والے اشتہارات)
+                    ٹاپ ایڈز
                 </div>
                 
-                <div class="cards-grid" id="topAdsContainer">
-                    <!-- Ads will be populated via JavaScript -->
-                </div>
+                <div class="cards-grid" id="topAdsContainer"></div>
             </div>
             
             <!-- Bottom Banners Section -->
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-images"></i>
-                    نیچے بینرز (فوٹر بینرز)
+                    نیچے بینرز
                 </div>
                 
-                <div class="cards-grid" id="bottomBannersContainer">
-                    <!-- Banners will be populated via JavaScript -->
-                </div>
+                <div class="cards-grid" id="bottomBannersContainer"></div>
             </div>
             
             <!-- Action Buttons -->
             <button class="generate-btn" onclick="generateCalendar()">
                 <i class="fas fa-calendar-alt"></i>
-                کیلنڈر بنائیں اور کھولیں
+                کیلنڈر بنائیں
             </button>
             
             <button class="export-btn" onclick="exportData()">
                 <i class="fas fa-download"></i>
-                ڈیٹا محفوظ کریں (JSON فائل)
+                ڈیٹا ایکسپورٹ کریں
             </button>
             
-            <button class="export-btn" onclick="importData()" style="background: #9b7a48; margin-top: 10px;">
+            <button class="export-btn secondary" onclick="importData()">
                 <i class="fas fa-upload"></i>
-                ڈیٹا بحال کریں (JSON فائل)
+                ڈیٹا امپورٹ کریں
             </button>
         </div>
         
         <div class="footer">
-            <p>🌙 رمضان مبارک 1447ھ - تمام حقوق محفوظ ہیں</p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">
-                <i class="fas fa-code-branch"></i> ورژن 2.0.0 | 
-                <i class="fas fa-mobile-alt"></i> PWA ریڈی
-            </p>
+            <p>🌙 رمضان مبارک 1447ھ</p>
         </div>
     </div>
     
     <script>
-        // ==================== GLOBAL CONFIGURATION ====================
+        // Configuration
         const CONFIG = {
-            STORAGE_KEYS: {
-                PROFILE_PIC: 'ramadan_profile_pic',
-                BUSINESS_DATA: 'ramadan_business_data'
-            },
+            PROFILE_PIC_KEY: 'ramadan_profile_pic',
+            BUSINESS_DATA_KEY: 'ramadan_business_data',
             DEFAULT_DATA: {
                 businessName: 'المدینہ جیولرز',
                 phoneNumber: '03001234567',
@@ -752,56 +601,42 @@
                 address: 'ماڈل ٹاؤن، لاہور',
                 businessDetails: 'سونے چاندی کی خالص مصنوعات',
                 profileIcon: 'fa-store',
-                
                 ad1: { text: 'نئی گولڈ کلکشن', link: 'https://example.com/gold', icon: 'fa-gem', clickable: true, deleted: false },
                 ad2: { text: 'شادی بیاہ ڈیلز', link: 'https://example.com/wedding', icon: 'fa-heart', clickable: true, deleted: false },
                 ad3: { text: 'رمضان سپیشل', link: 'https://example.com/ramadan', icon: 'fa-moon', clickable: true, deleted: false },
-                
                 banner1: { text: '25% تخفیف', link: 'https://example.com/discount', icon: 'fa-percent', clickable: true, deleted: false },
                 banner2: { text: 'فری ڈلیوری', link: 'https://example.com/delivery', icon: 'fa-truck', clickable: true, deleted: false },
                 banner3: { text: 'لکی ڈرا', link: 'https://example.com/lucky', icon: 'fa-trophy', clickable: true, deleted: false }
             }
         };
 
-        // ==================== INITIALIZATION ====================
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             initializeCards();
             loadSavedData();
-            setupEventListeners();
-        });
-
-        function setupEventListeners() {
+            
             // Profile picture upload
             document.getElementById('profilePic').addEventListener('change', handleProfilePicUpload);
-            
-            // Auto-save on input changes
-            const inputs = document.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                input.addEventListener('change', autoSave);
-                input.addEventListener('keyup', debounce(autoSave, 500));
-            });
-        }
+        });
 
-        // ==================== CARD INITIALIZATION ====================
+        // Initialize Cards
         function initializeCards() {
-            const topAdsContainer = document.getElementById('topAdsContainer');
-            const bottomBannersContainer = document.getElementById('bottomBannersContainer');
+            const topAds = document.getElementById('topAdsContainer');
+            const bottomBanners = document.getElementById('bottomBannersContainer');
             
-            // Clear containers
-            topAdsContainer.innerHTML = '';
-            bottomBannersContainer.innerHTML = '';
+            topAds.innerHTML = '';
+            bottomBanners.innerHTML = '';
             
-            // Create Top Ads (3)
             for (let i = 1; i <= 3; i++) {
-                topAdsContainer.appendChild(createCard('ad', i));
+                topAds.appendChild(createCard('ad', i));
             }
             
-            // Create Bottom Banners (3)
             for (let i = 1; i <= 3; i++) {
-                bottomBannersContainer.appendChild(createCard('banner', i));
+                bottomBanners.appendChild(createCard('banner', i));
             }
         }
 
+        // Create Card
         function createCard(type, index) {
             const card = document.createElement('div');
             card.className = 'card';
@@ -827,10 +662,10 @@
                     </label>
                 </div>
                 
-                <input type="text" id="${type}${index}Text" value="${defaultData.text}" placeholder="متن درج کریں" style="margin-bottom: 8px;">
-                <input type="url" id="${type}${index}Link" value="${defaultData.link}" placeholder="لنک https://" style="margin-bottom: 8px;">
+                <input type="text" id="${type}${index}Text" value="${defaultData.text}" placeholder="متن" style="margin-bottom:8px;">
+                <input type="url" id="${type}${index}Link" value="${defaultData.link}" placeholder="لنک" style="margin-bottom:8px;">
                 
-                <select id="${type}${index}Icon" style="margin-top: 5px;">
+                <select id="${type}${index}Icon" style="margin-top:5px;">
                     <option value="fa-gem" ${defaultData.icon === 'fa-gem' ? 'selected' : ''}>💎 جیولری</option>
                     <option value="fa-percent" ${defaultData.icon === 'fa-percent' ? 'selected' : ''}>💰 تخفیف</option>
                     <option value="fa-heart" ${defaultData.icon === 'fa-heart' ? 'selected' : ''}>❤️ شادی</option>
@@ -845,86 +680,55 @@
             return card;
         }
 
-        // ==================== PROFILE PICTURE HANDLING ====================
+        // Profile Picture Upload
         function handleProfilePicUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
             
-            // Validate file size (max 2MB)
             if (file.size > 2 * 1024 * 1024) {
                 alert('فائل کا سائز 2MB سے زیادہ نہیں ہونا چاہیے');
                 return;
             }
             
-            // Validate file type
-            if (!file.type.startsWith('image/')) {
-                alert('براہ کرم صرف تصویر منتخب کریں');
-                return;
-            }
-            
             const reader = new FileReader();
             reader.onload = function(e) {
-                const preview = document.getElementById('profilePreview');
-                preview.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;" alt="Profile">`;
-                
-                // Save to localStorage
-                try {
-                    localStorage.setItem(CONFIG.STORAGE_KEYS.PROFILE_PIC, e.target.result);
-                    showNotification('تصویر محفوظ ہو گئی', 'success');
-                } catch (error) {
-                    console.error('Error saving image:', error);
-                    showNotification('تصویر محفوظ نہیں ہو سکی', 'error');
-                }
+                document.getElementById('profilePreview').innerHTML = 
+                    `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
+                localStorage.setItem(CONFIG.PROFILE_PIC_KEY, e.target.result);
             };
             reader.readAsDataURL(file);
         }
 
-        function updateIconPreview(iconClass) {
-            const preview = document.getElementById('profileIconPreview');
-            preview.innerHTML = `<i class="fas ${iconClass}"></i>`;
-        }
-
-        // ==================== CARD FUNCTIONS ====================
+        // Toggle Clickable
         function toggleClickable(id) {
             const checkbox = document.getElementById(id + 'Clickable');
             const statusSpan = document.getElementById(id + 'Status');
             
-            if (checkbox.checked) {
-                statusSpan.textContent = 'فعال';
-                statusSpan.className = 'status-badge status-active';
-            } else {
-                statusSpan.textContent = 'غیر فعال';
-                statusSpan.className = 'status-badge status-inactive';
-            }
+            statusSpan.textContent = checkbox.checked ? 'فعال' : 'غیر فعال';
+            statusSpan.className = checkbox.checked ? 'status-badge status-active' : 'status-badge status-inactive';
             autoSave();
         }
 
+        // Delete/Restore Card
         function deleteCard(id) {
             const card = document.getElementById(id + 'Card');
             
             if (card.classList.contains('hidden-card')) {
-                // Restore card
                 card.classList.remove('hidden-card');
-                const statusSpan = document.getElementById(id + 'Status');
                 const checkbox = document.getElementById(id + 'Clickable');
-                
+                const statusSpan = document.getElementById(id + 'Status');
                 statusSpan.textContent = checkbox.checked ? 'فعال' : 'غیر فعال';
                 statusSpan.className = checkbox.checked ? 'status-badge status-active' : 'status-badge status-inactive';
-                showNotification('کارڈ بحال کر دیا گیا');
             } else {
-                // Delete card
                 card.classList.add('hidden-card');
-                const statusSpan = document.getElementById(id + 'Status');
-                statusSpan.textContent = 'حذف شدہ';
-                statusSpan.className = 'status-badge status-inactive';
-                showNotification('کارڈ حذف کر دیا گیا');
+                document.getElementById(id + 'Status').textContent = 'حذف شدہ';
             }
             autoSave();
         }
 
-        // ==================== DATA COLLECTION ====================
+        // Collect Form Data
         function collectFormData() {
-            const data = {
+            return {
                 businessName: document.getElementById('businessName').value,
                 phoneNumber: document.getElementById('phoneNumber').value,
                 email: document.getElementById('email').value,
@@ -933,70 +737,53 @@
                 businessDetails: document.getElementById('businessDetails').value,
                 profileIcon: document.getElementById('profileIcon').value,
                 
-                // Ads
-                ad1: collectCardData('ad1'),
-                ad2: collectCardData('ad2'),
-                ad3: collectCardData('ad3'),
-                
-                // Banners
-                banner1: collectCardData('banner1'),
-                banner2: collectCardData('banner2'),
-                banner3: collectCardData('banner3'),
+                ad1: getCardData('ad1'),
+                ad2: getCardData('ad2'),
+                ad3: getCardData('ad3'),
+                banner1: getCardData('banner1'),
+                banner2: getCardData('banner2'),
+                banner3: getCardData('banner3'),
                 
                 metadata: {
-                    version: '2.0.0',
                     created: new Date().toISOString(),
                     id: 'cal_' + Date.now()
                 }
             };
-            
-            return data;
         }
 
-        function collectCardData(id) {
-            const card = document.getElementById(id + 'Card');
+        // Get Card Data
+        function getCardData(id) {
             return {
                 text: document.getElementById(id + 'Text')?.value || '',
                 link: document.getElementById(id + 'Link')?.value || '#',
                 icon: document.getElementById(id + 'Icon')?.value || 'fa-gem',
                 clickable: document.getElementById(id + 'Clickable')?.checked || false,
-                deleted: card ? card.classList.contains('hidden-card') : false
+                deleted: document.getElementById(id + 'Card')?.classList.contains('hidden-card') || false
             };
         }
 
-        // ==================== AUTO-SAVE FUNCTION ====================
+        // Auto Save
         function autoSave() {
-            try {
-                const data = collectFormData();
-                localStorage.setItem(CONFIG.STORAGE_KEYS.BUSINESS_DATA, JSON.stringify(data));
-                console.log('Auto-saved at', new Date().toLocaleTimeString());
-            } catch (error) {
-                console.error('Auto-save failed:', error);
-            }
+            const data = collectFormData();
+            localStorage.setItem(CONFIG.BUSINESS_DATA_KEY, JSON.stringify(data));
         }
 
-        // ==================== LOAD SAVED DATA ====================
+        // Load Saved Data
         function loadSavedData() {
-            try {
-                const savedData = localStorage.getItem(CONFIG.STORAGE_KEYS.BUSINESS_DATA);
-                if (savedData) {
-                    const data = JSON.parse(savedData);
-                    populateForm(data);
-                }
-                
-                // Load profile picture
-                const savedPic = localStorage.getItem(CONFIG.STORAGE_KEYS.PROFILE_PIC);
-                if (savedPic) {
-                    document.getElementById('profilePreview').innerHTML = 
-                        `<img src="${savedPic}" style="width:100%;height:100%;object-fit:cover;" alt="Profile">`;
-                }
-            } catch (error) {
-                console.error('Error loading saved data:', error);
+            const saved = localStorage.getItem(CONFIG.BUSINESS_DATA_KEY);
+            if (saved) {
+                populateForm(JSON.parse(saved));
+            }
+            
+            const pic = localStorage.getItem(CONFIG.PROFILE_PIC_KEY);
+            if (pic) {
+                document.getElementById('profilePreview').innerHTML = 
+                    `<img src="${pic}" style="width:100%;height:100%;object-fit:cover;">`;
             }
         }
 
+        // Populate Form
         function populateForm(data) {
-            // Basic info
             document.getElementById('businessName').value = data.businessName || '';
             document.getElementById('phoneNumber').value = data.phoneNumber || '';
             document.getElementById('email').value = data.email || '';
@@ -1004,9 +791,7 @@
             document.getElementById('address').value = data.address || '';
             document.getElementById('businessDetails').value = data.businessDetails || '';
             document.getElementById('profileIcon').value = data.profileIcon || 'fa-store';
-            updateIconPreview(data.profileIcon || 'fa-store');
             
-            // Populate cards
             populateCard('ad1', data.ad1);
             populateCard('ad2', data.ad2);
             populateCard('ad3', data.ad3);
@@ -1015,6 +800,7 @@
             populateCard('banner3', data.banner3);
         }
 
+        // Populate Card
         function populateCard(id, cardData) {
             if (!cardData) return;
             
@@ -1022,7 +808,6 @@
             const linkInput = document.getElementById(id + 'Link');
             const iconSelect = document.getElementById(id + 'Icon');
             const clickableCheck = document.getElementById(id + 'Clickable');
-            const card = document.getElementById(id + 'Card');
             
             if (textInput) textInput.value = cardData.text || '';
             if (linkInput) linkInput.value = cardData.link || '';
@@ -1032,185 +817,69 @@
                 toggleClickable(id);
             }
             
-            if (card && cardData.deleted) {
-                card.classList.add('hidden-card');
-                const statusSpan = document.getElementById(id + 'Status');
-                if (statusSpan) {
-                    statusSpan.textContent = 'حذف شدہ';
-                    statusSpan.className = 'status-badge status-inactive';
-                }
+            if (cardData.deleted) {
+                document.getElementById(id + 'Card').classList.add('hidden-card');
+                document.getElementById(id + 'Status').textContent = 'حذف شدہ';
             }
         }
 
-        // ==================== MAIN FUNCTIONS ====================
+        // Generate Calendar
         function generateCalendar() {
-            try {
-                // Validate required fields
-                const businessName = document.getElementById('businessName').value.trim();
-                const phoneNumber = document.getElementById('phoneNumber').value.trim();
-                const address = document.getElementById('address').value.trim();
-                
-                if (!businessName || !phoneNumber || !address) {
-                    showNotification('براہ کرم تمام ضروری فیلڈز بھریں', 'error');
-                    return;
-                }
-                
-                const data = collectFormData();
-                const id = data.metadata.id;
-                
-                // Save to multiple storage locations
-                localStorage.setItem(id, JSON.stringify(data));
-                sessionStorage.setItem(id, JSON.stringify(data));
-                
-                // Save to cookie (30 days)
-                document.cookie = `${id}=${JSON.stringify(data)}; max-age=2592000; path=/; SameSite=Strict`;
-                
-                // Open calendar
-                const calendarUrl = `calendar.html?id=${id}`;
-                window.open(calendarUrl, '_blank');
-                
-                showNotification('کیلنڈر بن گیا! نیا ٹیب کھل رہا ہے۔', 'success');
-                
-            } catch (error) {
-                console.error('Error generating calendar:', error);
-                showNotification('کیلنڈر بنانے میں خرابی', 'error');
+            const businessName = document.getElementById('businessName').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const address = document.getElementById('address').value.trim();
+            
+            if (!businessName || !phoneNumber || !address) {
+                alert('براہ کرم تمام ضروری فیلڈز بھریں');
+                return;
             }
+            
+            const data = collectFormData();
+            const id = data.metadata.id;
+            
+            localStorage.setItem(id, JSON.stringify(data));
+            sessionStorage.setItem(id, JSON.stringify(data));
+            document.cookie = `${id}=${JSON.stringify(data)}; max-age=2592000; path=/`;
+            
+            window.open(`calendar.html?id=${id}`, '_blank');
         }
 
+        // Export Data
         function exportData() {
-            try {
-                const data = collectFormData();
-                const dataStr = JSON.stringify(data, null, 2);
-                const blob = new Blob([dataStr], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `ramadan-calendar-data-${new Date().toISOString().split('T')[0]}.json`;
-                a.click();
-                
-                URL.revokeObjectURL(url);
-                showNotification('ڈیٹا ایکسپورٹ ہو گیا!', 'success');
-                
-            } catch (error) {
-                console.error('Export failed:', error);
-                showNotification('ایکسپورٹ ناکام', 'error');
-            }
+            const data = collectFormData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ramadan-data-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            alert('ڈیٹا ایکسپورٹ ہو گیا!');
         }
 
+        // Import Data
         function importData() {
             const input = document.createElement('input');
             input.type = 'file';
-            input.accept = '.json,application/json';
+            input.accept = '.json';
             
-            input.onchange = function(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                
+            input.onchange = function(e) {
+                const file = e.target.files[0];
                 const reader = new FileReader();
+                
                 reader.onload = function(e) {
                     try {
                         const data = JSON.parse(e.target.result);
                         populateForm(data);
-                        
-                        // Save to localStorage
-                        localStorage.setItem(CONFIG.STORAGE_KEYS.BUSINESS_DATA, JSON.stringify(data));
-                        
-                        showNotification('ڈیٹا بحال ہو گیا!', 'success');
+                        localStorage.setItem(CONFIG.BUSINESS_DATA_KEY, JSON.stringify(data));
+                        alert('ڈیٹا بحال ہو گیا!');
                     } catch (error) {
-                        console.error('Import failed:', error);
-                        showNotification('غلط فائل فارمیٹ', 'error');
+                        alert('غلط فائل فارمیٹ');
                     }
                 };
                 reader.readAsText(file);
             };
             
             input.click();
-        }
-
-        // ==================== UTILITY FUNCTIONS ====================
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        function showNotification(message, type = 'info') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#e53e3e' : '#c9a75a'};
-                color: white;
-                padding: 12px 25px;
-                border-radius: 50px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 9999;
-                font-size: 1rem;
-                direction: rtl;
-                animation: slideDown 0.3s ease;
-                border: 2px solid #c9a75a;
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.animation = 'slideUp 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideDown {
-                from {
-                    top: -100px;
-                    opacity: 0;
-                }
-                to {
-                    top: 20px;
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideUp {
-                from {
-                    top: 20px;
-                    opacity: 1;
-                }
-                to {
-                    top: -100px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // ==================== SERVICE WORKER REGISTRATION ====================
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed:', error);
-                    });
-            });
         }
     </script>
 </body>
