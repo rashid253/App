@@ -1,23 +1,25 @@
 {
-  "name": "رمضان 1447 کیلنڈر",
+  "name": "رمضان کیلنڈر 1447ھ",
   "short_name": "رمضان کیلنڈر",
-  "description": "رمضان 2026 مکمل کیلنڈر - سحری و افطاری اوقات، دعائیں، تسبیح",
-  "start_url": "calendar.html",
-  "display": "standalone",
-  "background_color": "#1a2e1a",
+  "description": "رمضان المبارک 1447ھ کا مکمل کیلنڈر - سحری اور افطاری کے اوقات",
   "theme_color": "#1a2e1a",
+  "background_color": "#faf3e2",
+  "display": "standalone",
   "orientation": "portrait",
-  "scope": "./",
+  "scope": "/",
+  "start_url": "/calendar.html",
+  "dir": "rtl",
+  "lang": "ur",
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231a2e1a' stroke='%23c9a75a' stroke-width='3'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'%3E🌙%3C/text%3E%3C/svg%3E",
+      "src": "kaaba.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231a2e1a' stroke='%23c9a75a' stroke-width='3'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'%3E🌙%3C/text%3E%3C/svg%3E",
+      "src": "mosque.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
