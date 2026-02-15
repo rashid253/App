@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>رمضان 2026 پاکستان | مکمل دعائیں + لائیو ٹائمر + حقیقی فیچرز</title>
+    <title>رمضان 2026 پاکستان | مکمل دعائیں + لائیو ٹائمر</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -48,7 +48,7 @@
             z-index: 5;
         }
 
-        /* پروفیشنل اسپانسر سیکشن */
+        /* اسپانسر */
         .sponsor-pro-row {
             display: flex;
             align-items: center;
@@ -94,7 +94,7 @@
             border: 3px solid #c8a255;
         }
 
-        /* آئیکونز کی سنگل قطار */
+        /* آئیکونز کی قطار - Qibla Compass Icon HATAYA */
         .icon-strip {
             display: flex;
             justify-content: space-around;
@@ -112,22 +112,22 @@
             font-size: 0.75rem;
             color: #1f4a1f;
             font-weight: 600;
-            min-width: 60px;
+            min-width: 70px;
             text-align: center;
             margin: 2px 0;
             cursor: pointer;
         }
         .icon-strip-item i {
-            font-size: 1.8rem;
+            font-size: 2rem;
             background: #1b562b;
             color: #ffde91;
             border-radius: 50%;
-            padding: 8px;
-            width: 45px;
-            height: 45px;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
             text-align: center;
-            line-height: 1.4;
-            margin-bottom: 4px;
+            line-height: 1.8;
+            margin-bottom: 5px;
             border: 2px solid #ffcd7e;
         }
 
@@ -194,10 +194,10 @@
         .dua-tag {
             background: #b38d51;
             color: #212618;
-            padding: 5px 12px;
+            padding: 8px 15px;
             border-radius: 60px;
             font-size: 1rem;
-            max-width: 250px;
+            max-width: 300px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -381,74 +381,96 @@
             color: #8f6d45;
         }
 
-        /* Compass */
-        .compass-container {
-            text-align: center;
-            padding: 20px;
-        }
-        .compass {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            position: relative;
-            background: #2f5a38;
-            border-radius: 50%;
-            border: 4px solid #c9a75a;
-        }
-        .compass-needle {
-            width: 4px;
-            height: 80px;
-            background: #ff4444;
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: bottom center;
-            transform: translateX(-50%) rotate(0deg);
-        }
-        .qibla-needle {
-            width: 4px;
-            height: 70px;
-            background: #44ff44;
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: bottom center;
-            transform: translateX(-50%) rotate(130deg);
-        }
-
         /* Tasbeeh */
         .tasbeeh-counter {
-            font-size: 4rem;
+            font-size: 5rem;
             text-align: center;
             color: #1d4d2b;
             margin: 20px 0;
+            font-weight: bold;
         }
         .counter-btn-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            margin-top: 20px;
         }
 
         /* Audio Player */
         audio {
             width: 100%;
-            margin: 10px 0;
+            margin: 15px 0;
+        }
+        .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 5px;
         }
         .surah-btn {
             background: #1d4d2b;
             color: white;
-            padding: 10px;
-            margin: 5px;
+            padding: 12px;
             border-radius: 30px;
             border: none;
             cursor: pointer;
+            font-size: 1rem;
+            border: 2px solid #c9ad7c;
+        }
+        .surah-btn:hover {
+            background: #2f6b3a;
+        }
+
+        /* PDF Viewer */
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+            margin-top: 15px;
+            display: none;
+        }
+        .drive-link {
+            display: block;
+            background: #1d4d2b;
+            color: white;
+            padding: 15px;
+            border-radius: 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 15px 0;
+            border: 2px solid #c9ad7c;
+        }
+
+        /* Dua Cards */
+        .dua-card {
+            background: #e7dcc0;
+            border-radius: 30px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #c9ad7c;
+        }
+        .dua-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            text-align: right;
+            color: #1d4d2b;
+            margin-bottom: 10px;
+        }
+        .dua-urdu {
+            font-size: 1.2rem;
+            color: #2d261b;
+            border-right: 3px solid #c9ad7c;
+            padding-right: 10px;
         }
     </style>
 </head>
 <body>
 <div class="app-wrapper">
     <div class="content">
-        <!-- اسپانسر حصہ -->
+        <!-- اسپانسر -->
         <div class="sponsor-pro-row" onclick="window.open('https://maps.google.com/?q=لاہور+ماڈل+ٹاؤن', '_blank')">
             <div class="shop-info">
                 <div class="shop-name">المدینہ جنرل سٹور</div>
@@ -465,13 +487,10 @@
             </div>
         </div>
 
-        <!-- آئیکونز کی قطار (اب سب حقیقی) -->
+        <!-- آئیکونز کی قطار - Qibla Compass ICON HATAYA, ab sirf 4 icon -->
         <div class="icon-strip">
             <div class="icon-strip-item" onclick="openTasbeehModal()">
                 <i class="fas fa-tasbih"></i> <span>تسبیح</span>
-            </div>
-            <div class="icon-strip-item" onclick="openCompassModal()">
-                <i class="fas fa-kaaba"></i> <span>قبلہ سمت</span>
             </div>
             <div class="icon-strip-item" onclick="openPDFModal()">
                 <i class="fas fa-file-pdf"></i> <span>قرآن PDF</span>
@@ -490,19 +509,21 @@
             <div class="urdu-text" id="hijriUrdu">رمضان 1447 ھ</div>
         </div>
 
-        <!-- لائیو ٹائمر + مکمل دعائیں -->
-        <div class="live-timer-badge" id="liveTimerSection">
-            <div class="timer-block" id="countdownSehriArea">
+        <!-- لائیو ٹائمر -->
+        <div class="live-timer-badge">
+            <div class="timer-block">
                 <i class="fas fa-utensils"></i>
                 <span class="timer-label">سحری میں</span>
                 <span class="timer-value" id="timerValue">--:--:--</span>
             </div>
-            <div class="timer-block" id="countdownIftarArea">
+            <div class="timer-block">
                 <i class="fas fa-sun"></i>
                 <span class="timer-label">افطاری میں</span>
                 <span class="timer-value" id="iftarTimerValue">--:--:--</span>
             </div>
-            <div class="dua-tag" id="duaDisplay" onclick="openDuasModal()">دعا سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
+            <div class="dua-tag" id="duaDisplay" onclick="openDuasModal()">
+                دعا سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ
+            </div>
         </div>
 
         <!-- سحری و افطاری ٹیبل -->
@@ -514,7 +535,7 @@
             </table>
             <div class="city-note">
                 <i class="fas fa-map-marker-alt"></i> <span id="citySelectLabel">لاہور</span> · 
-                <select id="citySelect" aria-label="شہر منتخب کریں" onchange="changeCity(this.value)">
+                <select id="citySelect" onchange="changeCity(this.value)">
                     <option value="lahore" selected>لاہور</option>
                     <option value="karachi">کراچی</option>
                     <option value="islamabad">اسلام آباد</option>
@@ -529,7 +550,7 @@
             <div class="arabic-line">إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</div>
             <div class="urdu-translation">بے شک ہم نے اس (قرآن) کو شب قدر میں نازل کیا۔</div>
             <div class="arabic-line" style="font-size:1.8rem;">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ</div>
-            <div class="urdu-translation">اے ایمان والو! تم پر روزے فرض کیے گئے۔ (البقرة: 183)</div>
+            <div class="urdu-translation">اے ایمان والو! تم پر روزے فرض کیے گئے۔</div>
             <div class="surah-detail">مکمل قرآن کے لیے کلک کریں</div>
         </div>
 
@@ -541,11 +562,7 @@
             </div>
             <div class="sponsor-card" onclick="window.open('https://www.daraz.pk', '_blank')">
                 <i class="fas fa-tshirt"></i>
-                <div class="sponsor-text"><strong>شالیمار گارمنٹس</strong> <br> <small>عید کلکشن 2026 · پہلے سے آرڈر کریں</small></div>
-            </div>
-            <div class="sponsor-card" onclick="window.open('https://www.google.com/search?q=خریداری+کھجور', '_blank')">
-                <i class="fas fa-dates"></i>
-                <div class="sponsor-text"><strong>مدینہ ڈیٹس</strong> <br> <small>خالص کھجور · گھر بیٹھے منگائیں</small></div>
+                <div class="sponsor-text"><strong>شالیمار گارمنٹس</strong> <br> <small>عید کلکشن 2026</small></div>
             </div>
         </div>
 
@@ -557,11 +574,11 @@
         </div>
 
         <div class="footer-note">
-            <span><i class="fas fa-moon"></i> رمضان المبارک 1447 ھ</span>
+            <span><i class="fas fa-moon"></i> رمضان 1447 ھ</span>
             <span><i class="fas fa-calendar-week"></i> 19 فروری تا 20 مارچ 2026ء</span>
         </div>
         <div class="offline-tag">
-            <i class="fas fa-download"></i> تمام مواد حقیقی · آف لائن استعمال کریں
+            <i class="fas fa-download"></i> تمام مواد حقیقی · آپ کی لنکس کے ساتھ
         </div>
     </div>
 </div>
@@ -584,91 +601,96 @@
     </div>
 </div>
 
-<!-- Qibla Compass Modal -->
-<div id="compassModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('compassModal')">&times;</span>
-        <h2 style="color:#1d4d2b; text-align:center;">🕋 قبلہ سمت</h2>
-        <div class="compass-container">
-            <div class="compass" id="compass">
-                <div class="compass-needle" id="northNeedle"></div>
-                <div class="qibla-needle" id="qiblaNeedle"></div>
-            </div>
-            <p id="compassStatus" style="margin:15px 0;">کمپاس شروع کرنے کے لیے کلک کریں</p>
-            <button class="btn" onclick="startCompass()">کمپاس شروع کریں</button>
-            <p style="margin-top:10px;">پاکستان کے لیے قبلہ زاویہ: 130.3°</p>
-        </div>
-    </div>
-</div>
-
-<!-- PDF Quran Modal -->
+<!-- PDF Modal - Aapki PDF Link -->
 <div id="pdfModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('pdfModal')">&times;</span>
         <h2 style="color:#1d4d2b; text-align:center;">📖 قرآن PDF</h2>
         
-        <!-- اپنی Google Drive PDF لنک یہاں لگائیں -->
-        <div style="margin:15px 0; text-align:center;">
-            <a href="https://drive.google.com/file/d/1V-RVqY2LqXzqG7L8zHxVK9XqXqXq/view?usp=sharing" target="_blank" class="btn" style="display:inline-block; text-decoration:none;">
-                <i class="fas fa-cloud-download-alt"></i> گوگل ڈرائیو سے ڈاؤن لوڈ
-            </a>
-        </div>
+        <!-- Aapki Google Drive PDF Folder Link -->
+        <a href="https://drive.google.com/drive/folders/1_J0dAa85dILfZIcjpS4mLR5nbG4akP6a" target="_blank" class="drive-link">
+            <i class="fas fa-folder-open"></i> قرآن PDF فولڈر کھولیں
+        </a>
         
         <p style="text-align:center;">یا اپنی PDF منتخب کریں:</p>
         <input type="file" id="pdfFile" accept=".pdf" style="display:none;" onchange="loadPDF(this)">
         <button class="btn" onclick="document.getElementById('pdfFile').click()" style="width:100%; margin:10px 0;">
-            <i class="fas fa-folder-open"></i> PDF منتخب کریں
+            <i class="fas fa-upload"></i> PDF منتخب کریں
         </button>
         
-        <iframe id="pdfViewer" style="width:100%; height:500px; border:none; border-radius:15px; display:none;"></iframe>
-        
-        <div id="savedPDFs" style="margin-top:15px;"></div>
+        <iframe id="pdfViewer" class="pdf-viewer"></iframe>
     </div>
 </div>
 
-<!-- Audio Quran Modal -->
+<!-- Audio Modal - Aapki Audio Link + Mangi Hui Surtein -->
 <div id="audioModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('audioModal')">&times;</span>
         <h2 style="color:#1d4d2b; text-align:center;">🎧 آڈیو قرآن</h2>
         
-        <audio id="audioPlayer" controls style="width:100%; margin:15px 0;">
+        <!-- Aapki Google Drive Audio Folder -->
+        <a href="https://drive.google.com/drive/folders/19iZol8ovGxex0NXfiDWTaFyB0TLtP4do" target="_blank" class="drive-link">
+            <i class="fas fa-folder-open"></i> آڈیو فولڈر کھولیں
+        </a>
+        
+        <audio id="audioPlayer" controls>
             <source src="" type="audio/mpeg">
         </audio>
         
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:5px; max-height:400px; overflow-y:auto;">
-            <button class="surah-btn" onclick="playSurah(1)">الفاتحہ</button>
-            <button class="surah-btn" onclick="playSurah(36)">یٰسین</button>
-            <button class="surah-btn" onclick="playSurah(55)">الرحمن</button>
-            <button class="surah-btn" onclick="playSurah(67)">الملک</button>
-            <button class="surah-btn" onclick="playSurah(112)">الاخلاص</button>
-            <button class="surah-btn" onclick="playSurah(113)">الفلق</button>
-            <button class="surah-btn" onclick="playSurah(114)">الناس</button>
+        <h3 style="color:#1d4d2b;">مشہور سورتیں:</h3>
+        <div class="surah-grid">
+            <button class="surah-btn" onclick="playSurah('malik')">سورۃ الملک</button>
+            <button class="surah-btn" onclick="playSurah('yaseen')">سورۃ یٰسین</button>
+            <button class="surah-btn" onclick="playSurah('waqia')">سورۃ الواقعہ</button>
+            <button class="surah-btn" onclick="playSurah('rehman')">سورۃ الرحمن</button>
+            <button class="surah-btn" onclick="playSurah('hasher')">سورۃ الحشر</button>
+            <button class="surah-btn" onclick="playSurah('mulk')">سورۃ الملک</button>
+            <button class="surah-btn" onclick="playSurah('kahf')">سورۃ الکہف</button>
+            <button class="surah-btn" onclick="playSurah('duha')">سورۃ الضحی</button>
         </div>
         
-        <p style="margin-top:15px; color:#666;">نوٹ: انٹرنیٹ کنکشن درکار ہے</p>
+        <p style="margin-top:15px; color:#666; text-align:center;">
+            نوٹ: سورتیں چلانے کے لیے انٹرنیٹ درکار ہے
+        </p>
     </div>
 </div>
 
-<!-- Duas Modal -->
+<!-- Duas Modal - Aapki Dua Link + Urdu Tarjuma -->
 <div id="duasModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('duasModal')">&times;</span>
         <h2 style="color:#1d4d2b; text-align:center;">🤲 رمضان کی دعائیں</h2>
         
-        <div style="max-height:500px; overflow-y:auto;" id="duaContainer">
-            <div class="quran-urdu-box" style="margin:10px 0;">
-                <div class="arabic-line" style="font-size:1.5rem;">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
-                <div class="urdu-translation">اے اللہ! ہم پر یہ مہینہ امن و ایمان کے ساتھ داخل فرما</div>
-            </div>
-            <div class="quran-urdu-box" style="margin:10px 0;">
-                <div class="arabic-line" style="font-size:1.5rem;">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ</div>
-                <div class="urdu-translation">پیاس ختم ہو گئی، رگیں تر ہو گئیں (افطار کی دعا)</div>
-            </div>
-            <div class="quran-urdu-box" style="margin:10px 0;">
-                <div class="arabic-line" style="font-size:1.5rem;">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ</div>
-                <div class="urdu-translation">اے اللہ! میں تجھ سے تیری رحمت مانگتا ہوں</div>
-            </div>
+        <!-- Aapki Dua PDF Link -->
+        <a href="https://drive.google.com/file/d/1aWSZT8V3OcVpFrm0PFkxJv4NaoWx5FGN/view?usp=drivesdk" target="_blank" class="drive-link">
+            <i class="fas fa-file-pdf"></i> مکمل دعاؤں کی PDF ڈاؤن لوڈ کریں
+        </a>
+        
+        <h3 style="color:#1d4d2b;">اہم دعائیں (اردو ترجمہ کے ساتھ):</h3>
+        
+        <div class="dua-card">
+            <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
+            <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
+        </div>
+        
+        <div class="dua-card">
+            <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ</div>
+            <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں اور اجر ثابت ہو گیا، ان شاء اللہ (افطار کی دعا)</div>
+        </div>
+        
+        <div class="dua-card">
+            <div class="dua-arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ أَنْ تَغْفِرَ لِي</div>
+            <div class="dua-urdu">اے اللہ! میں تجھ سے تیری رحمت کے وسیلے سے مانگتا ہوں جو ہر چیز کو گھیرے ہوئے ہے، کہ تو مجھے بخش دے</div>
+        </div>
+        
+        <div class="dua-card">
+            <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</div>
+            <div class="dua-urdu">اور میں نے کل رمضان کے روزے کی نیت کی (سحری کی دعا)</div>
+        </div>
+        
+        <div class="dua-card">
+            <div class="dua-arabic">اللَّهُمَّ لَا تُؤَاخِذْنِي فِيهِ بِالْعَثَرَاتِ</div>
+            <div class="dua-urdu">اے اللہ! اس مہینے میں میری لغزشوں پر مجھے نہ پکڑ</div>
         </div>
     </div>
 </div>
@@ -699,9 +721,7 @@ const cityTimings = {
         { day:5, date:"23 Feb", sehri:"5:48", iftar:"6:25" }, { day:6, date:"24 Feb", sehri:"5:47", iftar:"6:26" },
         { day:7, date:"25 Feb", sehri:"5:46", iftar:"6:27" }, { day:8, date:"26 Feb", sehri:"5:45", iftar:"6:27" },
         { day:9, date:"27 Feb", sehri:"5:44", iftar:"6:28" }, { day:10, date:"28 Feb", sehri:"5:43", iftar:"6:28" }
-    ],
-    islamabad: [],
-    multan: []
+    ]
 };
 
 // Fill other cities
@@ -710,7 +730,6 @@ cityTimings.multan = cityTimings.lahore.map(r => ({...r, iftar: (parseInt(r.ifta
 
 // Global variables
 let tasbeehCount = 0;
-let compassActive = false;
 
 // ==================== TABLE RENDERING ====================
 function renderTable(city) {
@@ -720,10 +739,8 @@ function renderTable(city) {
     
     let today = new Date();
     let ramadanStart = new Date(2026,1,19);
-    let fastNumber = 0;
-    if (today >= ramadanStart) {
-        fastNumber = Math.floor((today - ramadanStart) / (1000*3600*24)) + 1;
-    }
+    let fastNumber = Math.floor((today - ramadanStart) / (1000*3600*24)) + 1;
+    if(fastNumber < 1 || fastNumber > 30) fastNumber = 1;
     
     for(let i=0; i<data.length; i++) {
         let row = data[i];
@@ -772,9 +789,9 @@ function updateTimers() {
     
     // Update dua
     if(now < iftarTime && now > new Date().setHours(sehriH, sehriM, 0)) {
-        document.getElementById('duaDisplay').innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ";
+        document.getElementById('duaDisplay').innerHTML = "دعائے افطار: ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ";
     } else {
-        document.getElementById('duaDisplay').innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
+        document.getElementById('duaDisplay').innerHTML = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
     }
 }
 
@@ -787,14 +804,12 @@ function formatTime(ms) {
 
 // ==================== MODAL CONTROLS ====================
 function openTasbeehModal() { document.getElementById('tasbeehModal').style.display = 'block'; }
-function openCompassModal() { document.getElementById('compassModal').style.display = 'block'; }
-function openPDFModal() { document.getElementById('pdfModal').style.display = 'block'; loadSavedPDFs(); }
+function openPDFModal() { document.getElementById('pdfModal').style.display = 'block'; }
 function openAudioModal() { document.getElementById('audioModal').style.display = 'block'; }
 function openDuasModal() { document.getElementById('duasModal').style.display = 'block'; }
 
 function closeModal(id) {
     document.getElementById(id).style.display = 'none';
-    if(id === 'compassModal') compassActive = false;
 }
 
 // ==================== TASBEEH ====================
@@ -821,62 +836,35 @@ function loadTasbeeh() {
     }
 }
 
-// ==================== COMPASS (FIXED) ====================
-function startCompass() {
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', handleCompass);
-        compassActive = true;
-        document.getElementById('compassStatus').innerHTML = 'کمپاس فعال ہے';
-    } else {
-        document.getElementById('compassStatus').innerHTML = 'کمپاس سپورٹ نہیں ہے';
-    }
-}
-
-function handleCompass(event) {
-    if (!compassActive) return;
-    let alpha = event.alpha; // North
-    if(alpha !== null) {
-        let qiblaAngle = 130.3; // Pakistan ka qibla angle
-        document.getElementById('northNeedle').style.transform = `translateX(-50%) rotate(${alpha}deg)`;
-        document.getElementById('qiblaNeedle').style.transform = `translateX(-50%) rotate(${qiblaAngle}deg)`;
-        
-        let diff = Math.abs(qiblaAngle - alpha);
-        if(diff < 10) {
-            document.getElementById('compassStatus').innerHTML = '✅ قبلہ سامنے ہے';
-        } else {
-            document.getElementById('compassStatus').innerHTML = `شمال: ${Math.round(alpha)}° • فرق: ${Math.round(diff)}°`;
-        }
-    }
-}
-
-// ==================== PDF (FIXED) ====================
+// ==================== PDF ====================
 function loadPDF(input) {
     let file = input.files[0];
     if(file) {
         let url = URL.createObjectURL(file);
-        document.getElementById('pdfViewer').src = url;
-        document.getElementById('pdfViewer').style.display = 'block';
+        let viewer = document.getElementById('pdfViewer');
+        viewer.src = url;
+        viewer.style.display = 'block';
     }
 }
 
-function loadSavedPDFs() {
-    // IndexedDB code here if needed
-}
-
-// ==================== AUDIO (FIXED - WORKING LINKS) ====================
-function playSurah(num) {
+// ==================== AUDIO ====================
+function playSurah(surah) {
     let audio = document.getElementById('audioPlayer');
+    
+    // Online Quran audio links (working)
     let urls = {
-        1: 'https://server8.mp3quran.net/afs/001.mp3',
-        36: 'https://server8.mp3quran.net/afs/036.mp3',
-        55: 'https://server8.mp3quran.net/afs/055.mp3',
-        67: 'https://server8.mp3quran.net/afs/067.mp3',
-        112: 'https://server8.mp3quran.net/afs/112.mp3',
-        113: 'https://server8.mp3quran.net/afs/113.mp3',
-        114: 'https://server8.mp3quran.net/afs/114.mp3'
+        'malik': 'https://server8.mp3quran.net/afs/067.mp3',
+        'yaseen': 'https://server8.mp3quran.net/afs/036.mp3',
+        'waqia': 'https://server8.mp3quran.net/afs/056.mp3',
+        'rehman': 'https://server8.mp3quran.net/afs/055.mp3',
+        'hasher': 'https://server8.mp3quran.net/afs/059.mp3',
+        'mulk': 'https://server8.mp3quran.net/afs/067.mp3',
+        'kahf': 'https://server8.mp3quran.net/afs/018.mp3',
+        'duha': 'https://server8.mp3quran.net/afs/093.mp3'
     };
-    if(urls[num]) {
-        audio.src = urls[num];
+    
+    if(urls[surah]) {
+        audio.src = urls[surah];
         audio.play().catch(e => alert('انٹرنیٹ کنکشن چیک کریں'));
     }
 }
@@ -885,16 +873,12 @@ function playSurah(num) {
 renderTable('lahore');
 setInterval(updateTimers, 1000);
 updateTimers();
-
-// Hijri date
-let hijriDate = {day:1, month:9, year:1447};
 document.getElementById('hijriUrdu').innerHTML = `1 رمضان 1447 ھ`;
 
 // Close modals when clicking outside
 window.onclick = function(event) {
     if(event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
-        compassActive = false;
     }
 }
 </script>
