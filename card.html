@@ -1,278 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shop</title>
-    <meta name="theme-color" content="#0f172a">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>رمضان 2026 | قرآن مجید + دعائیں + تسبیح</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-        }
-
-        .app {
-            max-width: 480px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0,0,0,0.05);
-        }
-
-        /* Header */
-        .header {
-            background: #0f172a;
-            padding: 20px;
-            color: white;
-        }
-
-        .business {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .business img {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            object-fit: cover;
-            background: #334155;
-        }
-
-        .business h1 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .business p {
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-        /* Search */
-        .search {
-            background: #1e293b;
-            margin: 20px;
-            padding: 12px 20px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search i {
-            color: #94a3b8;
-        }
-
-        .search input {
-            background: none;
-            border: none;
-            color: white;
-            width: 100%;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .search input::placeholder {
-            color: #64748b;
-        }
-
-        /* Categories */
-        .categories {
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
-
-        .categories h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .cat-item {
-            text-align: center;
-        }
-
-        .cat-icon {
-            width: 65px;
-            height: 65px;
-            background: #f1f5f9;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 24px;
-            color: #0f172a;
-            transition: 0.3s;
-        }
-
-        .cat-item span {
-            font-size: 12px;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        /* Products */
-        .products {
-            padding: 0 20px 100px;
-        }
-
-        .products h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            border: 1px solid #f1f5f9;
-            transition: 0.3s;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            background: #f8fafc;
-        }
-
-        .product-info {
-            padding: 12px;
-        }
-
-        .product-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 6px;
-            color: #0f172a;
-        }
-
-        .product-price {
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-
-        .product-price span {
-            color: #64748b;
-            font-size: 12px;
-            font-weight: 400;
-            text-decoration: line-through;
-            margin-left: 8px;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-add {
-            flex: 1;
-            background: #0f172a;
-            color: white;
-            border: none;
+            font-family: 'Poppins', 'Amiri', sans-serif;
+            background: linear-gradient(145deg, #1e3a2e, #0f2e1a);
             padding: 10px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
+            min-height: 100vh;
+            color: #fff;
         }
-
-        .btn-buy {
-            width: 45px;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            cursor: pointer;
+        
+        /* Main Container */
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #faf0db;
+            border-radius: 50px 15px 50px 15px;
+            padding: 18px 15px;
+            border: 3px solid #c9a75a;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
         }
-
-        /* Bottom Bar */
-        .bottom-bar {
-            position: fixed;
-            bottom: 0;
-            max-width: 480px;
+        
+        .app-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: white;
-            padding: 12px 20px;
-            border-top: 1px solid #f1f5f9;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.05) 0px, rgba(201,167,90,0.05) 20px, transparent 20px, transparent 40px);
+            pointer-events: none;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Header */
+        .ramadan-header {
+            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 15px;
+            border: 2px solid #c9a75a;
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .ramadan-header h1 {
+            font-size: 2.5rem;
+            color: #ffd966;
+            font-family: 'Amiri', serif;
+            text-shadow: 2px 2px 0 #0a2a0a;
+        }
+        
+        .ramadan-header .date-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Quick Icons - Sirf 4 Icon */
+        .icon-row {
+            display: flex;
+            justify-content: space-around;
+            background: #e7dcc0;
+            border-radius: 80px 8px 80px 8px;
+            padding: 12px 5px;
+            margin-bottom: 15px;
+            border: 2px solid #c9a75a;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #1e4a2e;
+            font-weight: 600;
+            cursor: pointer;
+            min-width: 70px;
+        }
+        
+        .icon-item i {
+            font-size: 2.2rem;
+            background: #1e4a2e;
+            color: #ffd966;
+            border-radius: 50%;
+            padding: 12px;
+            width: 55px;
+            height: 55px;
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 5px;
+            border: 2px solid #c9a75a;
+        }
+        
+        /* Live Timer */
+        .live-timer {
+            background: #1e4a2e;
+            border: 2px solid #ffd966;
+            border-radius: 60px;
+            padding: 15px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            color: white;
+            box-shadow: 0 5px 0 #0f3a1f;
         }
-
-        .cart-info {
+        
+        .timer-block {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .cart-icon {
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ef4444;
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-total {
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .checkout-btn {
-            background: #0f172a;
-            color: white;
-            border: none;
-            padding: 12px 25px;
+            gap: 8px;
+            background: #0f3a1f;
+            padding: 5px 12px;
             border-radius: 40px;
+        }
+        
+        .timer-value {
+            font-size: 1.3rem;
             font-weight: 700;
-            font-size: 14px;
+            direction: ltr;
+            background: #1e4a2e;
+            padding: 3px 10px;
+            border-radius: 30px;
+            border: 1px solid #ffd966;
+        }
+        
+        .dua-ticker {
+            background: #b38d51;
+            color: #1e2a1e;
+            padding: 8px 15px;
+            border-radius: 40px;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
             cursor: pointer;
         }
-
-        /* Modal */
+        
+        /* Main Quran Box - Direct Quran */
+        .quran-main {
+            background: linear-gradient(145deg, #1e4a2e, #153f1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 3px solid #c9a75a;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+        
+        .quran-main:hover {
+            transform: scale(1.02);
+            border-color: #ffd966;
+        }
+        
+        .quran-main i {
+            font-size: 4rem;
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+        
+        .quran-main h2 {
+            color: #ffd966;
+            font-size: 2rem;
+            font-family: 'Amiri', serif;
+            margin-bottom: 10px;
+        }
+        
+        .quran-main p {
+            color: #fff5d6;
+            font-size: 1.2rem;
+        }
+        
+        .quran-main .arabic {
+            font-size: 2rem;
+            font-family: 'Amiri', serif;
+            color: white;
+            margin: 15px 0;
+        }
+        
+        /* Secondary Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            background: #e7dcc0;
+            border-radius: 30px 8px 30px 8px;
+            padding: 15px;
+            border: 2px solid #c9a75a;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .card i {
+            font-size: 2.5rem;
+            color: #1e4a2e;
+            margin-bottom: 8px;
+        }
+        
+        .card h3 {
+            color: #1e4a2e;
+            font-size: 1.3rem;
+        }
+        
+        .card p {
+            color: #3f4a3f;
+            font-size: 0.9rem;
+        }
+        
+        /* Ramadan Table */
+        .table-container {
+            background: #e7dcc0;
+            border-radius: 30px 8px 30px 8px;
+            padding: 15px;
+            border: 2px solid #c9a75a;
+            margin-bottom: 15px;
+        }
+        
+        .table-title {
+            color: #1e4a2e;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sehri-iftar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .sehri-iftar-table th {
+            background: #1e4a2e;
+            color: white;
+            padding: 8px;
+            border-radius: 20px 4px 10px 4px;
+        }
+        
+        .sehri-iftar-table td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #c9a75a;
+            color: #1e2a1e;
+        }
+        
+        .today-row {
+            background: #ffd966;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        
+        .city-selector {
+            background: #1e4a2e;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 40px;
+            border: 2px solid #c9a75a;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            color: #c9a75a;
+        }
+        
+        /* Modal - Only for Tasbeeh and Duas */
         .modal {
             display: none;
             position: fixed;
@@ -280,571 +302,350 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
-            align-items: flex-end;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            border-radius: 30px 30px 0 0;
-            padding: 25px;
-            max-height: 80vh;
+            padding: 20px;
             overflow-y: auto;
-            animation: slideUp 0.3s;
         }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-header h3 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .close {
-            width: 40px;
-            height: 40px;
-            background: #f1f5f9;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        /* Form */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #475569;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #f1f5f9;
-            border-radius: 16px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #0f172a;
-        }
-
-        /* Payment Methods */
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .payment-card {
-            border: 2px solid #f1f5f9;
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .payment-card.selected {
-            border-color: #10b981;
-            background: #f0fdf4;
-        }
-
-        .payment-card i {
-            font-size: 24px;
-            color: #0f172a;
-            margin-bottom: 5px;
-        }
-
-        /* Order Ticket */
-        .ticket {
-            background: #0f172a;
-            color: white;
-            border-radius: 24px;
+        
+        .modal-content {
+            background: #faf0db;
+            border-radius: 50px 15px 50px 15px;
             padding: 25px;
-            margin: 20px 0;
+            max-width: 500px;
+            margin: 30px auto;
+            border: 3px solid #c9a75a;
         }
-
-        .ticket-token {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin: 15px 0;
-            color: #10b981;
+        
+        .close {
+            float: left;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1e4a2e;
         }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #0f172a;
+        
+        /* Tasbeeh */
+        .tasbeeh-display {
+            font-size: 6rem;
+            text-align: center;
+            color: #1e4a2e;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        
+        .tasbeeh-btns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .tasbeeh-btn {
+            background: #1e4a2e;
             color: white;
-            padding: 12px 25px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 500;
-            z-index: 2000;
-            display: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid #c9a75a;
+        }
+        
+        .tasbeeh-btn.red {
+            background: #8b3a3a;
+        }
+        
+        /* Duas */
+        .dua-box {
+            background: #e7dcc0;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #c9a75a;
+        }
+        
+        .dua-arabic {
+            font-size: 1.8rem;
+            font-family: 'Amiri', serif;
+            text-align: right;
+            color: #1e4a2e;
+            margin-bottom: 10px;
+        }
+        
+        .dua-urdu {
+            font-size: 1.2rem;
+            color: #1e2a1e;
+            border-right: 3px solid #c9a75a;
+            padding-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="app">
-        <!-- Header -->
-        <div class="header">
-            <div class="business" id="businessInfo">
-                <img src="" id="businessLogo">
-                <div>
-                    <h1 id="businessName">Loading...</h1>
-                    <p id="businessStatus">Open Now</p>
+    <div class="app-container">
+        <div class="content">
+            <!-- Header -->
+            <div class="ramadan-header">
+                <h1>🌙 رمضان 1447</h1>
+                <div class="date-row">
+                    <span><i class="fas fa-calendar"></i> 19 فروری 2026</span>
+                    <span><i class="fas fa-moon"></i> 1 رمضان 1447ھ</span>
                 </div>
             </div>
-
-            <!-- Search -->
-            <div class="search">
-                <i class="fas fa-search"></i>
-                <input type="text" id="search" placeholder="Search products...">
-            </div>
-        </div>
-
-        <!-- Categories -->
-        <div class="categories">
-            <h2>Categories</h2>
-            <div class="cat-grid" id="categories"></div>
-        </div>
-
-        <!-- Products -->
-        <div class="products">
-            <h2>Featured Products</h2>
-            <div class="product-grid" id="products"></div>
-        </div>
-
-        <!-- Bottom Bar -->
-        <div class="bottom-bar">
-            <div class="cart-info" onclick="openCart()">
-                <div class="cart-icon">
-                    <i class="fas fa-shopping-cart" style="font-size: 22px;"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+            
+            <!-- 4 Icons -->
+            <div class="icon-row">
+                <div class="icon-item" onclick="openTasbeeh()">
+                    <i class="fas fa-tasbih"></i>
+                    <span>تسبیح</span>
                 </div>
-                <span class="cart-total" id="cartTotal">PKR 0</span>
+                <div class="icon-item" onclick="openQuran()">
+                    <i class="fas fa-quran"></i>
+                    <span>قرآن</span>
+                </div>
+                <div class="icon-item" onclick="openAudio()">
+                    <i class="fas fa-headphones"></i>
+                    <span>آڈیو</span>
+                </div>
+                <div class="icon-item" onclick="openDuas()">
+                    <i class="fas fa-hand-praying"></i>
+                    <span>دعائیں</span>
+                </div>
             </div>
-            <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
+            
+            <!-- Live Timer -->
+            <div class="live-timer">
+                <div class="timer-block">
+                    <i class="fas fa-utensils"></i>
+                    <span>سحری</span>
+                    <span class="timer-value" id="sehriTimer">05:00:00</span>
+                </div>
+                <div class="timer-block">
+                    <i class="fas fa-sun"></i>
+                    <span>افطاری</span>
+                    <span class="timer-value" id="iftarTimer">05:00:00</span>
+                </div>
+                <div class="dua-ticker" id="duaTicker" onclick="openDuas()">
+                    دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ
+                </div>
+            </div>
+            
+            <!-- MAIN QURAN BOX - Direct Quran Link -->
+            <div class="quran-main" onclick="window.open('https://quran.com/ur', '_blank')">
+                <i class="fas fa-quran"></i>
+                <h2>قرآن مجید</h2>
+                <p>القرآن الکریم · اردو ترجمہ</p>
+                <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <p style="color:#ffd966; margin-top:10px;">مکمل قرآن پڑھنے کے لیے کلک کریں</p>
+            </div>
+            
+            <!-- Secondary Cards -->
+            <div class="cards-grid">
+                <div class="card" onclick="window.open('https://surahrehman.com/urdu.html', '_blank')">
+                    <i class="fas fa-star"></i>
+                    <h3>سورۃ الرحمن</h3>
+                    <p>اردو ترجمہ کے ساتھ</p>
+                </div>
+                <div class="card" onclick="window.open('https://www.islamicfinder.org/prayer-times/', '_blank')">
+                    <i class="fas fa-clock"></i>
+                    <h3>اوقات نماز</h3>
+                    <p>آپ کے شہر کے مطابق</p>
+                </div>
+                <div class="card" onclick="window.open('https://surah-yasin.com/', '_blank')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>سورۃ یٰسین</h3>
+                    <p>تلاوت + ترجمہ</p>
+                </div>
+                <div class="card" onclick="window.open('https://www.dawateislami.net/duas', '_blank')">
+                    <i class="fas fa-pray"></i>
+                    <h3>مسنون دعائیں</h3>
+                    <p>40 دعائیں</p>
+                </div>
+            </div>
+            
+            <!-- Ramadan Timings Table -->
+            <div class="table-container">
+                <div class="table-title">
+                    <i class="fas fa-clock"></i> سحری و افطاری · لاہور
+                </div>
+                <table class="sehri-iftar-table" id="ramadanTable">
+                    <thead>
+                        <tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- JavaScript se bharega -->
+                    </tbody>
+                </table>
+                <select class="city-selector" id="citySelect" onchange="changeCity(this.value)">
+                    <option value="lahore">لاہور</option>
+                    <option value="karachi">کراچی</option>
+                    <option value="islamabad">اسلام آباد</option>
+                    <option value="multan">ملتان</option>
+                </select>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
+            </div>
         </div>
     </div>
-
-    <!-- Cart Modal -->
-    <div class="modal" id="cartModal">
+    
+    <!-- Tasbeeh Modal -->
+    <div id="tasbeehModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Your Cart</h3>
-                <div class="close" onclick="closeCart()">✕</div>
+            <span class="close" onclick="closeModal('tasbeehModal')">&times;</span>
+            <h2 style="text-align:center; color:#1e4a2e;">📿 تسبیح</h2>
+            <div class="tasbeeh-display" id="tasbeehCount">0</div>
+            <div class="tasbeeh-btns">
+                <button class="tasbeeh-btn" onclick="addTasbeeh(1)">+1</button>
+                <button class="tasbeeh-btn" onclick="addTasbeeh(33)">+33</button>
+                <button class="tasbeeh-btn" onclick="addTasbeeh(100)">+100</button>
+                <button class="tasbeeh-btn" onclick="saveTasbeeh()">محفوظ</button>
+                <button class="tasbeeh-btn" onclick="loadTasbeeh()">لوڈ</button>
+                <button class="tasbeeh-btn red" onclick="resetTasbeeh()">ری سیٹ</button>
             </div>
-            <div id="cartItems"></div>
+            <p style="text-align:center; margin-top:15px;">سبحان اللہ · الحمدللہ · اللہ اکبر</p>
         </div>
     </div>
-
-    <!-- Checkout Modal -->
-    <div class="modal" id="checkoutModal">
+    
+    <!-- Duas Modal -->
+    <div id="duasModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Checkout</h3>
-                <div class="close" onclick="closeCheckout()">✕</div>
+            <span class="close" onclick="closeModal('duasModal')">&times;</span>
+            <h2 style="text-align:center; color:#1e4a2e;">🤲 رمضان کی دعائیں</h2>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
+                <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
             </div>
-            <div id="checkoutForm"></div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ</div>
+                <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں اور اجر ثابت ہو گیا، ان شاء اللہ (افطار)</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</div>
+                <div class="dua-urdu">میں نے کل رمضان کے روزے کی نیت کی (سحری)</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ</div>
+                <div class="dua-urdu">اے اللہ! میں تجھ سے تیری رحمت کے وسیلے سے مانگتا ہوں</div>
+            </div>
         </div>
     </div>
-
-    <!-- Payment Modal -->
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="paymentTitle">Payment</h3>
-                <div class="close" onclick="closePayment()">✕</div>
-            </div>
-            <div id="paymentDetails"></div>
-        </div>
-    </div>
-
-    <!-- Order Modal -->
-    <div class="modal" id="orderModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Order Confirmed! 🎉</h3>
-                <div class="close" onclick="closeOrder()">✕</div>
-            </div>
-            <div id="orderDetails"></div>
-        </div>
-    </div>
-
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
     <script>
-        const supabase = supabase.createClient(
-            "https://dfvnefbxgayxqgjjgtrr.supabase.co",
-            "sb_publishable_WypeFELCIlVDlqGY4PdWwA_snqoPUSE"
-        );
-
-        // State
-        let business = null;
-        let products = [];
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let customer = {
-            phone: localStorage.getItem('phone') || '',
-            address: localStorage.getItem('address') || ''
+        // City Timings
+        const timings = {
+            lahore: [
+                {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
+                {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
+                {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
+                {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
+                {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
+                {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
+                {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
+                {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
+                {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
+                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"}
+            ],
+            karachi: [
+                {day:1, date:"19 Feb", sehri:"5:52", iftar:"6:23"},
+                {day:2, date:"20 Feb", sehri:"5:51", iftar:"6:24"}
+            ]
         };
-        let deliveryCharge = 0;
-
-        // Initialize
-        (async () => {
-            const params = new URLSearchParams(location.search);
-            let id = params.get('id') || localStorage.getItem('bid');
+        
+        // Fill other cities
+        timings.islamabad = timings.lahore.map(r => ({...r, sehri: (parseInt(r.sehri)+1)+':'+r.sehri.split(':')[1]}));
+        timings.multan = timings.lahore.map(r => ({...r, iftar: (parseInt(r.iftar)+1)+':'+r.iftar.split(':')[1]}));
+        
+        let tasbeeh = 0;
+        
+        // Render Table
+        function renderTable(city) {
+            let data = timings[city] || timings.lahore;
+            let html = '';
+            let today = new Date();
+            let ramadanStart = new Date(2026,1,19);
+            let fastNum = Math.floor((today - ramadanStart)/(1000*3600*24)) + 1;
             
-            if (!id) {
-                alert('No business ID');
-                return;
-            }
-
-            // Check short ID
-            if (id.length === 6) {
-                const { data } = await supabase.from('short_urls').select('full_id').eq('short_id', id).single();
-                if (data) id = data.full_id;
-            }
-
-            // Load business
-            const { data } = await supabase.from('cards').select('*').eq('id', id).single();
-            if (!data) return;
-
-            business = JSON.parse(data.data);
-            business.id = id;
-            products = business.products || [];
-            
-            localStorage.setItem('bid', id);
-            
-            render();
-            updateCart();
-        })();
-
-        // Render UI
-        function render() {
-            if (!business) return;
-
-            // Header
-            document.getElementById('businessName').textContent = business.businessName || business.name;
-            document.getElementById('businessLogo').src = business.profileImage || 'https://via.placeholder.com/60';
-            
-            // Categories
-            const cats = [...new Set(products.map(p => p.category || 'General'))].slice(0, 4);
-            document.getElementById('categories').innerHTML = cats.map(c => `
-                <div class="cat-item" onclick="filterByCategory('${c}')">
-                    <div class="cat-icon"><i class="fas fa-tag"></i></div>
-                    <span>${c}</span>
-                </div>
-            `).join('');
-
-            // Products
-            renderProducts(products.slice(0, 4));
+            data.slice(0,10).forEach(row => {
+                let cls = (fastNum === row.day) ? 'today-row' : '';
+                html += `<tr class="${cls}"><td>${row.day}</td><td>${row.date}</td><td>${row.sehri} AM</td><td>${row.iftar} PM</td></tr>`;
+            });
+            document.getElementById('tableBody').innerHTML = html;
         }
-
-        function renderProducts(list) {
-            document.getElementById('products').innerHTML = list.map((p, i) => `
-                <div class="product-card">
-                    <img src="${p.image || 'https://via.placeholder.com/200'}" class="product-img">
-                    <div class="product-info">
-                        <div class="product-title">${p.title}</div>
-                        <div class="product-price">
-                            PKR ${p.discountPrice || p.originalPrice}
-                            ${p.originalPrice ? `<span>PKR ${p.originalPrice}</span>` : ''}
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn-add" onclick="addToCart(${i})">Add</button>
-                            <button class="btn-buy" onclick="buyNow(${i})"><i class="fas fa-bolt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+        
+        function changeCity(city) {
+            renderTable(city);
         }
-
-        // Cart Functions
-        function addToCart(index) {
-            const item = { ...products[index], quantity: 1 };
-            const existing = cart.find(x => x.title === item.title);
-            if (existing) existing.quantity++;
-            else cart.push(item);
-            updateCart();
-            toast('✅ Added to cart');
-        }
-
-        function buyNow(index) {
-            addToCart(index);
-            openCheckout();
-        }
-
-        function updateCart() {
-            const count = cart.reduce((s, i) => s + i.quantity, 0);
-            const total = cart.reduce((s, i) => s + (i.discountPrice || i.originalPrice) * i.quantity, 0);
+        
+        // Live Timer
+        function updateTimer() {
+            let now = new Date();
+            let city = document.getElementById('citySelect').value;
+            let data = timings[city] || timings.lahore;
+            let ramadanStart = new Date(2026,1,19);
+            let fastNum = Math.floor((now - ramadanStart)/(1000*3600*24)) + 1;
+            if(fastNum < 1 || fastNum > 30) fastNum = 1;
             
-            document.getElementById('cartCount').textContent = count;
-            document.getElementById('cartTotal').textContent = `PKR ${total}`;
+            let today = data[fastNum-1] || data[0];
             
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        // Cart Modal
-        function openCart() {
-            const items = document.getElementById('cartItems');
-            if (cart.length === 0) {
-                items.innerHTML = '<p style="text-align:center; padding:40px;">Cart is empty</p>';
+            let [sh, sm] = today.sehri.split(':').map(Number);
+            let [ih, im] = today.iftar.split(':').map(Number);
+            
+            let sehri = new Date(now); sehri.setHours(sh, sm, 0);
+            let iftar = new Date(now); iftar.setHours(ih, im, 0);
+            
+            if(now > sehri) sehri.setDate(sehri.getDate() + 1);
+            if(now > iftar) iftar.setDate(iftar.getDate() + 1);
+            
+            let diffSehri = Math.max(0, sehri - now);
+            let diffIftar = Math.max(0, iftar - now);
+            
+            document.getElementById('sehriTimer').innerText = formatTime(diffSehri);
+            document.getElementById('iftarTimer').innerText = formatTime(diffIftar);
+            
+            // Dua ticker
+            if(now < iftar && now > new Date().setHours(sh, sm, 0)) {
+                document.getElementById('duaTicker').innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ";
             } else {
-                items.innerHTML = cart.map((item, i) => `
-                    <div style="display:flex; gap:15px; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #f1f5f9;">
-                        <img src="${item.image}" style="width:70px; height:70px; border-radius:12px; object-fit:cover;">
-                        <div style="flex:1;">
-                            <div style="font-weight:600;">${item.title}</div>
-                            <div style="font-weight:700; color:#10b981; margin:5px 0;">PKR ${(item.discountPrice || item.originalPrice) * item.quantity}</div>
-                            <div style="display:flex; align-items:center; gap:10px;">
-                                <button onclick="updateQty(${i}, -1)" style="width:30px; height:30px; background:#f1f5f9; border:none; border-radius:8px;">-</button>
-                                <span>${item.quantity}</span>
-                                <button onclick="updateQty(${i}, 1)" style="width:30px; height:30px; background:#f1f5f9; border:none; border-radius:8px;">+</button>
-                                <button onclick="removeItem(${i})" style="color:#ef4444; background:none; border:none;">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
+                document.getElementById('duaTicker').innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
             }
-            document.getElementById('cartModal').classList.add('active');
         }
-
-        function updateQty(index, delta) {
-            cart[index].quantity += delta;
-            if (cart[index].quantity < 1) cart.splice(index, 1);
-            updateCart();
-            openCart();
+        
+        function formatTime(ms) {
+            let h = Math.floor(ms/(1000*60*60));
+            let m = Math.floor((ms%(1000*60*60))/(1000*60));
+            let s = Math.floor((ms%(1000*60))/1000);
+            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
         }
-
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCart();
-            openCart();
+        
+        // Modal Functions
+        function openTasbeeh() { document.getElementById('tasbeehModal').style.display = 'block'; }
+        function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
+        function openQuran() { window.open('https://quran.com/ur', '_blank'); }
+        function openAudio() { window.open('https://equran.com/', '_blank'); }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        // Tasbeeh Functions
+        function addTasbeeh(val) { tasbeeh += val; document.getElementById('tasbeehCount').innerText = tasbeeh; }
+        function resetTasbeeh() { tasbeeh = 0; document.getElementById('tasbeehCount').innerText = tasbeeh; }
+        function saveTasbeeh() { localStorage.setItem('tasbeeh', tasbeeh); alert('محفوظ ہو گیا'); }
+        function loadTasbeeh() { 
+            let saved = localStorage.getItem('tasbeeh');
+            if(saved) { tasbeeh = parseInt(saved); document.getElementById('tasbeehCount').innerText = tasbeeh; }
         }
-
-        function closeCart() {
-            document.getElementById('cartModal').classList.remove('active');
+        
+        // Close modal on outside click
+        window.onclick = function(e) {
+            if(e.target.classList.contains('modal')) e.target.style.display = 'none';
         }
-
-        // Checkout
-        function openCheckout() {
-            if (cart.length === 0) {
-                toast('Cart is empty');
-                return;
-            }
-
-            const subtotal = cart.reduce((s, i) => s + (i.discountPrice || i.originalPrice) * i.quantity, 0);
-            
-            document.getElementById('checkoutForm').innerHTML = `
-                <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" id="phone" value="${customer.phone}" placeholder="03XXXXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <textarea id="address" placeholder="Delivery address">${customer.address}</textarea>
-                </div>
-
-                <div style="background:#f8fafc; border-radius:16px; padding:15px; margin:15px 0;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                        <span>Subtotal</span>
-                        <span>PKR ${subtotal}</span>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                        <span>Delivery</span>
-                        <span id="deliveryCharge">PKR 0</span>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; font-weight:800; margin-top:8px; padding-top:8px; border-top:2px solid #e2e8f0;">
-                        <span>Total</span>
-                        <span id="totalAmount">PKR ${subtotal}</span>
-                    </div>
-                </div>
-
-                <h3 style="margin:20px 0 10px;">Payment Method</h3>
-                <div class="payment-methods" id="paymentMethods"></div>
-
-                <button onclick="placeOrder()" style="width:100%; padding:18px; background:#0f172a; color:white; border:none; border-radius:16px; font-weight:700; font-size:16px; margin-top:20px; cursor:pointer;">
-                    Place Order
-                </button>
-            `;
-
-            // Payment methods
-            const methods = ['cod', 'jazzcash', 'easypaisa', 'bank'].filter(m => business?.payments?.gateways?.[m]?.active !== false);
-            document.getElementById('paymentMethods').innerHTML = methods.map(m => `
-                <div class="payment-card" onclick="selectPayment('${m}')" id="pay-${m}">
-                    <i class="fas fa-${m === 'cod' ? 'truck' : m === 'jazzcash' ? 'mobile-alt' : m === 'easypaisa' ? 'wallet' : 'university'}"></i>
-                    <span>${m === 'cod' ? 'Cash' : m}</span>
-                </div>
-            `).join('');
-
-            if (methods.length) selectPayment(methods[0]);
-
-            document.getElementById('checkoutModal').classList.add('active');
-        }
-
-        function selectPayment(method) {
-            document.querySelectorAll('.payment-card').forEach(el => el.classList.remove('selected'));
-            document.getElementById(`pay-${method}`)?.classList.add('selected');
-            window.selectedPayment = method;
-        }
-
-        function closeCheckout() {
-            document.getElementById('checkoutModal').classList.remove('active');
-        }
-
-        // Place Order
-        async function placeOrder() {
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-
-            if (!phone || !address) {
-                toast('Please fill all fields');
-                return;
-            }
-
-            // Save customer
-            customer.phone = phone;
-            customer.address = address;
-            localStorage.setItem('phone', phone);
-            localStorage.setItem('address', address);
-
-            // Calculate
-            const subtotal = cart.reduce((s, i) => s + (i.discountPrice || i.originalPrice) * i.quantity, 0);
-            const total = subtotal + deliveryCharge;
-            
-            // Generate token
-            const token = 'TKT-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
-
-            // Order data
-            const order = {
-                business_id: business.id,
-                order_id: 'ORD-' + Date.now().toString().slice(-8),
-                token,
-                customer_phone: phone,
-                customer_address: address,
-                items: cart,
-                subtotal,
-                delivery_charge: deliveryCharge,
-                total,
-                payment_method: window.selectedPayment || 'cod',
-                status: 'confirmed',
-                created_at: new Date().toISOString()
-            };
-
-            // Save to Supabase
-            const { error } = await supabase.from('orders').insert([order]);
-            
-            if (error) {
-                toast('Error placing order');
-                return;
-            }
-
-            // Clear cart
-            cart = [];
-            updateCart();
-            closeCheckout();
-
-            // Show confirmation
-            document.getElementById('orderDetails').innerHTML = `
-                <div class="ticket">
-                    <div style="text-align:center;">
-                        <i class="fas fa-check-circle" style="font-size:50px; color:#10b981; margin-bottom:15px;"></i>
-                        <h2 style="margin-bottom:10px;">Order Confirmed!</h2>
-                        <div class="ticket-token">${token}</div>
-                        <p style="margin:20px 0;">Total: PKR ${total}</p>
-                        <button onclick="window.location.href='track.html?token=${token}'" style="background:white; color:#0f172a; border:none; padding:12px 30px; border-radius:40px; font-weight:700; cursor:pointer;">
-                            Track Order
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.getElementById('orderModal').classList.add('active');
-        }
-
-        function closeOrder() {
-            document.getElementById('orderModal').classList.remove('active');
-        }
-
-        // Payment Modal
-        function showPayment(method) {
-            const gateways = business?.payments?.gateways;
-            const data = gateways?.[method];
-            
-            document.getElementById('paymentTitle').textContent = method.toUpperCase();
-            document.getElementById('paymentDetails').innerHTML = `
-                <div style="text-align:center; padding:20px;">
-                    <i class="fas fa-${method === 'jazzcash' ? 'mobile-alt' : method === 'bank' ? 'university' : 'credit-card'}" style="font-size:50px; color:#0f172a; margin-bottom:20px;"></i>
-                    <p style="margin:20px 0;">Send payment to:</p>
-                    <div style="font-size:24px; font-weight:800; color:#10b981;">${data?.number || '03001234567'}</div>
-                    <button onclick="closePayment()" style="width:100%; padding:15px; background:#0f172a; color:white; border:none; border-radius:12px; margin-top:20px; cursor:pointer;">
-                        I've Paid
-                    </button>
-                </div>
-            `;
-            document.getElementById('paymentModal').classList.add('active');
-        }
-
-        function closePayment() {
-            document.getElementById('paymentModal').classList.remove('active');
-        }
-
-        // Search
-        document.getElementById('search').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = products.filter(p => p.title?.toLowerCase().includes(term));
-            renderProducts(filtered);
-        });
-
-        function filterByCategory(cat) {
-            const filtered = products.filter(p => (p.category || 'General') === cat);
-            renderProducts(filtered);
-        }
-
-        // Toast
-        function toast(msg) {
-            const el = document.getElementById('toast');
-            el.textContent = msg;
-            el.style.display = 'block';
-            setTimeout(() => el.style.display = 'none', 2000);
-        }
+        
+        // Initialize
+        renderTable('lahore');
+        setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>
