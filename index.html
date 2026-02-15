@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Calendar Generator</title>
+    <title>Ramadan Calendar Generator - Admin</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -17,109 +17,78 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: #f0f2f5;
+            background: #1a2e1a;
             padding: 20px;
         }
         
-        .generator-container {
-            max-width: 800px;
+        .admin-container {
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        h1 {
+        .header {
+            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 3px solid #c9a75a;
+            color: white;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ffd966;
+            font-family: 'Amiri', serif;
+        }
+        
+        .header p {
+            color: #fff5d6;
+            margin-top: 10px;
+        }
+        
+        .admin-badge {
+            background: #ffd966;
             color: #1a2e1a;
-            font-size: 2rem;
-            margin-bottom: 5px;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 10px;
         }
         
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #eee;
+        .generator-container {
+            background: #faf3e2;
+            border-radius: 50px 15px 50px 15px;
+            padding: 30px;
+            border: 3px solid #c9a75a;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         
-        /* Form Sections */
-        .form-section {
-            background: #f9f9f9;
-            border-radius: 16px;
+        .section {
+            background: white;
+            border-radius: 30px 8px 30px 8px;
             padding: 25px;
             margin-bottom: 25px;
-            border: 1px solid #e0e0e0;
+            border: 2px solid #c9a75a;
         }
         
         .section-title {
-            color: #1a2e1a;
-            font-size: 1.3rem;
+            color: #1e4a2e;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
+            border-right: 4px solid #c9a75a;
+            padding-right: 15px;
         }
         
         .section-title i {
             color: #c9a75a;
         }
         
-        /* Profile Picture Upload */
-        .profile-upload {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .profile-pic-preview {
-            width: 100px;
-            height: 100px;
-            background: #e0e0e0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 3px dashed #c9a75a;
-        }
-        
-        .profile-pic-preview i {
-            font-size: 3rem;
-            color: #888;
-        }
-        
-        .profile-pic-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .upload-info {
-            flex: 1;
-        }
-        
-        .upload-btn {
-            background: #1a2e1a;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: inline-block;
-        }
-        
-        .upload-note {
-            color: #666;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-        
-        /* Form Grid */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -136,10 +105,9 @@
         
         label {
             display: block;
-            color: #333;
-            font-weight: 500;
+            color: #1e4a2e;
+            font-weight: 600;
             margin-bottom: 5px;
-            font-size: 0.95rem;
         }
         
         .required {
@@ -161,38 +129,67 @@
             outline: none;
         }
         
+        /* Profile Upload */
+        .profile-upload {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-preview {
+            width: 100px;
+            height: 100px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px dashed #c9a75a;
+        }
+        
+        .profile-preview i {
+            font-size: 3rem;
+            color: #888;
+        }
+        
+        .profile-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .upload-btn {
+            background: #1e4a2e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        
         /* Icon Selector */
-        .icon-selector-group {
-            margin-top: 10px;
+        .icon-selector {
             display: flex;
             align-items: center;
             gap: 10px;
-            flex-wrap: wrap;
+            margin-top: 10px;
         }
         
         .icon-preview {
             width: 40px;
             height: 40px;
-            background: #1a2e1a;
+            background: #1e4a2e;
             color: #ffd966;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
         }
         
-        .icon-select {
-            flex: 1;
-        }
-        
-        .icon-note {
-            color: #888;
-            font-size: 0.8rem;
-            font-style: italic;
-        }
-        
-        /* Cards for Ads & Banners */
+        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -200,32 +197,30 @@
             margin-top: 15px;
         }
         
-        .card-item {
-            background: white;
-            border-radius: 12px;
+        .card {
+            background: #f9f9f9;
+            border-radius: 20px;
             padding: 15px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #c9a75a;
         }
         
-        .card-item h4 {
-            color: #1a2e1a;
+        .card h4 {
+            color: #1e4a2e;
             margin-bottom: 15px;
-            font-size: 1.1rem;
         }
         
         /* Generate Button */
         .generate-btn {
             width: 100%;
-            padding: 18px;
-            background: #1a2e1a;
+            padding: 20px;
+            background: #1e4a2e;
             color: #ffd966;
             border: none;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
-            margin: 20px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -237,16 +232,22 @@
             transform: scale(1.02);
         }
         
-        /* Footer */
         .footer {
             text-align: center;
-            color: #666;
-            font-size: 0.9rem;
+            color: #faf3e2;
             margin-top: 20px;
         }
         
-        /* Responsive */
-        @media (max-width: 600px) {
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
@@ -258,284 +259,290 @@
             .cards-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .profile-upload {
-                flex-direction: column;
-                text-align: center;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="generator-container">
-        <h1>🌙 Ramadan Calendar Generator</h1>
-        <div class="subtitle">اپنے کاروبار کے مطابق کیلنڈر بنائیں</div>
+    <div class="admin-container">
+        <div class="header">
+            <h1>🌙 رمضان 1447</h1>
+            <p>کیلنڈر جنریٹر - ایڈمن پینل</p>
+            <div class="admin-badge">
+                <i class="fas fa-lock"></i> صرف ایڈمن کے لیے
+            </div>
+        </div>
         
-        <!-- ========== 1. PROFILE SECTION ========== -->
-        <div class="form-section">
-            <div class="section-title">
-                <i class="fas fa-store"></i>
-                کاروبار کی تفصیلات
+        <div class="generator-container">
+            <div class="warning">
+                <i class="fas fa-info-circle"></i>
+                نوٹ: یہ صفحہ صرف کیلنڈر بنانے کے لیے ہے۔ بننے والا کیلنڈر نئی ونڈو میں کھلے گا۔
             </div>
             
-            <!-- Profile Picture Upload -->
-            <div class="profile-upload">
-                <div class="profile-pic-preview" id="profilePreview">
+            <!-- ========== PROFILE SECTION ========== -->
+            <div class="section">
+                <div class="section-title">
                     <i class="fas fa-store"></i>
-                </div>
-                <div class="upload-info">
-                    <input type="file" id="profilePic" accept="image/png, image/jpeg" style="display:none;" onchange="previewImage(this)">
-                    <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
-                        <i class="fas fa-upload"></i> تصویر منتخب کریں
-                    </button>
-                    <div class="upload-note">PNG, JPG, JPEG (زیادہ سے زیادہ 5MB)</div>
-                </div>
-            </div>
-            
-            <!-- Business Details Form -->
-            <div class="form-grid">
-                <div class="form-group">
-                    <label><span class="required">*</span> کاروبار کا نام</label>
-                    <input type="text" id="businessName" placeholder="例如: المدینہ جیولرز" value="المدینہ جیولرز">
+                    کاروبار کی تفصیلات
                 </div>
                 
-                <div class="form-group">
-                    <label><span class="required">*</span> فون نمبر</label>
-                    <input type="text" id="phoneNumber" placeholder="03XXXXXXXXX" value="03001234567">
-                </div>
-                
-                <div class="form-group">
-                    <label>ای میل</label>
-                    <input type="email" id="email" placeholder="your@email.com" value="info@example.com">
-                </div>
-                
-                <div class="form-group">
-                    <label><span class="required">*</span> کاروبار کی قسم</label>
-                    <input type="text" id="businessType" placeholder="例如: Jewellery, Medical, Food" value="Jewellery Store">
-                </div>
-                
-                <div class="form-group full-width">
-                    <label><span class="required">*</span> مکمل پتہ</label>
-                    <textarea id="address" rows="2" placeholder="Complete business address">ماڈل ٹاؤن، لاہور</textarea>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label>کاروبار کی تفصیل (اختیاری)</label>
-                    <textarea id="businessDetails" rows="2" placeholder="Your business identity">سونے چاندی کی خالص مصنوعات</textarea>
-                </div>
-                
-                <!-- Optional Icon -->
-                <div class="form-group">
-                    <label>پروفائل آئیکون (اختیاری)</label>
-                    <div class="icon-selector-group">
-                        <div class="icon-preview" id="profileIconPreview">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <select class="icon-select" id="profileIcon" onchange="updateIcon('profile', this.value)">
-                            <option value="fa-store">اسٹور</option>
-                            <option value="fa-gem">جیولری</option>
-                            <option value="fa-stethoscope">میڈیکل</option>
-                            <option value="fa-utensils">فوڈ</option>
-                            <option value="fa-tshirt">گارمنٹس</option>
-                            <option value="fa-laptop">الیکٹرانکس</option>
-                            <option value="fa-book">کتابیں</option>
-                            <option value="fa-dumbbell">جم</option>
-                            <option value="fa-cut">بیوٹی</option>
-                            <option value="fa-car">گاڑیاں</option>
-                        </select>
+                <!-- Profile Picture Upload -->
+                <div class="profile-upload">
+                    <div class="profile-preview" id="profilePreview">
+                        <i class="fas fa-store"></i>
                     </div>
-                    <div class="icon-note">آپ چاہیں تو آئیکون منتخب کر سکتے ہیں</div>
+                    <div>
+                        <input type="file" id="profilePic" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                        <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
+                            <i class="fas fa-upload"></i> تصویر منتخب کریں
+                        </button>
+                        <p style="color:#666; margin-top:5px; font-size:0.9rem;">PNG, JPG (زیادہ سے زیادہ 5MB)</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- ========== 2. TOP ADS SECTION (3) ========== -->
-        <div class="form-section">
-            <div class="section-title">
-                <i class="fas fa-ad"></i>
-                ٹاپ ایڈز (3) - اختیاری
-            </div>
-            
-            <div class="cards-grid">
-                <!-- Ad 1 -->
-                <div class="card-item">
-                    <h4>ایڈ 1</h4>
+                
+                <div class="form-grid">
                     <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="ad1Text" placeholder="例如: نئی گولڈ کلکشن" value="نئی گولڈ کلکشن">
+                        <label><span class="required">*</span> کاروبار کا نام</label>
+                        <input type="text" id="businessName" value="المدینہ جیولرز" placeholder="例如: المدینہ جیولرز">
                     </div>
+                    
                     <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="ad1Link" placeholder="https://..." value="https://www.example.com/gold">
+                        <label><span class="required">*</span> فون نمبر</label>
+                        <input type="text" id="phoneNumber" value="03001234567" placeholder="03XXXXXXXXX">
                     </div>
+                    
                     <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="ad1IconPreview">
-                                <i class="fas fa-gem"></i>
+                        <label>ای میل (اختیاری)</label>
+                        <input type="email" id="email" value="info@example.com" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><span class="required">*</span> کاروبار کی قسم</label>
+                        <input type="text" id="businessType" value="Jewellery Store" placeholder="例如: Jewellery, Medical, Food">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><span class="required">*</span> مکمل پتہ</label>
+                        <textarea id="address" rows="2">ماڈل ٹاؤن، لاہور</textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>کاروبار کی تفصیل (اختیاری)</label>
+                        <textarea id="businessDetails" rows="2">سونے چاندی کی خالص مصنوعات</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>پروفائل آئیکون (اختیاری)</label>
+                        <div class="icon-selector">
+                            <div class="icon-preview" id="profileIconPreview">
+                                <i class="fas fa-store"></i>
                             </div>
-                            <select class="icon-select" id="ad1Icon" onchange="updateIcon('ad1', this.value)">
+                            <select id="profileIcon" onchange="updateIcon('profile', this.value)">
+                                <option value="fa-store">اسٹور</option>
                                 <option value="fa-gem">جیولری</option>
-                                <option value="fa-ring">انگوٹھی</option>
-                                <option value="fa-clock">گھڑی</option>
-                                <option value="fa-percent">تخفیف</option>
-                                <option value="fa-tags">ڈیل</option>
-                                <option value="fa-star">اسپیشل</option>
+                                <option value="fa-stethoscope">میڈیکل</option>
+                                <option value="fa-utensils">فوڈ</option>
+                                <option value="fa-tshirt">گارمنٹس</option>
+                                <option value="fa-laptop">الیکٹرانکس</option>
+                                <option value="fa-book">کتابیں</option>
+                                <option value="fa-dumbbell">جم</option>
+                                <option value="fa-cut">بیوٹی</option>
+                                <option value="fa-car">گاڑیاں</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Ad 2 -->
-                <div class="card-item">
-                    <h4>ایڈ 2</h4>
-                    <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="ad2Text" placeholder="例如: شادی بیاہ ڈیلز" value="شادی بیاہ ڈیلز">
-                    </div>
-                    <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="ad2Link" placeholder="https://..." value="https://www.example.com/wedding">
-                    </div>
-                    <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="ad2IconPreview">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <select class="icon-select" id="ad2Icon" onchange="updateIcon('ad2', this.value)">
-                                <option value="fa-heart">شادی</option>
-                                <option value="fa-diamond">ہیرا</option>
-                                <option value="fa-gift">تحفہ</option>
-                                <option value="fa-crown">شاہی</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Ad 3 -->
-                <div class="card-item">
-                    <h4>ایڈ 3</h4>
-                    <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="ad3Text" placeholder="例如: رمضان سپیشل" value="رمضان سپیشل آفر">
-                    </div>
-                    <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="ad3Link" placeholder="https://..." value="https://www.example.com/ramadan">
-                    </div>
-                    <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="ad3IconPreview">
-                                <i class="fas fa-moon"></i>
-                            </div>
-                            <select class="icon-select" id="ad3Icon" onchange="updateIcon('ad3', this.value)">
-                                <option value="fa-moon">رمضان</option>
-                                <option value="fa-star">ستارہ</option>
-                                <option value="fa-gift">تحفہ</option>
-                                <option value="fa-percent">تخفیف</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- ========== 3. BOTTOM BANNERS SECTION (3) ========== -->
-        <div class="form-section">
-            <div class="section-title">
-                <i class="fas fa-images"></i>
-                نیچے بینرز (3) - اختیاری
             </div>
             
-            <div class="cards-grid">
-                <!-- Banner 1 -->
-                <div class="card-item">
-                    <h4>بینر 1</h4>
-                    <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="banner1Text" placeholder="例如: 25% تخفیف" value="25% خصوصی تخفیف">
-                    </div>
-                    <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="banner1Link" placeholder="https://..." value="https://www.example.com/discount">
-                    </div>
-                    <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="banner1IconPreview">
-                                <i class="fas fa-percent"></i>
-                            </div>
-                            <select class="icon-select" id="banner1Icon" onchange="updateIcon('banner1', this.value)">
-                                <option value="fa-percent">تخفیف</option>
-                                <option value="fa-tags">ڈیل</option>
-                                <option value="fa-gift">تحفہ</option>
-                                <option value="fa-star">اسپیشل</option>
-                            </select>
-                        </div>
-                    </div>
+            <!-- ========== TOP ADS SECTION ========== -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-ad"></i>
+                    ٹاپ ایڈز (اختیاری)
                 </div>
                 
-                <!-- Banner 2 -->
-                <div class="card-item">
-                    <h4>بینر 2</h4>
-                    <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="banner2Text" placeholder="例如: فری ڈلیوری" value="فری ہوم ڈلیوری">
-                    </div>
-                    <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="banner2Link" placeholder="https://..." value="https://www.example.com/delivery">
-                    </div>
-                    <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="banner2IconPreview">
-                                <i class="fas fa-truck"></i>
+                <div class="cards-grid">
+                    <!-- Ad 1 -->
+                    <div class="card">
+                        <h4>ایڈ 1</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="ad1Text" value="نئی گولڈ کلکشن">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="ad1Link" value="https://www.example.com/gold">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="ad1IconPreview">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <select id="ad1Icon" onchange="updateIcon('ad1', this.value)">
+                                    <option value="fa-gem">جیولری</option>
+                                    <option value="fa-ring">انگوٹھی</option>
+                                    <option value="fa-percent">تخفیف</option>
+                                    <option value="fa-tags">ڈیل</option>
+                                </select>
                             </div>
-                            <select class="icon-select" id="banner2Icon" onchange="updateIcon('banner2', this.value)">
-                                <option value="fa-truck">ڈلیوری</option>
-                                <option value="fa-box">پیکج</option>
-                                <option value="fa-shopping-cart">کارٹ</option>
-                            </select>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Banner 3 -->
-                <div class="card-item">
-                    <h4>بینر 3</h4>
-                    <div class="form-group">
-                        <label>متن</label>
-                        <input type="text" id="banner3Text" placeholder="例如: لکی ڈرا" value="لکی ڈرا - انعامات">
-                    </div>
-                    <div class="form-group">
-                        <label>لنک</label>
-                        <input type="text" id="banner3Link" placeholder="https://..." value="https://www.example.com/lucky">
-                    </div>
-                    <div class="form-group">
-                        <label>آئیکون (اختیاری)</label>
-                        <div class="icon-selector-group">
-                            <div class="icon-preview" id="banner3IconPreview">
-                                <i class="fas fa-trophy"></i>
+                    
+                    <!-- Ad 2 -->
+                    <div class="card">
+                        <h4>ایڈ 2</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="ad2Text" value="شادی بیاہ ڈیلز">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="ad2Link" value="https://www.example.com/wedding">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="ad2IconPreview">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <select id="ad2Icon" onchange="updateIcon('ad2', this.value)">
+                                    <option value="fa-heart">شادی</option>
+                                    <option value="fa-diamond">ہیرا</option>
+                                    <option value="fa-gift">تحفہ</option>
+                                    <option value="fa-crown">شاہی</option>
+                                </select>
                             </div>
-                            <select class="icon-select" id="banner3Icon" onchange="updateIcon('banner3', this.value)">
-                                <option value="fa-trophy">انعام</option>
-                                <option value="fa-medal">میڈل</option>
-                                <option value="fa-gem">جیولری</option>
-                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Ad 3 -->
+                    <div class="card">
+                        <h4>ایڈ 3</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="ad3Text" value="رمضان سپیشل آفر">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="ad3Link" value="https://www.example.com/ramadan">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="ad3IconPreview">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <select id="ad3Icon" onchange="updateIcon('ad3', this.value)">
+                                    <option value="fa-moon">رمضان</option>
+                                    <option value="fa-star">ستارہ</option>
+                                    <option value="fa-gift">تحفہ</option>
+                                    <option value="fa-percent">تخفیف</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- ========== BOTTOM BANNERS SECTION ========== -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-images"></i>
+                    نیچے بینرز (اختیاری)
+                </div>
+                
+                <div class="cards-grid">
+                    <!-- Banner 1 -->
+                    <div class="card">
+                        <h4>بینر 1</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="banner1Text" value="25% خصوصی تخفیف">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="banner1Link" value="https://www.example.com/discount">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="banner1IconPreview">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                                <select id="banner1Icon" onchange="updateIcon('banner1', this.value)">
+                                    <option value="fa-percent">تخفیف</option>
+                                    <option value="fa-tags">ڈیل</option>
+                                    <option value="fa-gift">تحفہ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Banner 2 -->
+                    <div class="card">
+                        <h4>بینر 2</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="banner2Text" value="فری ہوم ڈلیوری">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="banner2Link" value="https://www.example.com/delivery">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="banner2IconPreview">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <select id="banner2Icon" onchange="updateIcon('banner2', this.value)">
+                                    <option value="fa-truck">ڈلیوری</option>
+                                    <option value="fa-box">پیکج</option>
+                                    <option value="fa-shopping-cart">کارٹ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Banner 3 -->
+                    <div class="card">
+                        <h4>بینر 3</h4>
+                        <div class="form-group">
+                            <label>متن</label>
+                            <input type="text" id="banner3Text" value="لکی ڈرا - انعامات">
+                        </div>
+                        <div class="form-group">
+                            <label>لنک</label>
+                            <input type="text" id="banner3Link" value="https://www.example.com/lucky">
+                        </div>
+                        <div class="form-group">
+                            <label>آئیکون</label>
+                            <div class="icon-selector">
+                                <div class="icon-preview" id="banner3IconPreview">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <select id="banner3Icon" onchange="updateIcon('banner3', this.value)">
+                                    <option value="fa-trophy">انعام</option>
+                                    <option value="fa-medal">میڈل</option>
+                                    <option value="fa-gem">جیولری</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Generate Button -->
+            <button class="generate-btn" onclick="generateCalendar()">
+                <i class="fas fa-calendar-alt"></i>
+                کیلنڈر جنریٹ کریں
+            </button>
+            
+            <p style="text-align:center; margin-top:15px; color:#666;">
+                <i class="fas fa-external-link-alt"></i>
+                کیلنڈر نئی ونڈو میں کھلے گا - واپس آنے کی ضرورت نہیں
+            </p>
         </div>
-        
-        <!-- ========== GENERATE BUTTON ========== -->
-        <button class="generate-btn" onclick="generateCalendar()">
-            <i class="fas fa-calendar-alt"></i>
-            کیلنڈر جنریٹ کریں
-        </button>
         
         <div class="footer">
             <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
@@ -543,24 +550,26 @@
     </div>
     
     <script>
-        // ========== ICON UPDATE FUNCTIONS ==========
+        // Icon Update Function
         function updateIcon(element, iconClass) {
             document.getElementById(element + 'IconPreview').innerHTML = `<i class="fas ${iconClass}"></i>`;
         }
         
-        // ========== PROFILE PICTURE PREVIEW ==========
+        // Profile Picture Preview
         function previewImage(input) {
             const preview = document.getElementById('profilePreview');
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover;">`;
+                    // Save to localStorage for calendar
+                    localStorage.setItem('profilePic', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
         
-        // ========== COLLECT FORM DATA ==========
+        // Collect Form Data
         function collectFormData() {
             return {
                 businessName: document.getElementById('businessName').value,
@@ -597,373 +606,18 @@
             };
         }
         
-        // ========== GENERATE CALENDAR ==========
+        // Generate Calendar
         function generateCalendar() {
             const data = collectFormData();
             
-            // City timings (fixed)
-            const timings = [
-                {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
-                {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
-                {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
-                {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
-                {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
-                {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
-                {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
-                {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
-                {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
-                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
-                {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
-                {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
-                {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
-                {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
-                {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
-                {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
-                {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
-                {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
-                {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
-                {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
-                {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
-                {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
-                {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
-                {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
-                {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
-                {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
-                {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
-                {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
-                {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
-                {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
-            ];
+            // Create a unique ID for this calendar
+            const calendarId = 'cal_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
             
-            let calendarRows = '';
-            timings.forEach(row => {
-                calendarRows += `
-                    <tr>
-                        <td>${row.day}</td>
-                        <td>${row.date}</td>
-                        <td>${row.sehri} AM</td>
-                        <td>${row.iftar} PM</td>
-                    </tr>
-                `;
-            });
+            // Save data to localStorage
+            localStorage.setItem(calendarId, JSON.stringify(data));
             
-            const profilePic = document.getElementById('profilePreview').innerHTML.includes('img') ? 
-                document.getElementById('profilePreview').innerHTML : '';
-            
-            const calendarHTML = `<!DOCTYPE html>
-<html lang="ur">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${data.businessName} - Ramadan Calendar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #1a2e1a;
-            padding: 10px;
-        }
-        .app-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #faf3e2;
-            border-radius: 50px 15px 50px 15px;
-            padding: 18px 15px;
-            border: 3px solid #c9a75a;
-        }
-        .profile-card {
-            background: white;
-            border-radius: 30px 8px 30px 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 2px solid #c9a75a;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .profile-pic {
-            width: 80px;
-            height: 80px;
-            background: #1a2e1a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd966;
-            overflow: hidden;
-        }
-        .profile-pic img { width:100%; height:100%; object-fit:cover; }
-        .profile-info { flex:1; }
-        .profile-name { font-size:1.8rem; font-weight:700; color:#1a2e1a; }
-        .profile-detail { color:#666; margin:5px 0; }
-        .ads-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        .ad-card {
-            flex:1;
-            background: linear-gradient(145deg, #1e4a2e, #153f1f);
-            border-radius: 30px 8px 30px 8px;
-            padding: 15px 5px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .ad-card i { font-size:2rem; color:#ffd966; display:block; margin-bottom:5px; }
-        .ramadan-header {
-            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
-            border-radius: 40px 8px 40px 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-        }
-        .icon-row {
-            display: flex;
-            justify-content: space-around;
-            background: #e7d8b8;
-            border-radius: 80px 8px 80px 8px;
-            padding: 15px 5px;
-            margin-bottom: 15px;
-        }
-        .icon-item {
-            text-align: center;
-            color: #1e4a2e;
-            cursor: pointer;
-        }
-        .icon-item i {
-            font-size: 2rem;
-            background: #1e4a2e;
-            color: #ffd966;
-            border-radius: 50%;
-            padding: 12px;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 5px;
-        }
-        .live-timer {
-            background: #1e4a2e;
-            border-radius: 60px;
-            padding: 15px;
-            margin-bottom: 15px;
-            color: white;
-        }
-        .timer-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .timer-block {
-            background: #0f3a1f;
-            padding: 8px 15px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .quran-box {
-            background: linear-gradient(145deg, #1e4a2e, #0f3a1f);
-            border-radius: 40px 8px 40px 8px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .quran-box i { font-size:3.5rem; color:#ffd966; }
-        .quran-box h2 { color:#ffd966; }
-        .calendar-container {
-            background: #e7d8b8;
-            border-radius: 30px 8px 30px 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        table { width:100%; border-collapse:collapse; }
-        th { background:#1e4a2e; color:white; padding:10px; }
-        td { padding:8px; text-align:center; border-bottom:1px solid #c9a75a; }
-        .bottom-banners {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .bottom-banner {
-            background: linear-gradient(145deg, #8b6d42, #a68452);
-            border-radius: 40px 8px 40px 8px;
-            padding: 15px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .bottom-banner i { font-size:2rem; color:#ffd966; }
-        .footer { text-align:center; color:#1e4a2e; margin-top:15px; }
-        .contact-btn {
-            display:inline-block;
-            background:#1e4a2e;
-            color:white;
-            padding:5px 10px;
-            border-radius:30px;
-            text-decoration:none;
-            margin:2px;
-        }
-    </style>
-</head>
-<body>
-    <div class="app-wrapper">
-        <!-- Profile Section -->
-        <div class="profile-card" onclick="window.open('https://maps.google.com/?q=${encodeURIComponent(data.address)}', '_blank')">
-            <div class="profile-pic">
-                ${profilePic}
-            </div>
-            <div class="profile-info">
-                <div class="profile-name">${data.businessName}</div>
-                <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
-                <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
-                <div>
-                    <a href="tel:${data.phoneNumber}" class="contact-btn" onclick="event.stopPropagation()">
-                        <i class="fas fa-phone"></i> ${data.phoneNumber}
-                    </a>
-                    ${data.email ? `<a href="mailto:${data.email}" class="contact-btn" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i> ای میل</a>` : ''}
-                </div>
-                ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
-            </div>
-        </div>
-        
-        <!-- Top Ads -->
-        <div class="ads-row">
-            ${data.ad1Text ? `
-            <a href="${data.ad1Link}" class="ad-card" target="_blank">
-                <i class="fas ${data.ad1Icon}"></i>
-                <span>${data.ad1Text}</span>
-            </a>` : ''}
-            ${data.ad2Text ? `
-            <a href="${data.ad2Link}" class="ad-card" target="_blank">
-                <i class="fas ${data.ad2Icon}"></i>
-                <span>${data.ad2Text}</span>
-            </a>` : ''}
-            ${data.ad3Text ? `
-            <a href="${data.ad3Link}" class="ad-card" target="_blank">
-                <i class="fas ${data.ad3Icon}"></i>
-                <span>${data.ad3Text}</span>
-            </a>` : ''}
-        </div>
-        
-        <!-- Header -->
-        <div class="ramadan-header">
-            <h2>🌙 رمضان 1447</h2>
-            <span>لاہور</span>
-        </div>
-        
-        <!-- Icons -->
-        <div class="icon-row">
-            <div class="icon-item" onclick="alert('تسبیح کاؤنٹر')">
-                <i class="fas fa-tasbih"></i>
-                <span>تسبیح</span>
-            </div>
-            <div class="icon-item" onclick="window.open('https://quran.com/ur', '_blank')">
-                <i class="fas fa-quran"></i>
-                <span>قرآن</span>
-            </div>
-            <div class="icon-item" onclick="window.open('https://equran.com/', '_blank')">
-                <i class="fas fa-headphones"></i>
-                <span>آڈیو</span>
-            </div>
-            <div class="icon-item" onclick="alert('رمضان کی دعائیں')">
-                <i class="fas fa-hand-praying"></i>
-                <span>دعائیں</span>
-            </div>
-        </div>
-        
-        <!-- Timer -->
-        <div class="live-timer">
-            <div class="timer-row">
-                <div class="timer-block">
-                    <i class="fas fa-utensils"></i>
-                    <span>سحری</span>
-                    <span class="timer-value" id="sehriTimer">05:18:00</span>
-                </div>
-                <div class="timer-block">
-                    <i class="fas fa-sun"></i>
-                    <span>افطاری</span>
-                    <span class="timer-value" id="iftarTimer">05:54:00</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Quran -->
-        <div class="quran-box" onclick="window.open('https://quran.com/ur', '_blank')">
-            <i class="fas fa-quran"></i>
-            <h2>القرآن الكريم</h2>
-        </div>
-        
-        <!-- Calendar -->
-        <div class="calendar-container">
-            <div class="calendar-title">سحری و افطاری · لاہور</div>
-            <table>
-                <thead><tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr></thead>
-                <tbody>${calendarRows}</tbody>
-            </table>
-        </div>
-        
-        <!-- Bottom Banners -->
-        <div class="bottom-banners">
-            ${data.banner1Text ? `
-            <a href="${data.banner1Link}" class="bottom-banner" target="_blank">
-                <i class="fas ${data.banner1Icon}"></i>
-                <span>${data.banner1Text}</span>
-            </a>` : ''}
-            ${data.banner2Text ? `
-            <a href="${data.banner2Link}" class="bottom-banner" target="_blank">
-                <i class="fas ${data.banner2Icon}"></i>
-                <span>${data.banner2Text}</span>
-            </a>` : ''}
-            ${data.banner3Text ? `
-            <a href="${data.banner3Link}" class="bottom-banner" target="_blank">
-                <i class="fas ${data.banner3Icon}"></i>
-                <span>${data.banner3Text}</span>
-            </a>` : ''}
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
-        </div>
-    </div>
-    
-    <script>
-        // Timer
-        function updateTimer() {
-            let now = new Date();
-            let sehri = new Date(now); sehri.setHours(5, 18, 0);
-            let iftar = new Date(now); iftar.setHours(17, 54, 0);
-            if(now > sehri) sehri.setDate(sehri.getDate() + 1);
-            if(now > iftar) iftar.setDate(iftar.getDate() + 1);
-            
-            document.getElementById('sehriTimer').innerText = 
-                \`\${String(Math.floor((sehri-now)/(1000*60*60))).padStart(2,'0')}:\${String(Math.floor(((sehri-now)%(1000*60*60))/(1000*60))).padStart(2,'0')}:\${String(Math.floor(((sehri-now)%(1000*60))/1000)).padStart(2,'0')}\`;
-            document.getElementById('iftarTimer').innerText = 
-                \`\${String(Math.floor((iftar-now)/(1000*60*60))).padStart(2,'0')}:\${String(Math.floor(((iftar-now)%(1000*60*60))/(1000*60))).padStart(2,'0')}:\${String(Math.floor(((iftar-now)%(1000*60))/1000)).padStart(2,'0')}\`;
-        }
-        setInterval(updateTimer, 1000);
-    </script>
-</body>
-</html>`;
-            
-            // Open in new window
-            const newWindow = window.open();
-            newWindow.document.write(calendarHTML);
-            newWindow.document.close();
+            // Open calendar.html with ID
+            window.open('calendar.html?id=' + calendarId, '_blank');
         }
     </script>
 </body>
