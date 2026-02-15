@@ -1,13 +1,15 @@
 {
-  "name": "Ramadan Calendar 2026",
-  "short_name": "Ramadan Cal",
-  "description": "Ramadan 2026 Calendar with Sehri & Iftar Timings",
-  "start_url": "calendar.html",
-  "display": "standalone",
-  "background_color": "#1a2e1a",
+  "name": "رمضان کیلنڈر 1447ھ",
+  "short_name": "رمضان کیلنڈر",
+  "description": "رمضان المبارک 1447ھ کا مکمل کیلنڈر - سحری اور افطاری کے اوقات",
   "theme_color": "#1a2e1a",
+  "background_color": "#faf3e2",
+  "display": "standalone",
   "orientation": "portrait",
-  "scope": "./",
+  "scope": "/",
+  "start_url": "/calendar.html",
+  "dir": "rtl",
+  "lang": "ur",
   "prefer_related_applications": false,
   "icons": [
     {
