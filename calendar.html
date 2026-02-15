@@ -191,6 +191,7 @@
             color: white;
             text-decoration: none;
             transition: 0.3s;
+            cursor: pointer;
         }
         
         .ad-card:hover {
@@ -208,6 +209,17 @@
         .ad-card span {
             font-size: 0.85rem;
             display: block;
+        }
+        
+        /* Non-clickable ad style */
+        .ad-card.non-clickable {
+            opacity: 0.8;
+            cursor: default;
+        }
+        
+        .ad-card.non-clickable:hover {
+            transform: none;
+            background: linear-gradient(145deg, #1e4a2e, #153f1f);
         }
         
         /* Ramadan Header */
@@ -429,6 +441,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            cursor: pointer;
         }
         
         .bottom-banner:hover {
@@ -439,6 +452,17 @@
         .bottom-banner i {
             font-size: 2rem;
             color: #ffd966;
+        }
+        
+        /* Non-clickable banner style */
+        .bottom-banner.non-clickable {
+            opacity: 0.8;
+            cursor: default;
+        }
+        
+        .bottom-banner.non-clickable:hover {
+            transform: none;
+            background: linear-gradient(145deg, #8b6d42, #a68452);
         }
         
         /* Footer */
@@ -541,31 +565,10 @@
             border-right: 3px solid #c9a75a;
             padding-right: 10px;
         }
-        
-        /* Non-clickable ad style */
-        .ad-card.non-clickable {
-            opacity: 0.8;
-            cursor: default;
-        }
-        
-        .ad-card.non-clickable:hover {
-            transform: none;
-            background: linear-gradient(145deg, #1e4a2e, #153f1f);
-        }
-        
-        .bottom-banner.non-clickable {
-            opacity: 0.8;
-            cursor: default;
-        }
-        
-        .bottom-banner.non-clickable:hover {
-            transform: none;
-            background: linear-gradient(145deg, #8b6d42, #a68452);
-        }
     </style>
 </head>
 <body>
-    <!-- Install Button (dikhega agar install nahi hai) -->
+    <!-- Install Button -->
     <div class="install-container" id="installContainer" style="display: none;">
         <button class="install-btn" id="installButton">
             <i class="fas fa-download"></i>
@@ -623,6 +626,15 @@
     </div>
     
     <script>
+        // ========== FIX FOR PWA EXTERNAL LINKS ==========
+        // یہ فنکشن تمام بیرونی لنکس کو ڈیفالٹ براؤزر میں کھولے گا
+        function openExternalLink(url) {
+            if (url && url !== '#') {
+                // PWA میں target="_blank" کام نہیں کرتا، اس لیے یہ طریقہ استعمال کریں
+                window.open(url, '_blank');
+            }
+        }
+
         // ========== PWA INSTALLATION ==========
         let deferredPrompt;
         const installContainer = document.getElementById('installContainer');
@@ -696,7 +708,7 @@
             if (id && localStorage.getItem(id)) {
                 data = JSON.parse(localStorage.getItem(id));
             } else {
-                // Default data with new structure
+                // Default data
                 data = {
                     businessName: "المدینہ جیولرز",
                     phoneNumber: "03001234567",
@@ -706,7 +718,6 @@
                     businessDetails: "سونے چاندی کی مصنوعات",
                     profileIcon: "fa-store",
                     
-                    // Ads with new properties
                     ad1: {
                         text: "نئی گولڈ کلکشن",
                         link: "https://example.com/gold",
@@ -729,7 +740,6 @@
                         deleted: false
                     },
                     
-                    // Banners with new properties
                     banner1: {
                         text: "25% تخفیف",
                         link: "https://example.com/discount",
@@ -778,100 +788,105 @@
                 `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : 
                 `<i class="fas ${data.profileIcon}"></i>`;
             
-            // Generate Ads HTML with clickable and deleted options
+            // Generate Ads HTML with FIX for PWA
             let adsHtml = '<div class="ads-row">';
             
             // Ad 1
             if (data.ad1 && !data.ad1.deleted) {
                 const clickableClass = data.ad1.clickable ? '' : 'non-clickable';
                 if (data.ad1.clickable) {
-                    adsHtml += `<a href="${data.ad1.link}" class="ad-card ${clickableClass}" target="_blank">`;
+                    // FIX: onclick event use karo, target="_blank" PWA mein kaam nahi karta
+                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad1.link}')">`;
                 } else {
                     adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
                 }
                 adsHtml += `<i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>`;
-                adsHtml += data.ad1.clickable ? '</a>' : '</div>';
+                adsHtml += '</div>';
             }
             
             // Ad 2
             if (data.ad2 && !data.ad2.deleted) {
                 const clickableClass = data.ad2.clickable ? '' : 'non-clickable';
                 if (data.ad2.clickable) {
-                    adsHtml += `<a href="${data.ad2.link}" class="ad-card ${clickableClass}" target="_blank">`;
+                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad2.link}')">`;
                 } else {
                     adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
                 }
                 adsHtml += `<i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>`;
-                adsHtml += data.ad2.clickable ? '</a>' : '</div>';
+                adsHtml += '</div>';
             }
             
             // Ad 3
             if (data.ad3 && !data.ad3.deleted) {
                 const clickableClass = data.ad3.clickable ? '' : 'non-clickable';
                 if (data.ad3.clickable) {
-                    adsHtml += `<a href="${data.ad3.link}" class="ad-card ${clickableClass}" target="_blank">`;
+                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad3.link}')">`;
                 } else {
                     adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
                 }
                 adsHtml += `<i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>`;
-                adsHtml += data.ad3.clickable ? '</a>' : '</div>';
+                adsHtml += '</div>';
             }
             
             adsHtml += '</div>';
             
-            // Generate Banners HTML with clickable and deleted options
+            // Generate Banners HTML with FIX for PWA
             let bannersHtml = '<div class="bottom-banners">';
             
             // Banner 1
             if (data.banner1 && !data.banner1.deleted) {
                 const clickableClass = data.banner1.clickable ? '' : 'non-clickable';
                 if (data.banner1.clickable) {
-                    bannersHtml += `<a href="${data.banner1.link}" class="bottom-banner ${clickableClass}" target="_blank">`;
+                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner1.link}')">`;
                 } else {
                     bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
                 }
                 bannersHtml += `<i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>`;
-                bannersHtml += data.banner1.clickable ? '</a>' : '</div>';
+                bannersHtml += '</div>';
             }
             
             // Banner 2
             if (data.banner2 && !data.banner2.deleted) {
                 const clickableClass = data.banner2.clickable ? '' : 'non-clickable';
                 if (data.banner2.clickable) {
-                    bannersHtml += `<a href="${data.banner2.link}" class="bottom-banner ${clickableClass}" target="_blank">`;
+                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner2.link}')">`;
                 } else {
                     bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
                 }
                 bannersHtml += `<i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>`;
-                bannersHtml += data.banner2.clickable ? '</a>' : '</div>';
+                bannersHtml += '</div>';
             }
             
             // Banner 3
             if (data.banner3 && !data.banner3.deleted) {
                 const clickableClass = data.banner3.clickable ? '' : 'non-clickable';
                 if (data.banner3.clickable) {
-                    bannersHtml += `<a href="${data.banner3.link}" class="bottom-banner ${clickableClass}" target="_blank">`;
+                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner3.link}')">`;
                 } else {
                     bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
                 }
                 bannersHtml += `<i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>`;
-                bannersHtml += data.banner3.clickable ? '</a>' : '</div>';
+                bannersHtml += '</div>';
             }
             
             bannersHtml += '</div>';
             
+            // Profile section with FIX for phone and email links
+            const phoneClick = `openExternalLink('tel:${data.phoneNumber}')`;
+            const emailClick = data.email ? `openExternalLink('mailto:${data.email}')` : '';
+            
             const html = `
-                <div class="profile-card" onclick="window.open('https://maps.google.com/?q=${encodeURIComponent(data.address)}', '_blank')">
+                <div class="profile-card" onclick="openExternalLink('https://maps.google.com/?q=${encodeURIComponent(data.address)}')">
                     <div class="profile-pic">${picHtml}</div>
                     <div class="profile-info">
                         <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
-                            <a href="tel:${data.phoneNumber}" class="contact-badge" onclick="event.stopPropagation()">
+                            <a href="javascript:void(0)" onclick="openExternalLink('tel:${data.phoneNumber}')" class="contact-badge" style="cursor:pointer;">
                                 <i class="fas fa-phone"></i> ${data.phoneNumber}
                             </a>
-                            ${data.email ? `<a href="mailto:${data.email}" class="contact-badge" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i></a>` : ''}
+                            ${data.email ? `<a href="javascript:void(0)" onclick="openExternalLink('mailto:${data.email}')" class="contact-badge" style="cursor:pointer;"><i class="fas fa-envelope"></i></a>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
                     </div>
@@ -886,8 +901,8 @@
                 
                 <div class="icon-row">
                     <div class="icon-item" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item" onclick="window.open('https://quran.com/ur', '_blank')"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item" onclick="window.open('https://equran.com/', '_blank')"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
+                    <div class="icon-item" onclick="openExternalLink('https://quran.com/ur')"><i class="fas fa-quran"></i><span>قرآن</span></div>
+                    <div class="icon-item" onclick="openExternalLink('https://equran.com/')"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
                     <div class="icon-item" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
                 </div>
                 
@@ -899,7 +914,7 @@
                     <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
                 </div>
                 
-                <div class="quran-box" onclick="window.open('https://quran.com/ur', '_blank')">
+                <div class="quran-box" onclick="openExternalLink('https://quran.com/ur')">
                     <i class="fas fa-quran"></i>
                     <h2>القرآن الكريم</h2>
                 </div>
@@ -925,7 +940,7 @@
             updateTimer();
         }
         
-        // Timer Functions (unchanged)
+        // Timer Functions
         function updateTimer() {
             const sehri = document.getElementById('sehriTimer');
             const iftar = document.getElementById('iftarTimer');
@@ -958,7 +973,7 @@
             return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
         }
         
-        // Modal Functions (unchanged)
+        // Modal Functions
         function openTasbeeh() { document.getElementById('tasbeehModal').style.display = 'block'; }
         function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
