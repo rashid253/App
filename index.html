@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>رمضان 2026 | قرآن مجید + دعائیں + لائیو ٹائمر</title>
-    <!-- Font Awesome 6 - Latest version -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
             z-index: 2;
         }
         
-        /* ========== PROFILE SECTION - Interactive ========== */
+        /* ========== PROFILE SECTION - Tirchi Line Hatayi ========== */
         .profile-section {
             display: flex;
             align-items: center;
@@ -63,8 +63,6 @@
             margin-bottom: 15px;
             border: 2px solid #b38d5a;
             box-shadow: 0 5px 0 #9b7a48;
-            position: relative;
-            overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -74,17 +72,9 @@
             box-shadow: 0 7px 0 #9b7a48;
         }
         
-        /* Tirchi line */
+        /* Tirchi line hata di */
         .profile-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, #c9a75a 50%, transparent 100%);
-            transform: skewX(-15deg);
-            box-shadow: 0 0 10px #c9a75a;
+            display: none;
         }
         
         .profile-right {
@@ -193,50 +183,57 @@
             font-size: 0.95rem;
         }
         
-        /* ========== 4 ICONS - FIXED - No Overflow ========== */
+        /* ========== 4 ICONS - COMPLETELY FIXED ========== */
         .icon-row {
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background: #e7d8b8;
             border-radius: 80px 8px 80px 8px;
-            padding: 12px 5px;
+            padding: 15px 5px;
             margin-bottom: 15px;
             border: 2px solid #c9a75a;
+            gap: 5px;
         }
         
         .icon-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             color: #1e4a2e;
             font-weight: 600;
             cursor: pointer;
-            min-width: 65px;
+            width: 70px;
+            text-align: center;
         }
         
         .icon-item i {
-            font-size: 2.2rem;
+            font-size: 2rem;
             background: #1e4a2e;
             color: #ffd966;
             border-radius: 50%;
             padding: 12px;
-            width: 55px;
-            height: 55px;
-            text-align: center;
-            line-height: 1.9;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 5px;
             border: 2px solid #c9a75a;
             transition: 0.3s;
         }
         
         .icon-item:hover i {
-            transform: scale(1.05);
+            transform: scale(1.1);
             background: #256635;
         }
         
         .icon-item span {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #1e3a1e;
+            font-weight: 600;
+            margin-top: 2px;
         }
         
         /* ========== LIVE TIMER ========== */
@@ -433,39 +430,44 @@
             font-size: 1rem;
         }
         
-        /* ========== 3 ADS BANNERS - Bottom (Screen Fit) ========== */
-        .ads-row-bottom {
+        /* ========== 3 BOTTOM BANNERS - Vertical (Ek ke neeche ek) ========== */
+        .bottom-banners {
             display: flex;
-            gap: 8px;
-            margin: 15px 0;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
         }
         
-        .bottom-ad {
-            flex: 1;
+        .bottom-banner {
+            width: 100%;
             background: linear-gradient(145deg, #8b6d42, #a68452);
-            border-radius: 30px 8px 30px 8px;
-            padding: 12px 5px;
+            border-radius: 40px 8px 40px 8px;
+            padding: 15px 10px;
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: 0.3s;
-            min-height: 80px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            gap: 15px;
         }
         
-        .bottom-ad:hover {
+        .bottom-banner:hover {
             transform: scale(1.02);
             background: #9b7a48;
+            box-shadow: 0 5px 0 #6d4f2c;
         }
         
-        .bottom-ad i {
-            font-size: 1.8rem;
+        .bottom-banner i {
+            font-size: 2.2rem;
             color: #ffd966;
-            margin-bottom: 5px;
+        }
+        
+        .bottom-banner span {
+            font-weight: 600;
         }
         
         /* ========== FOOTER ========== */
@@ -576,7 +578,7 @@
 <body>
     <div class="app-wrapper">
         <div class="content">
-            <!-- ========== PROFILE SECTION - Interactive ========== -->
+            <!-- ========== PROFILE SECTION - Tirchi Line Khatam ========== -->
             <div class="profile-section" onclick="window.open('https://maps.google.com/?q=لاہور+ماڈل+ٹاؤن', '_blank')">
                 <div class="profile-right">
                     <div class="profile-name">المدینہ سٹور</div>
@@ -586,7 +588,7 @@
                             <i class="fas fa-phone"></i> 0300 1234567
                         </a>
                         <a href="https://wa.me/923001234567" class="contact-btn" onclick="event.stopPropagation()">
-                            <i class="fab fa-whatsapp"></i>
+                            <i class="fab fa-whatsapp"></i> واٹس ایپ
                         </a>
                     </div>
                 </div>
@@ -617,7 +619,7 @@
                 <span>19 فروری 2026</span>
             </div>
             
-            <!-- ========== 4 ICONS - FIXED ========== -->
+            <!-- ========== 4 ICONS - COMPLETELY FIXED ========== -->
             <div class="icon-row">
                 <div class="icon-item" onclick="openTasbeeh()">
                     <i class="fas fa-tasbih"></i>
@@ -704,19 +706,19 @@
                 </select>
             </div>
             
-            <!-- ========== 3 ADS BANNERS - Bottom (Full Width) ========== -->
-            <div class="ads-row-bottom">
-                <div class="bottom-ad" onclick="window.open('https://www.chaayee.pk/', '_blank')">
+            <!-- ========== 3 BOTTOM BANNERS - Ek ke neeche ek ========== -->
+            <div class="bottom-banners">
+                <div class="bottom-banner" onclick="window.open('https://www.chaayee.pk/', '_blank')">
                     <i class="fas fa-dates"></i>
-                    <span>کھجور خصوصی</span>
+                    <span>خصوصی کھجور - 30% تخفیف</span>
                 </div>
-                <div class="bottom-ad" onclick="window.open('https://www.halaalfood.com/', '_blank')">
+                <div class="bottom-banner" onclick="window.open('https://www.halaalfood.com/', '_blank')">
                     <i class="fas fa-drumstick-bite"></i>
-                    <span>حلال چکن</span>
+                    <span>حلال فوڈ - افطار ڈیل</span>
                 </div>
-                <div class="bottom-ad" onclick="window.open('https://www.ramazanspecial.pk/', '_blank')">
+                <div class="bottom-banner" onclick="window.open('https://www.ramazanspecial.pk/', '_blank')">
                     <i class="fas fa-gift"></i>
-                    <span>رمضان پیکج</span>
+                    <span>رمضان سپیشل پیکج</span>
                 </div>
             </div>
             
