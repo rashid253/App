@@ -697,7 +697,8 @@
         }
         
         function collectFormData() {
-            return {
+            // FIXED: Properly collect data with correct format
+            const data = {
                 businessName: document.getElementById('businessName').value,
                 phoneNumber: document.getElementById('phoneNumber').value,
                 email: document.getElementById('email').value,
@@ -750,19 +751,27 @@
                     deleted: document.getElementById('banner3Card').classList.contains('hidden-card')
                 }
             };
+            
+            return data;
         }
         
         function generateCalendar() {
             const data = collectFormData();
-            const id = 'cal_' + Date.now();
             
-            // Multiple jagah save karo
-            localStorage.setItem(id, JSON.stringify(data));
-            sessionStorage.setItem(id, JSON.stringify(data));
+            // FIXED: Create a clean ID
+            const id = 'cal_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            
+            // FIXED: Save as clean JSON
+            const dataString = JSON.stringify(data);
+            
+            // Save in multiple places
+            localStorage.setItem(id, dataString);
+            sessionStorage.setItem(id, dataString);
             
             // Cookie mein bhi save karo (30 days)
-            document.cookie = `${id}=${JSON.stringify(data)}; max-age=2592000; path=/`;
+            document.cookie = `${id}=${encodeURIComponent(dataString)}; max-age=2592000; path=/`;
             
+            // FIXED: Open with clean URL
             window.open('calendar.html?id=' + id, '_blank');
         }
         
@@ -774,7 +783,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'ramadan-data.txt';
+            a.download = 'ramadan-data-' + Date.now() + '.txt';
             a.click();
             
             alert('ڈیٹا export ہو گیا! اسے محفوظ رکھیں۔');
