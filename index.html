@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>رمضان 2026 پاکستان | لائیو سحری و افطاری</title>
+    <title>رمضان 2026 پاکستان | مکمل دعائیں + لائیو ٹائمر</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -48,8 +48,7 @@
             z-index: 5;
         }
 
-        /* ========== پروفیشنل اسپانسر سیکشن (دو حصے) ========= */
-        /* حصہ اول: دکان کی تفصیل + تصویر */
+        /* پروفیشنل اسپانسر سیکشن */
         .sponsor-pro-row {
             display: flex;
             align-items: center;
@@ -94,15 +93,16 @@
             border: 3px solid #c8a255;
         }
 
-        /* حصہ دوم: چھوٹے آئیکونز کی سنگل قطار */
+        /* آئیکونز کی سنگل قطار (مسئلہ حل: الفاظ مکمل، اوور فلو نہیں) */
         .icon-strip {
             display: flex;
             justify-content: space-around;
             background: #faf0db;
             border-radius: 80px 8px 80px 8px;
-            padding: 8px 6px;
+            padding: 8px 4px;
             margin-bottom: 20px;
             border: 2px solid #b28f54;
+            flex-wrap: wrap;
         }
         .icon-strip-item {
             display: flex;
@@ -111,6 +111,9 @@
             font-size: 0.75rem;
             color: #1f4a1f;
             font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+            margin: 2px 0;
         }
         .icon-strip-item i {
             font-size: 1.8rem;
@@ -126,7 +129,7 @@
             border: 2px solid #ffcd7e;
         }
 
-        /* باقی سٹائل بالکل اصلی جیسے ہیں */
+        /* ہیڈر */
         .header-pak {
             display: flex;
             align-items: center;
@@ -153,6 +156,7 @@
             border-radius: 40px;
         }
 
+        /* لائیو ٹائمر */
         .live-timer-badge {
             background: #1d4d2b;
             border: 2px solid #ffd58c;
@@ -191,6 +195,10 @@
             padding: 5px 12px;
             border-radius: 60px;
             font-size: 1rem;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .card {
@@ -343,7 +351,7 @@
 <body>
 <div class="app-wrapper">
     <div class="content">
-        <!-- ========== پروفیشنل اسپانسر حصہ (حصہ اول) ========= -->
+        <!-- اسپانسر حصہ -->
         <div class="sponsor-pro-row">
             <div class="shop-info">
                 <div class="shop-name">المدینہ جنرل سٹور</div>
@@ -360,7 +368,7 @@
             </div>
         </div>
 
-        <!-- ========== آئیکونز کی سنگل قطار (حصہ دوم) ========= -->
+        <!-- آئیکونز کی قطار (مکمل نام، اوور فلو نہیں) -->
         <div class="icon-strip">
             <div class="icon-strip-item" onclick="window.open('https://www.dawateislami.net/Book/Download/337/ramadan-ki-40-duaen-urdu-pdf', '_blank')">
                 <i class="fas fa-file-pdf"></i> <span>قرآن PDF</span>
@@ -379,25 +387,25 @@
             </div>
         </div>
 
-        <!-- ========== اصلی ہیڈر ========= -->
+        <!-- ہیڈر -->
         <div class="header-pak">
             <div class="hilal-pak"><i class="fas fa-moon" style="color: #f9d47a;"></i> <span id="cityNameDisplay">لاہور</span></div>
             <div class="urdu-text" id="hijriUrdu">رمضان 1447 ھ</div>
         </div>
 
-        <!-- ========== لائیو ٹائمر + سحری/افطاری کی دعا ========= -->
+        <!-- لائیو ٹائمر + مکمل دعائیں (سحری و افطاری) -->
         <div class="live-timer-badge" id="liveTimerSection">
             <div class="timer-block" id="countdownSehriArea">
                 <i class="fas fa-utensils"></i>
-                <span class="timer-label" id="timerLabel">سحری میں</span>
+                <span class="timer-label">سحری میں</span>
                 <span class="timer-value" id="timerValue">--:--:--</span>
             </div>
             <div class="timer-block" id="countdownIftarArea">
                 <i class="fas fa-sun"></i>
-                <span class="timer-label" id="iftarTimerLabel">افطاری میں</span>
+                <span class="timer-label">افطاری میں</span>
                 <span class="timer-value" id="iftarTimerValue">--:--:--</span>
             </div>
-            <div class="dua-tag" id="duaDisplay">دعا: اللهم لك صمت</div>
+            <div class="dua-tag" id="duaDisplay">دعا سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
         </div>
 
         <!-- سحری و افطاری ٹیبل -->
@@ -419,7 +427,7 @@
             </div>
         </div>
 
-        <!-- قرآن مجید + اردو ترجمہ -->
+        <!-- قرآن مجید -->
         <div class="quran-urdu-box">
             <div class="arabic-line">إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</div>
             <div class="urdu-translation">بے شک ہم نے اس (قرآن) کو شب قدر میں نازل کیا۔</div>
@@ -428,7 +436,7 @@
             <div class="surah-detail">سورۃ البقرہ، آیت 183</div>
         </div>
 
-        <!-- اسپانسر شدہ بینرز (بزنس اشتہارات) -->
+        <!-- اسپانسر بینرز -->
         <div class="sponsor-grid">
             <div class="sponsor-card">
                 <i class="fas fa-utensils"></i>
@@ -597,11 +605,12 @@
         document.getElementById('timerValue').innerText = `${String(sehriHours).padStart(2,'0')}:${String(sehriMins).padStart(2,'0')}:${String(sehriSecs).padStart(2,'0')}`;
         document.getElementById('iftarTimerValue').innerText = `${String(iftarHours).padStart(2,'0')}:${String(iftarMins).padStart(2,'0')}:${String(iftarSecs).padStart(2,'0')}`;
 
+        // مکمل سحری و افطاری دعائیں (تصحیح شدہ)
         let duaElem = document.getElementById('duaDisplay');
         if (now < iftarTime && now > sehriTime) {
-            duaElem.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ";
+            duaElem.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ";
         } else {
-            duaElem.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
+            duaElem.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ";
         }
     }
     setInterval(updateTimersAndDua, 1000);
