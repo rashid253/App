@@ -20,7 +20,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* تمام اسٹائل ویسے ہی رہیں گے */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Amiri', sans-serif;
@@ -477,28 +476,25 @@
     </div>
     
     <script>
-        // ========== UNIVERSAL LINK OPENER - 100% FIX ==========
+        // ========== UNIVERSAL LINK OPENER - 100% WORKING ==========
         function openLink(url) {
             if (!url || url === '#' || url === '') return;
             
-            try {
-                // Method 1: Create anchor and click
-                const link = document.createElement('a');
-                link.href = url;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                document.body.appendChild(link);
-                link.click();
+            // Create a temporary anchor element
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.style.display = 'none';
+            
+            // Add to body, click, remove
+            document.body.appendChild(link);
+            link.click();
+            
+            // Remove after a short delay
+            setTimeout(() => {
                 document.body.removeChild(link);
-            } catch(e) {
-                try {
-                    // Method 2: Use window.open
-                    window.open(url, '_blank');
-                } catch(e2) {
-                    // Method 3: Navigate directly
-                    window.location.href = url;
-                }
-            }
+            }, 100);
         }
 
         // ========== PWA INSTALLATION ==========
@@ -605,17 +601,16 @@
             
             const picHtml = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : `<i class="fas ${data.profileIcon}"></i>`;
             
-            // ========== HTML with onclick events ==========
             const html = `
-                <div class="profile-card" onclick="openLink('https://maps.google.com/?q=${encodeURIComponent(data.address)}')">
+                <div class="profile-card" onclick='openLink("https://maps.google.com/?q=${encodeURIComponent(data.address)}")'>
                     <div class="profile-pic">${picHtml}</div>
                     <div class="profile-info">
                         <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
-                            <span class="contact-badge" onclick="openLink('tel:${data.phoneNumber}')"><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
-                            ${data.email ? `<span class="contact-badge" onclick="openLink('mailto:${data.email}')"><i class="fas fa-envelope"></i></span>` : ''}
+                            <span class="contact-badge" onclick='openLink("tel:${data.phoneNumber}")'><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
+                            ${data.email ? `<span class="contact-badge" onclick='openLink("mailto:${data.email}")'><i class="fas fa-envelope"></i></span>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
                     </div>
@@ -624,17 +619,17 @@
                 <div class="ads-row">
                     ${data.ad1 && !data.ad1.deleted ? 
                         `<div class="ad-card ${data.ad1.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.ad1.clickable ? `openLink('${data.ad1.link}')` : ''}">
+                            onclick='${data.ad1.clickable ? `openLink("${data.ad1.link}")` : ""}'>
                             <i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>
                         </div>` : ''}
                     ${data.ad2 && !data.ad2.deleted ? 
                         `<div class="ad-card ${data.ad2.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.ad2.clickable ? `openLink('${data.ad2.link}')` : ''}">
+                            onclick='${data.ad2.clickable ? `openLink("${data.ad2.link}")` : ""}'>
                             <i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>
                         </div>` : ''}
                     ${data.ad3 && !data.ad3.deleted ? 
                         `<div class="ad-card ${data.ad3.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.ad3.clickable ? `openLink('${data.ad3.link}')` : ''}">
+                            onclick='${data.ad3.clickable ? `openLink("${data.ad3.link}")` : ""}'>
                             <i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>
                         </div>` : ''}
                 </div>
@@ -646,8 +641,8 @@
                 
                 <div class="icon-row">
                     <div class="icon-item" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item" onclick="openLink('https://quran.com/ur')"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item" onclick="openLink('https://equran.com/')"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
+                    <div class="icon-item" onclick='openLink("https://quran.com/ur")'><i class="fas fa-quran"></i><span>قرآن</span></div>
+                    <div class="icon-item" onclick='openLink("https://equran.com/")'><i class="fas fa-headphones"></i><span>آڈیو</span></div>
                     <div class="icon-item" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
                 </div>
                 
@@ -659,7 +654,7 @@
                     <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
                 </div>
                 
-                <div class="quran-box" onclick="openLink('https://quran.com/ur')">
+                <div class="quran-box" onclick='openLink("https://quran.com/ur")'>
                     <i class="fas fa-quran"></i>
                     <h2>القرآن الكريم</h2>
                 </div>
@@ -677,17 +672,17 @@
                 <div class="bottom-banners">
                     ${data.banner1 && !data.banner1.deleted ? 
                         `<div class="bottom-banner ${data.banner1.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.banner1.clickable ? `openLink('${data.banner1.link}')` : ''}">
+                            onclick='${data.banner1.clickable ? `openLink("${data.banner1.link}")` : ""}'>
                             <i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>
                         </div>` : ''}
                     ${data.banner2 && !data.banner2.deleted ? 
                         `<div class="bottom-banner ${data.banner2.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.banner2.clickable ? `openLink('${data.banner2.link}')` : ''}">
+                            onclick='${data.banner2.clickable ? `openLink("${data.banner2.link}")` : ""}'>
                             <i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>
                         </div>` : ''}
                     ${data.banner3 && !data.banner3.deleted ? 
                         `<div class="bottom-banner ${data.banner3.clickable ? '' : 'non-clickable'}" 
-                            onclick="${data.banner3.clickable ? `openLink('${data.banner3.link}')` : ''}">
+                            onclick='${data.banner3.clickable ? `openLink("${data.banner3.link}")` : ""}'>
                             <i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>
                         </div>` : ''}
                 </div>
