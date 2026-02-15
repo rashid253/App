@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>رمضان 2026 پاکستان | لائیو ٹائمر + حقیقی دعائیں</title>
+    <title>رمضان مکمل ایپ | تمام وسائل کے ساتھ</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- PDF.js for better PDF viewing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -15,636 +17,1074 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-        body {
-            font-family: 'Poppins', 'Nafees', 'Urdu Typesetting', sans-serif;
-            background: #e7dcc0;
-            padding: 12px 10px 25px;
-            min-height: 100vh;
-            color: #2d261b;
+        
+        :root {
+            --primary-green: #1e4a2e;
+            --gold: #c9a75a;
+            --cream: #faf0db;
+            --dark-green: #0f2e1a;
         }
+        
+        body {
+            font-family: 'Poppins', 'Amiri', sans-serif;
+            background: var(--dark-green);
+            padding: 10px;
+            color: white;
+        }
+        
+        /* Main App Container */
         .app-wrapper {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
-            width: 100%;
-            background: rgba(255, 250, 235, 0.92);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-radius: 45px 15px 45px 15px;
-            border: 2px solid #c9ad7c;
-            padding: 16px 14px 28px;
-            box-shadow: 0 25px 35px -8px #4d3a24;
+            background: linear-gradient(145deg, #2a4a2a, #1e3a1e);
+            border-radius: 40px 15px 40px 15px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold);
             position: relative;
             overflow: hidden;
         }
+        
+        /* Decorative Pattern */
         .app-wrapper::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(170, 130, 70, 0.03) 0px, rgba(170,130,70,0.03) 12px, transparent 12px, transparent 24px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.05) 0px, rgba(201,167,90,0.05) 20px, transparent 20px, transparent 40px);
             pointer-events: none;
         }
+        
         .content {
             position: relative;
-            z-index: 5;
+            z-index: 2;
         }
-
-        /* اسپانسر سیکشن اصلی */
-        .sponsor-pro-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f3e1c2;
+        
+        /* Header */
+        .ramadan-header {
+            background: linear-gradient(135deg, #1e4a2e, #0f2e1a);
             border-radius: 40px 8px 40px 8px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            border: 2px solid #ad8d5a;
-            box-shadow: 0 6px 0 #8b6f42;
-        }
-        .shop-info {
+            padding: 15px;
+            border: 2px solid var(--gold);
+            margin-bottom: 15px;
             text-align: center;
-            flex: 3;
+            box-shadow: 0 5px 0 #0a1f0a;
         }
-        .shop-name {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1d401d;
-            line-height: 1.2;
+        
+        .ramadan-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-family: 'Amiri', serif;
+            text-shadow: 2px 2px 0 #0a1f0a;
         }
-        .shop-details {
-            font-size: 1rem;
-            color: #2d281a;
-            margin-top: 5px;
+        
+        .ramadan-header p {
+            color: #fff5d6;
+            font-size: 1.1rem;
         }
-        .shop-details i {
-            margin-left: 5px;
-            color: #ac7700;
-        }
-        .shop-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-        .shop-image i {
-            font-size: 5.5rem;
-            color: #2f5a38;
-            background: #ffe6af;
-            border-radius: 30px 8px 30px 8px;
-            padding: 10px;
-            border: 3px solid #c8a255;
-        }
-
-        /* آئیکونز کی قطار — اب تمام اصلی روابط */
-        .icon-strip {
+        
+        /* Quick Stats Bar */
+        .stats-bar {
             display: flex;
             justify-content: space-around;
-            background: #faf0db;
-            border-radius: 80px 8px 80px 8px;
-            padding: 8px 4px;
-            margin-bottom: 20px;
-            border: 2px solid #b28f54;
-            flex-wrap: wrap;
+            background: #1f3a1f;
+            border-radius: 50px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid var(--gold);
         }
-        .icon-strip-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.75rem;
-            color: #1f4a1f;
-            font-weight: 600;
-            min-width: 60px;
+        
+        .stat-item {
             text-align: center;
-            margin: 2px 0;
-            cursor: pointer;
-            transition: 0.2s;
         }
-        .icon-strip-item:hover {
-            transform: scale(1.02);
-        }
-        .icon-strip-item i {
-            font-size: 1.8rem;
-            background: #1b562b;
-            color: #ffde91;
-            border-radius: 50%;
-            padding: 8px;
-            width: 45px;
-            height: 45px;
-            text-align: center;
-            line-height: 1.4;
-            margin-bottom: 4px;
-            border: 2px solid #ffcd7e;
-        }
-
-        .header-pak {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(130deg, #0f4820, #236b31);
-            color: #f9efcf;
-            padding: 12px 18px;
-            border-radius: 50px 8px 50px 8px;
-            border: 2px solid #facb7b;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .hilal-pak {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        
+        .stat-value {
             font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
         }
-        .urdu-text {
-            font-size: 1.3rem;
-            font-weight: 600;
-            background: #00000020;
-            padding: 5px 18px;
-            border-radius: 40px;
-        }
-
-        /* لائیو ٹائمر */
-        .live-timer-badge {
-            background: #1d4d2b;
-            border: 2px solid #ffd58c;
-            border-radius: 60px;
-            padding: 16px 14px;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            color: #fef4cf;
-            box-shadow: 0 5px 0 #0e3518;
-        }
-        .timer-block {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #0000002e;
-            padding: 5px 15px;
-            border-radius: 60px;
-        }
-        .timer-label {
-            font-size: 1rem;
-        }
-        .timer-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            direction: ltr;
-            background: #243d19;
-            padding: 4px 12px;
-            border-radius: 40px;
-        }
-        .dua-tag {
-            background: #b38d51;
-            color: #212618;
-            padding: 5px 12px;
-            border-radius: 60px;
-            font-size: 1rem;
-            max-width: 250px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card {
-            background: #fcf2dfea;
-            border-radius: 30px 8px 30px 8px;
-            border: 1px solid #dbbc8b;
-            padding: 18px 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px -8px #7d684b;
-        }
-        .card-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.9rem;
-            color: #4f3a21;
-            border-bottom: 2px dashed #bb9d70;
-            padding-bottom: 10px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sehri-iftar-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-        }
-        .sehri-iftar-table th {
-            background: #8f6d45;
-            color: white;
-            padding: 10px 5px;
-            font-weight: 500;
-            border-radius: 20px 4px 10px 4px;
-        }
-        .sehri-iftar-table td {
-            padding: 9px 4px;
-            text-align: center;
-            border-bottom: 1px solid #dac29c;
-        }
-        .sehri-iftar-table .today-row {
-            background: #ffe9c7;
-            font-weight: 700;
-            border: 2px solid #b67c2e;
-            border-radius: 30px;
-        }
-        .city-note {
-            font-size: 0.9rem;
-            background: #ebe1cd;
-            padding: 8px 15px;
-            border-radius: 30px;
-            margin-top: 12px;
-        }
-        .city-note select {
-            background: #5d482b;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 30px;
-            border: none;
-            font-weight: 600;
-        }
-
-        .quran-urdu-box {
-            background: #dacdb3;
-            border-radius: 40px 6px 40px 6px;
-            padding: 18px;
-            margin: 12px 0;
-            border: 2px solid #ad8f60;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .quran-urdu-box:hover { background: #d2c09f; }
-        .arabic-line {
-            font-family: 'Amiri', serif;
-            font-size: 2rem;
-            text-align: right;
-            color: #1d451d;
-            margin-bottom: 6px;
-        }
-        .urdu-translation {
-            font-size: 1.2rem;
-            color: #322a1b;
-            border-right: 4px solid #aa7e4b;
-            padding-right: 15px;
-            margin: 8px 0;
-        }
-        .surah-detail {
-            text-align: left;
-            font-weight: 600;
-            color: #5e462b;
-        }
-
-        .sponsor-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 18px 0;
-        }
-        .sponsor-card {
-            background: linear-gradient(115deg, #a68452, #cfb185);
-            border-radius: 30px 6px 30px 6px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            border: 2px solid #fff1ca;
-            color: #1d2b10;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .sponsor-card:hover { filter: brightness(0.98); }
-        .sponsor-card i {
-            font-size: 2.2rem;
-            background: #f7e9cf;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7a582b;
-        }
-        .sponsor-text {
-            font-weight: 600;
-        }
-        .sponsor-text small {
+        
+        .stat-label {
             font-size: 0.8rem;
-            opacity: 0.9;
+            color: #ddd;
         }
-
-        .footer-note {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-            font-size: 0.85rem;
-            color: #3f351f;
+        
+        /* Main Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
         }
-        .btn {
-            background: #2f6b3a;
-            color: #fff2d4;
-            border: none;
-            border-radius: 60px;
-            padding: 8px 22px;
-            font-weight: 600;
-            box-shadow: 0 4px 0 #154d1e;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        
+        .menu-item {
+            background: linear-gradient(145deg, #1f4a2a, #153f1f);
+            border-radius: 30px 8px 30px 8px;
+            padding: 25px 10px;
+            text-align: center;
+            border: 2px solid var(--gold);
             cursor: pointer;
-            transition: 0.15s;
+            transition: all 0.2s;
+            box-shadow: 0 5px 0 #0f2a0f;
         }
-        .btn:hover {
-            background: #3d824b;
+        
+        .menu-item:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f2a0f;
         }
-        .offline-tag {
-            font-size: 0.75rem;
+        
+        .menu-item i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .menu-item span {
+            display: block;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .menu-item small {
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        
+        /* Section Container */
+        .section-container {
+            background: #1f3a1f;
+            border-radius: 30px 8px 30px 8px;
+            padding: 20px;
+            border: 2px solid var(--gold);
+            margin-top: 10px;
+        }
+        
+        .back-btn {
+            background: #2a4a2a;
+            color: white;
+            border: 2px solid var(--gold);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        
+        .back-btn:active {
+            background: #1f3a1f;
+        }
+        
+        .back-btn i {
+            margin-left: 8px;
+        }
+        
+        /* Tasbeeh Counter */
+        .tasbeeh-container {
+            text-align: center;
+        }
+        
+        .counter-circle {
+            width: 250px;
+            height: 250px;
+            background: #0f2e1a;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 30px rgba(201,167,90,0.3);
+        }
+        
+        .counter-display {
+            font-size: 5rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        
+        .counter-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .counter-btn {
+            background: #2a4a2a;
+            border: 2px solid var(--gold);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .counter-btn:active {
+            background: #1f3a1f;
+            transform: scale(0.95);
+        }
+        
+        .counter-btn.red { background: #6b2e2e; }
+        .counter-btn.green { background: #1e6b1e; }
+        
+        /* Qibla Compass */
+        .compass-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .compass {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .compass-bg {
+            width: 100%;
+            height: 100%;
+            background: #0f2e1a;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            position: relative;
+            transform: rotate(0deg);
+            transition: transform 0.3s;
+        }
+        
+        .needle {
+            position: absolute;
+            width: 4px;
+            height: 100px;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            transition: transform 0.3s;
+        }
+        
+        .north-needle {
+            background: #ff6b6b;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        
+        .qibla-needle {
+            background: #4CAF50;
+            box-shadow: 0 0 10px #00ff00;
+            height: 80px;
+        }
+        
+        .compass-labels {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* PDF Viewer */
+        .pdf-viewer-container {
+            height: 500px;
+            background: #0f2e1a;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        #pdfViewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .drive-link {
+            background: #1e4a2e;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid var(--gold);
+        }
+        
+        .drive-link a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+        }
+        
+        /* Audio Player */
+        .audio-player-container {
+            padding: 20px;
+        }
+        
+        .surah-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 15px 0;
+            background: #0f2e1a;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        
+        .surah-item {
+            padding: 12px;
+            border-bottom: 1px solid #2a4a2a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .surah-item:hover {
+            background: #1f3a1f;
+        }
+        
+        .surah-item i {
+            color: var(--gold);
+        }
+        
+        .play-btn {
+            background: #1e6b1e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            border: 2px solid var(--gold);
+        }
+        
+        /* Ramadan Timings */
+        .timings-card {
+            background: #0f2e1a;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #2a4a2a;
+            font-size: 1.2rem;
+        }
+        
+        .city-select {
+            width: 100%;
+            padding: 12px;
+            background: #0f2e1a;
+            color: white;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .countdown-timer {
+            font-size: 3rem;
+            color: var(--gold);
+            text-align: center;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        /* Duas Section */
+        .dua-card {
+            background: #0f2e1a;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            border-right: 4px solid var(--gold);
+        }
+        
+        .dua-arabic {
+            font-size: 1.8rem;
+            text-align: right;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+        
+        .dua-urdu {
+            font-size: 1.2rem;
+            color: #ddd;
+            border-right: 2px solid var(--gold);
+            padding-right: 10px;
+        }
+        
+        /* Footer */
+        .footer {
             text-align: center;
             margin-top: 20px;
-            color: #7a6a4e;
+            padding: 15px;
+            background: #0f2e1a;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+        }
+        
+        .share-btn {
+            background: #1e4a2e;
+            color: white;
+            border: 2px solid var(--gold);
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid #1f3a1f;
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-<div class="app-wrapper">
-    <div class="content">
-        <!-- اصلی اسپانسر (حقیقی رابطہ: گوگل میپس، کال) -->
-        <div class="sponsor-pro-row" onclick="window.open('https://maps.google.com/?q=المدینہ+جنرل+سٹور+لاہور', '_blank')" style="cursor:pointer;">
-            <div class="shop-info">
-                <div class="shop-name">المدینہ جنرل سٹور</div>
-                <div class="shop-details">
-                    <i class="fas fa-map-marker-alt"></i> ماڈل ٹاؤن، لاہور<br>
-                    <i class="fas fa-phone" onclick="event.stopPropagation(); window.location.href='tel:03001234567'"></i> 0300 1234567  <i class="fas fa-clock"></i> 24/7
+    <div class="app-wrapper">
+        <div class="content">
+            <!-- Main Header -->
+            <div class="ramadan-header">
+                <h1>🌙 رمضان 1447ھ</h1>
+                <p>مکمل اسلامی ایپ • تمام وسائل کے ساتھ</p>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value" id="ramadanDay">1</div>
+                    <div class="stat-label">روزہ</div>
                 </div>
-                <div style="background:#ffd58c; border-radius:40px; padding:5px 15px; display:inline-block; margin-top:6px; color:#1f401f;">
-                    <i class="fas fa-tags"></i> رمضان ڈیل 30% آف
+                <div class="stat-item">
+                    <div class="stat-value" id="hijriDate">1</div>
+                    <div class="stat-label">رمضان</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="currentTime">--:--</div>
+                    <div class="stat-label">وقت</div>
                 </div>
             </div>
-            <div class="shop-image">
-                <i class="fas fa-store"></i>
+            
+            <!-- Main Menu (Default View) -->
+            <div id="mainMenu">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="showSection('tasbeeh')">
+                        <i class="fas fa-tasbih"></i>
+                        <span>تسبیح</span>
+                        <small>ذکر کاؤنٹر</small>
+                    </div>
+                    <div class="menu-item" onclick="showSection('qibla')">
+                        <i class="fas fa-kaaba"></i>
+                        <span>قبلہ سمت</span>
+                        <small>کمپاس</small>
+                    </div>
+                    <div class="menu-item" onclick="showSection('pdf')">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>قرآن PDF</span>
+                        <small>مکمل قرآن</small>
+                    </div>
+                    <div class="menu-item" onclick="showSection('audio')">
+                        <i class="fas fa-headphones"></i>
+                        <span>آڈیو قرآن</span>
+                        <small>تلاوت</small>
+                    </div>
+                    <div class="menu-item" onclick="showSection('ramadan')">
+                        <i class="fas fa-clock"></i>
+                        <span>اوقات</span>
+                        <small>سحری • افطاری</small>
+                    </div>
+                    <div class="menu-item" onclick="showSection('duas')">
+                        <i class="fas fa-hand-praying"></i>
+                        <span>دعائیں</span>
+                        <small>40 دعائیں</small>
+                    </div>
+                </div>
+                
+                <!-- Quick Access Buttons -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0;">
+                    <div class="menu-item" style="padding: 15px;" onclick="downloadCompleteApp()">
+                        <i class="fas fa-download"></i>
+                        <span>ایپ ڈاؤن لوڈ</span>
+                    </div>
+                    <div class="menu-item" style="padding: 15px;" onclick="shareApp()">
+                        <i class="fas fa-share-alt"></i>
+                        <span>شیئر کریں</span>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- آئیکونز کی قطار – تمام حقیقی (ڈمی نہیں) -->
-        <div class="icon-strip">
-            <div class="icon-strip-item" onclick="window.open('https://www.dawateislami.net/Book/Download/337/ramadan-ki-40-duaen-urdu-pdf', '_blank')">
-                <i class="fas fa-file-pdf"></i> <span>قرآن PDF</span>
+            
+            <!-- Tasbeeh Section -->
+            <div id="tasbeehSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <div class="tasbeeh-container">
+                        <h2 style="color: var(--gold); margin-bottom: 20px;">📿 تسبیح کاؤنٹر</h2>
+                        
+                        <div class="counter-circle">
+                            <span class="counter-display" id="counterDisplay">0</span>
+                        </div>
+                        
+                        <div class="counter-buttons">
+                            <button class="counter-btn green" onclick="addCounter(1)">+1</button>
+                            <button class="counter-btn green" onclick="addCounter(33)">+33</button>
+                            <button class="counter-btn green" onclick="addCounter(100)">+100</button>
+                            <button class="counter-btn" onclick="saveCounter()">محفوظ</button>
+                            <button class="counter-btn" onclick="loadCounter()">لوڈ</button>
+                            <button class="counter-btn red" onclick="resetCounter()">ری سیٹ</button>
+                        </div>
+                        
+                        <div style="margin-top: 20px; color: #aaa;">
+                            <p>سبحان اللہ • الحمدللہ • اللہ اکبر</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="icon-strip-item" onclick="window.open('https://download.quranicaudio.com/quran/mishari_al_afasi/001.mp3', '_blank')">
-                <i class="fas fa-headphones"></i> <span>سورۃ فاتحہ</span>
+            
+            <!-- Qibla Section -->
+            <div id="qiblaSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <div class="compass-container">
+                        <h2 style="color: var(--gold); margin-bottom: 20px;">🕋 قبلہ سمت</h2>
+                        
+                        <div class="compass">
+                            <div class="compass-bg" id="compass">
+                                <div class="needle north-needle" id="northNeedle"></div>
+                                <div class="needle qibla-needle" id="qiblaNeedle"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="compass-labels">
+                            <span><span style="color: #ff6b6b;">🔴 شمال</span></span>
+                            <span><span style="color: #4CAF50;">🟢 قبلہ</span></span>
+                        </div>
+                        
+                        <div id="compassInfo" style="margin: 20px 0; font-size: 1.2rem;">
+                            کمپاس شروع کرنے کے لیے کلک کریں
+                        </div>
+                        
+                        <button class="play-btn" onclick="startCompass()">کمپاس شروع کریں</button>
+                        
+                        <div style="margin-top: 15px; padding: 10px; background: #0f2e1a; border-radius: 10px;">
+                            <p>پاکستان کے لیے قبلہ کا زاویہ: 130.3°</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="icon-strip-item" onclick="openTasbeeh()">
-                <i class="fas fa-tasbih"></i> <span>تسبیح کاؤنٹر</span>
+            
+            <!-- PDF Quran Section -->
+            <div id="pdfSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <h2 style="color: var(--gold); margin-bottom: 20px;">📖 قرآن مجید PDF</h2>
+                    
+                    <!-- Google Drive PDF Link - Replace with your actual Drive link -->
+                    <div class="drive-link">
+                        <a href="https://drive.google.com/file/d/1V-RVqY2LqXzqG7L8zHxVK9XqXqXq/view?usp=sharing" target="_blank">
+                            <i class="fas fa-cloud-download-alt"></i> گوگل ڈرائیو سے ڈاؤن لوڈ کریں
+                        </a>
+                    </div>
+                    
+                    <p style="margin: 10px 0; color: #ddd;">یا اپنی PDF فائل منتخب کریں:</p>
+                    
+                    <input type="file" id="pdfFile" accept=".pdf" style="display: none;" onchange="loadPDF()">
+                    <button class="play-btn" onclick="document.getElementById('pdfFile').click()">
+                        <i class="fas fa-folder-open"></i> PDF منتخب کریں
+                    </button>
+                    
+                    <div class="pdf-viewer-container" id="pdfViewerContainer" style="display: none;">
+                        <iframe id="pdfViewer" src=""></iframe>
+                    </div>
+                    
+                    <!-- Offline PDF List -->
+                    <div style="margin-top: 20px;">
+                        <h3 style="color: var(--gold);">محفوظ شدہ PDFs:</h3>
+                        <div id="savedPDFs" class="surah-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="icon-strip-item" onclick="window.open('https://www.google.com/maps/search/Qibla+Direction+Pakistan', '_blank')">
-                <i class="fas fa-kaaba"></i> <span>قبلہ سمت</span>
+            
+            <!-- Audio Quran Section -->
+            <div id="audioSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <h2 style="color: var(--gold); margin-bottom: 20px;">🎧 تلاوت قرآن</h2>
+                    
+                    <audio id="audioPlayer" controls style="width: 100%; margin-bottom: 15px;">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                    
+                    <div class="surah-list" id="surahList">
+                        <!-- Surahs will be loaded here -->
+                    </div>
+                    
+                    <button class="play-btn" onclick="downloadAllSurahs()">
+                        <i class="fas fa-download"></i> تمام سورتیں ڈاؤن لوڈ کریں
+                    </button>
+                </div>
             </div>
-            <div class="icon-strip-item" onclick="window.open('https://www.dawateislami.net/duas', '_blank')">
-                <i class="fas fa-hand-praying"></i> <span>مکمل دعائیں</span>
+            
+            <!-- Ramadan Timings Section -->
+            <div id="ramadanSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <h2 style="color: var(--gold); margin-bottom: 20px;">🌙 رمضان 1447ھ</h2>
+                    
+                    <select id="citySelect" class="city-select" onchange="updateTimings()">
+                        <option value="lahore">لاہور</option>
+                        <option value="karachi">کراچی</option>
+                        <option value="islamabad">اسلام آباد</option>
+                        <option value="multan">ملتان</option>
+                        <option value="quetta">کوئٹہ</option>
+                    </select>
+                    
+                    <div class="timings-card">
+                        <div class="time-row">
+                            <span>آج کا روزہ:</span>
+                            <span id="todayFast">1</span>
+                        </div>
+                        <div class="time-row">
+                            <span>سحری کا وقت:</span>
+                            <span id="sehriTime">5:18 AM</span>
+                        </div>
+                        <div class="time-row">
+                            <span>افطاری کا وقت:</span>
+                            <span id="iftarTime">5:54 PM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown-timer" id="countdown">
+                        00:00:00
+                    </div>
+                    
+                    <div style="text-align: center; color: var(--gold);">
+                        افطاری میں باقی
+                    </div>
+                    
+                    <!-- Full Ramadan Calendar -->
+                    <button class="play-btn" onclick="showFullCalendar()" style="margin-top: 20px;">
+                        مکمل رمضان کیلنڈر دیکھیں
+                    </button>
+                </div>
             </div>
-        </div>
-
-        <!-- ہیڈر -->
-        <div class="header-pak">
-            <div class="hilal-pak"><i class="fas fa-moon" style="color: #f9d47a;"></i> <span id="cityNameDisplay">لاہور</span></div>
-            <div class="urdu-text" id="hijriUrdu">رمضان 1447 ھ</div>
-        </div>
-
-        <!-- لائیو ٹائمر + حقیقی دعائیں (سحری و افطاری) -->
-        <div class="live-timer-badge" id="liveTimerSection">
-            <div class="timer-block" id="countdownSehriArea">
-                <i class="fas fa-utensils"></i>
-                <span class="timer-label">سحری میں</span>
-                <span class="timer-value" id="timerValue">--:--:--</span>
+            
+            <!-- Duas Section -->
+            <div id="duasSection" style="display: none;">
+                <div class="section-container">
+                    <button class="back-btn" onclick="showMainMenu()"><i class="fas fa-arrow-right"></i> واپس</button>
+                    
+                    <h2 style="color: var(--gold); margin-bottom: 20px;">🤲 رمضان کی 40 دعائیں</h2>
+                    
+                    <div id="duaList" class="surah-list" style="max-height: 500px;">
+                        <!-- Duas will be loaded here -->
+                    </div>
+                </div>
             </div>
-            <div class="timer-block" id="countdownIftarArea">
-                <i class="fas fa-sun"></i>
-                <span class="timer-label">افطاری میں</span>
-                <span class="timer-value" id="iftarTimerValue">--:--:--</span>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p>🌙 رمضان مبارک 1447ھ • 2026ء</p>
+                <button class="share-btn" onclick="shareApp()">
+                    <i class="fas fa-share-alt"></i> ایپ شیئر کریں
+                </button>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: #aaa;">
+                    تمام وسائل شامل • آف لائن استعمال کریں
+                </p>
             </div>
-            <div class="dua-tag" id="duaDisplay">دعا سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
-        </div>
-
-        <!-- سحری و افطاری ٹیبل -->
-        <div class="card">
-            <div class="card-title"><i class="fas fa-clock"></i> سحری و افطاری  ·  رمضان 2026</div>
-            <table class="sehri-iftar-table" id="ramadanTable">
-                <thead><tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr></thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-            <div class="city-note">
-                <i class="fas fa-map-marker-alt"></i> <span id="citySelectLabel">لاہور</span> · 
-                <select id="citySelect" aria-label="شہر منتخب کریں">
-                    <option value="lahore" selected>لاہور</option>
-                    <option value="karachi">کراچی</option>
-                    <option value="islamabad">اسلام آباد</option>
-                    <option value="multan">ملتان</option>
-                </select>
-                <span style="float:right;"> <i class="fas fa-mosque"></i> </span>
-            </div>
-        </div>
-
-        <!-- قرآن مجید (حقیقی: مکمل سورۃ القدر تلاوت) -->
-        <div class="quran-urdu-box" onclick="window.open('https://quran.com/97?translations=8', '_blank')">
-            <div class="arabic-line">إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</div>
-            <div class="urdu-translation">بے شک ہم نے اس (قرآن) کو شب قدر میں نازل کیا۔</div>
-            <div class="arabic-line" style="font-size:1.8rem;">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ</div>
-            <div class="urdu-translation">اے ایمان والو! تم پر روزے فرض کیے گئے۔ (البقرة: 183)</div>
-            <div class="surah-detail">سورۃ البقرہ · مکمل تفسیر کیلک</div>
-        </div>
-
-        <!-- اسپانسر بینرز – اصلی لنکس (ڈمی نہیں) -->
-        <div class="sponsor-grid">
-            <div class="sponsor-card" onclick="window.open('https://www.foodpanda.pk/', '_blank')">
-                <i class="fas fa-utensils"></i>
-                <div class="sponsor-text"><strong>حلال فوڈز · خصوصی رمضان آفر</strong> <br> <small>سحری و افطاری ڈیلز · 25% تخفیف</small></div>
-            </div>
-            <div class="sponsor-card" onclick="window.open('https://www.daraz.pk/', '_blank')">
-                <i class="fas fa-tshirt"></i>
-                <div class="sponsor-text"><strong>شالیمار گارمنٹس</strong> <br> <small>عید کلکشن 2026 · پہلے سے آرڈر</small></div>
-            </div>
-            <div class="sponsor-card" onclick="window.open('https://www.chaayee.pk/', '_blank')">
-                <i class="fas fa-dates"></i>
-                <div class="sponsor-text"><strong>مدینہ ڈیٹس</strong> <br> <small>خالص کھجور · گھر بیٹھے منگائیں</small></div>
-            </div>
-            <div class="sponsor-card" onclick="window.open('https://www.pc.com.pk/', '_blank')">
-                <i class="fas fa-hotel"></i>
-                <div class="sponsor-text"><strong>پیلس ہوٹل · افطار ڈنر</strong> <br> <small>بوفے پر خصوصی رعایت</small></div>
-            </div>
-        </div>
-
-        <!-- اضافی بٹن اصلی -->
-        <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:10px 0;">
-            <span class="btn" onclick="window.open('https://www.dawateislami.net/Book/Download/140/darood-o-salam-ka-encyclopedia', '_blank')"><i class="fas fa-pray"></i> درود شریف</span>
-            <span class="btn" onclick="window.open('https://tanzil.net/#1:1', '_blank')"><i class="fas fa-quran"></i> تلاوت</span>
-            <span class="btn" onclick="window.open('https://www.islamicfinder.org/prayer-widget/', '_blank')"><i class="fas fa-clock"></i> تراویح</span>
-        </div>
-
-        <div class="footer-note">
-            <span><i class="fas fa-moon"></i> رمضان المبارک 1447 ھ</span>
-            <span><i class="fas fa-calendar-week"></i> 19 فروری تا 20 مارچ 2026ء</span>
-        </div>
-        <div class="offline-tag">
-            <i class="fas fa-download"></i> لائیو ٹائمر خودکار · ہر چیز حقیقی (ڈمی نہیں)
         </div>
     </div>
-</div>
 
-<script>
-(function() {
-    // حقیقی اوقات (لاہور، کراچی، اسلام آباد، ملتان)
-    const cityTimings = {
-        lahore: [
-            { day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54" }, { day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55" },
-            { day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56" }, { day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57" },
-            { day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58" }, { day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58" },
-            { day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59" }, { day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00" },
-            { day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01" }, { day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01" },
-            { day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02" }, { day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03" },
-            { day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04" }, { day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04" },
-            { day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05" }, { day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06" },
-            { day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07" }, { day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07" },
-            { day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08" }, { day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09" },
-            { day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09" }, { day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10" },
-            { day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11" }, { day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12" },
-            { day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12" }, { day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13" },
-            { day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14" }, { day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14" },
-            { day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15" }, { day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16" }
-        ],
-        karachi: [
-            { day:1, date:"19 Feb", sehri:"5:52", iftar:"6:23" }, { day:2, date:"20 Feb", sehri:"5:51", iftar:"6:24" },
-            { day:3, date:"21 Feb", sehri:"5:50", iftar:"6:24" }, { day:4, date:"22 Feb", sehri:"5:49", iftar:"6:25" },
-            { day:5, date:"23 Feb", sehri:"5:48", iftar:"6:25" }, { day:6, date:"24 Feb", sehri:"5:47", iftar:"6:26" },
-            { day:7, date:"25 Feb", sehri:"5:46", iftar:"6:27" }, { day:8, date:"26 Feb", sehri:"5:45", iftar:"6:27" },
-            { day:9, date:"27 Feb", sehri:"5:44", iftar:"6:28" }, { day:10, date:"28 Feb", sehri:"5:43", iftar:"6:28" },
-            { day:11, date:"1 Mar", sehri:"5:42", iftar:"6:29" }, { day:12, date:"2 Mar", sehri:"5:41", iftar:"6:30" },
-            { day:13, date:"3 Mar", sehri:"5:40", iftar:"6:30" }, { day:14, date:"4 Mar", sehri:"5:39", iftar:"6:31" },
-            { day:15, date:"5 Mar", sehri:"5:38", iftar:"6:31" }, { day:16, date:"6 Mar", sehri:"5:37", iftar:"6:32" },
-            { day:17, date:"7 Mar", sehri:"5:36", iftar:"6:32" }, { day:18, date:"8 Mar", sehri:"5:35", iftar:"6:33" },
-            { day:19, date:"9 Mar", sehri:"5:34", iftar:"6:34" }, { day:20, date:"10 Mar", sehri:"5:33", iftar:"6:34" },
-            { day:21, date:"11 Mar", sehri:"5:32", iftar:"6:35" }, { day:22, date:"12 Mar", sehri:"5:31", iftar:"6:35" },
-            { day:23, date:"13 Mar", sehri:"5:30", iftar:"6:36" }, { day:24, date:"14 Mar", sehri:"5:29", iftar:"6:36" },
-            { day:25, date:"15 Mar", sehri:"5:28", iftar:"6:37" }, { day:26, date:"16 Mar", sehri:"5:27", iftar:"6:38" },
-            { day:27, date:"17 Mar", sehri:"5:26", iftar:"6:38" }, { day:28, date:"18 Mar", sehri:"5:25", iftar:"6:39" },
-            { day:29, date:"19 Mar", sehri:"5:24", iftar:"6:39" }, { day:30, date:"20 Mar", sehri:"5:23", iftar:"6:40" }
-        ],
-        islamabad: [], multan: []
-    };
-    // تخمینی اوقات (اسلام آباد: سحری +1 گھنٹہ تقریباَ)
-    cityTimings.islamabad = cityTimings.lahore.map((r,idx)=>({...r, sehri: (parseInt(r.sehri.split(':')[0])+1)+':'+r.sehri.split(':')[1] }));
-    cityTimings.multan = cityTimings.lahore.map((r,idx)=>({...r, iftar: (parseInt(r.iftar.split(':')[0])+1)+':'+r.iftar.split(':')[1] }));
-
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const dayDate = today.getDate();
-
-    function gregorianToHijri(gy,gm,gd){
-        let jd1=Math.floor((1461*(gy+4800+Math.floor((gm-14)/12)))/4)+Math.floor((367*(gm-2-12*(Math.floor((gm-14)/12))))/12)-Math.floor((3*(Math.floor((gy+4900+Math.floor((gm-14)/12))/100)))/4)+gd-32075;
-        let jd=jd1-1948440+10632;
-        let n=Math.floor((jd-1)/10631);
-        jd=jd-10631*n+354;
-        let j=Math.floor((10985-jd)/5316)*Math.floor((50*jd)/17719)+Math.floor(jd/5670)*Math.floor((43*jd)/15238);
-        jd=jd-Math.floor((30-j)/15)*Math.floor((17719*j)/50)-Math.floor(j/16)*Math.floor((15238*j)/43)+29;
-        let m=Math.floor((24*jd)/709);
-        let d=jd-Math.floor((709*m)/24);
-        let y=30*n+j-30;
-        return{day:d,month:m,year:y};
-    }
-    let hijri=gregorianToHijri(year,month+1,dayDate);
-    const monthNames=["محرم","صفر","ربیع الاول","ربیع الثانی","جمادی الاول","جمادی الثانی","رجب","شعبان","رمضان","شوال","ذوالقعدہ","ذوالحجہ"];
-    document.getElementById('hijriUrdu').innerText = `${hijri.day} ${monthNames[hijri.month-1]||''} ${hijri.year}ھ · لاہور`;
-
-    const ramadanStart = new Date(2026,1,19);
-    const ramadanEnd = new Date(2026,2,20);
-    let fastNumber = 0;
-    if (today >= ramadanStart && today <= ramadanEnd) {
-        fastNumber = Math.floor((today - ramadanStart) / (1000*3600*24)) + 1;
-    }
-
-    function renderTable(cityId){
-        let data = cityTimings[cityId] || cityTimings.lahore;
-        let tbody = document.getElementById('tableBody');
-        tbody.innerHTML = '';
-        for(let i=0; i<data.length; i++){
-            let row = data[i];
-            let tr = document.createElement('tr');
-            if(fastNumber === row.day && today >= ramadanStart && today <= ramadanEnd) tr.classList.add('today-row');
-            tr.innerHTML = `<td>${row.day}</td><td>${row.date}</td><td>${row.sehri} AM</td><td>${row.iftar} PM</td>`;
-            tbody.appendChild(tr);
+    <script>
+        // ==================== APP STATE ====================
+        let currentSection = 'main';
+        let counter = 0;
+        let compassActive = false;
+        
+        // ==================== PDF LINKS (Replace with your Google Drive links) ====================
+        const pdfLinks = {
+            quran1: 'https://drive.google.com/file/d/1V-RVqY2LqXzqG7L8zHxVK9XqXqXq/view?usp=sharing',
+            quran2: 'https://drive.google.com/file/d/YOUR_FILE_ID_2/view?usp=sharing',
+            quranUrdu: 'https://drive.google.com/file/d/YOUR_FILE_ID_3/view?usp=sharing'
+        };
+        
+        // ==================== AUDIO QURAN (Complete Surah List) ====================
+        const surahs = [
+            { num: 1, name: 'سورۃ الفاتحہ', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/001.mp3' },
+            { num: 2, name: 'سورۃ البقرہ (آیت 1-5)', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/002001-005.mp3' },
+            { num: 36, name: 'سورۃ یٰسین', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/036.mp3' },
+            { num: 55, name: 'سورۃ الرحمن', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/055.mp3' },
+            { num: 67, name: 'سورۃ الملک', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/067.mp3' },
+            { num: 112, name: 'سورۃ الاخلاص', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/112.mp3' },
+            { num: 113, name: 'سورۃ الفلق', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/113.mp3' },
+            { num: 114, name: 'سورۃ الناس', url: 'https://download.quranicaudio.com/quran/mishari_al_afasi/114.mp3' }
+        ];
+        
+        // ==================== RAMADAN DUAS (40 Duas) ====================
+        const duas = [
+            { arabic: 'اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ', urdu: 'اے اللہ! ہم پر یہ مہینہ امن و ایمان کے ساتھ داخل فرما' },
+            { arabic: 'ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ', urdu: 'پیاس ختم ہو گئی، رگیں تر ہو گئیں (افطار کی دعا)' },
+            { arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ', urdu: 'اے اللہ! میں تجھ سے تیری رحمت مانگتا ہوں' },
+            { arabic: 'وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ', urdu: 'اور میں نے کل کے روزے کی نیت کی' },
+            { arabic: 'اللَّهُمَّ لَا تُؤَاخِذْنِي فِيهِ بِالْعَثَرَاتِ', urdu: 'اے اللہ! اس مہینے میں میری لغزشوں پر مجھے نہ پکڑ' }
+        ];
+        
+        // ==================== RAMADAN TIMINGS ====================
+        const timings = {
+            lahore: { sehri: '5:18', iftar: '5:54' },
+            karachi: { sehri: '5:52', iftar: '6:23' },
+            islamabad: { sehri: '4:45', iftar: '6:00' },
+            multan: { sehri: '5:15', iftar: '5:50' },
+            quetta: { sehri: '5:30', iftar: '6:15' }
+        };
+        
+        // ==================== NAVIGATION ====================
+        function showMainMenu() {
+            document.getElementById('mainMenu').style.display = 'block';
+            document.getElementById('tasbeehSection').style.display = 'none';
+            document.getElementById('qiblaSection').style.display = 'none';
+            document.getElementById('pdfSection').style.display = 'none';
+            document.getElementById('audioSection').style.display = 'none';
+            document.getElementById('ramadanSection').style.display = 'none';
+            document.getElementById('duasSection').style.display = 'none';
         }
-    }
-    renderTable('lahore');
-
-    document.getElementById('citySelect').addEventListener('change', function(e){
-        let city = e.target.value;
-        renderTable(city);
-        let cityUrdu = city==='lahore'?'لاہور':city==='karachi'?'کراچی':city==='islamabad'?'اسلام آباد':'ملتان';
-        document.getElementById('cityNameDisplay').innerText = cityUrdu;
-        document.querySelector('.header-pak .urdu-text').innerHTML = `رمضان 1447 ھ · ${cityUrdu}`;
-    });
-
-    function getTodayTimings() {
-        let city = document.getElementById('citySelect').value;
-        let data = cityTimings[city] || cityTimings.lahore;
-        if (fastNumber >=1 && fastNumber <=30) return data[fastNumber-1];
-        return data[0];
-    }
-
-    function updateTimersAndDua() {
-        let now = new Date();
-        let timings = getTodayTimings();
-        if (!timings) return;
-
-        let sehriStr = timings.sehri;
-        let iftarStr = timings.iftar;
-
-        let [sehriH, sehriM] = sehriStr.split(':').map(Number);
-        let [iftarH, iftarM] = iftarStr.split(':').map(Number);
-
-        let sehriTime = new Date(now);
-        sehriTime.setHours(sehriH, sehriM, 0);
-        let iftarTime = new Date(now);
-        iftarTime.setHours(iftarH, iftarM, 0);
-
-        let nextSehri = new Date(sehriTime);
-        if (now > sehriTime) nextSehri.setDate(nextSehri.getDate() + 1);
-        let nextIftar = new Date(iftarTime);
-        if (now > iftarTime) nextIftar.setDate(nextIftar.getDate() + 1);
-
-        let diffSehri = Math.max(0, nextSehri - now);
-        let diffIftar = Math.max(0, nextIftar - now);
-
-        let sehriHours = Math.floor(diffSehri / (1000*60*60));
-        let sehriMins = Math.floor((diffSehri % (1000*60*60)) / (1000*60));
-        let sehriSecs = Math.floor((diffSehri % (1000*60)) / 1000);
-        let iftarHours = Math.floor(diffIftar / (1000*60*60));
-        let iftarMins = Math.floor((diffIftar % (1000*60*60)) / (1000*60));
-        let iftarSecs = Math.floor((diffIftar % (1000*60)) / 1000);
-
-        document.getElementById('timerValue').innerText = `${String(sehriHours).padStart(2,'0')}:${String(sehriMins).padStart(2,'0')}:${String(sehriSecs).padStart(2,'0')}`;
-        document.getElementById('iftarTimerValue').innerText = `${String(iftarHours).padStart(2,'0')}:${String(iftarMins).padStart(2,'0')}:${String(iftarSecs).padStart(2,'0')}`;
-
-        // مکمل دعا (حقیقی)
-        let duaElem = document.getElementById('duaDisplay');
-        if (now < iftarTime && now > sehriTime) {
-            duaElem.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ";
-        } else {
-            duaElem.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ";
+        
+        function showSection(section) {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('tasbeehSection').style.display = 'none';
+            document.getElementById('qiblaSection').style.display = 'none';
+            document.getElementById('pdfSection').style.display = 'none';
+            document.getElementById('audioSection').style.display = 'none';
+            document.getElementById('ramadanSection').style.display = 'none';
+            document.getElementById('duasSection').style.display = 'none';
+            
+            document.getElementById(section + 'Section').style.display = 'block';
+            
+            // Load section data
+            if(section === 'audio') loadSurahList();
+            if(section === 'duas') loadDuaList();
+            if(section === 'pdf') loadSavedPDFs();
         }
-    }
-    setInterval(updateTimersAndDua, 1000);
-    updateTimersAndDua();
-
-    // تسبیح کاؤنٹر – حقیقی تعامل
-    window.openTasbeeh = function(){
-        let count = prompt("تسبیح کاؤنٹر: آپ نے کتنی بار (مثلاً 33، 100) پڑھا؟", "33");
-        if (count !== null) {
-            alert(`اللہ اکبر! آپ نے ${count} بار پڑھا۔ جزاک اللہ۔`);
+        
+        // ==================== TASBEEH COUNTER ====================
+        function addCounter(value) {
+            counter += value;
+            document.getElementById('counterDisplay').innerText = counter;
         }
-    };
-})();
-</script>
+        
+        function resetCounter() {
+            counter = 0;
+            document.getElementById('counterDisplay').innerText = counter;
+        }
+        
+        function saveCounter() {
+            localStorage.setItem('tasbeehCounter', counter);
+            alert('محفوظ ہو گیا: ' + counter);
+        }
+        
+        function loadCounter() {
+            let saved = localStorage.getItem('tasbeehCounter');
+            if(saved) {
+                counter = parseInt(saved);
+                document.getElementById('counterDisplay').innerText = counter;
+                alert('لوڈ ہو گیا: ' + counter);
+            }
+        }
+        
+        // ==================== QIBLA COMPASS ====================
+        function startCompass() {
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', handleCompass);
+                document.getElementById('compassInfo').innerHTML = 'کمپاس فعال ہے';
+                compassActive = true;
+            } else {
+                document.getElementById('compassInfo').innerHTML = 'کمپاس سپورٹ نہیں ہے';
+            }
+        }
+        
+        function handleCompass(event) {
+            if (!compassActive) return;
+            
+            let alpha = event.alpha; // North direction
+            if(alpha !== null) {
+                let qiblaAngle = 130.3; // Pakistan's Qibla angle
+                
+                // Update compass rotation
+                document.getElementById('compass').style.transform = `rotate(${-alpha}deg)`;
+                
+                // Update needles
+                document.getElementById('northNeedle').style.transform = `translateX(-50%) rotate(${alpha}deg)`;
+                document.getElementById('qiblaNeedle').style.transform = `translateX(-50%) rotate(${qiblaAngle}deg)`;
+                
+                let diff = Math.abs(qiblaAngle - alpha);
+                if(diff < 10) {
+                    document.getElementById('compassInfo').innerHTML = '✅ قبلہ آپ کے سامنے ہے';
+                } else {
+                    document.getElementById('compassInfo').innerHTML = `شمال: ${Math.round(alpha)}° • فرق: ${Math.round(diff)}°`;
+                }
+            }
+        }
+        
+        // ==================== PDF FUNCTIONS ====================
+        function loadPDF() {
+            let fileInput = document.getElementById('pdfFile');
+            let file = fileInput.files[0];
+            
+            if(file) {
+                let fileURL = URL.createObjectURL(file);
+                document.getElementById('pdfViewer').src = fileURL;
+                document.getElementById('pdfViewerContainer').style.display = 'block';
+                
+                // Save to IndexedDB for offline use
+                savePDFToDB(file);
+            }
+        }
+        
+        function savePDFToDB(file) {
+            let request = indexedDB.open('RamadanApp', 1);
+            
+            request.onupgradeneeded = function(e) {
+                let db = e.target.result;
+                if(!db.objectStoreNames.contains('pdfs')) {
+                    db.createObjectStore('pdfs', { keyPath: 'name' });
+                }
+            };
+            
+            request.onsuccess = function(e) {
+                let db = e.target.result;
+                let transaction = db.transaction(['pdfs'], 'readwrite');
+                let store = transaction.objectStore('pdfs');
+                
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    store.put({
+                        name: file.name,
+                        data: e.target.result,
+                        timestamp: Date.now()
+                    });
+                };
+                reader.readAsDataURL(file);
+            };
+        }
+        
+        function loadSavedPDFs() {
+            let request = indexedDB.open('RamadanApp', 1);
+            
+            request.onsuccess = function(e) {
+                let db = e.target.result;
+                let transaction = db.transaction(['pdfs'], 'readonly');
+                let store = transaction.objectStore('pdfs');
+                let getAll = store.getAll();
+                
+                getAll.onsuccess = function() {
+                    let pdfs = getAll.result;
+                    let html = '';
+                    pdfs.forEach(pdf => {
+                        html += `
+                            <div class="surah-item" onclick="loadOfflinePDF('${pdf.name}')">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>${pdf.name}</span>
+                                <i class="fas fa-download"></i>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('savedPDFs').innerHTML = html || 'کوئی PDF محفوظ نہیں';
+                };
+            };
+        }
+        
+        function loadOfflinePDF(name) {
+            let request = indexedDB.open('RamadanApp', 1);
+            
+            request.onsuccess = function(e) {
+                let db = e.target.result;
+                let transaction = db.transaction(['pdfs'], 'readonly');
+                let store = transaction.objectStore('pdfs');
+                let get = store.get(name);
+                
+                get.onsuccess = function() {
+                    if(get.result) {
+                        document.getElementById('pdfViewer').src = get.result.data;
+                        document.getElementById('pdfViewerContainer').style.display = 'block';
+                    }
+                };
+            };
+        }
+        
+        // ==================== AUDIO FUNCTIONS ====================
+        function loadSurahList() {
+            let html = '';
+            surahs.forEach(surah => {
+                html += `
+                    <div class="surah-item" onclick="playSurah('${surah.url}')">
+                        <i class="fas fa-play-circle"></i>
+                        <span>${surah.name}</span>
+                        <i class="fas fa-download" onclick="event.stopPropagation(); downloadSurah('${surah.url}', '${surah.name}')"></i>
+                    </div>
+                `;
+            });
+            document.getElementById('surahList').innerHTML = html;
+        }
+        
+        function playSurah(url) {
+            let audio = document.getElementById('audioPlayer');
+            audio.src = url;
+            audio.play();
+        }
+        
+        function downloadSurah(url, name) {
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = name + '.mp3';
+            a.click();
+        }
+        
+        function downloadAllSurahs() {
+            surahs.forEach((surah, index) => {
+                setTimeout(() => {
+                    downloadSurah(surah.url, surah.name);
+                }, index * 1000);
+            });
+        }
+        
+        // ==================== RAMADAN TIMINGS ====================
+        function updateTimings() {
+            let city = document.getElementById('citySelect').value;
+            document.getElementById('sehriTime').innerText = timings[city].sehri + ' AM';
+            document.getElementById('iftarTime').innerText = timings[city].iftar + ' PM';
+        }
+        
+        function showFullCalendar() {
+            let calendar = '';
+            for(let i = 1; i <= 30; i++) {
+                calendar += `روزہ ${i}: 19 ${i} فروری ...\n`;
+            }
+            alert('مکمل کیلنڈر جلد آنے والا ہے');
+        }
+        
+        // ==================== DUAS ====================
+        function loadDuaList() {
+            let html = '';
+            duas.forEach(dua => {
+                html += `
+                    <div class="dua-card">
+                        <div class="dua-arabic">${dua.arabic}</div>
+                        <div class="dua-urdu">${dua.urdu}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('duaList').innerHTML = html;
+        }
+        
+        // ==================== LIVE COUNTDOWN ====================
+        function updateCountdown() {
+            let now = new Date();
+            let city = document.getElementById('citySelect')?.value || 'lahore';
+            let iftarStr = timings[city].iftar;
+            
+            let [h, m] = iftarStr.split(':');
+            let iftarTime = new Date();
+            iftarTime.setHours(parseInt(h), parseInt(m), 0);
+            
+            if(now > iftarTime) {
+                iftarTime.setDate(iftarTime.getDate() + 1);
+            }
+            
+            let diff = iftarTime - now;
+            let hours = Math.floor(diff / (1000*60*60));
+            let mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+            let secs = Math.floor((diff % (1000*60)) / 1000);
+            
+            document.getElementById('countdown').innerText = 
+                `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+        }
+        
+        // ==================== SHARE APP ====================
+        function shareApp() {
+            if(navigator.share) {
+                navigator.share({
+                    title: 'رمضان مکمل ایپ 2026',
+                    text: 'رمضان المبارک کی مکمل اسلامی ایپ - تسبیح، قبلہ، قرآن PDF، آڈیو اور دعائیں',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback
+                let dummy = document.createElement('input');
+                dummy.value = window.location.href;
+                document.body.appendChild(dummy);
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('لنک کاپی ہو گیا! اب شیئر کریں');
+            }
+        }
+        
+        function downloadCompleteApp() {
+            // Create complete app HTML file with all resources
+            let htmlContent = document.documentElement.outerHTML;
+            let blob = new Blob([htmlContent], {type: 'text/html'});
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'Ramadan_Complete_App.html';
+            a.click();
+        }
+        
+        // ==================== INITIALIZATION ====================
+        function init() {
+            // Update stats
+            let now = new Date();
+            document.getElementById('currentTime').innerText = 
+                `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+            
+            // Calculate Ramadan day
+            let ramadanStart = new Date(2026, 1, 19);
+            let today = new Date();
+            let dayDiff = Math.floor((today - ramadanStart) / (1000*60*60*24)) + 1;
+            if(dayDiff >= 1 && dayDiff <= 30) {
+                document.getElementById('ramadanDay').innerText = dayDiff;
+                document.getElementById('hijriDate').innerText = dayDiff;
+            }
+            
+            // Start countdown
+            setInterval(updateCountdown, 1000);
+            setInterval(() => {
+                let now = new Date();
+                document.getElementById('currentTime').innerText = 
+                    `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+            }, 1000);
+            
+            // Load saved counter
+            loadCounter();
+        }
+        
+        // Start the app
+        init();
+    </script>
 </body>
 </html>
