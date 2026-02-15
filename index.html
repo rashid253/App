@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>رمضان 2026 | قرآن مجید + دعائیں + لائیو ٹائمر</title>
-    <!-- Font Awesome 6 -->
+    <!-- Font Awesome 6 - Latest version -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,9 +19,8 @@
         body {
             font-family: 'Poppins', 'Amiri', sans-serif;
             background: #1a2e1a;
-            padding: 12px 10px;
+            padding: 10px;
             min-height: 100vh;
-            color: #fff;
         }
         
         /* Main Container */
@@ -30,7 +29,7 @@
             margin: 0 auto;
             background: #faf3e2;
             border-radius: 50px 15px 50px 15px;
-            padding: 18px 15px 25px;
+            padding: 18px 15px 20px;
             border: 3px solid #c9a75a;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             position: relative;
@@ -53,7 +52,7 @@
             z-index: 2;
         }
         
-        /* ========== PROFILE SECTION - Tirchi Line se do hisson mein ========== */
+        /* ========== PROFILE SECTION - Interactive ========== */
         .profile-section {
             display: flex;
             align-items: center;
@@ -66,9 +65,16 @@
             box-shadow: 0 5px 0 #9b7a48;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
         }
         
-        /* Tirchi line effect */
+        .profile-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #9b7a48;
+        }
+        
+        /* Tirchi line */
         .profile-section::before {
             content: "";
             position: absolute;
@@ -120,10 +126,16 @@
             border-radius: 30px 8px 30px 8px;
             padding: 10px 15px;
             border: 3px solid #b38d5a;
+            transition: 0.3s;
         }
         
-        /* ========== 3 ADS BANNERS ========== */
-        .ads-row {
+        .profile-section:hover .shop-icon {
+            transform: scale(1.05);
+            background: #ffde91;
+        }
+        
+        /* ========== 3 ADS BANNERS - Top ========== */
+        .ads-row-top {
             display: flex;
             gap: 8px;
             margin-bottom: 15px;
@@ -133,26 +145,32 @@
             flex: 1;
             background: linear-gradient(145deg, #1e4a2e, #153f1f);
             border-radius: 30px 8px 30px 8px;
-            padding: 8px 5px;
+            padding: 10px 5px;
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .ad-item:hover {
+            transform: scale(1.02);
+            background: #256635;
         }
         
         .ad-item i {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: #ffd966;
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
         
         /* ========== RAMADAN HEADER ========== */
         .ramadan-header {
             background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
             border-radius: 40px 8px 40px 8px;
-            padding: 15px;
+            padding: 12px 15px;
             border: 2px solid #c9a75a;
             margin-bottom: 15px;
             display: flex;
@@ -169,12 +187,13 @@
         
         .ramadan-header span {
             background: #0f2e1a;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 40px;
             border: 2px solid #c9a75a;
+            font-size: 0.95rem;
         }
         
-        /* ========== 4 ICONS - FIXED ========== */
+        /* ========== 4 ICONS - FIXED - No Overflow ========== */
         .icon-row {
             display: flex;
             justify-content: space-around;
@@ -192,7 +211,7 @@
             color: #1e4a2e;
             font-weight: 600;
             cursor: pointer;
-            min-width: 70px;
+            min-width: 65px;
         }
         
         .icon-item i {
@@ -204,9 +223,15 @@
             width: 55px;
             height: 55px;
             text-align: center;
-            line-height: 1.8;
+            line-height: 1.9;
             margin-bottom: 5px;
             border: 2px solid #c9a75a;
+            transition: 0.3s;
+        }
+        
+        .icon-item:hover i {
+            transform: scale(1.05);
+            background: #256635;
         }
         
         .icon-item span {
@@ -266,6 +291,11 @@
             margin-top: 10px;
             cursor: pointer;
             font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .dua-ticker:hover {
+            background: #c9a75a;
         }
         
         /* ========== MAIN QURAN BOX ========== */
@@ -309,7 +339,7 @@
             color: #fff5d6;
         }
         
-        /* ========== SMALL CARDS - SIRF 2 (NAMAZ + DUAS) ========== */
+        /* ========== SMALL CARDS - Only 2 ========== */
         .cards-row {
             display: flex;
             gap: 12px;
@@ -324,6 +354,12 @@
             border: 2px solid #c9a75a;
             cursor: pointer;
             text-align: center;
+            transition: 0.3s;
+        }
+        
+        .small-card:hover {
+            transform: translateY(-2px);
+            background: #dfccaa;
         }
         
         .small-card i {
@@ -397,11 +433,47 @@
             font-size: 1rem;
         }
         
+        /* ========== 3 ADS BANNERS - Bottom (Screen Fit) ========== */
+        .ads-row-bottom {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .bottom-ad {
+            flex: 1;
+            background: linear-gradient(145deg, #8b6d42, #a68452);
+            border-radius: 30px 8px 30px 8px;
+            padding: 12px 5px;
+            text-align: center;
+            border: 2px solid #c9a75a;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .bottom-ad:hover {
+            transform: scale(1.02);
+            background: #9b7a48;
+        }
+        
+        .bottom-ad i {
+            font-size: 1.8rem;
+            color: #ffd966;
+            margin-bottom: 5px;
+        }
+        
         /* ========== FOOTER ========== */
         .footer {
             text-align: center;
             color: #1e4a2e;
             font-size: 0.9rem;
+            margin-top: 10px;
         }
         
         /* ========== MODALS ========== */
@@ -487,18 +559,35 @@
             border-right: 3px solid #c9a75a;
             padding-right: 10px;
         }
+        
+        /* Contact Buttons */
+        .contact-btn {
+            display: inline-block;
+            background: #1e4a2e;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 30px;
+            margin: 2px;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <div class="app-wrapper">
         <div class="content">
-            <!-- ========== PROFILE SECTION - Tirchi line se do hisson mein ========== -->
-            <div class="profile-section">
+            <!-- ========== PROFILE SECTION - Interactive ========== -->
+            <div class="profile-section" onclick="window.open('https://maps.google.com/?q=لاہور+ماڈل+ٹاؤن', '_blank')">
                 <div class="profile-right">
                     <div class="profile-name">المدینہ سٹور</div>
                     <div class="profile-details">
                         <i class="fas fa-map-marker-alt"></i> ماڈل ٹاؤن، لاہور<br>
-                        <i class="fas fa-phone"></i> 0300 1234567
+                        <a href="tel:03001234567" class="contact-btn" onclick="event.stopPropagation()">
+                            <i class="fas fa-phone"></i> 0300 1234567
+                        </a>
+                        <a href="https://wa.me/923001234567" class="contact-btn" onclick="event.stopPropagation()">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="profile-left">
@@ -506,8 +595,8 @@
                 </div>
             </div>
             
-            <!-- ========== 3 ADS BANNERS ========== -->
-            <div class="ads-row">
+            <!-- ========== 3 ADS BANNERS - Top ========== -->
+            <div class="ads-row-top">
                 <div class="ad-item" onclick="window.open('https://www.foodpanda.pk', '_blank')">
                     <i class="fas fa-utensils"></i>
                     <span>حلال فوڈ</span>
@@ -575,17 +664,17 @@
                 <p>اردو ترجمہ کے ساتھ مکمل قرآن پڑھیں</p>
             </div>
             
-            <!-- ========== SMALL CARDS - SIRF 2 (NAMAZ + DUAS) ========== -->
+            <!-- ========== SMALL CARDS - Only 2 ========== -->
             <div class="cards-row">
                 <div class="small-card" onclick="window.open('https://www.islamicfinder.org/prayer-times/', '_blank')">
                     <i class="fas fa-clock"></i>
                     <h3>اوقات نماز</h3>
                     <p>آپ کے شہر کے مطابق</p>
                 </div>
-                <div class="small-card" onclick="window.open('https://www.dawateislami.net/duas', '_blank')">
+                <div class="small-card" onclick="window.open('https://www.dua.org/ramadan-duas', '_blank')">
                     <i class="fas fa-pray"></i>
                     <h3>مسنون دعائیں</h3>
-                    <p>40 دعائیں</p>
+                    <p>40 رمضان دعائیں</p>
                 </div>
             </div>
             
@@ -613,6 +702,22 @@
                     <option value="islamabad">اسلام آباد</option>
                     <option value="multan">ملتان</option>
                 </select>
+            </div>
+            
+            <!-- ========== 3 ADS BANNERS - Bottom (Full Width) ========== -->
+            <div class="ads-row-bottom">
+                <div class="bottom-ad" onclick="window.open('https://www.chaayee.pk/', '_blank')">
+                    <i class="fas fa-dates"></i>
+                    <span>کھجور خصوصی</span>
+                </div>
+                <div class="bottom-ad" onclick="window.open('https://www.halaalfood.com/', '_blank')">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <span>حلال چکن</span>
+                </div>
+                <div class="bottom-ad" onclick="window.open('https://www.ramazanspecial.pk/', '_blank')">
+                    <i class="fas fa-gift"></i>
+                    <span>رمضان پیکج</span>
+                </div>
             </div>
             
             <!-- ========== FOOTER ========== -->
