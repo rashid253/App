@@ -129,7 +129,6 @@
             outline: none;
         }
         
-        /* Profile Upload */
         .profile-upload {
             display: flex;
             align-items: center;
@@ -170,7 +169,6 @@
             cursor: pointer;
         }
         
-        /* Icon Selector */
         .icon-selector {
             display: flex;
             align-items: center;
@@ -189,7 +187,6 @@
             justify-content: center;
         }
         
-        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -209,7 +206,6 @@
             margin-bottom: 15px;
         }
         
-        /* Generate Button */
         .generate-btn {
             width: 100%;
             padding: 20px;
@@ -275,17 +271,16 @@
         <div class="generator-container">
             <div class="warning">
                 <i class="fas fa-info-circle"></i>
-                نوٹ: یہ صفحہ صرف کیلنڈر بنانے کے لیے ہے۔ بننے والا کیلنڈر نئی ونڈو میں کھلے گا۔
+                نوٹ: بننے والا کیلنڈر انسٹال ہو سکتا ہے۔
             </div>
             
-            <!-- ========== PROFILE SECTION ========== -->
+            <!-- Profile Section -->
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-store"></i>
                     کاروبار کی تفصیلات
                 </div>
                 
-                <!-- Profile Picture Upload -->
                 <div class="profile-upload">
                     <div class="profile-preview" id="profilePreview">
                         <i class="fas fa-store"></i>
@@ -295,29 +290,28 @@
                         <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
                             <i class="fas fa-upload"></i> تصویر منتخب کریں
                         </button>
-                        <p style="color:#666; margin-top:5px; font-size:0.9rem;">PNG, JPG (زیادہ سے زیادہ 5MB)</p>
                     </div>
                 </div>
                 
                 <div class="form-grid">
                     <div class="form-group">
                         <label><span class="required">*</span> کاروبار کا نام</label>
-                        <input type="text" id="businessName" value="المدینہ جیولرز" placeholder="例如: المدینہ جیولرز">
+                        <input type="text" id="businessName" value="المدینہ جیولرز">
                     </div>
                     
                     <div class="form-group">
                         <label><span class="required">*</span> فون نمبر</label>
-                        <input type="text" id="phoneNumber" value="03001234567" placeholder="03XXXXXXXXX">
+                        <input type="text" id="phoneNumber" value="03001234567">
                     </div>
                     
                     <div class="form-group">
-                        <label>ای میل (اختیاری)</label>
-                        <input type="email" id="email" value="info@example.com" placeholder="your@email.com">
+                        <label>ای میل</label>
+                        <input type="email" id="email" value="info@example.com">
                     </div>
                     
                     <div class="form-group">
                         <label><span class="required">*</span> کاروبار کی قسم</label>
-                        <input type="text" id="businessType" value="Jewellery Store" placeholder="例如: Jewellery, Medical, Food">
+                        <input type="text" id="businessType" value="Jewellery Store">
                     </div>
                     
                     <div class="form-group full-width">
@@ -326,252 +320,135 @@
                     </div>
                     
                     <div class="form-group full-width">
-                        <label>کاروبار کی تفصیل (اختیاری)</label>
+                        <label>تفصیل</label>
                         <textarea id="businessDetails" rows="2">سونے چاندی کی خالص مصنوعات</textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label>پروفائل آئیکون (اختیاری)</label>
+                        <label>آئیکون</label>
                         <div class="icon-selector">
                             <div class="icon-preview" id="profileIconPreview">
                                 <i class="fas fa-store"></i>
                             </div>
-                            <select id="profileIcon" onchange="updateIcon('profile', this.value)">
+                            <select id="profileIcon">
                                 <option value="fa-store">اسٹور</option>
                                 <option value="fa-gem">جیولری</option>
                                 <option value="fa-stethoscope">میڈیکل</option>
                                 <option value="fa-utensils">فوڈ</option>
-                                <option value="fa-tshirt">گارمنٹس</option>
-                                <option value="fa-laptop">الیکٹرانکس</option>
-                                <option value="fa-book">کتابیں</option>
-                                <option value="fa-dumbbell">جم</option>
-                                <option value="fa-cut">بیوٹی</option>
-                                <option value="fa-car">گاڑیاں</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- ========== TOP ADS SECTION ========== -->
+            <!-- Top Ads -->
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-ad"></i>
-                    ٹاپ ایڈز (اختیاری)
+                    ٹاپ ایڈز
                 </div>
                 
                 <div class="cards-grid">
                     <!-- Ad 1 -->
                     <div class="card">
                         <h4>ایڈ 1</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="ad1Text" value="نئی گولڈ کلکشن">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="ad1Link" value="https://www.example.com/gold">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="ad1IconPreview">
-                                    <i class="fas fa-gem"></i>
-                                </div>
-                                <select id="ad1Icon" onchange="updateIcon('ad1', this.value)">
-                                    <option value="fa-gem">جیولری</option>
-                                    <option value="fa-ring">انگوٹھی</option>
-                                    <option value="fa-percent">تخفیف</option>
-                                    <option value="fa-tags">ڈیل</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="ad1Text" value="نئی گولڈ کلکشن" placeholder="متن">
+                        <input type="text" id="ad1Link" value="https://example.com/gold" placeholder="لنک" style="margin-top:5px;">
+                        <select id="ad1Icon" style="margin-top:5px;">
+                            <option value="fa-gem">جیولری</option>
+                            <option value="fa-percent">تخفیف</option>
+                        </select>
                     </div>
                     
                     <!-- Ad 2 -->
                     <div class="card">
                         <h4>ایڈ 2</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="ad2Text" value="شادی بیاہ ڈیلز">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="ad2Link" value="https://www.example.com/wedding">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="ad2IconPreview">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <select id="ad2Icon" onchange="updateIcon('ad2', this.value)">
-                                    <option value="fa-heart">شادی</option>
-                                    <option value="fa-diamond">ہیرا</option>
-                                    <option value="fa-gift">تحفہ</option>
-                                    <option value="fa-crown">شاہی</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="ad2Text" value="شادی بیاہ ڈیلز" placeholder="متن">
+                        <input type="text" id="ad2Link" value="https://example.com/wedding" placeholder="لنک" style="margin-top:5px;">
+                        <select id="ad2Icon" style="margin-top:5px;">
+                            <option value="fa-heart">شادی</option>
+                            <option value="fa-gift">تحفہ</option>
+                        </select>
                     </div>
                     
                     <!-- Ad 3 -->
                     <div class="card">
                         <h4>ایڈ 3</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="ad3Text" value="رمضان سپیشل آفر">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="ad3Link" value="https://www.example.com/ramadan">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="ad3IconPreview">
-                                    <i class="fas fa-moon"></i>
-                                </div>
-                                <select id="ad3Icon" onchange="updateIcon('ad3', this.value)">
-                                    <option value="fa-moon">رمضان</option>
-                                    <option value="fa-star">ستارہ</option>
-                                    <option value="fa-gift">تحفہ</option>
-                                    <option value="fa-percent">تخفیف</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="ad3Text" value="رمضان سپیشل" placeholder="متن">
+                        <input type="text" id="ad3Link" value="https://example.com/ramadan" placeholder="لنک" style="margin-top:5px;">
+                        <select id="ad3Icon" style="margin-top:5px;">
+                            <option value="fa-moon">رمضان</option>
+                            <option value="fa-star">ستارہ</option>
+                        </select>
                     </div>
                 </div>
             </div>
             
-            <!-- ========== BOTTOM BANNERS SECTION ========== -->
+            <!-- Bottom Banners -->
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-images"></i>
-                    نیچے بینرز (اختیاری)
+                    نیچے بینرز
                 </div>
                 
                 <div class="cards-grid">
-                    <!-- Banner 1 -->
                     <div class="card">
                         <h4>بینر 1</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="banner1Text" value="25% خصوصی تخفیف">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="banner1Link" value="https://www.example.com/discount">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="banner1IconPreview">
-                                    <i class="fas fa-percent"></i>
-                                </div>
-                                <select id="banner1Icon" onchange="updateIcon('banner1', this.value)">
-                                    <option value="fa-percent">تخفیف</option>
-                                    <option value="fa-tags">ڈیل</option>
-                                    <option value="fa-gift">تحفہ</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="banner1Text" value="25% تخفیف" placeholder="متن">
+                        <input type="text" id="banner1Link" value="https://example.com/discount" placeholder="لنک" style="margin-top:5px;">
+                        <select id="banner1Icon" style="margin-top:5px;">
+                            <option value="fa-percent">تخفیف</option>
+                            <option value="fa-tags">ڈیل</option>
+                        </select>
                     </div>
                     
-                    <!-- Banner 2 -->
                     <div class="card">
                         <h4>بینر 2</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="banner2Text" value="فری ہوم ڈلیوری">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="banner2Link" value="https://www.example.com/delivery">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="banner2IconPreview">
-                                    <i class="fas fa-truck"></i>
-                                </div>
-                                <select id="banner2Icon" onchange="updateIcon('banner2', this.value)">
-                                    <option value="fa-truck">ڈلیوری</option>
-                                    <option value="fa-box">پیکج</option>
-                                    <option value="fa-shopping-cart">کارٹ</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="banner2Text" value="فری ڈلیوری" placeholder="متن">
+                        <input type="text" id="banner2Link" value="https://example.com/delivery" placeholder="لنک" style="margin-top:5px;">
+                        <select id="banner2Icon" style="margin-top:5px;">
+                            <option value="fa-truck">ڈلیوری</option>
+                            <option value="fa-box">پیکج</option>
+                        </select>
                     </div>
                     
-                    <!-- Banner 3 -->
                     <div class="card">
                         <h4>بینر 3</h4>
-                        <div class="form-group">
-                            <label>متن</label>
-                            <input type="text" id="banner3Text" value="لکی ڈرا - انعامات">
-                        </div>
-                        <div class="form-group">
-                            <label>لنک</label>
-                            <input type="text" id="banner3Link" value="https://www.example.com/lucky">
-                        </div>
-                        <div class="form-group">
-                            <label>آئیکون</label>
-                            <div class="icon-selector">
-                                <div class="icon-preview" id="banner3IconPreview">
-                                    <i class="fas fa-trophy"></i>
-                                </div>
-                                <select id="banner3Icon" onchange="updateIcon('banner3', this.value)">
-                                    <option value="fa-trophy">انعام</option>
-                                    <option value="fa-medal">میڈل</option>
-                                    <option value="fa-gem">جیولری</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="banner3Text" value="لکی ڈرا" placeholder="متن">
+                        <input type="text" id="banner3Link" value="https://example.com/lucky" placeholder="لنک" style="margin-top:5px;">
+                        <select id="banner3Icon" style="margin-top:5px;">
+                            <option value="fa-trophy">انعام</option>
+                            <option value="fa-gem">جیولری</option>
+                        </select>
                     </div>
                 </div>
             </div>
             
-            <!-- Generate Button -->
             <button class="generate-btn" onclick="generateCalendar()">
                 <i class="fas fa-calendar-alt"></i>
-                کیلنڈر جنریٹ کریں
+                کیلنڈر بنائیں
             </button>
-            
-            <p style="text-align:center; margin-top:15px; color:#666;">
-                <i class="fas fa-external-link-alt"></i>
-                کیلنڈر نئی ونڈو میں کھلے گا - واپس آنے کی ضرورت نہیں
-            </p>
         </div>
         
         <div class="footer">
-            <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
+            <p>🌙 رمضان مبارک 1447ھ</p>
         </div>
     </div>
     
     <script>
-        // Icon Update Function
-        function updateIcon(element, iconClass) {
-            document.getElementById(element + 'IconPreview').innerHTML = `<i class="fas ${iconClass}"></i>`;
-        }
-        
-        // Profile Picture Preview
         function previewImage(input) {
-            const preview = document.getElementById('profilePreview');
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    preview.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover;">`;
-                    // Save to localStorage for calendar
+                    document.getElementById('profilePreview').innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
                     localStorage.setItem('profilePic', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
         
-        // Collect Form Data
-        function collectFormData() {
-            return {
+        function generateCalendar() {
+            const data = {
                 businessName: document.getElementById('businessName').value,
                 phoneNumber: document.getElementById('phoneNumber').value,
                 email: document.getElementById('email').value,
@@ -579,45 +456,29 @@
                 address: document.getElementById('address').value,
                 businessDetails: document.getElementById('businessDetails').value,
                 profileIcon: document.getElementById('profileIcon').value,
-                
                 ad1Text: document.getElementById('ad1Text').value,
                 ad1Link: document.getElementById('ad1Link').value,
                 ad1Icon: document.getElementById('ad1Icon').value,
-                
                 ad2Text: document.getElementById('ad2Text').value,
                 ad2Link: document.getElementById('ad2Link').value,
                 ad2Icon: document.getElementById('ad2Icon').value,
-                
                 ad3Text: document.getElementById('ad3Text').value,
                 ad3Link: document.getElementById('ad3Link').value,
                 ad3Icon: document.getElementById('ad3Icon').value,
-                
                 banner1Text: document.getElementById('banner1Text').value,
                 banner1Link: document.getElementById('banner1Link').value,
                 banner1Icon: document.getElementById('banner1Icon').value,
-                
                 banner2Text: document.getElementById('banner2Text').value,
                 banner2Link: document.getElementById('banner2Link').value,
                 banner2Icon: document.getElementById('banner2Icon').value,
-                
                 banner3Text: document.getElementById('banner3Text').value,
                 banner3Link: document.getElementById('banner3Link').value,
                 banner3Icon: document.getElementById('banner3Icon').value
             };
-        }
-        
-        // Generate Calendar
-        function generateCalendar() {
-            const data = collectFormData();
             
-            // Create a unique ID for this calendar
-            const calendarId = 'cal_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            
-            // Save data to localStorage
-            localStorage.setItem(calendarId, JSON.stringify(data));
-            
-            // Open calendar.html with ID
-            window.open('calendar.html?id=' + calendarId, '_blank');
+            const id = 'cal_' + Date.now();
+            localStorage.setItem(id, JSON.stringify(data));
+            window.open('calendar.html?id=' + id, '_blank');
         }
     </script>
 </body>
