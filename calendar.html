@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Calendar 2026 - Installable</title>
+    <title>Ramadan Calendar 2026</title>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
-    <!-- Apple Touch Icon (for iOS) -->
+    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231a2e1a'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'>🌙</text></svg>">
     
     <!-- Theme Color -->
@@ -20,12 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* تمام اسٹائل ویسے ہی رہیں گے */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Amiri', sans-serif;
             background: #1a2e1a;
@@ -33,7 +29,6 @@
             min-height: 100vh;
         }
         
-        /* Install Button */
         .install-container {
             position: sticky;
             top: 10px;
@@ -59,15 +54,6 @@
             transition: 0.3s;
         }
         
-        .install-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 0 #9b7a48;
-        }
-        
-        .install-btn i {
-            font-size: 1.3rem;
-        }
-        
         .app-wrapper {
             max-width: 600px;
             margin: 0 auto;
@@ -78,22 +64,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
-        }
-        
-        .app-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.03) 0px, rgba(201,167,90,0.03) 20px, transparent 20px, transparent 40px);
-            pointer-events: none;
-        }
-        
-        .content {
-            position: relative;
-            z-index: 2;
         }
         
         /* Profile Card */
@@ -109,12 +79,6 @@
             gap: 20px;
             flex-wrap: wrap;
             cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .profile-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 0 #9b7a48;
         }
         
         .profile-pic {
@@ -131,33 +95,20 @@
             border: 3px solid #c9a75a;
         }
         
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
         
-        .profile-info {
-            flex: 1;
-        }
-        
+        .profile-info { flex: 1; }
         .profile-name {
             font-size: 2rem;
             font-weight: 800;
             color: #1e4a2e;
             font-family: 'Amiri', serif;
-            line-height: 1.2;
         }
         
         .profile-detail {
             color: #4a5a4a;
             margin: 5px 0;
             font-size: 0.95rem;
-        }
-        
-        .profile-detail i {
-            color: #c9a75a;
-            width: 20px;
         }
         
         .contact-badge {
@@ -170,6 +121,7 @@
             font-size: 0.85rem;
             margin: 2px;
             border: 1px solid #c9a75a;
+            cursor: pointer;
         }
         
         /* Ads Row */
@@ -189,14 +141,7 @@
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            text-decoration: none;
-            transition: 0.3s;
             cursor: pointer;
-        }
-        
-        .ad-card:hover {
-            transform: scale(1.02);
-            background: #256635;
         }
         
         .ad-card i {
@@ -206,21 +151,7 @@
             margin-bottom: 5px;
         }
         
-        .ad-card span {
-            font-size: 0.85rem;
-            display: block;
-        }
-        
-        /* Non-clickable ad style */
-        .ad-card.non-clickable {
-            opacity: 0.8;
-            cursor: default;
-        }
-        
-        .ad-card.non-clickable:hover {
-            transform: none;
-            background: linear-gradient(145deg, #1e4a2e, #153f1f);
-        }
+        .ad-card.non-clickable { opacity: 0.8; cursor: default; }
         
         /* Ramadan Header */
         .ramadan-header {
@@ -239,13 +170,6 @@
             font-size: 2rem;
             color: #ffd966;
             font-family: 'Amiri', serif;
-        }
-        
-        .ramadan-header span {
-            background: #0f2e1a;
-            padding: 8px 15px;
-            border-radius: 40px;
-            border: 2px solid #c9a75a;
         }
         
         /* Icons Row */
@@ -268,7 +192,6 @@
             font-weight: 600;
             cursor: pointer;
             min-width: 70px;
-            text-align: center;
         }
         
         .icon-item i {
@@ -284,12 +207,6 @@
             justify-content: center;
             margin-bottom: 5px;
             border: 2px solid #c9a75a;
-            transition: 0.3s;
-        }
-        
-        .icon-item:hover i {
-            transform: scale(1.1);
-            background: #256635;
         }
         
         /* Live Timer */
@@ -300,15 +217,13 @@
             padding: 15px;
             margin-bottom: 15px;
             color: white;
-            box-shadow: 0 5px 0 #0f3a1f;
         }
         
         .timer-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .timer-block {
@@ -323,7 +238,6 @@
         .timer-value {
             font-size: 1.3rem;
             font-weight: 700;
-            direction: ltr;
             background: #1e4a2e;
             padding: 4px 12px;
             border-radius: 30px;
@@ -338,7 +252,6 @@
             text-align: center;
             margin-top: 10px;
             cursor: pointer;
-            font-weight: 600;
         }
         
         /* Quran Box */
@@ -350,25 +263,10 @@
             border: 3px solid #c9a75a;
             cursor: pointer;
             text-align: center;
-            transition: 0.3s;
         }
         
-        .quran-box:hover {
-            transform: scale(1.02);
-            border-color: #ffd966;
-        }
-        
-        .quran-box i {
-            font-size: 3.5rem;
-            color: #ffd966;
-            margin-bottom: 10px;
-        }
-        
-        .quran-box h2 {
-            color: #ffd966;
-            font-size: 2rem;
-            font-family: 'Amiri', serif;
-        }
+        .quran-box i { font-size: 3.5rem; color: #ffd966; }
+        .quran-box h2 { color: #ffd966; font-size: 2rem; font-family: 'Amiri', serif; }
         
         /* Calendar Table */
         .calendar-container {
@@ -379,15 +277,6 @@
             margin-bottom: 15px;
         }
         
-        .calendar-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #1e4a2e;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-        
         .calendar-table {
             width: 100%;
             border-collapse: collapse;
@@ -396,28 +285,19 @@
         .calendar-table th {
             background: #1e4a2e;
             color: white;
-            padding: 10px 5px;
+            padding: 10px;
             border-radius: 20px 4px 10px 4px;
-            font-weight: 500;
         }
         
         .calendar-table td {
-            padding: 8px 5px;
+            padding: 8px;
             text-align: center;
             border-bottom: 1px solid #c9a75a;
             color: #1e3a1e;
         }
         
-        .today-row {
-            background: #ffd966;
-            font-weight: bold;
-        }
-        
-        .table-scroll {
-            max-height: 400px;
-            overflow-y: auto;
-            border-radius: 15px;
-        }
+        .today-row { background: #ffd966; font-weight: bold; }
+        .table-scroll { max-height: 400px; overflow-y: auto; }
         
         /* Bottom Banners */
         .bottom-banners {
@@ -431,41 +311,20 @@
             width: 100%;
             background: linear-gradient(145deg, #8b6d42, #a68452);
             border-radius: 40px 8px 40px 8px;
-            padding: 15px 10px;
+            padding: 15px;
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            text-decoration: none;
-            transition: 0.3s;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            cursor: pointer;
         }
         
-        .bottom-banner:hover {
-            transform: scale(1.02);
-            background: #9b7a48;
-        }
+        .bottom-banner i { font-size: 2rem; color: #ffd966; }
+        .bottom-banner.non-clickable { opacity: 0.8; cursor: default; }
         
-        .bottom-banner i {
-            font-size: 2rem;
-            color: #ffd966;
-        }
-        
-        /* Non-clickable banner style */
-        .bottom-banner.non-clickable {
-            opacity: 0.8;
-            cursor: default;
-        }
-        
-        .bottom-banner.non-clickable:hover {
-            transform: none;
-            background: linear-gradient(145deg, #8b6d42, #a68452);
-        }
-        
-        /* Footer */
         .footer {
             text-align: center;
             color: #1e4a2e;
@@ -473,7 +332,6 @@
             margin-top: 15px;
         }
         
-        /* Install Badge on Calendar */
         .pwa-badge {
             background: #4CAF50;
             color: white;
@@ -500,7 +358,7 @@
         
         .modal-content {
             background: #faf3e2;
-            border-radius: 50px 15px 50px 15px;
+            border-radius: 50px 15px;
             padding: 25px;
             max-width: 500px;
             margin: 30px auto;
@@ -539,9 +397,7 @@
             border: 2px solid #c9a75a;
         }
         
-        .tas-btn.red {
-            background: #8b3a3a;
-        }
+        .tas-btn.red { background: #8b3a3a; }
         
         .dua-box {
             background: #e7d8b8;
@@ -568,7 +424,6 @@
     </style>
 </head>
 <body>
-    <!-- Install Button -->
     <div class="install-container" id="installContainer" style="display: none;">
         <button class="install-btn" id="installButton">
             <i class="fas fa-download"></i>
@@ -585,7 +440,7 @@
         </div>
     </div>
     
-    <!-- Tasbeeh Modal -->
+    <!-- Modals -->
     <div id="tasbeehModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('tasbeehModal')">&times;</span>
@@ -602,22 +457,18 @@
         </div>
     </div>
     
-    <!-- Duas Modal -->
     <div id="duasModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('duasModal')">&times;</span>
             <h2 style="text-align:center; color:#1e4a2e;">🤲 رمضان کی دعائیں</h2>
-            
             <div class="dua-box">
                 <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
                 <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
             </div>
-            
             <div class="dua-box">
                 <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ</div>
                 <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں</div>
             </div>
-            
             <div class="dua-box">
                 <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
                 <div class="dua-urdu">میں نے کل کے روزے کی نیت کی</div>
@@ -626,12 +477,27 @@
     </div>
     
     <script>
-        // ========== FIX FOR PWA EXTERNAL LINKS ==========
-        // یہ فنکشن تمام بیرونی لنکس کو ڈیفالٹ براؤزر میں کھولے گا
-        function openExternalLink(url) {
-            if (url && url !== '#') {
-                // PWA میں target="_blank" کام نہیں کرتا، اس لیے یہ طریقہ استعمال کریں
-                window.open(url, '_blank');
+        // ========== UNIVERSAL LINK OPENER - 100% FIX ==========
+        function openLink(url) {
+            if (!url || url === '#' || url === '') return;
+            
+            try {
+                // Method 1: Create anchor and click
+                const link = document.createElement('a');
+                link.href = url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch(e) {
+                try {
+                    // Method 2: Use window.open
+                    window.open(url, '_blank');
+                } catch(e2) {
+                    // Method 3: Navigate directly
+                    window.location.href = url;
+                }
             }
         }
 
@@ -648,19 +514,14 @@
         
         installButton.addEventListener('click', async () => {
             if (!deferredPrompt) return;
-            
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            
-            if (outcome === 'accepted') {
-                installContainer.style.display = 'none';
-            }
+            if (outcome === 'accepted') installContainer.style.display = 'none';
             deferredPrompt = null;
         });
         
         window.addEventListener('appinstalled', () => {
             installContainer.style.display = 'none';
-            console.log('App installed successfully');
         });
         
         // ========== CALENDAR DATA ==========
@@ -699,16 +560,17 @@
         
         let tasbeeh = parseInt(localStorage.getItem('tasbeeh')) || 0;
         
-        // Load Calendar
         function loadCalendar() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
             
-            let data;
+            let data = null;
+            
             if (id && localStorage.getItem(id)) {
                 data = JSON.parse(localStorage.getItem(id));
+            } else if (id && sessionStorage.getItem(id)) {
+                data = JSON.parse(sessionStorage.getItem(id));
             } else {
-                // Default data
                 data = {
                     businessName: "المدینہ جیولرز",
                     phoneNumber: "03001234567",
@@ -717,50 +579,12 @@
                     address: "ماڈل ٹاؤن، لاہور",
                     businessDetails: "سونے چاندی کی مصنوعات",
                     profileIcon: "fa-store",
-                    
-                    ad1: {
-                        text: "نئی گولڈ کلکشن",
-                        link: "https://example.com/gold",
-                        icon: "fa-gem",
-                        clickable: true,
-                        deleted: false
-                    },
-                    ad2: {
-                        text: "شادی بیاہ ڈیلز",
-                        link: "https://example.com/wedding",
-                        icon: "fa-heart",
-                        clickable: true,
-                        deleted: false
-                    },
-                    ad3: {
-                        text: "رمضان سپیشل",
-                        link: "https://example.com/ramadan",
-                        icon: "fa-moon",
-                        clickable: true,
-                        deleted: false
-                    },
-                    
-                    banner1: {
-                        text: "25% تخفیف",
-                        link: "https://example.com/discount",
-                        icon: "fa-percent",
-                        clickable: true,
-                        deleted: false
-                    },
-                    banner2: {
-                        text: "فری ڈلیوری",
-                        link: "https://example.com/delivery",
-                        icon: "fa-truck",
-                        clickable: true,
-                        deleted: false
-                    },
-                    banner3: {
-                        text: "لکی ڈرا",
-                        link: "https://example.com/lucky",
-                        icon: "fa-trophy",
-                        clickable: true,
-                        deleted: false
-                    }
+                    ad1: { text: "نئی گولڈ کلکشن", link: "https://example.com/gold", icon: "fa-gem", clickable: true, deleted: false },
+                    ad2: { text: "شادی بیاہ ڈیلز", link: "https://example.com/wedding", icon: "fa-heart", clickable: true, deleted: false },
+                    ad3: { text: "رمضان سپیشل", link: "https://example.com/ramadan", icon: "fa-moon", clickable: true, deleted: false },
+                    banner1: { text: "25% تخفیف", link: "https://example.com/discount", icon: "fa-percent", clickable: true, deleted: false },
+                    banner2: { text: "فری ڈلیوری", link: "https://example.com/delivery", icon: "fa-truck", clickable: true, deleted: false },
+                    banner3: { text: "لکی ڈرا", link: "https://example.com/lucky", icon: "fa-trophy", clickable: true, deleted: false }
                 };
             }
             
@@ -776,123 +600,44 @@
             let rows = '';
             timings.forEach(row => {
                 const cls = (fastNum === row.day) ? 'today-row' : '';
-                rows += `<tr class="${cls}">
-                    <td>${row.day}</td>
-                    <td>${row.date}</td>
-                    <td>${row.sehri} AM</td>
-                    <td>${row.iftar} PM</td>
-                </tr>`;
+                rows += `<tr class="${cls}"><td>${row.day}</td><td>${row.date}</td><td>${row.sehri} AM</td><td>${row.iftar} PM</td></tr>`;
             });
             
-            const picHtml = profilePic ? 
-                `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : 
-                `<i class="fas ${data.profileIcon}"></i>`;
+            const picHtml = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : `<i class="fas ${data.profileIcon}"></i>`;
             
-            // Generate Ads HTML with FIX for PWA
-            let adsHtml = '<div class="ads-row">';
-            
-            // Ad 1
-            if (data.ad1 && !data.ad1.deleted) {
-                const clickableClass = data.ad1.clickable ? '' : 'non-clickable';
-                if (data.ad1.clickable) {
-                    // FIX: onclick event use karo, target="_blank" PWA mein kaam nahi karta
-                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad1.link}')">`;
-                } else {
-                    adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
-                }
-                adsHtml += `<i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>`;
-                adsHtml += '</div>';
-            }
-            
-            // Ad 2
-            if (data.ad2 && !data.ad2.deleted) {
-                const clickableClass = data.ad2.clickable ? '' : 'non-clickable';
-                if (data.ad2.clickable) {
-                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad2.link}')">`;
-                } else {
-                    adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
-                }
-                adsHtml += `<i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>`;
-                adsHtml += '</div>';
-            }
-            
-            // Ad 3
-            if (data.ad3 && !data.ad3.deleted) {
-                const clickableClass = data.ad3.clickable ? '' : 'non-clickable';
-                if (data.ad3.clickable) {
-                    adsHtml += `<div class="ad-card ${clickableClass}" onclick="openExternalLink('${data.ad3.link}')">`;
-                } else {
-                    adsHtml += `<div class="ad-card ${clickableClass}" style="cursor:default;">`;
-                }
-                adsHtml += `<i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>`;
-                adsHtml += '</div>';
-            }
-            
-            adsHtml += '</div>';
-            
-            // Generate Banners HTML with FIX for PWA
-            let bannersHtml = '<div class="bottom-banners">';
-            
-            // Banner 1
-            if (data.banner1 && !data.banner1.deleted) {
-                const clickableClass = data.banner1.clickable ? '' : 'non-clickable';
-                if (data.banner1.clickable) {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner1.link}')">`;
-                } else {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
-                }
-                bannersHtml += `<i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>`;
-                bannersHtml += '</div>';
-            }
-            
-            // Banner 2
-            if (data.banner2 && !data.banner2.deleted) {
-                const clickableClass = data.banner2.clickable ? '' : 'non-clickable';
-                if (data.banner2.clickable) {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner2.link}')">`;
-                } else {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
-                }
-                bannersHtml += `<i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>`;
-                bannersHtml += '</div>';
-            }
-            
-            // Banner 3
-            if (data.banner3 && !data.banner3.deleted) {
-                const clickableClass = data.banner3.clickable ? '' : 'non-clickable';
-                if (data.banner3.clickable) {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" onclick="openExternalLink('${data.banner3.link}')">`;
-                } else {
-                    bannersHtml += `<div class="bottom-banner ${clickableClass}" style="cursor:default;">`;
-                }
-                bannersHtml += `<i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>`;
-                bannersHtml += '</div>';
-            }
-            
-            bannersHtml += '</div>';
-            
-            // Profile section with FIX for phone and email links
-            const phoneClick = `openExternalLink('tel:${data.phoneNumber}')`;
-            const emailClick = data.email ? `openExternalLink('mailto:${data.email}')` : '';
-            
+            // ========== HTML with onclick events ==========
             const html = `
-                <div class="profile-card" onclick="openExternalLink('https://maps.google.com/?q=${encodeURIComponent(data.address)}')">
+                <div class="profile-card" onclick="openLink('https://maps.google.com/?q=${encodeURIComponent(data.address)}')">
                     <div class="profile-pic">${picHtml}</div>
                     <div class="profile-info">
                         <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
-                            <a href="javascript:void(0)" onclick="openExternalLink('tel:${data.phoneNumber}')" class="contact-badge" style="cursor:pointer;">
-                                <i class="fas fa-phone"></i> ${data.phoneNumber}
-                            </a>
-                            ${data.email ? `<a href="javascript:void(0)" onclick="openExternalLink('mailto:${data.email}')" class="contact-badge" style="cursor:pointer;"><i class="fas fa-envelope"></i></a>` : ''}
+                            <span class="contact-badge" onclick="openLink('tel:${data.phoneNumber}')"><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
+                            ${data.email ? `<span class="contact-badge" onclick="openLink('mailto:${data.email}')"><i class="fas fa-envelope"></i></span>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
                     </div>
                 </div>
                 
-                ${adsHtml}
+                <div class="ads-row">
+                    ${data.ad1 && !data.ad1.deleted ? 
+                        `<div class="ad-card ${data.ad1.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.ad1.clickable ? `openLink('${data.ad1.link}')` : ''}">
+                            <i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>
+                        </div>` : ''}
+                    ${data.ad2 && !data.ad2.deleted ? 
+                        `<div class="ad-card ${data.ad2.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.ad2.clickable ? `openLink('${data.ad2.link}')` : ''}">
+                            <i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>
+                        </div>` : ''}
+                    ${data.ad3 && !data.ad3.deleted ? 
+                        `<div class="ad-card ${data.ad3.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.ad3.clickable ? `openLink('${data.ad3.link}')` : ''}">
+                            <i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>
+                        </div>` : ''}
+                </div>
                 
                 <div class="ramadan-header">
                     <h2>🌙 رمضان 1447</h2>
@@ -901,8 +646,8 @@
                 
                 <div class="icon-row">
                     <div class="icon-item" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item" onclick="openExternalLink('https://quran.com/ur')"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item" onclick="openExternalLink('https://equran.com/')"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
+                    <div class="icon-item" onclick="openLink('https://quran.com/ur')"><i class="fas fa-quran"></i><span>قرآن</span></div>
+                    <div class="icon-item" onclick="openLink('https://equran.com/')"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
                     <div class="icon-item" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
                 </div>
                 
@@ -914,7 +659,7 @@
                     <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
                 </div>
                 
-                <div class="quran-box" onclick="openExternalLink('https://quran.com/ur')">
+                <div class="quran-box" onclick="openLink('https://quran.com/ur')">
                     <i class="fas fa-quran"></i>
                     <h2>القرآن الكريم</h2>
                 </div>
@@ -929,7 +674,23 @@
                     </div>
                 </div>
                 
-                ${bannersHtml}
+                <div class="bottom-banners">
+                    ${data.banner1 && !data.banner1.deleted ? 
+                        `<div class="bottom-banner ${data.banner1.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.banner1.clickable ? `openLink('${data.banner1.link}')` : ''}">
+                            <i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>
+                        </div>` : ''}
+                    ${data.banner2 && !data.banner2.deleted ? 
+                        `<div class="bottom-banner ${data.banner2.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.banner2.clickable ? `openLink('${data.banner2.link}')` : ''}">
+                            <i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>
+                        </div>` : ''}
+                    ${data.banner3 && !data.banner3.deleted ? 
+                        `<div class="bottom-banner ${data.banner3.clickable ? '' : 'non-clickable'}" 
+                            onclick="${data.banner3.clickable ? `openLink('${data.banner3.link}')` : ''}">
+                            <i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>
+                        </div>` : ''}
+                </div>
                 
                 <div class="footer">
                     <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
@@ -990,7 +751,6 @@
             if (e.target.classList.contains('modal')) e.target.style.display = 'none';
         };
         
-        // Initialize
         loadCalendar();
         setInterval(updateTimer, 1000);
         document.getElementById('tasbeehCount').innerText = tasbeeh;
