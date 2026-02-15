@@ -187,138 +187,26 @@
             justify-content: center;
         }
         
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        .contact-row {
+            display: flex;
+            gap: 15px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
-        .card {
-            background: #f9f9f9;
-            border-radius: 20px;
-            padding: 15px;
-            border: 1px solid #c9a75a;
-            position: relative;
+        .contact-field {
+            flex: 1;
+            min-width: 200px;
         }
         
-        .card h4 {
-            color: #1e4a2e;
-            margin-bottom: 15px;
-        }
-        
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 10px 0;
-            padding: 8px;
-            background: #e8f0e8;
-            border-radius: 30px;
-        }
-        
-        .toggle-label {
+        .contact-field label {
             font-size: 0.9rem;
-            color: #1a2e1a;
-            font-weight: 500;
+            color: #1e4a2e;
         }
         
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .3s;
-            border-radius: 24px;
-        }
-        
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .toggle-slider {
-            background-color: #1e4a2e;
-        }
-        
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-        }
-        
-        .delete-btn {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            background: #e53e3e;
-            color: white;
-            border: 2px solid #c9a75a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-            z-index: 10;
-        }
-        
-        .delete-btn:hover {
-            background: #c53030;
-            transform: scale(1.1);
-        }
-        
-        .hidden-card {
-            opacity: 0.5;
-            background: #e0e0e0;
-            pointer-events: none;
-        }
-        
-        .hidden-card .delete-btn {
-            pointer-events: auto;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 5px;
-        }
-        
-        .status-active {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .status-inactive {
-            background: #e53e3e;
-            color: white;
+        .contact-field i {
+            color: #c9a75a;
+            margin-right: 5px;
         }
         
         .generate-btn {
@@ -383,10 +271,6 @@
             
             .form-group.full-width {
                 grid-column: span 1;
-            }
-            
-            .cards-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -472,168 +356,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Top Ads -->
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-ad"></i>
-                    ٹاپ ایڈز
-                </div>
                 
-                <div class="cards-grid" id="topAdsContainer">
-                    <!-- Ad 1 -->
-                    <div class="card" id="ad1Card">
-                        <div class="delete-btn" onclick="deleteCard('ad1')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>ایڈ 1 <span id="ad1Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="ad1Clickable" checked onchange="toggleClickable('ad1')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="ad1Text" value="نئی گولڈ کلکشن" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="ad1Link" value="https://example.com/gold" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="ad1Icon" style="margin-top:5px;">
-                            <option value="fa-gem">جیولری</option>
-                            <option value="fa-percent">تخفیف</option>
-                        </select>
+                <!-- Contact Options Row -->
+                <div class="contact-row">
+                    <div class="contact-field">
+                        <label><i class="fab fa-whatsapp"></i> واٹس ایپ نمبر</label>
+                        <input type="text" id="whatsappNumber" value="03001234567" placeholder="03001234567">
                     </div>
-                    
-                    <!-- Ad 2 -->
-                    <div class="card" id="ad2Card">
-                        <div class="delete-btn" onclick="deleteCard('ad2')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>ایڈ 2 <span id="ad2Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="ad2Clickable" checked onchange="toggleClickable('ad2')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="ad2Text" value="شادی بیاہ ڈیلز" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="ad2Link" value="https://example.com/wedding" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="ad2Icon" style="margin-top:5px;">
-                            <option value="fa-heart">شادی</option>
-                            <option value="fa-gift">تحفہ</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Ad 3 -->
-                    <div class="card" id="ad3Card">
-                        <div class="delete-btn" onclick="deleteCard('ad3')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>ایڈ 3 <span id="ad3Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="ad3Clickable" checked onchange="toggleClickable('ad3')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="ad3Text" value="رمضان سپیشل" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="ad3Link" value="https://example.com/ramadan" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="ad3Icon" style="margin-top:5px;">
-                            <option value="fa-moon">رمضان</option>
-                            <option value="fa-star">ستارہ</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom Banners -->
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-images"></i>
-                    نیچے بینرز
-                </div>
-                
-                <div class="cards-grid" id="bottomBannersContainer">
-                    <!-- Banner 1 -->
-                    <div class="card" id="banner1Card">
-                        <div class="delete-btn" onclick="deleteCard('banner1')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>بینر 1 <span id="banner1Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="banner1Clickable" checked onchange="toggleClickable('banner1')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="banner1Text" value="25% تخفیف" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="banner1Link" value="https://example.com/discount" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="banner1Icon" style="margin-top:5px;">
-                            <option value="fa-percent">تخفیف</option>
-                            <option value="fa-tags">ڈیل</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Banner 2 -->
-                    <div class="card" id="banner2Card">
-                        <div class="delete-btn" onclick="deleteCard('banner2')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>بینر 2 <span id="banner2Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="banner2Clickable" checked onchange="toggleClickable('banner2')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="banner2Text" value="فری ڈلیوری" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="banner2Link" value="https://example.com/delivery" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="banner2Icon" style="margin-top:5px;">
-                            <option value="fa-truck">ڈلیوری</option>
-                            <option value="fa-box">پیکج</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Banner 3 -->
-                    <div class="card" id="banner3Card">
-                        <div class="delete-btn" onclick="deleteCard('banner3')">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <h4>بینر 3 <span id="banner3Status" class="status-badge status-active">فعال</span></h4>
-                        
-                        <div class="toggle-container">
-                            <span class="toggle-label"><i class="fas fa-mouse-pointer"></i> کلک ایبل</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="banner3Clickable" checked onchange="toggleClickable('banner3')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        
-                        <input type="text" id="banner3Text" value="لکی ڈرا" placeholder="متن" style="margin-bottom:5px;">
-                        <input type="text" id="banner3Link" value="https://example.com/lucky" placeholder="لنک" style="margin-bottom:5px;">
-                        
-                        <select id="banner3Icon" style="margin-top:5px;">
-                            <option value="fa-trophy">انعام</option>
-                            <option value="fa-gem">جیولری</option>
-                        </select>
+                    <div class="contact-field">
+                        <label><i class="fas fa-shopping-cart"></i> شاپ ناؤ لنک</label>
+                        <input type="text" id="shopLink" value="https://example.com/shop" placeholder="https://...">
                     </div>
                 </div>
             </div>
@@ -665,37 +397,6 @@
             }
         }
         
-        function toggleClickable(id) {
-            const checkbox = document.getElementById(id + 'Clickable');
-            const statusSpan = document.getElementById(id + 'Status');
-            
-            if (checkbox.checked) {
-                statusSpan.textContent = 'فعال';
-                statusSpan.className = 'status-badge status-active';
-            } else {
-                statusSpan.textContent = 'غیر فعال';
-                statusSpan.className = 'status-badge status-inactive';
-            }
-        }
-        
-        function deleteCard(id) {
-            const card = document.getElementById(id + 'Card');
-            
-            if (card.classList.contains('hidden-card')) {
-                card.classList.remove('hidden-card');
-                const statusSpan = document.getElementById(id + 'Status');
-                const checkbox = document.getElementById(id + 'Clickable');
-                
-                statusSpan.textContent = checkbox.checked ? 'فعال' : 'غیر فعال';
-                statusSpan.className = checkbox.checked ? 'status-badge status-active' : 'status-badge status-inactive';
-            } else {
-                card.classList.add('hidden-card');
-                const statusSpan = document.getElementById(id + 'Status');
-                statusSpan.textContent = 'حذف شدہ';
-                statusSpan.className = 'status-badge status-inactive';
-            }
-        }
-        
         function collectFormData() {
             return {
                 businessName: document.getElementById('businessName').value,
@@ -705,50 +406,8 @@
                 address: document.getElementById('address').value,
                 businessDetails: document.getElementById('businessDetails').value,
                 profileIcon: document.getElementById('profileIcon').value,
-                
-                ad1: {
-                    text: document.getElementById('ad1Text').value,
-                    link: document.getElementById('ad1Link').value,
-                    icon: document.getElementById('ad1Icon').value,
-                    clickable: document.getElementById('ad1Clickable').checked,
-                    deleted: document.getElementById('ad1Card').classList.contains('hidden-card')
-                },
-                ad2: {
-                    text: document.getElementById('ad2Text').value,
-                    link: document.getElementById('ad2Link').value,
-                    icon: document.getElementById('ad2Icon').value,
-                    clickable: document.getElementById('ad2Clickable').checked,
-                    deleted: document.getElementById('ad2Card').classList.contains('hidden-card')
-                },
-                ad3: {
-                    text: document.getElementById('ad3Text').value,
-                    link: document.getElementById('ad3Link').value,
-                    icon: document.getElementById('ad3Icon').value,
-                    clickable: document.getElementById('ad3Clickable').checked,
-                    deleted: document.getElementById('ad3Card').classList.contains('hidden-card')
-                },
-                
-                banner1: {
-                    text: document.getElementById('banner1Text').value,
-                    link: document.getElementById('banner1Link').value,
-                    icon: document.getElementById('banner1Icon').value,
-                    clickable: document.getElementById('banner1Clickable').checked,
-                    deleted: document.getElementById('banner1Card').classList.contains('hidden-card')
-                },
-                banner2: {
-                    text: document.getElementById('banner2Text').value,
-                    link: document.getElementById('banner2Link').value,
-                    icon: document.getElementById('banner2Icon').value,
-                    clickable: document.getElementById('banner2Clickable').checked,
-                    deleted: document.getElementById('banner2Card').classList.contains('hidden-card')
-                },
-                banner3: {
-                    text: document.getElementById('banner3Text').value,
-                    link: document.getElementById('banner3Link').value,
-                    icon: document.getElementById('banner3Icon').value,
-                    clickable: document.getElementById('banner3Clickable').checked,
-                    deleted: document.getElementById('banner3Card').classList.contains('hidden-card')
-                }
+                whatsappNumber: document.getElementById('whatsappNumber').value,
+                shopLink: document.getElementById('shopLink').value
             };
         }
         
@@ -756,11 +415,11 @@
             const data = collectFormData();
             const id = 'cal_' + Date.now();
             
-            // Multiple jagah save karo
+            // Save in multiple places
             localStorage.setItem(id, JSON.stringify(data));
             sessionStorage.setItem(id, JSON.stringify(data));
             
-            // Cookie mein bhi save karo (30 days)
+            // Save in cookie (30 days)
             document.cookie = `${id}=${JSON.stringify(data)}; max-age=2592000; path=/`;
             
             window.open('calendar.html?id=' + id, '_blank');
