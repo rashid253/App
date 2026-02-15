@@ -146,7 +146,7 @@
             color: #e53e3e;
         }
         
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
@@ -156,12 +156,12 @@
             font-family: 'Inter', sans-serif;
         }
         
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: #c9a75a;
             outline: none;
         }
         
-        /* Icon Selector - Optional */
+        /* Icon Selector */
         .icon-selector-group {
             margin-top: 10px;
             display: flex;
@@ -184,10 +184,6 @@
         
         .icon-select {
             flex: 1;
-            padding: 8px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            background: white;
         }
         
         .icon-note {
@@ -564,64 +560,47 @@
             }
         }
         
-        // ========== GENERATE CALENDAR ==========
-        function generateCalendar() {
-            // Collect all data
-            const businessName = document.getElementById('businessName').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const email = document.getElementById('email').value;
-            const businessType = document.getElementById('businessType').value;
-            const address = document.getElementById('address').value;
-            const businessDetails = document.getElementById('businessDetails').value;
-            const profileIcon = document.getElementById('profileIcon').value;
-            
-            // Get profile picture if uploaded
-            const profilePic = document.getElementById('profilePic').files[0];
-            
-            // Ads data
-            const ad1Text = document.getElementById('ad1Text').value;
-            const ad1Link = document.getElementById('ad1Link').value;
-            const ad1Icon = document.getElementById('ad1Icon').value;
-            
-            const ad2Text = document.getElementById('ad2Text').value;
-            const ad2Link = document.getElementById('ad2Link').value;
-            const ad2Icon = document.getElementById('ad2Icon').value;
-            
-            const ad3Text = document.getElementById('ad3Text').value;
-            const ad3Link = document.getElementById('ad3Link').value;
-            const ad3Icon = document.getElementById('ad3Icon').value;
-            
-            // Banners data
-            const banner1Text = document.getElementById('banner1Text').value;
-            const banner1Link = document.getElementById('banner1Link').value;
-            const banner1Icon = document.getElementById('banner1Icon').value;
-            
-            const banner2Text = document.getElementById('banner2Text').value;
-            const banner2Link = document.getElementById('banner2Link').value;
-            const banner2Icon = document.getElementById('banner2Icon').value;
-            
-            const banner3Text = document.getElementById('banner3Text').value;
-            const banner3Link = document.getElementById('banner3Link').value;
-            const banner3Icon = document.getElementById('banner3Icon').value;
-            
-            // Create calendar HTML
-            const calendarHTML = generateCalendarHTML({
-                businessName, phoneNumber, email, businessType, address, businessDetails, profileIcon,
-                ad1Text, ad1Link, ad1Icon,
-                ad2Text, ad2Link, ad2Icon,
-                ad3Text, ad3Link, ad3Icon,
-                banner1Text, banner1Link, banner1Icon,
-                banner2Text, banner2Link, banner2Icon,
-                banner3Text, banner3Link, banner3Icon
-            });
-            
-            // Open in new window
-            const newWindow = window.open();
-            newWindow.document.write(calendarHTML);
-            newWindow.document.close();
+        // ========== COLLECT FORM DATA ==========
+        function collectFormData() {
+            return {
+                businessName: document.getElementById('businessName').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                businessType: document.getElementById('businessType').value,
+                address: document.getElementById('address').value,
+                businessDetails: document.getElementById('businessDetails').value,
+                profileIcon: document.getElementById('profileIcon').value,
+                
+                ad1Text: document.getElementById('ad1Text').value,
+                ad1Link: document.getElementById('ad1Link').value,
+                ad1Icon: document.getElementById('ad1Icon').value,
+                
+                ad2Text: document.getElementById('ad2Text').value,
+                ad2Link: document.getElementById('ad2Link').value,
+                ad2Icon: document.getElementById('ad2Icon').value,
+                
+                ad3Text: document.getElementById('ad3Text').value,
+                ad3Link: document.getElementById('ad3Link').value,
+                ad3Icon: document.getElementById('ad3Icon').value,
+                
+                banner1Text: document.getElementById('banner1Text').value,
+                banner1Link: document.getElementById('banner1Link').value,
+                banner1Icon: document.getElementById('banner1Icon').value,
+                
+                banner2Text: document.getElementById('banner2Text').value,
+                banner2Link: document.getElementById('banner2Link').value,
+                banner2Icon: document.getElementById('banner2Icon').value,
+                
+                banner3Text: document.getElementById('banner3Text').value,
+                banner3Link: document.getElementById('banner3Link').value,
+                banner3Icon: document.getElementById('banner3Icon').value
+            };
         }
         
-        function generateCalendarHTML(data) {
+        // ========== GENERATE CALENDAR ==========
+        function generateCalendar() {
+            const data = collectFormData();
+            
             // City timings (fixed)
             const timings = [
                 {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
@@ -633,7 +612,27 @@
                 {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
                 {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
                 {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
-                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"}
+                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
+                {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
+                {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
+                {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
+                {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
+                {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
+                {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
+                {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
+                {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
+                {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
+                {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
+                {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
+                {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
+                {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
+                {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
+                {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
+                {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
+                {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
+                {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
+                {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
+                {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
             ];
             
             let calendarRows = '';
@@ -648,14 +647,16 @@
                 `;
             });
             
-            return `<!DOCTYPE html>
+            const profilePic = document.getElementById('profilePreview').innerHTML.includes('img') ? 
+                document.getElementById('profilePreview').innerHTML : '';
+            
+            const calendarHTML = `<!DOCTYPE html>
 <html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${data.businessName} - Ramadan Calendar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -691,8 +692,9 @@
             align-items: center;
             justify-content: center;
             color: #ffd966;
-            font-size: 2.5rem;
+            overflow: hidden;
         }
+        .profile-pic img { width:100%; height:100%; object-fit:cover; }
         .profile-info { flex:1; }
         .profile-name { font-size:1.8rem; font-weight:700; color:#1a2e1a; }
         .profile-detail { color:#666; margin:5px 0; }
@@ -822,7 +824,7 @@
         <!-- Profile Section -->
         <div class="profile-card" onclick="window.open('https://maps.google.com/?q=${encodeURIComponent(data.address)}', '_blank')">
             <div class="profile-pic">
-                <i class="fas ${data.profileIcon}"></i>
+                ${profilePic}
             </div>
             <div class="profile-info">
                 <div class="profile-name">${data.businessName}</div>
@@ -832,7 +834,7 @@
                     <a href="tel:${data.phoneNumber}" class="contact-btn" onclick="event.stopPropagation()">
                         <i class="fas fa-phone"></i> ${data.phoneNumber}
                     </a>
-                    ${data.email ? `<a href="mailto:${data.email}" class="contact-btn" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i></a>` : ''}
+                    ${data.email ? `<a href="mailto:${data.email}" class="contact-btn" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i> ای میل</a>` : ''}
                 </div>
                 ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
             </div>
@@ -865,7 +867,7 @@
         
         <!-- Icons -->
         <div class="icon-row">
-            <div class="icon-item" onclick="openTasbeeh()">
+            <div class="icon-item" onclick="alert('تسبیح کاؤنٹر')">
                 <i class="fas fa-tasbih"></i>
                 <span>تسبیح</span>
             </div>
@@ -877,7 +879,7 @@
                 <i class="fas fa-headphones"></i>
                 <span>آڈیو</span>
             </div>
-            <div class="icon-item" onclick="openDuas()">
+            <div class="icon-item" onclick="alert('رمضان کی دعائیں')">
                 <i class="fas fa-hand-praying"></i>
                 <span>دعائیں</span>
             </div>
@@ -940,11 +942,6 @@
     </div>
     
     <script>
-        // Tasbeeh functions
-        let tasbeeh = 0;
-        function openTasbeeh() { alert('تسبیح کاؤنٹر: ' + tasbeeh); }
-        function openDuas() { alert('رمضان کی دعائیں'); }
-        
         // Timer
         function updateTimer() {
             let now = new Date();
@@ -962,6 +959,11 @@
     </script>
 </body>
 </html>`;
+            
+            // Open in new window
+            const newWindow = window.open();
+            newWindow.document.write(calendarHTML);
+            newWindow.document.close();
         }
     </script>
 </body>
