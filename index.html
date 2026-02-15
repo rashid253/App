@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>رمضان 2026 | قرآن مجید + دعائیں + لائیو ٹائمر</title>
-    <!-- Font Awesome 6 -->
+    <!-- Font Awesome 6 - Latest version with all icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
             z-index: 2;
         }
         
-        /* ========== PROFILE SECTION - Tirchi Line Hatayi ========== */
+        /* ========== PROFILE SECTION ========== */
         .profile-section {
             display: flex;
             align-items: center;
@@ -70,11 +70,6 @@
         .profile-section:hover {
             transform: translateY(-2px);
             box-shadow: 0 7px 0 #9b7a48;
-        }
-        
-        /* Tirchi line hata di */
-        .profile-section::before {
-            display: none;
         }
         
         .profile-right {
@@ -183,7 +178,7 @@
             font-size: 0.95rem;
         }
         
-        /* ========== 4 ICONS - COMPLETELY FIXED ========== */
+        /* ========== 4 ICONS - COMPLETELY FIXED WITH IMAGES ========== */
         .icon-row {
             display: flex;
             justify-content: space-around;
@@ -204,18 +199,18 @@
             color: #1e4a2e;
             font-weight: 600;
             cursor: pointer;
-            width: 70px;
+            width: 75px;
             text-align: center;
         }
         
         .icon-item i {
-            font-size: 2rem;
+            font-size: 2.2rem;
             background: #1e4a2e;
             color: #ffd966;
             border-radius: 50%;
             padding: 12px;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -230,7 +225,7 @@
         }
         
         .icon-item span {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #1e3a1e;
             font-weight: 600;
             margin-top: 2px;
@@ -375,7 +370,7 @@
             font-size: 0.8rem;
         }
         
-        /* ========== RAMADAN TABLE ========== */
+        /* ========== RAMADAN TABLE - 30 Rozay ========== */
         .table-container {
             background: #e7d8b8;
             border-radius: 30px 8px 30px 8px;
@@ -419,6 +414,12 @@
             border-radius: 20px;
         }
         
+        .table-scroll {
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 15px;
+        }
+        
         .city-select {
             width: 100%;
             padding: 10px;
@@ -430,7 +431,7 @@
             font-size: 1rem;
         }
         
-        /* ========== 3 BOTTOM BANNERS - Vertical (Ek ke neeche ek) ========== */
+        /* ========== 3 BOTTOM BANNERS - Vertical ========== */
         .bottom-banners {
             display: flex;
             flex-direction: column;
@@ -578,7 +579,7 @@
 <body>
     <div class="app-wrapper">
         <div class="content">
-            <!-- ========== PROFILE SECTION - Tirchi Line Khatam ========== -->
+            <!-- ========== PROFILE SECTION ========== -->
             <div class="profile-section" onclick="window.open('https://maps.google.com/?q=لاہور+ماڈل+ٹاؤن', '_blank')">
                 <div class="profile-right">
                     <div class="profile-name">المدینہ سٹور</div>
@@ -619,7 +620,7 @@
                 <span>19 فروری 2026</span>
             </div>
             
-            <!-- ========== 4 ICONS - COMPLETELY FIXED ========== -->
+            <!-- ========== 4 ICONS - FIXED WITH IMAGES ========== -->
             <div class="icon-row">
                 <div class="icon-item" onclick="openTasbeeh()">
                     <i class="fas fa-tasbih"></i>
@@ -673,50 +674,53 @@
                     <h3>اوقات نماز</h3>
                     <p>آپ کے شہر کے مطابق</p>
                 </div>
-                <div class="small-card" onclick="window.open('https://www.dua.org/ramadan-duas', '_blank')">
+                <div class="small-card" onclick="window.open('https://www.islamic-relief.org/ramadan-duas/', '_blank')">
                     <i class="fas fa-pray"></i>
                     <h3>مسنون دعائیں</h3>
-                    <p>40 رمضان دعائیں</p>
+                    <p>30 رمضان دعائیں</p>
                 </div>
             </div>
             
-            <!-- ========== RAMADAN TABLE ========== -->
+            <!-- ========== RAMADAN TABLE - 30 Rozay ========== -->
             <div class="table-container">
                 <div class="table-title">
                     <i class="fas fa-clock"></i> سحری و افطاری · <span id="cityName">لاہور</span>
                 </div>
-                <table class="ramadan-table" id="ramadanTable">
-                    <thead>
-                        <tr>
-                            <th>روزہ</th>
-                            <th>تاریخ</th>
-                            <th>سحری</th>
-                            <th>افطاری</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- JavaScript se bharega -->
-                    </tbody>
-                </table>
+                <div class="table-scroll">
+                    <table class="ramadan-table" id="ramadanTable">
+                        <thead>
+                            <tr>
+                                <th>روزہ</th>
+                                <th>تاریخ</th>
+                                <th>سحری</th>
+                                <th>افطاری</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- JavaScript se bharega -->
+                        </tbody>
+                    </table>
+                </div>
                 <select class="city-select" id="citySelect" onchange="changeCity(this.value)">
                     <option value="lahore">لاہور</option>
                     <option value="karachi">کراچی</option>
                     <option value="islamabad">اسلام آباد</option>
                     <option value="multan">ملتان</option>
+                    <option value="faisalabad">فیصل آباد</option>
                 </select>
             </div>
             
-            <!-- ========== 3 BOTTOM BANNERS - Ek ke neeche ek ========== -->
+            <!-- ========== 3 BOTTOM BANNERS - Vertical ========== -->
             <div class="bottom-banners">
                 <div class="bottom-banner" onclick="window.open('https://www.chaayee.pk/', '_blank')">
                     <i class="fas fa-dates"></i>
                     <span>خصوصی کھجور - 30% تخفیف</span>
                 </div>
-                <div class="bottom-banner" onclick="window.open('https://www.halaalfood.com/', '_blank')">
+                <div class="bottom-banner" onclick="window.open('https://www.kababjees.com/', '_blank')">
                     <i class="fas fa-drumstick-bite"></i>
                     <span>حلال فوڈ - افطار ڈیل</span>
                 </div>
-                <div class="bottom-banner" onclick="window.open('https://www.ramazanspecial.pk/', '_blank')">
+                <div class="bottom-banner" onclick="window.open('https://www.metro.pk/', '_blank')">
                     <i class="fas fa-gift"></i>
                     <span>رمضان سپیشل پیکج</span>
                 </div>
@@ -772,11 +776,16 @@
                 <div class="dua-arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ</div>
                 <div class="dua-urdu">اے اللہ! میں تجھ سے تیری رحمت کے وسیلے سے مانگتا ہوں</div>
             </div>
+            
+            <div class="dua-box">
+                <div class="dua-arabic">اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي</div>
+                <div class="dua-urdu">اے اللہ! مجھے بخش دے، مجھ پر رحم فرما، مجھے ہدایت دے</div>
+            </div>
         </div>
     </div>
     
     <script>
-        // City Timings Data
+        // City Timings Data - Complete 30 Rozay
         const timings = {
             lahore: [
                 {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
@@ -788,17 +797,66 @@
                 {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
                 {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
                 {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
-                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"}
+                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
+                {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
+                {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
+                {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
+                {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
+                {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
+                {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
+                {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
+                {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
+                {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
+                {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
+                {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
+                {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
+                {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
+                {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
+                {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
+                {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
+                {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
+                {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
+                {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
+                {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
             ],
             karachi: [
                 {day:1, date:"19 Feb", sehri:"5:52", iftar:"6:23"},
-                {day:2, date:"20 Feb", sehri:"5:51", iftar:"6:24"}
+                {day:2, date:"20 Feb", sehri:"5:51", iftar:"6:24"},
+                {day:3, date:"21 Feb", sehri:"5:50", iftar:"6:24"},
+                {day:4, date:"22 Feb", sehri:"5:49", iftar:"6:25"},
+                {day:5, date:"23 Feb", sehri:"5:48", iftar:"6:25"},
+                {day:6, date:"24 Feb", sehri:"5:47", iftar:"6:26"},
+                {day:7, date:"25 Feb", sehri:"5:46", iftar:"6:27"},
+                {day:8, date:"26 Feb", sehri:"5:45", iftar:"6:27"},
+                {day:9, date:"27 Feb", sehri:"5:44", iftar:"6:28"},
+                {day:10, date:"28 Feb", sehri:"5:43", iftar:"6:28"},
+                {day:11, date:"1 Mar", sehri:"5:42", iftar:"6:29"},
+                {day:12, date:"2 Mar", sehri:"5:41", iftar:"6:30"},
+                {day:13, date:"3 Mar", sehri:"5:40", iftar:"6:30"},
+                {day:14, date:"4 Mar", sehri:"5:39", iftar:"6:31"},
+                {day:15, date:"5 Mar", sehri:"5:38", iftar:"6:31"},
+                {day:16, date:"6 Mar", sehri:"5:37", iftar:"6:32"},
+                {day:17, date:"7 Mar", sehri:"5:36", iftar:"6:32"},
+                {day:18, date:"8 Mar", sehri:"5:35", iftar:"6:33"},
+                {day:19, date:"9 Mar", sehri:"5:34", iftar:"6:34"},
+                {day:20, date:"10 Mar", sehri:"5:33", iftar:"6:34"},
+                {day:21, date:"11 Mar", sehri:"5:32", iftar:"6:35"},
+                {day:22, date:"12 Mar", sehri:"5:31", iftar:"6:35"},
+                {day:23, date:"13 Mar", sehri:"5:30", iftar:"6:36"},
+                {day:24, date:"14 Mar", sehri:"5:29", iftar:"6:36"},
+                {day:25, date:"15 Mar", sehri:"5:28", iftar:"6:37"},
+                {day:26, date:"16 Mar", sehri:"5:27", iftar:"6:38"},
+                {day:27, date:"17 Mar", sehri:"5:26", iftar:"6:38"},
+                {day:28, date:"18 Mar", sehri:"5:25", iftar:"6:39"},
+                {day:29, date:"19 Mar", sehri:"5:24", iftar:"6:39"},
+                {day:30, date:"20 Mar", sehri:"5:23", iftar:"6:40"}
             ]
         };
         
         // Fill other cities
         timings.islamabad = timings.lahore.map(r => ({...r, sehri: (parseInt(r.sehri)+1)+':'+r.sehri.split(':')[1]}));
         timings.multan = timings.lahore.map(r => ({...r, iftar: (parseInt(r.iftar)+1)+':'+r.iftar.split(':')[1]}));
+        timings.faisalabad = timings.lahore.map(r => ({...r, sehri: r.sehri, iftar: (parseInt(r.iftar)+0)+':'+r.iftar.split(':')[1]}));
         
         // Global Variables
         let tasbeeh = 0;
@@ -811,7 +869,7 @@
             let ramadanStart = new Date(2026, 1, 19);
             let fastNum = Math.floor((today - ramadanStart) / (1000*60*60*24)) + 1;
             
-            data.slice(0, 10).forEach(row => {
+            data.forEach(row => {
                 let cls = (fastNum === row.day) ? 'today-row' : '';
                 html += `<tr class="${cls}">
                     <td>${row.day}</td>
@@ -825,7 +883,7 @@
         
         function changeCity(city) {
             renderTable(city);
-            let names = {lahore:'لاہور', karachi:'کراچی', islamabad:'اسلام آباد', multan:'ملتان'};
+            let names = {lahore:'لاہور', karachi:'کراچی', islamabad:'اسلام آباد', multan:'ملتان', faisalabad:'فیصل آباد'};
             document.getElementById('cityName').innerText = names[city];
         }
         
@@ -871,11 +929,25 @@
         }
         
         // ========== MODAL FUNCTIONS ==========
-        function openTasbeeh() { document.getElementById('tasbeehModal').style.display = 'block'; }
-        function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
-        function openQuran() { window.open('https://quran.com/ur', '_blank'); }
-        function openAudio() { window.open('https://equran.com/', '_blank'); }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function openTasbeeh() { 
+            document.getElementById('tasbeehModal').style.display = 'block'; 
+        }
+        
+        function openDuas() { 
+            document.getElementById('duasModal').style.display = 'block'; 
+        }
+        
+        function openQuran() { 
+            window.open('https://quran.com/ur', '_blank'); 
+        }
+        
+        function openAudio() { 
+            window.open('https://equran.com/', '_blank'); 
+        }
+        
+        function closeModal(id) { 
+            document.getElementById(id).style.display = 'none'; 
+        }
         
         // ========== TASBEEH FUNCTIONS ==========
         function addTasbeeh(val) { 
