@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramadan App - Edit Profile</title>
+    <title>رمضان ایپ - پروفائل میں ترمیم</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a472a">
+    <meta name="theme-color" content="#4CAF50">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Segoe UI', 'Urdu Typesetting', 'Noto Nastaliq Urdu', sans-serif;
         }
 
         body {
-            background: #f5f5f5;
+            background: #f0f2f5;
             min-height: 100vh;
             padding: 16px;
+            direction: rtl;
         }
 
         .container {
@@ -67,55 +68,6 @@
             color: white;
         }
 
-        /* Profile Image Upload */
-        .profile-upload-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-image-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 16px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #4CAF50;
-        }
-
-        .upload-overlay {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: #4CAF50;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-
-        .upload-hint {
-            color: #666;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-
-        .upload-hint small {
-            color: #999;
-            display: block;
-            margin-top: 4px;
-        }
-
         /* Form Styles */
         .form-group {
             margin-bottom: 20px;
@@ -126,7 +78,7 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .form-group label.required::after {
@@ -142,6 +94,8 @@
             border-radius: 12px;
             font-size: 16px;
             background: #f9f9f9;
+            text-align: right;
+            font-family: inherit;
         }
 
         .form-group input:focus,
@@ -156,30 +110,29 @@
             resize: vertical;
         }
 
-        /* Banners Section */
+        /* Banners Section - Text Only */
         .banners-section {
             margin-top: 20px;
         }
 
         .banner-item {
-            position: relative;
-            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
             border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #eee;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
         }
 
-        .banner-item img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            display: block;
+        .banner-item .banner-text {
+            flex: 1;
         }
 
         .banner-remove {
-            position: absolute;
-            top: 8px;
-            right: 8px;
             background: #ff4444;
             color: white;
             border: none;
@@ -266,80 +219,65 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Edit Profile</h1>
+            <h1>پروفائل میں ترمیم</h1>
             <div class="nav-buttons">
-                <a href="index.html" class="nav-btn active">Edit</a>
-                <a href="card.html" class="nav-btn">Preview Card</a>
-                <a href="calendar.html" class="nav-btn">Calendar</a>
+                <a href="index.html" class="nav-btn active">ترمیم</a>
+                <a href="card.html" class="nav-btn">کارڈ</a>
+                <a href="calendar.html" class="nav-btn">کیلنڈر</a>
             </div>
         </div>
 
         <div class="card">
-            <!-- Profile Image Upload -->
-            <div class="profile-upload-section">
-                <div class="profile-image-container" onclick="document.getElementById('imageUpload').click()">
-                    <img id="profileImage" class="profile-image" src="https://via.placeholder.com/150" alt="Profile">
-                    <div class="upload-overlay">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                </div>
-                <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-                <div class="upload-hint">
-                    Click to upload profile picture
-                    <small>PNG, JPG up to 5MB</small>
-                </div>
-            </div>
-
-            <!-- Form Fields -->
+            <!-- Form Fields - Urdu -->
             <form id="profileForm">
                 <div class="form-group">
-                    <label class="required">Full Name *</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name" value="Rashid Mehmood">
+                    <label class="required">پورا نام *</label>
+                    <input type="text" id="fullName" placeholder="اپنا پورا نام لکھیں" value="رشید محمود">
                 </div>
 
                 <div class="form-group">
-                    <label class="required">Phone Number *</label>
+                    <label class="required">فون نمبر *</label>
                     <input type="tel" id="phoneNumber" placeholder="03XXXXXXXXX" value="03030066899">
                 </div>
 
                 <div class="form-group">
-                    <label>Email Address</label>
+                    <label>ای میل</label>
                     <input type="email" id="email" placeholder="your@email.com" value="rashid@example.com">
                 </div>
 
                 <div class="form-group">
-                    <label class="required">Business Address *</label>
-                    <textarea id="businessAddress" placeholder="Complete business address">مالك تازل، لاير</textarea>
+                    <label class="required">کاروبار کا پتہ *</label>
+                    <textarea id="businessAddress" placeholder="مکمل کاروباری پتہ">مالک تازل، لاہور</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label>Business Details</label>
-                    <textarea id="businessDetails" placeholder="Your business identity">Every kind of Digital services</textarea>
+                    <label>کاروبار کی تفصیلات</label>
+                    <textarea id="businessDetails" placeholder="آپ کے کاروبار کی تفصیل">ہر قسم کی ڈیجیٹل سروسز</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label class="required">Business Title *</label>
-                    <input type="text" id="businessTitle" placeholder="Your business name" value="Jewellery Store">
+                    <label class="required">کاروبار کا نام *</label>
+                    <input type="text" id="businessTitle" placeholder="آپ کے کاروبار کا نام" value="جیولری اسٹور">
                 </div>
             </form>
 
-            <!-- Banners Section -->
-            <h3 style="margin: 20px 0 10px; color: #333;">Banners</h3>
+            <!-- Banners Section - Text Only -->
+            <h3 style="margin: 20px 0 10px; color: #333;">بینرز (صرف متن)</h3>
             <div id="bannersContainer" class="banners-section">
-                <!-- Banners will be added here -->
+                <!-- Text banners will be added here -->
             </div>
             
             <button class="add-banner-btn" onclick="addBanner()">
-                <i class="fas fa-plus"></i> Add Banner
+                <i class="fas fa-plus"></i> نیا بینر شامل کریں
             </button>
 
             <button class="save-btn" onclick="saveProfile()">
-                <i class="fas fa-save"></i> Save Profile & Generate Card
+                <i class="fas fa-save"></i> پروفائل محفوظ کریں
             </button>
 
             <div class="preview-link">
                 <a href="card.html" target="_blank">
-                    <i class="fas fa-eye"></i> Preview Your Card
+                    <i class="fas fa-eye"></i> کارڈ دیکھیں
                 </a>
             </div>
         </div>
@@ -357,37 +295,18 @@
             }, 3000);
         }
 
-        // Profile Image Handling
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) {
-                    showToast('File too large! Max 5MB');
-                    return;
-                }
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                    localStorage.setItem('profileImage', e.target.result);
-                    showToast('Profile image uploaded!');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Banner Management
+        // Banner Management - Text Only
         let banners = JSON.parse(localStorage.getItem('banners')) || [];
 
         function renderBanners() {
             const container = document.getElementById('bannersContainer');
             container.innerHTML = '';
             
-            banners.forEach((banner, index) => {
+            banners.forEach((bannerText, index) => {
                 const div = document.createElement('div');
                 div.className = 'banner-item';
                 div.innerHTML = `
-                    <img src="${banner}" alt="Banner ${index + 1}">
+                    <div class="banner-text">${bannerText}</div>
                     <button class="banner-remove" onclick="removeBanner(${index})">
                         <i class="fas fa-times"></i>
                     </button>
@@ -397,21 +316,21 @@
         }
 
         function addBanner() {
-            const url = prompt('Enter banner image URL:');
-            if (url) {
-                banners.push(url);
+            const text = prompt('بینر کا متن لکھیں:');
+            if (text) {
+                banners.push(text);
                 localStorage.setItem('banners', JSON.stringify(banners));
                 renderBanners();
-                showToast('Banner added!');
+                showToast('بینر شامل ہو گیا!');
             }
         }
 
         function removeBanner(index) {
-            if (confirm('Remove this banner?')) {
+            if (confirm('کیا یہ بینر حذف کر دیں؟')) {
                 banners.splice(index, 1);
                 localStorage.setItem('banners', JSON.stringify(banners));
                 renderBanners();
-                showToast('Banner removed!');
+                showToast('بینر حذف ہو گیا!');
             }
         }
 
@@ -428,17 +347,14 @@
 
             // Validate required fields
             if (!profile.name || !profile.phone || !profile.address || !profile.title) {
-                showToast('Please fill all required fields!');
+                showToast('براہ کرم تمام ضروری فیلڈز بھریں!');
                 return;
             }
 
             localStorage.setItem('profile', JSON.stringify(profile));
             localStorage.setItem('lastUpdated', new Date().toISOString());
             
-            showToast('Profile saved! View your card.');
-            
-            // Open card preview
-            window.open('card.html', '_blank');
+            showToast('پروفائل محفوظ ہو گیا!');
         }
 
         // Load saved data
@@ -452,11 +368,6 @@
                 document.getElementById('businessAddress').value = profile.address || '';
                 document.getElementById('businessDetails').value = profile.details || '';
                 document.getElementById('businessTitle').value = profile.title || '';
-            }
-
-            const savedImage = localStorage.getItem('profileImage');
-            if (savedImage) {
-                document.getElementById('profileImage').src = savedImage;
             }
         }
 
