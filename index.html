@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رمضان مبارک 1447 - پروفائل ایڈٹ</title>
+    <title>رمضان مبارک 1447 - اپنا کارڈ بنائیں</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b4d3a">
     <style>
@@ -26,23 +26,6 @@
             margin: 0 auto;
         }
 
-        /* Islamic Pattern */
-        .islamic-pattern {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .islamic-pattern::before {
-            content: "ﷲ";
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            font-size: 150px;
-            opacity: 0.05;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
         .card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 30px;
@@ -50,8 +33,6 @@
             margin-bottom: 20px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             border: 2px solid #d4af37;
-            position: relative;
-            backdrop-filter: blur(5px);
         }
 
         .card-header {
@@ -64,48 +45,27 @@
         .card-header h1 {
             color: #0b4d3a;
             font-size: 28px;
-            font-weight: bold;
         }
 
         .card-header .arabic {
             font-size: 32px;
             color: #d4af37;
-            margin-bottom: 5px;
         }
 
-        .header-buttons {
-            display: flex;
-            gap: 10px;
+        .info-box {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 15px;
             margin-bottom: 20px;
-        }
-
-        .header-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 50px;
-            background: white;
-            color: #0b4d3a;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
             text-align: center;
-            font-size: 16px;
-            border: 2px solid #d4af37;
-            transition: all 0.3s;
+            border-right: 4px solid #d4af37;
         }
 
-        .header-btn.active {
-            background: #0b4d3a;
+        .info-box i {
             color: #d4af37;
+            margin-left: 8px;
         }
 
-        .header-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -115,7 +75,6 @@
             font-weight: 600;
             color: #0b4d3a;
             margin-bottom: 8px;
-            font-size: 16px;
         }
 
         .form-group label i {
@@ -126,36 +85,26 @@
         .form-group label.required::after {
             content: " *";
             color: #c41e3a;
-            font-size: 16px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 14px 18px;
+            padding: 14px;
             border: 2px solid #e0e0e0;
             border-radius: 15px;
             font-size: 16px;
             background: #f9f9f9;
             text-align: right;
-            font-family: inherit;
-            transition: all 0.3s;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #d4af37;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
 
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        /* Banners Section - Text Only */
+        /* Banners Section */
         .banners-section {
             margin: 25px 0;
         }
@@ -165,12 +114,6 @@
             margin: 25px 0 15px;
             text-align: center;
             font-size: 22px;
-            font-weight: bold;
-        }
-
-        .section-title i {
-            color: #d4af37;
-            margin-left: 8px;
         }
 
         .banner-item {
@@ -183,9 +126,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: 18px;
-            font-weight: 600;
             border: 2px solid #d4af37;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .banner-item .banner-text {
@@ -201,16 +142,6 @@
             height: 36px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .banner-remove:hover {
-            background: #a01830;
-            transform: scale(1.1);
         }
 
         .add-banner-btn {
@@ -221,22 +152,11 @@
             background: transparent;
             color: #d4af37;
             font-size: 18px;
-            font-weight: 600;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             margin-top: 15px;
-            transition: all 0.3s;
         }
 
-        .add-banner-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: scale(1.02);
-        }
-
-        .save-btn {
+        .generate-btn {
             width: 100%;
             padding: 18px;
             background: linear-gradient(135deg, #0b4d3a 0%, #1a7a5c 100%);
@@ -247,37 +167,21 @@
             font-weight: 700;
             cursor: pointer;
             margin: 25px 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s;
         }
 
-        .save-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-            background: linear-gradient(135deg, #1a7a5c 0%, #0b4d3a 100%);
-        }
-
-        .preview-link {
+        .card-link {
             text-align: center;
             margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            display: none;
         }
 
-        .preview-link a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: 600;
+        .card-link a {
+            color: #0b4d3a;
             font-size: 18px;
-            background: rgba(11, 77, 58, 0.9);
-            padding: 12px 30px;
-            border-radius: 50px;
-            border: 2px solid #d4af37;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .preview-link a:hover {
-            background: #0b4d3a;
-            transform: scale(1.05);
+            word-break: break-all;
         }
 
         .toast {
@@ -289,9 +193,7 @@
             color: #d4af37;
             padding: 15px 30px;
             border-radius: 50px;
-            font-size: 16px;
             border: 2px solid #d4af37;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             z-index: 1000;
             animation: slideUp 0.3s ease;
         }
@@ -306,83 +208,107 @@
                 opacity: 1;
             }
         }
+
+        .userId-display {
+            background: #0b4d3a;
+            color: #d4af37;
+            padding: 10px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 14px;
+            border: 1px solid #d4af37;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container islamic-pattern">
-        <!-- Generator Header Buttons -->
-        <div class="header-buttons">
-            <a href="index.html" class="header-btn active"><i class="fas fa-edit"></i> ترمیم</a>
-            <a href="card.html" class="header-btn"><i class="fas fa-id-card"></i> کارڈ دیکھیں</a>
-        </div>
-
-        <!-- Edit Form Card -->
+    <div class="container">
+        <!-- User ID Input -->
         <div class="card">
             <div class="card-header">
-                <div class="arabic">السلام علیکم</div>
-                <h1>پروفائل میں ترمیم کریں</h1>
-                <p style="color: #666; margin-top: 10px;">نیچے دیے گئے فارم کو بھریں</p>
+                <div class="arabic">🕌 السلام علیکم</div>
+                <h1>اپنا رمضان کارڈ بنائیں</h1>
             </div>
 
-            <!-- Form Fields -->
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                ہر شخص کا کارڈ الگ اور محفوظ
+            </div>
+
+            <div class="form-group">
+                <label class="required"><i class="fas fa-id-card"></i> اپنی منفرد آئی ڈی بنائیں *</label>
+                <input type="text" id="userId" placeholder="مثلاً: rashid123, ali_khan, etc" value="rashid123">
+                <small style="color: #666; display: block; margin-top: 5px;">صرف حروف اور نمبر استعمال کریں</small>
+            </div>
+
+            <button class="generate-btn" onclick="loadUserData()">
+                <i class="fas fa-folder-open"></i> موجودہ کارڈ لوڈ کریں
+            </button>
+        </div>
+
+        <!-- Edit Form -->
+        <div class="card" id="editForm" style="display: none;">
+            <div class="userId-display" id="currentUserId">
+                آئی ڈی: rashid123
+            </div>
+
             <form id="profileForm">
                 <div class="form-group">
                     <label class="required"><i class="fas fa-user"></i> پورا نام *</label>
-                    <input type="text" id="fullName" placeholder="اپنا پورا نام لکھیں" value="رشید محمود">
+                    <input type="text" id="fullName" placeholder="اپنا پورا نام لکھیں">
                 </div>
 
                 <div class="form-group">
                     <label class="required"><i class="fas fa-phone"></i> فون نمبر *</label>
-                    <input type="tel" id="phoneNumber" placeholder="03XXXXXXXXX" value="03030066899">
+                    <input type="tel" id="phoneNumber" placeholder="03XXXXXXXXX">
                 </div>
 
                 <div class="form-group">
-                    <label><i class="fas fa-envelope"></i> ای میل (اختیاری)</label>
-                    <input type="email" id="email" placeholder="your@email.com" value="rashid@example.com">
+                    <label><i class="fas fa-envelope"></i> ای میل</label>
+                    <input type="email" id="email" placeholder="your@email.com">
                 </div>
 
                 <div class="form-group">
                     <label class="required"><i class="fas fa-map-marker-alt"></i> کاروبار کا پتہ *</label>
-                    <textarea id="businessAddress" placeholder="مکمل کاروباری پتہ">مالک تازل، لاہور</textarea>
+                    <textarea id="businessAddress" placeholder="مکمل کاروباری پتہ"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label><i class="fas fa-info-circle"></i> کاروبار کی تفصیلات</label>
-                    <textarea id="businessDetails" placeholder="آپ کے کاروبار کی تفصیل (اختیاری)">ہر قسم کی ڈیجیٹل سروسز</textarea>
+                    <textarea id="businessDetails" placeholder="آپ کے کاروبار کی تفصیل"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label class="required"><i class="fas fa-store"></i> کاروبار کا نام *</label>
-                    <input type="text" id="businessTitle" placeholder="آپ کے کاروبار کا نام" value="جیولری اسٹور">
+                    <input type="text" id="businessTitle" placeholder="آپ کے کاروبار کا نام">
                 </div>
             </form>
 
-            <!-- Text Banners Section -->
+            <!-- Banners Section -->
             <div class="section-title">
                 <i class="fas fa-flag"></i> بینرز (صرف متن)
             </div>
-            <div id="bannersContainer" class="banners-section">
-                <!-- Banners will be added here -->
-            </div>
+            <div id="bannersContainer" class="banners-section"></div>
             
             <button class="add-banner-btn" onclick="addBanner()">
                 <i class="fas fa-plus-circle"></i> نیا بینر شامل کریں
             </button>
 
-            <button class="save-btn" onclick="saveProfile()">
-                <i class="fas fa-save"></i> پروفائل محفوظ کریں
+            <button class="generate-btn" onclick="saveProfile()">
+                <i class="fas fa-save"></i> کارڈ محفوظ کریں
             </button>
 
-            <div class="preview-link">
-                <a href="card.html" target="_blank">
-                    <i class="fas fa-eye"></i> تیار شدہ کارڈ دیکھیں
-                </a>
+            <div class="card-link" id="cardLink">
+                <p>آپ کا کارڈ تیار ہے:</p>
+                <a href="#" target="_blank" id="cardUrl"></a>
+                <button onclick="copyLink()" style="margin-top: 10px; padding: 8px 20px; background: #d4af37; color: #0b4d3a; border: none; border-radius: 25px; cursor: pointer;">
+                    <i class="fas fa-copy"></i> لنک کاپی کریں
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="toast" style="display: none;"></div>
 
     <script>
@@ -395,12 +321,66 @@
             }, 3000);
         }
 
-        // Text Banners Management
-        let banners = JSON.parse(localStorage.getItem('banners')) || [
-            "رمضان المبارک 1447ھ",
-            "قرآن پڑھیں اور صدقہ کریں",
-            "شب قدر تلاش کریں"
-        ];
+        function getStorageKey(userId, type) {
+            return `ramadan_${userId}_${type}`;
+        }
+
+        // Load user data
+        function loadUserData() {
+            const userId = document.getElementById('userId').value.trim();
+            
+            if (!userId) {
+                showToast('⚠️ براہ کرم آئی ڈی درج کریں');
+                return;
+            }
+
+            // Clean user ID (remove special chars)
+            const cleanUserId = userId.replace(/[^a-zA-Z0-9_]/g, '');
+            
+            document.getElementById('currentUserId').innerHTML = `آئی ڈی: ${cleanUserId}`;
+            document.getElementById('editForm').style.display = 'block';
+
+            // Load profile data for this user
+            const profileKey = getStorageKey(cleanUserId, 'profile');
+            const bannersKey = getStorageKey(cleanUserId, 'banners');
+            
+            const savedProfile = localStorage.getItem(profileKey);
+            if (savedProfile) {
+                const profile = JSON.parse(savedProfile);
+                document.getElementById('fullName').value = profile.name || '';
+                document.getElementById('phoneNumber').value = profile.phone || '';
+                document.getElementById('email').value = profile.email || '';
+                document.getElementById('businessAddress').value = profile.address || '';
+                document.getElementById('businessDetails').value = profile.details || '';
+                document.getElementById('businessTitle').value = profile.title || '';
+            } else {
+                // Default empty form
+                document.getElementById('fullName').value = '';
+                document.getElementById('phoneNumber').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('businessAddress').value = '';
+                document.getElementById('businessDetails').value = '';
+                document.getElementById('businessTitle').value = '';
+            }
+
+            // Load banners for this user
+            const savedBanners = localStorage.getItem(bannersKey);
+            if (savedBanners) {
+                banners = JSON.parse(savedBanners);
+            } else {
+                banners = [
+                    "رمضان المبارک 1447ھ",
+                    "قرآن پڑھیں اور صدقہ کریں",
+                    "شب قدر تلاش کریں"
+                ];
+            }
+            
+            renderBanners();
+            showToast(`✅ آئی ڈی ${cleanUserId} لوڈ ہو گئی`);
+        }
+
+        // Banner Management
+        let banners = [];
 
         function renderBanners() {
             const container = document.getElementById('bannersContainer');
@@ -423,23 +403,23 @@
             const text = prompt('نیا بینر متن لکھیں:');
             if (text && text.trim()) {
                 banners.push(text.trim());
-                localStorage.setItem('banners', JSON.stringify(banners));
                 renderBanners();
-                showToast('✅ بینر شامل ہو گیا!');
+                showToast('✅ بینر شامل ہو گیا');
             }
         }
 
         function removeBanner(index) {
             if (confirm('کیا یہ بینر حذف کر دیں؟')) {
                 banners.splice(index, 1);
-                localStorage.setItem('banners', JSON.stringify(banners));
                 renderBanners();
-                showToast('🗑️ بینر حذف ہو گیا!');
+                showToast('🗑️ بینر حذف ہو گیا');
             }
         }
 
-        // Save Profile Data
+        // Save Profile
         function saveProfile() {
+            const userId = document.getElementById('currentUserId').innerHTML.replace('آئی ڈی: ', '');
+            
             const profile = {
                 name: document.getElementById('fullName').value.trim(),
                 phone: document.getElementById('phoneNumber').value.trim(),
@@ -450,33 +430,32 @@
             };
 
             if (!profile.name || !profile.phone || !profile.address || !profile.title) {
-                showToast('⚠️ براہ کرم تمام ضروری فیلڈز بھریں!');
+                showToast('⚠️ ضروری فیلڈز بھریں');
                 return;
             }
 
-            localStorage.setItem('profile', JSON.stringify(profile));
-            localStorage.setItem('lastUpdated', new Date().toISOString());
+            // Save with user-specific keys
+            const profileKey = getStorageKey(userId, 'profile');
+            const bannersKey = getStorageKey(userId, 'banners');
             
-            showToast('✅ پروفائل محفوظ ہو گیا!');
+            localStorage.setItem(profileKey, JSON.stringify(profile));
+            localStorage.setItem(bannersKey, JSON.stringify(banners));
+            
+            // Generate unique card link
+            const cardUrl = `${window.location.origin}${window.location.pathname.replace('index.html', '')}card.html?user=${userId}`;
+            document.getElementById('cardUrl').href = cardUrl;
+            document.getElementById('cardUrl').textContent = cardUrl;
+            document.getElementById('cardLink').style.display = 'block';
+            
+            showToast('✅ کارڈ محفوظ ہو گیا!');
         }
 
-        // Load saved data
-        function loadSavedData() {
-            const savedProfile = localStorage.getItem('profile');
-            if (savedProfile) {
-                const profile = JSON.parse(savedProfile);
-                document.getElementById('fullName').value = profile.name || '';
-                document.getElementById('phoneNumber').value = profile.phone || '';
-                document.getElementById('email').value = profile.email || '';
-                document.getElementById('businessAddress').value = profile.address || '';
-                document.getElementById('businessDetails').value = profile.details || '';
-                document.getElementById('businessTitle').value = profile.title || '';
-            }
+        function copyLink() {
+            const link = document.getElementById('cardUrl').href;
+            navigator.clipboard.writeText(link).then(() => {
+                showToast('📋 لنک کاپی ہو گیا');
+            });
         }
-
-        // Initialize
-        loadSavedData();
-        renderBanners();
     </script>
 </body>
 </html>
