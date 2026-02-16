@@ -1,9 +1,9 @@
-const CACHE_NAME = 'ramadan-1447-v1';
+const CACHE_NAME = 'ramadan-card-v1';
 const urlsToCache = [
-    'index.html',
     'card.html',
-    'calendar.html',
-    'manifest.json'
+    'index.html',
+    'manifest.json',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
 ];
 
 self.addEventListener('install', event => {
