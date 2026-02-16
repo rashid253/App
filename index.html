@@ -3,52 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramadan 1447 - Digital Services</title>
+    <title>Ramadan App - Edit Profile</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a472a">
-    <meta property="og:title" content="Ramadan Digital Services">
-    <meta property="og:description" content="Ramadan 1447 - Sehri & Iftar Times">
-    <meta property="og:image" content="https://via.placeholder.com/300">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .profile-section {
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            color: #666;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-btn.active {
+            background: #4CAF50;
             color: white;
-            position: relative;
+        }
+
+        /* Profile Image Upload */
+        .profile-upload-section {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .profile-image-container {
-            position: relative;
             width: 120px;
             height: 120px;
-            margin: 0 auto 15px;
+            margin: 0 auto 16px;
+            position: relative;
             cursor: pointer;
         }
 
@@ -56,269 +85,154 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 4px solid white;
             object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 3px solid #4CAF50;
         }
 
-        .profile-image-overlay {
+        .upload-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            bottom: 0;
+            right: 0;
+            background: #4CAF50;
+            color: white;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            color: white;
+            border: 2px solid white;
+        }
+
+        .upload-hint {
+            color: #666;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .upload-hint small {
+            color: #999;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .profile-image-container:hover .profile-image-overlay {
-            opacity: 1;
+        .form-group label.required::after {
+            content: " *";
+            color: #ff4444;
         }
 
-        .profile-section h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .profile-section p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        .profile-section i {
-            margin-right: 8px;
-        }
-
-        .share-profile-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin: 10px 5px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .share-profile-btn.whatsapp {
-            background: #25D366;
-        }
-
-        .share-profile-btn.copy {
-            background: #667eea;
-        }
-
-        .edit-btn {
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .edit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .edit-mode {
-            display: none;
-            margin-top: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-        }
-
-        .edit-mode input, .edit-mode textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #f9f9f9;
         }
 
-        .image-upload-input {
-            margin: 10px 0;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: white;
         }
 
-        .save-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: bold;
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
         }
 
+        /* Banners Section */
         .banners-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            margin-top: 20px;
         }
 
         .banner-item {
             position: relative;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 16/9;
+            border: 1px solid #eee;
         }
 
         .banner-item img {
             width: 100%;
-            height: 100%;
+            height: 120px;
             object-fit: cover;
+            display: block;
         }
 
         .banner-remove {
             position: absolute;
-            top: 5px;
-            right: 5px;
-            background: red;
+            top: 8px;
+            right: 8px;
+            background: #ff4444;
             color: white;
             border: none;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
             cursor: pointer;
-            font-weight: bold;
-            z-index: 10;
-        }
-
-        .add-banner {
-            border: 2px dashed #667eea;
-            border-radius: 15px;
-            aspect-ratio: 16/9;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            color: #667eea;
-            font-weight: bold;
         }
 
-        .time-card {
-            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .time-item {
-            text-align: center;
-        }
-
-        .time-label {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .time-value {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .icon-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .icon-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            text-decoration: none;
-            display: block;
-        }
-
-        .icon-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon-item i {
-            font-size: 30px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .dua-text {
-            background: #f0f0f0;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .ramadan-greeting {
-            text-align: center;
-            font-size: 20px;
-            color: #667eea;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .nav-btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
+        .add-banner-btn {
+            width: 100%;
+            padding: 16px;
+            border: 2px dashed #4CAF50;
+            border-radius: 12px;
             background: white;
-            color: #667eea;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            color: #4CAF50;
             font-size: 16px;
-            transition: all 0.3s;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
         }
 
-        .nav-btn.active {
-            background: #667eea;
+        .save-btn {
+            width: 100%;
+            padding: 18px;
+            background: #4CAF50;
             color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 24px 0;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .preview-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .preview-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
         }
 
         .toast {
@@ -326,11 +240,12 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: #4CAF50;
+            background: #333;
             color: white;
             padding: 12px 24px;
-            border-radius: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border-radius: 30px;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 1000;
             animation: slideUp 0.3s ease;
         }
@@ -350,127 +265,89 @@
 </head>
 <body>
     <div class="container">
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-btn active">Home</a>
-            <a href="calendar.html" class="nav-btn">Calendar</a>
+        <div class="header">
+            <h1>Edit Profile</h1>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn active">Edit</a>
+                <a href="card.html" class="nav-btn">Preview Card</a>
+                <a href="calendar.html" class="nav-btn">Calendar</a>
+            </div>
         </div>
 
-        <!-- Profile Card -->
-        <div class="card profile-section" id="profileCard">
-            <div class="profile-image-container" onclick="document.getElementById('imageUpload').click()">
-                <img id="profileImage" class="profile-image" src="https://via.placeholder.com/150" alt="Profile">
-                <div class="profile-image-overlay">
-                    <i class="fas fa-camera"></i> Change
+        <div class="card">
+            <!-- Profile Image Upload -->
+            <div class="profile-upload-section">
+                <div class="profile-image-container" onclick="document.getElementById('imageUpload').click()">
+                    <img id="profileImage" class="profile-image" src="https://via.placeholder.com/150" alt="Profile">
+                    <div class="upload-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                <div class="upload-hint">
+                    Click to upload profile picture
+                    <small>PNG, JPG up to 5MB</small>
                 </div>
             </div>
-            <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-            
-            <h1 id="profileName"><i class="fas fa-user"></i> Rashid Mehmood</h1>
-            <p id="profileBusiness"><i class="fas fa-store"></i> Jewellery Store</p>
-            <p id="profileLocation"><i class="fas fa-map-marker-alt"></i> مالك تازل، لاير</p>
-            <p id="profilePhone"><i class="fas fa-phone"></i> 03030066899</p>
-            <p id="profileServices"><i class="fas fa-globe"></i> Every kind of Digital services</p>
-            
-            <div class="share-buttons">
-                <button class="share-profile-btn whatsapp" onclick="shareViaWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Share on WhatsApp
-                </button>
-                <button class="share-profile-btn copy" onclick="copyProfileLink()">
-                    <i class="fas fa-copy"></i> Copy Profile
-                </button>
-            </div>
-            
-            <button class="edit-btn" onclick="toggleEdit()"><i class="fas fa-edit"></i> Edit Profile</button>
 
-            <div class="edit-mode" id="editMode">
-                <h3 style="color: #333; margin-bottom: 15px;">Edit Profile</h3>
-                <input type="text" id="editName" placeholder="Name">
-                <input type="text" id="editBusiness" placeholder="Business">
-                <input type="text" id="editLocation" placeholder="Location">
-                <input type="text" id="editPhone" placeholder="Phone">
-                <textarea id="editServices" placeholder="Services" rows="3"></textarea>
-                <button class="save-btn" onclick="saveProfile()"><i class="fas fa-save"></i> Save Changes</button>
-            </div>
-        </div>
+            <!-- Form Fields -->
+            <form id="profileForm">
+                <div class="form-group">
+                    <label class="required">Full Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" value="Rashid Mehmood">
+                </div>
 
-        <!-- Banners Section -->
-        <div class="card">
-            <h3 style="margin-bottom: 15px; color: #667eea;"><i class="fas fa-images"></i> Banners</h3>
-            <div class="banners-section" id="bannersContainer">
-                <!-- Banners will be added here dynamically -->
+                <div class="form-group">
+                    <label class="required">Phone Number *</label>
+                    <input type="tel" id="phoneNumber" placeholder="03XXXXXXXXX" value="03030066899">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="your@email.com" value="rashid@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Business Address *</label>
+                    <textarea id="businessAddress" placeholder="Complete business address">مالك تازل، لاير</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Business Details</label>
+                    <textarea id="businessDetails" placeholder="Your business identity">Every kind of Digital services</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Business Title *</label>
+                    <input type="text" id="businessTitle" placeholder="Your business name" value="Jewellery Store">
+                </div>
+            </form>
+
+            <!-- Banners Section -->
+            <h3 style="margin: 20px 0 10px; color: #333;">Banners</h3>
+            <div id="bannersContainer" class="banners-section">
+                <!-- Banners will be added here -->
             </div>
-            <div class="add-banner" onclick="addBanner()">
+            
+            <button class="add-banner-btn" onclick="addBanner()">
                 <i class="fas fa-plus"></i> Add Banner
+            </button>
+
+            <button class="save-btn" onclick="saveProfile()">
+                <i class="fas fa-save"></i> Save Profile & Generate Card
+            </button>
+
+            <div class="preview-link">
+                <a href="card.html" target="_blank">
+                    <i class="fas fa-eye"></i> Preview Your Card
+                </a>
             </div>
-        </div>
-
-        <!-- Live Timings -->
-        <div class="card">
-            <div class="time-card" id="liveTimings">
-                <div class="time-item">
-                    <div class="time-label">Sehri Ends</div>
-                    <div class="time-value" id="sehriTime">05:18 AM</div>
-                </div>
-                <div class="time-item">
-                    <div class="time-label">Iftar Time</div>
-                    <div class="time-value" id="iftarTime">05:54 PM</div>
-                </div>
-                <div class="time-item">
-                    <div class="time-label">Ramadan</div>
-                    <div class="time-value" id="ramadanDay">1</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dua -->
-        <div class="card">
-            <div class="dua-text">
-                <i class="fas fa-hands-praying"></i> دعأ الطارئ ذهب الله
-            </div>
-        </div>
-
-        <!-- Icon Grid -->
-        <div class="icon-grid">
-            <a href="https://quran.com" target="_blank" class="icon-item">
-                <i class="fas fa-quran"></i>
-                <span>Quran Read</span>
-            </a>
-            <a href="https://everyayah.com" target="_blank" class="icon-item">
-                <i class="fas fa-headphones"></i>
-                <span>Audio Quran</span>
-            </a>
-            <a href="#" onclick="openTasbeeh()" class="icon-item">
-                <i class="fas fa-praying-hands"></i>
-                <span>Tasbeeh</span>
-            </a>
-            <a href="#" onclick="openDua()" class="icon-item">
-                <i class="fas fa-book-open"></i>
-                <span>Dua</span>
-            </a>
-        </div>
-
-        <!-- Quran Khula -->
-        <div class="card" style="text-align: center;">
-            <h3 style="color: #667eea; margin-bottom: 15px;">القرآن الكريم</h3>
-            <a href="https://quran.com" target="_blank" style="text-decoration: none;">
-                <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 20px; border-radius: 15px;">
-                    <i class="fas fa-quran" style="font-size: 50px; margin-bottom: 10px;"></i>
-                    <h4>Read Quran Online</h4>
-                    <p style="font-size: 14px; margin-top: 10px;">Click to open complete Quran</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Ramadan Greeting -->
-        <div class="ramadan-greeting">
-            رمضان مبارک 1447 - 2026
         </div>
     </div>
 
     <div id="toast" class="toast" style="display: none;"></div>
 
     <script>
-        // Show toast message
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.style.display = 'block';
@@ -480,116 +357,26 @@
             }, 3000);
         }
 
-        // Profile image handling
+        // Profile Image Handling
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('File too large! Max 5MB');
+                    return;
+                }
+                
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('profileImage').src = e.target.result;
                     localStorage.setItem('profileImage', e.target.result);
-                    showToast('Profile image updated!');
+                    showToast('Profile image uploaded!');
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        // Load profile from localStorage or use defaults
-        function loadProfile() {
-            // Load profile image
-            const savedImage = localStorage.getItem('profileImage');
-            if (savedImage) {
-                document.getElementById('profileImage').src = savedImage;
-            }
-
-            // Load profile data
-            const saved = localStorage.getItem('profile');
-            if (saved) {
-                const profile = JSON.parse(saved);
-                document.getElementById('profileName').innerHTML = `<i class="fas fa-user"></i> ${profile.name}`;
-                document.getElementById('profileBusiness').innerHTML = `<i class="fas fa-store"></i> ${profile.business}`;
-                document.getElementById('profileLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${profile.location}`;
-                document.getElementById('profilePhone').innerHTML = `<i class="fas fa-phone"></i> ${profile.phone}`;
-                document.getElementById('profileServices').innerHTML = `<i class="fas fa-globe"></i> ${profile.services}`;
-            }
-        }
-
-        function toggleEdit() {
-            const editMode = document.getElementById('editMode');
-            editMode.style.display = editMode.style.display === 'none' ? 'block' : 'none';
-            
-            if (editMode.style.display === 'block') {
-                const profile = JSON.parse(localStorage.getItem('profile')) || {
-                    name: 'Rashid Mehmood',
-                    business: 'Jewellery Store',
-                    location: 'مالك تازل، لاير',
-                    phone: '03030066899',
-                    services: 'Every kind of Digital services'
-                };
-                
-                document.getElementById('editName').value = profile.name;
-                document.getElementById('editBusiness').value = profile.business;
-                document.getElementById('editLocation').value = profile.location;
-                document.getElementById('editPhone').value = profile.phone;
-                document.getElementById('editServices').value = profile.services;
-            }
-        }
-
-        function saveProfile() {
-            const profile = {
-                name: document.getElementById('editName').value,
-                business: document.getElementById('editBusiness').value,
-                location: document.getElementById('editLocation').value,
-                phone: document.getElementById('editPhone').value,
-                services: document.getElementById('editServices').value
-            };
-            
-            localStorage.setItem('profile', JSON.stringify(profile));
-            loadProfile();
-            document.getElementById('editMode').style.display = 'none';
-            showToast('Profile saved successfully!');
-        }
-
-        // Share functionality
-        function getProfileCardHTML() {
-            const name = document.getElementById('profileName').innerHTML.replace('<i class="fas fa-user"></i>', '').trim();
-            const business = document.getElementById('profileBusiness').innerHTML.replace('<i class="fas fa-store"></i>', '').trim();
-            const location = document.getElementById('profileLocation').innerHTML.replace('<i class="fas fa-map-marker-alt"></i>', '').trim();
-            const phone = document.getElementById('profilePhone').innerHTML.replace('<i class="fas fa-phone"></i>', '').trim();
-            const services = document.getElementById('profileServices').innerHTML.replace('<i class="fas fa-globe"></i>', '').trim();
-            const sehri = document.getElementById('sehriTime').innerText;
-            const iftar = document.getElementById('iftarTime').innerText;
-            const ramadanDay = document.getElementById('ramadanDay').innerText;
-
-            return `*Ramadan Digital Services* 🌙
-
-👤 *${name}*
-🏪 ${business}
-📍 ${location}
-📞 ${phone}
-💼 ${services}
-
-📅 *Today's Timings*
-🌅 Sehri: ${sehri}
-🌇 Iftar: ${iftar}
-📆 Ramadan Day: ${ramadanDay}
-
-🕌 *Ramadan Mubarak 1447*`;
-        }
-
-        function shareViaWhatsApp() {
-            const text = encodeURIComponent(getProfileCardHTML());
-            window.open(`https://wa.me/?text=${text}`, '_blank');
-        }
-
-        function copyProfileLink() {
-            const text = getProfileCardHTML();
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('Profile copied to clipboard!');
-            });
-        }
-
-        // Banner management
+        // Banner Management
         let banners = JSON.parse(localStorage.getItem('banners')) || [];
 
         function renderBanners() {
@@ -600,8 +387,10 @@
                 const div = document.createElement('div');
                 div.className = 'banner-item';
                 div.innerHTML = `
-                    <img src="${banner}" alt="Banner">
-                    <button class="banner-remove" onclick="removeBanner(${index})">×</button>
+                    <img src="${banner}" alt="Banner ${index + 1}">
+                    <button class="banner-remove" onclick="removeBanner(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
                 `;
                 container.appendChild(div);
             });
@@ -618,74 +407,62 @@
         }
 
         function removeBanner(index) {
-            banners.splice(index, 1);
-            localStorage.setItem('banners', JSON.stringify(banners));
-            renderBanners();
-            showToast('Banner removed!');
-        }
-
-        // Update live timings
-        function updateTimings() {
-            const now = new Date();
-            const month = now.getMonth() + 1;
-            const date = now.getDate();
-            
-            // Ramadan 2026 starts approx Feb 18
-            let ramadanDay = 1;
-            if (month === 2) {
-                if (date >= 18) ramadanDay = date - 17;
-                else if (date < 18) ramadanDay = date + 11;
-            } else if (month === 3) {
-                ramadanDay = date + 11;
-            }
-            
-            if (ramadanDay > 30) ramadanDay = 30;
-            if (ramadanDay < 1) ramadanDay = 1;
-            
-            document.getElementById('ramadanDay').innerText = ramadanDay;
-            
-            // Load today's timings from calendar data
-            const calendar = JSON.parse(localStorage.getItem('calendar')) || [];
-            const today = calendar.find(day => day.day === ramadanDay);
-            if (today) {
-                document.getElementById('sehriTime').innerText = today.sehri;
-                document.getElementById('iftarTime').innerText = today.iftar;
+            if (confirm('Remove this banner?')) {
+                banners.splice(index, 1);
+                localStorage.setItem('banners', JSON.stringify(banners));
+                renderBanners();
+                showToast('Banner removed!');
             }
         }
 
-        function openTasbeeh() {
-            alert('📿 Tasbeeh Counter:\n\n33x SubhanAllah\n33x Alhamdulillah\n34x Allahu Akbar');
+        // Save Profile Data
+        function saveProfile() {
+            const profile = {
+                name: document.getElementById('fullName').value,
+                phone: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('businessAddress').value,
+                details: document.getElementById('businessDetails').value,
+                title: document.getElementById('businessTitle').value
+            };
+
+            // Validate required fields
+            if (!profile.name || !profile.phone || !profile.address || !profile.title) {
+                showToast('Please fill all required fields!');
+                return;
+            }
+
+            localStorage.setItem('profile', JSON.stringify(profile));
+            localStorage.setItem('lastUpdated', new Date().toISOString());
+            
+            showToast('Profile saved! View your card.');
+            
+            // Open card preview
+            window.open('card.html', '_blank');
         }
 
-        function openDua() {
-            alert('🤲 Ramadan Duas:\n\n🌅 Sehri Dua:\nWa bisawmi ghadinn nawaiytu min shahri ramadan\n\n🌇 Iftar Dua:\nAllahumma inni laka sumtu wa bika aamantu wa alayka tawakkaltu wa ala rizq-ika-aftartu');
-        }
+        // Load saved data
+        function loadSavedData() {
+            const savedProfile = localStorage.getItem('profile');
+            if (savedProfile) {
+                const profile = JSON.parse(savedProfile);
+                document.getElementById('fullName').value = profile.name || '';
+                document.getElementById('phoneNumber').value = profile.phone || '';
+                document.getElementById('email').value = profile.email || '';
+                document.getElementById('businessAddress').value = profile.address || '';
+                document.getElementById('businessDetails').value = profile.details || '';
+                document.getElementById('businessTitle').value = profile.title || '';
+            }
 
-        // Load calendar data
-        async function loadCalendarData() {
-            const calendar = [
-                {day: 1, date: '19 Feb', sehri: '5:18 AM', iftar: '5:54 PM'},
-                {day: 2, date: '20 Feb', sehri: '5:17 AM', iftar: '5:55 PM'},
-                {day: 3, date: '21 Feb', sehri: '5:16 AM', iftar: '5:56 PM'},
-                {day: 4, date: '22 Feb', sehri: '5:15 AM', iftar: '5:57 PM'},
-                {day: 5, date: '23 Feb', sehri: '5:14 AM', iftar: '5:58 PM'},
-                {day: 6, date: '24 Feb', sehri: '5:12 AM', iftar: '5:59 PM'},
-                {day: 7, date: '25 Feb', sehri: '5:11 AM', iftar: '5:59 PM'},
-                {day: 8, date: '26 Feb', sehri: '5:10 AM', iftar: '6:00 PM'},
-                {day: 9, date: '27 Feb', sehri: '5:09 AM', iftar: '6:01 PM'},
-                {day: 10, date: '28 Feb', sehri: '5:08 AM', iftar: '6:01 PM'}
-            ];
-            localStorage.setItem('calendar', JSON.stringify(calendar));
-            updateTimings();
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
         }
 
         // Initialize
-        loadProfile();
+        loadSavedData();
         renderBanners();
-        loadCalendarData();
-        
-        // Update timings every minute
-        setInterval(updateTimings, 60000);
     </script>
 </body>
 </html>
