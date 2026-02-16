@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Ramadan Calendar Generator - Admin</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a2e1a;
+            padding: 20px;
+        }
+        
+        .admin-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
+            border-radius: 40px 8px 40px 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 3px solid #c9a75a;
+            color: white;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ffd966;
+            font-family: 'Amiri', serif;
+        }
+        
+        .header p {
+            color: #fff5d6;
+            margin-top: 10px;
+        }
+        
+        .admin-badge {
+            background: #ffd966;
+            color: #1a2e1a;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .generator-container {
+            background: #faf3e2;
+            border-radius: 50px 15px 50px 15px;
+            padding: 30px;
+            border: 3px solid #c9a75a;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 30px 8px 30px 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #c9a75a;
+        }
+        
+        .section-title {
+            color: #1e4a2e;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 4px solid #c9a75a;
+            padding-right: 15px;
+        }
+        
+        .section-title i {
+            color: #c9a75a;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        label {
+            display: block;
+            color: #1e4a2e;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .required {
+            color: #e53e3e;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: #c9a75a;
+            outline: none;
+        }
+        
+        .profile-upload {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-preview {
+            width: 100px;
+            height: 100px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px dashed #c9a75a;
+        }
+        
+        .profile-preview i {
+            font-size: 3rem;
+            color: #888;
+        }
+        
+        .profile-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .upload-btn {
+            background: #1e4a2e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .icon-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .icon-preview {
+            width: 40px;
+            height: 40px;
+            background: #1e4a2e;
+            color: #ffd966;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-field {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .contact-field label {
+            font-size: 0.9rem;
+            color: #1e4a2e;
+        }
+        
+        .contact-field i {
+            color: #c9a75a;
+            margin-right: 5px;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 20px;
+            background: #1e4a2e;
+            color: #ffd966;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .generate-btn:hover {
+            background: #256635;
+            transform: scale(1.02);
+        }
+        
+        .export-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #faf3e2;
+            margin-top: 20px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="header">
+            <h1>🌙 رمضان 1447</h1>
+            <p>کیلنڈر جنریٹر - ایڈمن پینل</p>
+            <div class="admin-badge">
+                <i class="fas fa-lock"></i> صرف ایڈمن کے لیے
+            </div>
+        </div>
+        
+        <div class="generator-container">
+            <div class="warning">
+                <i class="fas fa-info-circle"></i>
+                نوٹ: بننے والا کیلنڈر انسٹال ہو سکتا ہے۔
+            </div>
+            
+            <!-- Profile Section -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-store"></i>
+                    کاروبار کی تفصیلات
+                </div>
+                
+                <div class="profile-upload">
+                    <div class="profile-preview" id="profilePreview">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div>
+                        <input type="file" id="profilePic" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                        <button class="upload-btn" onclick="document.getElementById('profilePic').click()">
+                            <i class="fas fa-upload"></i> تصویر منتخب کریں
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><span class="required">*</span> کاروبار کا نام</label>
+                        <input type="text" id="businessName" value="المدینہ جیولرز">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><span class="required">*</span> فون نمبر</label>
+                        <input type="text" id="phoneNumber" value="03001234567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>ای میل</label>
+                        <input type="email" id="email" value="info@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><span class="required">*</span> کاروبار کی قسم</label>
+                        <input type="text" id="businessType" value="Jewellery Store">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><span class="required">*</span> مکمل پتہ</label>
+                        <textarea id="address" rows="2">ماڈل ٹاؤن، لاہور</textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>تفصیل</label>
+                        <textarea id="businessDetails" rows="2">سونے چاندی کی خالص مصنوعات</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>آئیکون</label>
+                        <div class="icon-selector">
+                            <div class="icon-preview" id="profileIconPreview">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <select id="profileIcon">
+                                <option value="fa-store">اسٹور</option>
+                                <option value="fa-gem">جیولری</option>
+                                <option value="fa-stethoscope">میڈیکل</option>
+                                <option value="fa-utensils">فوڈ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Only -->
+                <div class="contact-row">
+                    <div class="contact-field">
+                        <label><i class="fab fa-whatsapp"></i> واٹس ایپ نمبر</label>
+                        <input type="text" id="whatsappNumber" value="03001234567" placeholder="03001234567">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateCalendar()">
+                <i class="fas fa-calendar-alt"></i>
+                کیلنڈر بنائیں
+            </button>
+            
+            <button class="export-btn" onclick="exportData()">
+                <i class="fas fa-download"></i> ڈیٹا ایکسپورٹ کریں (ٹیکسٹ فائل)
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>🌙 رمضان مبارک 1447ھ</p>
+        </div>
+    </div>
+    
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePreview').innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
+                    localStorage.setItem('profilePic', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function collectFormData() {
+            return {
+                businessName: document.getElementById('businessName').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                businessType: document.getElementById('businessType').value,
+                address: document.getElementById('address').value,
+                businessDetails: document.getElementById('businessDetails').value,
+                profileIcon: document.getElementById('profileIcon').value,
+                whatsappNumber: document.getElementById('whatsappNumber').value
+            };
+        }
+        
+        function generateCalendar() {
+            const data = collectFormData();
+            const id = 'cal_' + Date.now();
+            
+            // Save in multiple places
+            localStorage.setItem(id, JSON.stringify(data));
+            sessionStorage.setItem(id, JSON.stringify(data));
+            
+            // Save in cookie (30 days)
+            document.cookie = `${id}=${JSON.stringify(data)}; max-age=2592000; path=/`;
+            
+            window.open('calendar.html?id=' + id, '_blank');
+        }
+        
+        function exportData() {
+            const data = collectFormData();
+            const dataStr = JSON.stringify(data, null, 2);
+            
+            const blob = new Blob([dataStr], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ramadan-data.txt';
+            a.click();
+            
+            alert('ڈیٹا export ہو گیا! اسے محفوظ رکھیں۔');
+        }
+    </script>
+</body>
+</html>
