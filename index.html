@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رمضان مبارک 1447 - پروفائل ایڈٹ</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a472a">
+    <meta name="theme-color" content="#0b4d3a">
     <style>
         * {
             margin: 0;
@@ -26,7 +26,7 @@
             margin: 0 auto;
         }
 
-        /* Islamic Pattern Background */
+        /* Islamic Pattern */
         .islamic-pattern {
             position: relative;
             overflow: hidden;
@@ -73,13 +73,13 @@
             margin-bottom: 5px;
         }
 
-        .nav-buttons {
+        .header-buttons {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
 
-        .nav-btn {
+        .header-btn {
             flex: 1;
             padding: 12px;
             border: none;
@@ -91,17 +91,16 @@
             text-decoration: none;
             text-align: center;
             font-size: 16px;
-            border: 1px solid #d4af37;
+            border: 2px solid #d4af37;
             transition: all 0.3s;
         }
 
-        .nav-btn.active {
+        .header-btn.active {
             background: #0b4d3a;
             color: #d4af37;
-            border: 1px solid #d4af37;
         }
 
-        .nav-btn:hover {
+        .header-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
@@ -159,6 +158,19 @@
         /* Banners Section - Text Only */
         .banners-section {
             margin: 25px 0;
+        }
+
+        .section-title {
+            color: #0b4d3a;
+            margin: 25px 0 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .section-title i {
+            color: #d4af37;
+            margin-left: 8px;
         }
 
         .banner-item {
@@ -299,16 +311,18 @@
 </head>
 <body>
     <div class="container islamic-pattern">
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-btn active"><i class="fas fa-edit"></i> ترمیم</a>
-            <a href="card.html" class="nav-btn"><i class="fas fa-id-card"></i> کارڈ</a>
-            <a href="calendar.html" class="nav-btn"><i class="fas fa-calendar"></i> کیلنڈر</a>
+        <!-- Generator Header Buttons -->
+        <div class="header-buttons">
+            <a href="index.html" class="header-btn active"><i class="fas fa-edit"></i> ترمیم</a>
+            <a href="card.html" class="header-btn"><i class="fas fa-id-card"></i> کارڈ دیکھیں</a>
         </div>
 
+        <!-- Edit Form Card -->
         <div class="card">
             <div class="card-header">
                 <div class="arabic">السلام علیکم</div>
                 <h1>پروفائل میں ترمیم کریں</h1>
+                <p style="color: #666; margin-top: 10px;">نیچے دیے گئے فارم کو بھریں</p>
             </div>
 
             <!-- Form Fields -->
@@ -345,10 +359,12 @@
             </form>
 
             <!-- Text Banners Section -->
-            <h3 style="color: #0b4d3a; margin: 25px 0 15px; text-align: center; font-size: 22px;">
+            <div class="section-title">
                 <i class="fas fa-flag"></i> بینرز (صرف متن)
-            </h3>
-            <div id="bannersContainer" class="banners-section"></div>
+            </div>
+            <div id="bannersContainer" class="banners-section">
+                <!-- Banners will be added here -->
+            </div>
             
             <button class="add-banner-btn" onclick="addBanner()">
                 <i class="fas fa-plus-circle"></i> نیا بینر شامل کریں
@@ -366,6 +382,7 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
     <div id="toast" class="toast" style="display: none;"></div>
 
     <script>
