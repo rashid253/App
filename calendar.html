@@ -82,6 +82,21 @@
             font-size: 18px;
         }
 
+        .share-calendar-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 15px 0;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -168,6 +183,31 @@
             background: rgba(0,0,0,0.3);
             border-radius: 10px;
         }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -182,6 +222,9 @@
             <div class="calendar-header">
                 <h1>رمضان 1447</h1>
                 <p>Ramadan 2026 - Sehri & Iftar Times</p>
+                <button class="share-calendar-btn" onclick="shareCalendar()">
+                    <i class="fab fa-whatsapp"></i> Share Calendar
+                </button>
             </div>
 
             <div class="search-box">
@@ -198,7 +241,19 @@
         </div>
     </div>
 
+    <div id="toast" class="toast" style="display: none;"></div>
+
     <script>
+        // Show toast message
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            toast.textContent = message;
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
         // Ramadan 2026 Calendar Data
         const calendarData = [
             {day: 1, date: '19 Feb', sehri: '5:18 AM', iftar: '5:54 PM'},
@@ -300,6 +355,30 @@
 
         function showDayDetails(day) {
             alert(`Ramadan ${day.day} - ${day.date}\nSehri: ${day.sehri}\nIftar: ${day.iftar}`);
+        }
+
+        function shareCalendar() {
+            const today = getCurrentRamadanDay();
+            const todayData = calendarData.find(d => d.day === today) || calendarData[0];
+            
+            let calendarText = `*Ramadan 1447 Calendar* 🌙\n\n`;
+            calendarText += `Today: Day ${today} - ${todayData.date}\n`;
+            calendarText += `Sehri: ${todayData.sehri}\n`;
+            calendarText += `Iftar: ${todayData.iftar}\n\n`;
+            calendarText += `*Full Month*\n`;
+            
+            // Add next 5 days
+            for (let i = today; i <= Math.min(today + 4, 30); i++) {
+                const day = calendarData.find(d => d.day === i);
+                if (day) {
+                    calendarText += `Day ${day.day} (${day.date}): ${day.sehri} - ${day.iftar}\n`;
+                }
+            }
+            
+            calendarText += `\n🕌 Ramadan Mubarak 1447`;
+            
+            const encodedText = encodeURIComponent(calendarText);
+            window.open(`https://wa.me/?text=${encodedText}`, '_blank');
         }
 
         // Initialize
