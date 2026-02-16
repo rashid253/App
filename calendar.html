@@ -148,6 +148,35 @@
             color: #ffd966;
         }
         
+        /* City Selector */
+        .city-selector {
+            background: #e7d8b8;
+            border-radius: 40px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border: 2px solid #c9a75a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .city-selector select {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #c9a75a;
+            border-radius: 30px;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #1e4a2e;
+            font-weight: 600;
+        }
+        
+        .city-selector i {
+            color: #1e4a2e;
+            font-size: 1.3rem;
+        }
+        
         /* Ramadan Header */
         .ramadan-header {
             background: linear-gradient(135deg, #1e4a2e, #0f3a1f);
@@ -299,16 +328,6 @@
             color: #1e4a2e;
             font-size: 0.9rem;
             margin-top: 15px;
-        }
-        
-        .pwa-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-left: 5px;
         }
         
         /* Modal */
@@ -490,40 +509,108 @@
             installContainer.style.display = 'none';
         });
         
-        // ========== CALENDAR DATA ==========
-        const timings = [
-            {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
-            {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
-            {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
-            {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
-            {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
-            {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
-            {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
-            {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
-            {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
-            {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
-            {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
-            {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
-            {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
-            {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
-            {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
-            {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
-            {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
-            {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
-            {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
-            {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
-            {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
-            {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
-            {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
-            {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
-            {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
-            {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
-            {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
-            {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
-            {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
-            {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
-        ];
+        // ========== CALENDAR DATA FOR DIFFERENT CITIES ==========
+        const cityTimings = {
+            lahore: [
+                {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
+                {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
+                {day:3, date:"21 Feb", sehri:"5:16", iftar:"5:56"},
+                {day:4, date:"22 Feb", sehri:"5:15", iftar:"5:57"},
+                {day:5, date:"23 Feb", sehri:"5:14", iftar:"5:58"},
+                {day:6, date:"24 Feb", sehri:"5:12", iftar:"5:58"},
+                {day:7, date:"25 Feb", sehri:"5:11", iftar:"5:59"},
+                {day:8, date:"26 Feb", sehri:"5:10", iftar:"6:00"},
+                {day:9, date:"27 Feb", sehri:"5:09", iftar:"6:01"},
+                {day:10, date:"28 Feb", sehri:"5:08", iftar:"6:01"},
+                {day:11, date:"1 Mar", sehri:"5:07", iftar:"6:02"},
+                {day:12, date:"2 Mar", sehri:"5:06", iftar:"6:03"},
+                {day:13, date:"3 Mar", sehri:"5:05", iftar:"6:04"},
+                {day:14, date:"4 Mar", sehri:"5:04", iftar:"6:04"},
+                {day:15, date:"5 Mar", sehri:"5:03", iftar:"6:05"},
+                {day:16, date:"6 Mar", sehri:"5:01", iftar:"6:06"},
+                {day:17, date:"7 Mar", sehri:"5:00", iftar:"6:07"},
+                {day:18, date:"8 Mar", sehri:"4:59", iftar:"6:07"},
+                {day:19, date:"9 Mar", sehri:"4:58", iftar:"6:08"},
+                {day:20, date:"10 Mar", sehri:"4:56", iftar:"6:09"},
+                {day:21, date:"11 Mar", sehri:"4:55", iftar:"6:09"},
+                {day:22, date:"12 Mar", sehri:"4:54", iftar:"6:10"},
+                {day:23, date:"13 Mar", sehri:"4:53", iftar:"6:11"},
+                {day:24, date:"14 Mar", sehri:"4:51", iftar:"6:12"},
+                {day:25, date:"15 Mar", sehri:"4:50", iftar:"6:12"},
+                {day:26, date:"16 Mar", sehri:"4:49", iftar:"6:13"},
+                {day:27, date:"17 Mar", sehri:"4:47", iftar:"6:14"},
+                {day:28, date:"18 Mar", sehri:"4:46", iftar:"6:14"},
+                {day:29, date:"19 Mar", sehri:"4:45", iftar:"6:15"},
+                {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
+            ],
+            karachi: [
+                {day:1, date:"19 Feb", sehri:"5:25", iftar:"6:01"},
+                {day:2, date:"20 Feb", sehri:"5:24", iftar:"6:02"},
+                {day:3, date:"21 Feb", sehri:"5:23", iftar:"6:03"},
+                {day:4, date:"22 Feb", sehri:"5:22", iftar:"6:04"},
+                {day:5, date:"23 Feb", sehri:"5:21", iftar:"6:04"},
+                {day:6, date:"24 Feb", sehri:"5:20", iftar:"6:05"},
+                {day:7, date:"25 Feb", sehri:"5:19", iftar:"6:06"},
+                {day:8, date:"26 Feb", sehri:"5:18", iftar:"6:06"},
+                {day:9, date:"27 Feb", sehri:"5:17", iftar:"6:07"},
+                {day:10, date:"28 Feb", sehri:"5:16", iftar:"6:08"},
+                {day:11, date:"1 Mar", sehri:"5:15", iftar:"6:08"},
+                {day:12, date:"2 Mar", sehri:"5:14", iftar:"6:09"},
+                {day:13, date:"3 Mar", sehri:"5:13", iftar:"6:10"},
+                {day:14, date:"4 Mar", sehri:"5:11", iftar:"6:10"},
+                {day:15, date:"5 Mar", sehri:"5:10", iftar:"6:11"},
+                {day:16, date:"6 Mar", sehri:"5:09", iftar:"6:12"},
+                {day:17, date:"7 Mar", sehri:"5:08", iftar:"6:12"},
+                {day:18, date:"8 Mar", sehri:"5:07", iftar:"6:13"},
+                {day:19, date:"9 Mar", sehri:"5:05", iftar:"6:13"},
+                {day:20, date:"10 Mar", sehri:"5:04", iftar:"6:14"},
+                {day:21, date:"11 Mar", sehri:"5:03", iftar:"6:15"},
+                {day:22, date:"12 Mar", sehri:"5:02", iftar:"6:15"},
+                {day:23, date:"13 Mar", sehri:"5:00", iftar:"6:16"},
+                {day:24, date:"14 Mar", sehri:"4:59", iftar:"6:16"},
+                {day:25, date:"15 Mar", sehri:"4:58", iftar:"6:17"},
+                {day:26, date:"16 Mar", sehri:"4:57", iftar:"6:18"},
+                {day:27, date:"17 Mar", sehri:"4:55", iftar:"6:18"},
+                {day:28, date:"18 Mar", sehri:"4:54", iftar:"6:19"},
+                {day:29, date:"19 Mar", sehri:"4:53", iftar:"6:19"},
+                {day:30, date:"20 Mar", sehri:"4:52", iftar:"6:20"}
+            ],
+            islamabad: [
+                {day:1, date:"19 Feb", sehri:"5:12", iftar:"5:48"},
+                {day:2, date:"20 Feb", sehri:"5:11", iftar:"5:49"},
+                {day:3, date:"21 Feb", sehri:"5:10", iftar:"5:50"},
+                {day:4, date:"22 Feb", sehri:"5:09", iftar:"5:51"},
+                {day:5, date:"23 Feb", sehri:"5:08", iftar:"5:52"},
+                {day:6, date:"24 Feb", sehri:"5:07", iftar:"5:53"},
+                {day:7, date:"25 Feb", sehri:"5:06", iftar:"5:54"},
+                {day:8, date:"26 Feb", sehri:"5:04", iftar:"5:55"},
+                {day:9, date:"27 Feb", sehri:"5:03", iftar:"5:56"},
+                {day:10, date:"28 Feb", sehri:"5:02", iftar:"5:57"},
+                {day:11, date:"1 Mar", sehri:"5:01", iftar:"5:58"},
+                {day:12, date:"2 Mar", sehri:"5:00", iftar:"5:59"},
+                {day:13, date:"3 Mar", sehri:"4:59", iftar:"6:00"},
+                {day:14, date:"4 Mar", sehri:"4:57", iftar:"6:01"},
+                {day:15, date:"5 Mar", sehri:"4:56", iftar:"6:02"},
+                {day:16, date:"6 Mar", sehri:"4:55", iftar:"6:03"},
+                {day:17, date:"7 Mar", sehri:"4:54", iftar:"6:04"},
+                {day:18, date:"8 Mar", sehri:"4:52", iftar:"6:05"},
+                {day:19, date:"9 Mar", sehri:"4:51", iftar:"6:06"},
+                {day:20, date:"10 Mar", sehri:"4:50", iftar:"6:07"},
+                {day:21, date:"11 Mar", sehri:"4:48", iftar:"6:08"},
+                {day:22, date:"12 Mar", sehri:"4:47", iftar:"6:09"},
+                {day:23, date:"13 Mar", sehri:"4:46", iftar:"6:10"},
+                {day:24, date:"14 Mar", sehri:"4:44", iftar:"6:11"},
+                {day:25, date:"15 Mar", sehri:"4:43", iftar:"6:12"},
+                {day:26, date:"16 Mar", sehri:"4:42", iftar:"6:13"},
+                {day:27, date:"17 Mar", sehri:"4:40", iftar:"6:14"},
+                {day:28, date:"18 Mar", sehri:"4:39", iftar:"6:15"},
+                {day:29, date:"19 Mar", sehri:"4:38", iftar:"6:16"},
+                {day:30, date:"20 Mar", sehri:"4:36", iftar:"6:17"}
+            ]
+        };
         
+        let currentCity = 'lahore';
+        let currentTimings = cityTimings.lahore;
         let tasbeeh = parseInt(localStorage.getItem('tasbeeh')) || 0;
         
         function loadCalendar() {
@@ -545,15 +632,43 @@
                     address: "ماڈل ٹاؤن، لاہور",
                     businessDetails: "سونے چاندی کی مصنوعات",
                     profileIcon: "fa-store",
-                    whatsappNumber: "03001234567",
-                    shopLink: "https://example.com/shop"
+                    whatsappNumber: "03001234567"
                 };
             }
             
-            renderCalendar(data);
+            renderCalendar(data, currentTimings, currentCity);
         }
         
-        function renderCalendar(data) {
+        function changeCity() {
+            const select = document.getElementById('citySelect');
+            currentCity = select.value;
+            currentTimings = cityTimings[currentCity];
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            
+            let data = null;
+            if (id && localStorage.getItem(id)) {
+                data = JSON.parse(localStorage.getItem(id));
+            } else if (id && sessionStorage.getItem(id)) {
+                data = JSON.parse(sessionStorage.getItem(id));
+            } else {
+                data = {
+                    businessName: "المدینہ جیولرز",
+                    phoneNumber: "03001234567",
+                    email: "info@example.com",
+                    businessType: "Jewellery Store",
+                    address: "ماڈل ٹاؤن، لاہور",
+                    businessDetails: "سونے چاندی کی مصنوعات",
+                    profileIcon: "fa-store",
+                    whatsappNumber: "03001234567"
+                };
+            }
+            
+            renderCalendar(data, currentTimings, currentCity);
+        }
+        
+        function renderCalendar(data, timings, cityName) {
             const profilePic = localStorage.getItem('profilePic') || '';
             const today = new Date();
             const ramadanStart = new Date(2026, 1, 19);
@@ -568,40 +683,43 @@
             const picHtml = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : `<i class="fas ${data.profileIcon}"></i>`;
             
             const whatsappLink = data.whatsappNumber ? `https://wa.me/${data.whatsappNumber.replace(/[^0-9]/g, '')}` : '#';
-            const shopLink = data.shopLink || '#';
+            
+            // City display names in Urdu
+            const cityNames = {
+                lahore: 'لاہور',
+                karachi: 'کراچی',
+                islamabad: 'اسلام آباد'
+            };
             
             const html = `
                 <div class="profile-card">
                     <div class="profile-pic">${picHtml}</div>
                     <div class="profile-info">
-                        <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
+                        <div class="profile-name">${data.businessName}</div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
                             <span class="contact-badge" onclick='openLink("tel:${data.phoneNumber}")'><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
                             ${data.email ? `<span class="contact-badge" onclick='openLink("mailto:${data.email}")'><i class="fas fa-envelope"></i></span>` : ''}
+                            ${data.whatsappNumber ? `<span class="contact-badge" onclick='openLink("${whatsappLink}")'><i class="fab fa-whatsapp"></i></span>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
-                        
-                        <!-- WhatsApp and Shop Now Buttons -->
-                        <div class="contact-row">
-                            ${data.whatsappNumber ? `
-                                <span class="contact-icon-btn" onclick='openLink("${whatsappLink}")'>
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </span>
-                            ` : ''}
-                            ${data.shopLink ? `
-                                <span class="contact-icon-btn" onclick='openLink("${shopLink}")'>
-                                    <i class="fas fa-shopping-cart"></i> Shop Now
-                                </span>
-                            ` : ''}
-                        </div>
                     </div>
+                </div>
+                
+                <!-- City Selector -->
+                <div class="city-selector">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="citySelect" onchange="changeCity()">
+                        <option value="lahore" ${cityName === 'lahore' ? 'selected' : ''}>لاہور</option>
+                        <option value="karachi" ${cityName === 'karachi' ? 'selected' : ''}>کراچی</option>
+                        <option value="islamabad" ${cityName === 'islamabad' ? 'selected' : ''}>اسلام آباد</option>
+                    </select>
                 </div>
                 
                 <div class="ramadan-header">
                     <h2>🌙 رمضان 1447</h2>
-                    <span>لاہور</span>
+                    <span>${cityNames[cityName]}</span>
                 </div>
                 
                 <div class="icon-row">
@@ -625,7 +743,7 @@
                 </div>
                 
                 <div class="calendar-container">
-                    <div class="calendar-title"><i class="fas fa-clock"></i> سحری و افطاری · لاہور</div>
+                    <div class="calendar-title"><i class="fas fa-clock"></i> سحری و افطاری · ${cityNames[cityName]}</div>
                     <div class="table-scroll">
                         <table class="calendar-table">
                             <thead><tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr></thead>
@@ -652,8 +770,12 @@
             if (!sehri || !iftar) return;
             
             const now = new Date();
-            const sehriTime = new Date(now); sehriTime.setHours(5, 18, 0);
-            const iftarTime = new Date(now); iftarTime.setHours(17, 54, 0);
+            const sehriTime = new Date(now); 
+            const iftarTime = new Date(now);
+            
+            // Use first day timings for demo
+            sehriTime.setHours(5, 18, 0);
+            iftarTime.setHours(17, 54, 0);
             
             if (now > sehriTime) sehriTime.setDate(sehriTime.getDate() + 1);
             if (now > iftarTime) iftarTime.setDate(iftarTime.getDate() + 1);
