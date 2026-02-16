@@ -6,6 +6,8 @@
     <title>رمضان کارڈ 1447</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b4d3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * {
             margin: 0;
@@ -24,6 +26,29 @@
         .container {
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .install-prompt {
+            background: #d4af37;
+            color: #0b4d3a;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border: 2px solid #0b4d3a;
+            display: none;
+        }
+
+        .install-prompt button {
+            background: #0b4d3a;
+            color: #d4af37;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .card {
@@ -303,11 +328,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container" id="mainContent">
-        <!-- Card will be loaded here -->
+    <div class="container">
+        <!-- Install Prompt (will show on card.html) -->
+        <div class="install-prompt" id="installPrompt">
+            <i class="fas fa-download"></i>
+            اس کارڈ کو انسٹال کریں
+            <button id="installBtn">انسٹال کریں</button>
+        </div>
+
+        <div id="mainContent">
+            <!-- Card will be loaded here -->
+        </div>
     </div>
 
     <script>
+        // PWA Installation
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                installPrompt.style.display = 'none';
+            }
+            deferredPrompt = null;
+        });
+
         // Get user from URL
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('user');
@@ -365,7 +422,6 @@
                 return;
             }
 
-            // Load user-specific data
             const profileKey = getStorageKey(userId, 'profile');
             const bannersKey = getStorageKey(userId, 'banners');
             
@@ -440,7 +496,6 @@
                 remainingMsg = 'افطار کا وقت ہو چکا ہے';
             }
 
-            // Build complete card
             container.innerHTML = `
                 <div class="card">
                     <div class="islamic-header">
@@ -532,17 +587,16 @@
                         <div style="color: white; margin-top: 10px;">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</div>
                     </div>
 
-                    <button class="share-btn" onclick="shareCard('${profile.name}', '${profile.title}', '${profile.phone}', '${todayData.sehri}', '${todayData.iftar}')">
+                    <button class="share-btn" onclick="shareCard('${profile.name}', '${profile.phone}', '${todayData.sehri}', '${todayData.iftar}')">
                         <i class="fab fa-whatsapp"></i> واٹس ایپ پر شیئر کریں
                     </button>
                 </div>
             `;
         }
 
-        function shareCard(name, title, phone, sehri, iftar) {
+        function shareCard(name, phone, sehri, iftar) {
             const text = `🌙 *رمضان مبارک 1447* 🌙\n\n` +
                 `👤 *${name}*\n` +
-                `🏪 ${title}\n` +
                 `📞 ${phone}\n\n` +
                 `⏰ *اوقات:*\n` +
                 `🌅 سحر: ${sehri}\n` +
@@ -552,14 +606,11 @@
             window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
 
-        // Update timings every minute
-        function updateTime() {
-            if (userId) loadCard();
-        }
-
         // Load card
         loadCard();
-        setInterval(updateTime, 60000);
+        
+        // Update timings every minute
+        setInterval(loadCard, 60000);
     </script>
 </body>
 </html>
