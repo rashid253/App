@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رمضان مبارک 1447 - اپنا کارڈ بنائیں</title>
-    <link rel="manifest" href="manifest.json">
+    <title>رمضان کارڈ بنائیں - 1447</title>
+    <!-- No manifest here - generator will not install -->
     <meta name="theme-color" content="#0b4d3a">
     <style>
         * {
@@ -24,6 +24,21 @@
         .container {
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .header-note {
+            background: #d4af37;
+            color: #0b4d3a;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border: 2px solid #0b4d3a;
+        }
+
+        .header-note i {
+            margin-left: 8px;
         }
 
         .card {
@@ -59,11 +74,6 @@
             margin-bottom: 20px;
             text-align: center;
             border-right: 4px solid #d4af37;
-        }
-
-        .info-box i {
-            color: #d4af37;
-            margin-left: 8px;
         }
 
         .form-group {
@@ -102,6 +112,11 @@
         .form-group textarea:focus {
             outline: none;
             border-color: #d4af37;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
         }
 
         /* Banners Section */
@@ -219,11 +234,31 @@
             font-size: 14px;
             border: 1px solid #d4af37;
         }
+
+        .install-note {
+            background: #d4af37;
+            color: #0b4d3a;
+            padding: 12px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .install-note i {
+            margin-left: 5px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <!-- Note about installation -->
+        <div class="header-note">
+            <i class="fas fa-mobile-alt"></i>
+            کارڈ بنانے کے بعد اسے انسٹال کریں
+        </div>
+
         <!-- User ID Input -->
         <div class="card">
             <div class="card-header">
@@ -233,13 +268,13 @@
 
             <div class="info-box">
                 <i class="fas fa-info-circle"></i>
-                ہر شخص کا کارڈ الگ اور محفوظ
+                اپنی منفرد آئی ڈی سے کارڈ بنائیں
             </div>
 
             <div class="form-group">
-                <label class="required"><i class="fas fa-id-card"></i> اپنی منفرد آئی ڈی بنائیں *</label>
-                <input type="text" id="userId" placeholder="مثلاً: rashid123, ali_khan, etc" value="rashid123">
-                <small style="color: #666; display: block; margin-top: 5px;">صرف حروف اور نمبر استعمال کریں</small>
+                <label class="required"><i class="fas fa-id-card"></i> اپنی آئی ڈی *</label>
+                <input type="text" id="userId" placeholder="مثلاً: rashid123, ali_khan" value="rashid123">
+                <small style="color: #666; display: block; margin-top: 5px;">صرف حروف اور نمبر</small>
             </div>
 
             <button class="generate-btn" onclick="loadUserData()">
@@ -300,11 +335,22 @@
             </button>
 
             <div class="card-link" id="cardLink">
-                <p>آپ کا کارڈ تیار ہے:</p>
+                <p>آپ کا کارڈ تیار ہے۔ اسے انسٹال کریں:</p>
                 <a href="#" target="_blank" id="cardUrl"></a>
-                <button onclick="copyLink()" style="margin-top: 10px; padding: 8px 20px; background: #d4af37; color: #0b4d3a; border: none; border-radius: 25px; cursor: pointer;">
-                    <i class="fas fa-copy"></i> لنک کاپی کریں
-                </button>
+                <div style="margin-top: 15px;">
+                    <button onclick="copyLink()" style="padding: 10px 20px; background: #d4af37; color: #0b4d3a; border: none; border-radius: 25px; cursor: pointer; margin-left: 10px;">
+                        <i class="fas fa-copy"></i> لنک کاپی
+                    </button>
+                    <button onclick="openInBrowser()" style="padding: 10px 20px; background: #0b4d3a; color: #d4af37; border: 2px solid #d4af37; border-radius: 25px; cursor: pointer;">
+                        <i class="fas fa-external-link-alt"></i> کھولیں
+                    </button>
+                </div>
+            </div>
+
+            <!-- Installation Instruction -->
+            <div class="install-note">
+                <i class="fas fa-download"></i>
+                کارڈ کھول کر وہاں سے "انسٹال کریں" پر کلک کریں
             </div>
         </div>
     </div>
@@ -334,13 +380,11 @@
                 return;
             }
 
-            // Clean user ID (remove special chars)
             const cleanUserId = userId.replace(/[^a-zA-Z0-9_]/g, '');
             
             document.getElementById('currentUserId').innerHTML = `آئی ڈی: ${cleanUserId}`;
             document.getElementById('editForm').style.display = 'block';
 
-            // Load profile data for this user
             const profileKey = getStorageKey(cleanUserId, 'profile');
             const bannersKey = getStorageKey(cleanUserId, 'banners');
             
@@ -363,7 +407,6 @@
                 document.getElementById('businessTitle').value = '';
             }
 
-            // Load banners for this user
             const savedBanners = localStorage.getItem(bannersKey);
             if (savedBanners) {
                 banners = JSON.parse(savedBanners);
@@ -434,7 +477,6 @@
                 return;
             }
 
-            // Save with user-specific keys
             const profileKey = getStorageKey(userId, 'profile');
             const bannersKey = getStorageKey(userId, 'banners');
             
@@ -447,7 +489,7 @@
             document.getElementById('cardUrl').textContent = cardUrl;
             document.getElementById('cardLink').style.display = 'block';
             
-            showToast('✅ کارڈ محفوظ ہو گیا!');
+            showToast('✅ کارڈ محفوظ ہو گیا! اب اسے انسٹال کریں');
         }
 
         function copyLink() {
@@ -455,6 +497,10 @@
             navigator.clipboard.writeText(link).then(() => {
                 showToast('📋 لنک کاپی ہو گیا');
             });
+        }
+
+        function openInBrowser() {
+            window.open(document.getElementById('cardUrl').href, '_blank');
         }
     </script>
 </body>
