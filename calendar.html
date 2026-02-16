@@ -323,6 +323,95 @@
         .today-row { background: #ffd966; font-weight: bold; }
         .table-scroll { max-height: 400px; overflow-y: auto; }
         
+        /* Bottom Poster Section */
+        .bottom-poster {
+            background: linear-gradient(145deg, #ffffff, #f5f0e0);
+            border-radius: 30px 8px 30px 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 3px solid #c9a75a;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .bottom-poster:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .bottom-poster::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 60px;
+            height: 60px;
+            background: #ffd966;
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+        
+        .poster-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .poster-media {
+            width: 80px;
+            height: 80px;
+            background: #e7d8b8;
+            border-radius: 20px 4px 20px 4px;
+            overflow: hidden;
+            border: 2px solid #b38d5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .poster-media img, .poster-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .poster-media i {
+            font-size: 2.5rem;
+            color: #b38d5a;
+            opacity: 0.7;
+        }
+        
+        .poster-text {
+            flex: 1;
+        }
+        
+        .poster-text h4 {
+            color: #1e4a2e;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .poster-text p {
+            color: #4a5a4a;
+            font-size: 0.9rem;
+        }
+        
+        .poster-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #1e4a2e;
+            color: #ffd966;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
         .footer {
             text-align: center;
             color: #1e4a2e;
@@ -636,7 +725,7 @@
                 };
             }
             
-            renderCalendar(data, currentTimings, currentCity);
+            renderCalendar(data, currentTimings, currentCity, id);
         }
         
         function changeCity() {
@@ -665,10 +754,10 @@
                 };
             }
             
-            renderCalendar(data, currentTimings, currentCity);
+            renderCalendar(data, currentTimings, currentCity, id);
         }
         
-        function renderCalendar(data, timings, cityName) {
+        function renderCalendar(data, timings, cityName, id) {
             const profilePic = localStorage.getItem('profilePic') || '';
             const today = new Date();
             const ramadanStart = new Date(2026, 1, 19);
@@ -690,6 +779,58 @@
                 karachi: 'کراچی',
                 islamabad: 'اسلام آباد'
             };
+            
+            // Get banner data
+            let bannerHtml = '';
+            if (id) {
+                const bannerDataStr = localStorage.getItem(id + '_banner') || localStorage.getItem('bannerData');
+                if (bannerDataStr) {
+                    try {
+                        const bannerData = JSON.parse(bannerDataStr);
+                        if (bannerData && bannerData.content) {
+                            const bannerLink = bannerData.link || '#';
+                            const mediaHtml = bannerData.type === 'video' 
+                                ? `<video src="${bannerData.content}" style="width:100%;height:100%;object-fit:cover;" autoplay loop muted></video>`
+                                : `<img src="${bannerData.content}" style="width:100%;height:100%;object-fit:cover;">`;
+                            
+                            bannerHtml = `
+                                <div class="bottom-poster" onclick="openLink('${bannerLink}')">
+                                    <div class="poster-content">
+                                        <div class="poster-media">
+                                            ${mediaHtml}
+                                        </div>
+                                        <div class="poster-text">
+                                            <h4>خصوصی پیشکش</h4>
+                                            <p>مزید معلومات کے لیے کلک کریں</p>
+                                        </div>
+                                    </div>
+                                    <div class="poster-badge">اشتہار</div>
+                                </div>
+                            `;
+                        }
+                    } catch (e) {
+                        console.error('Error parsing banner data', e);
+                    }
+                }
+            }
+            
+            // If no banner from admin, show default poster
+            if (!bannerHtml) {
+                bannerHtml = `
+                    <div class="bottom-poster" onclick="openLink('https://www.example.com')">
+                        <div class="poster-content">
+                            <div class="poster-media">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="poster-text">
+                                <h4>رمضان اسپیشل آفر</h4>
+                                <p>50% رعایت حاصل کریں</p>
+                            </div>
+                        </div>
+                        <div class="poster-badge">نیا</div>
+                    </div>
+                `;
+            }
             
             const html = `
                 <div class="profile-card">
@@ -751,6 +892,9 @@
                         </table>
                     </div>
                 </div>
+                
+                <!-- Bottom Poster (at the end) -->
+                ${bannerHtml}
                 
                 <div class="footer">
                     <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
