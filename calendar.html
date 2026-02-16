@@ -3,54 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Ramadan Calendar 2026 - Non-Clickable</title>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231a2e1a'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23ffd966' font-family='Arial'>🌙</text></svg>">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#1a2e1a">
-    
+    <title>Ramadan Calendar 2026</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Inter', 'Amiri', sans-serif;
             background: #1a2e1a;
             padding: 10px;
             min-height: 100vh;
-        }
-        
-        .install-container {
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        
-        .install-btn {
-            background: #ffd966;
-            color: #1a2e1a;
-            border: 3px solid #c9a75a;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 0 #9b7a48;
-            transition: 0.3s;
         }
         
         .app-wrapper {
@@ -65,7 +34,23 @@
             overflow: hidden;
         }
         
-        /* NON-CLICKABLE - تمام links ہٹا دیے */
+        .app-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(201,167,90,0.03) 0px, rgba(201,167,90,0.03) 20px, transparent 20px, transparent 40px);
+            pointer-events: none;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Profile Card */
         .profile-card {
             background: white;
             border-radius: 40px 8px 40px 8px;
@@ -77,7 +62,13 @@
             align-items: center;
             gap: 20px;
             flex-wrap: wrap;
-            /* cursor: default; - clickable nahi */
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #9b7a48;
         }
         
         .profile-pic {
@@ -94,20 +85,34 @@
             border: 3px solid #c9a75a;
         }
         
-        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         
-        .profile-info { flex: 1; }
+        .profile-info {
+            flex: 1;
+        }
+        
         .profile-name {
             font-size: 2rem;
             font-weight: 800;
             color: #1e4a2e;
             font-family: 'Amiri', serif;
+            line-height: 1.2;
         }
         
         .profile-detail {
             color: #4a5a4a;
             margin: 5px 0;
             font-size: 0.95rem;
+        }
+        
+        .profile-detail i {
+            color: #c9a75a;
+            width: 20px;
+            margin-right: 5px;
         }
         
         .contact-badge {
@@ -120,27 +125,31 @@
             font-size: 0.85rem;
             margin: 2px;
             border: 1px solid #c9a75a;
-            /* cursor: default; - clickable nahi */
         }
         
-        /* Ads Row - NON-CLICKABLE */
+        /* Ads Row */
         .ads-row {
             display: flex;
             gap: 8px;
             margin-bottom: 15px;
-            flex-wrap: wrap;
         }
         
         .ad-card {
             flex: 1;
-            min-width: 100px;
             background: linear-gradient(145deg, #1e4a2e, #153f1f);
             border-radius: 30px 8px 30px 8px;
             padding: 12px 5px;
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
-            /* cursor: default; - clickable nahi */
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .ad-card:hover {
+            transform: scale(1.02);
+            background: #256635;
         }
         
         .ad-card i {
@@ -148,6 +157,11 @@
             color: #ffd966;
             display: block;
             margin-bottom: 5px;
+        }
+        
+        .ad-card span {
+            font-size: 0.85rem;
+            display: block;
         }
         
         /* Ramadan Header */
@@ -169,7 +183,14 @@
             font-family: 'Amiri', serif;
         }
         
-        /* Icons Row - صرف تسبیح اور دعائیں clickable ہوں گی */
+        .ramadan-header span {
+            background: #0f2e1a;
+            padding: 8px 15px;
+            border-radius: 40px;
+            border: 2px solid #c9a75a;
+        }
+        
+        /* Icons Row - Fixed */
         .icon-row {
             display: flex;
             justify-content: space-around;
@@ -178,7 +199,6 @@
             padding: 15px 5px;
             margin-bottom: 15px;
             border: 2px solid #c9a75a;
-            flex-wrap: wrap;
         }
         
         .icon-item {
@@ -187,11 +207,9 @@
             align-items: center;
             color: #1e4a2e;
             font-weight: 600;
-            min-width: 70px;
-        }
-        
-        .icon-item.clickable {
             cursor: pointer;
+            width: 70px;
+            text-align: center;
         }
         
         .icon-item i {
@@ -207,6 +225,12 @@
             justify-content: center;
             margin-bottom: 5px;
             border: 2px solid #c9a75a;
+            transition: 0.3s;
+        }
+        
+        .icon-item:hover i {
+            transform: scale(1.1);
+            background: #256635;
         }
         
         /* Live Timer */
@@ -217,13 +241,15 @@
             padding: 15px;
             margin-bottom: 15px;
             color: white;
+            box-shadow: 0 5px 0 #0f3a1f;
         }
         
         .timer-row {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 10px;
         }
         
         .timer-block {
@@ -238,6 +264,7 @@
         .timer-value {
             font-size: 1.3rem;
             font-weight: 700;
+            direction: ltr;
             background: #1e4a2e;
             padding: 4px 12px;
             border-radius: 30px;
@@ -252,21 +279,37 @@
             text-align: center;
             margin-top: 10px;
             cursor: pointer;
+            font-weight: 600;
         }
         
-        /* Quran Box - NON-CLICKABLE */
+        /* Quran Box */
         .quran-box {
             background: linear-gradient(145deg, #1e4a2e, #0f3a1f);
             border-radius: 40px 8px 40px 8px;
             padding: 20px 15px;
             margin-bottom: 15px;
             border: 3px solid #c9a75a;
+            cursor: pointer;
             text-align: center;
-            /* cursor: default; - clickable nahi */
+            transition: 0.3s;
         }
         
-        .quran-box i { font-size: 3.5rem; color: #ffd966; }
-        .quran-box h2 { color: #ffd966; font-size: 2rem; font-family: 'Amiri', serif; }
+        .quran-box:hover {
+            transform: scale(1.02);
+            border-color: #ffd966;
+        }
+        
+        .quran-box i {
+            font-size: 3.5rem;
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+        
+        .quran-box h2 {
+            color: #ffd966;
+            font-size: 2rem;
+            font-family: 'Amiri', serif;
+        }
         
         /* Calendar Table */
         .calendar-container {
@@ -277,6 +320,15 @@
             margin-bottom: 15px;
         }
         
+        .calendar-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e4a2e;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        
         .calendar-table {
             width: 100%;
             border-collapse: collapse;
@@ -285,21 +337,30 @@
         .calendar-table th {
             background: #1e4a2e;
             color: white;
-            padding: 10px;
+            padding: 10px 5px;
             border-radius: 20px 4px 10px 4px;
+            font-weight: 500;
         }
         
         .calendar-table td {
-            padding: 8px;
+            padding: 8px 5px;
             text-align: center;
             border-bottom: 1px solid #c9a75a;
             color: #1e3a1e;
         }
         
-        .today-row { background: #ffd966; font-weight: bold; }
-        .table-scroll { max-height: 400px; overflow-y: auto; }
+        .today-row {
+            background: #ffd966;
+            font-weight: bold;
+        }
         
-        /* Bottom Banners - NON-CLICKABLE */
+        .table-scroll {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 15px;
+        }
+        
+        /* Bottom Banners */
         .bottom-banners {
             display: flex;
             flex-direction: column;
@@ -311,34 +372,35 @@
             width: 100%;
             background: linear-gradient(145deg, #8b6d42, #a68452);
             border-radius: 40px 8px 40px 8px;
-            padding: 15px;
+            padding: 15px 10px;
             text-align: center;
             border: 2px solid #c9a75a;
             color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            /* cursor: default; - clickable nahi */
         }
         
-        .bottom-banner i { font-size: 2rem; color: #ffd966; }
+        .bottom-banner:hover {
+            transform: scale(1.02);
+            background: #9b7a48;
+        }
         
+        .bottom-banner i {
+            font-size: 2rem;
+            color: #ffd966;
+        }
+        
+        /* Footer */
         .footer {
             text-align: center;
             color: #1e4a2e;
             font-size: 0.9rem;
             margin-top: 15px;
-        }
-        
-        .pwa-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-left: 5px;
         }
         
         /* Modal */
@@ -350,7 +412,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.9);
-            z-index: 2000;
+            z-index: 1000;
             padding: 20px;
             overflow-y: auto;
         }
@@ -396,7 +458,9 @@
             border: 2px solid #c9a75a;
         }
         
-        .tas-btn.red { background: #8b3a3a; }
+        .tas-btn.red {
+            background: #8b3a3a;
+        }
         
         .dua-box {
             background: #e7d8b8;
@@ -423,18 +487,12 @@
     </style>
 </head>
 <body>
-    <div class="install-container" id="installContainer" style="display: none;">
-        <button class="install-btn" id="installButton">
-            <i class="fas fa-download"></i>
-            ایپ انسٹال کریں
-        </button>
-    </div>
-    
     <div class="app-wrapper">
         <div class="content" id="calendarContent">
+            <!-- Dynamic content will be loaded here -->
             <div style="text-align:center; padding:50px;">
                 <i class="fas fa-spinner fa-spin" style="font-size:3rem; color:#1e4a2e;"></i>
-                <p>لوڈ ہو رہا ہے...</p>
+                <p style="margin-top:20px;">لوڈ ہو رہا ہے...</p>
             </div>
         </div>
     </div>
@@ -453,6 +511,7 @@
                 <button class="tas-btn" onclick="loadTasbeeh()">لوڈ</button>
                 <button class="tas-btn red" onclick="resetTasbeeh()">ری سیٹ</button>
             </div>
+            <p style="text-align:center; margin-top:15px;">سبحان اللہ · الحمدللہ · اللہ اکبر</p>
         </div>
     </div>
     
@@ -461,46 +520,26 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('duasModal')">&times;</span>
             <h2 style="text-align:center; color:#1e4a2e;">🤲 رمضان کی دعائیں</h2>
+            
             <div class="dua-box">
                 <div class="dua-arabic">اللَّهُمَّ أَهْلِلْهُ عَلَيْنَا بِالْيُمْنِ وَالإِيمَانِ</div>
                 <div class="dua-urdu">اے اللہ! ہم پر یہ مہینہ امن اور ایمان کے ساتھ داخل فرما</div>
             </div>
+            
             <div class="dua-box">
                 <div class="dua-arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ</div>
-                <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں</div>
+                <div class="dua-urdu">پیاس ختم ہو گئی، رگیں تر ہو گئیں (افطار کی دعا)</div>
             </div>
+            
             <div class="dua-box">
                 <div class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ</div>
-                <div class="dua-urdu">میں نے کل کے روزے کی نیت کی</div>
+                <div class="dua-urdu">میں نے کل کے روزے کی نیت کی (سحری کی دعا)</div>
             </div>
         </div>
     </div>
     
     <script>
-        // ========== PWA INSTALLATION ==========
-        let deferredPrompt;
-        const installContainer = document.getElementById('installContainer');
-        const installButton = document.getElementById('installButton');
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installContainer.style.display = 'flex';
-        });
-        
-        installButton.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') installContainer.style.display = 'none';
-            deferredPrompt = null;
-        });
-        
-        window.addEventListener('appinstalled', () => {
-            installContainer.style.display = 'none';
-        });
-        
-        // ========== CALENDAR DATA ==========
+        // City Timings (Fixed - 30 days)
         const timings = [
             {day:1, date:"19 Feb", sehri:"5:18", iftar:"5:54"},
             {day:2, date:"20 Feb", sehri:"5:17", iftar:"5:55"},
@@ -534,37 +573,52 @@
             {day:30, date:"20 Mar", sehri:"4:44", iftar:"6:16"}
         ];
         
-        let tasbeeh = parseInt(localStorage.getItem('tasbeeh')) || 0;
+        // Tasbeeh Variables
+        let tasbeeh = 0;
         
+        // Load Calendar Data
         function loadCalendar() {
             const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
+            const calendarId = urlParams.get('id');
             
-            let data = null;
-            
-            if (id && localStorage.getItem(id)) {
-                data = JSON.parse(localStorage.getItem(id));
-            } else if (id && sessionStorage.getItem(id)) {
-                data = JSON.parse(sessionStorage.getItem(id));
+            if (calendarId) {
+                const data = JSON.parse(localStorage.getItem(calendarId));
+                if (data) {
+                    renderCalendar(data);
+                } else {
+                    document.getElementById('calendarContent').innerHTML = '<p style="text-align:center; padding:50px; color:red;">کیلنڈر نہیں ملا</p>';
+                }
             } else {
-                data = {
+                // Demo data for direct access
+                const demoData = {
                     businessName: "المدینہ جیولرز",
                     phoneNumber: "03001234567",
                     email: "info@example.com",
                     businessType: "Jewellery Store",
                     address: "ماڈل ٹاؤن، لاہور",
-                    businessDetails: "سونے چاندی کی مصنوعات",
+                    businessDetails: "سونے چاندی کی خالص مصنوعات",
                     profileIcon: "fa-store",
-                    ad1: { text: "نئی گولڈ کلکشن", link: "#", icon: "fa-gem", clickable: false, deleted: false },
-                    ad2: { text: "شادی بیاہ ڈیلز", link: "#", icon: "fa-heart", clickable: false, deleted: false },
-                    ad3: { text: "رمضان سپیشل", link: "#", icon: "fa-moon", clickable: false, deleted: false },
-                    banner1: { text: "25% تخفیف", link: "#", icon: "fa-percent", clickable: false, deleted: false },
-                    banner2: { text: "فری ڈلیوری", link: "#", icon: "fa-truck", clickable: false, deleted: false },
-                    banner3: { text: "لکی ڈرا", link: "#", icon: "fa-trophy", clickable: false, deleted: false }
+                    ad1Text: "نئی گولڈ کلکشن",
+                    ad1Link: "https://www.example.com/gold",
+                    ad1Icon: "fa-gem",
+                    ad2Text: "شادی بیاہ ڈیلز",
+                    ad2Link: "https://www.example.com/wedding",
+                    ad2Icon: "fa-heart",
+                    ad3Text: "رمضان سپیشل آفر",
+                    ad3Link: "https://www.example.com/ramadan",
+                    ad3Icon: "fa-moon",
+                    banner1Text: "25% خصوصی تخفیف",
+                    banner1Link: "https://www.example.com/discount",
+                    banner1Icon: "fa-percent",
+                    banner2Text: "فری ہوم ڈلیوری",
+                    banner2Link: "https://www.example.com/delivery",
+                    banner2Icon: "fa-truck",
+                    banner3Text: "لکی ڈرا - انعامات",
+                    banner3Link: "https://www.example.com/lucky",
+                    banner3Icon: "fa-trophy"
                 };
+                renderCalendar(demoData);
             }
-            
-            renderCalendar(data);
         }
         
         function renderCalendar(data) {
@@ -573,95 +627,146 @@
             const ramadanStart = new Date(2026, 1, 19);
             const fastNum = Math.floor((today - ramadanStart) / (1000*60*60*24)) + 1;
             
-            let rows = '';
+            let calendarRows = '';
             timings.forEach(row => {
                 const cls = (fastNum === row.day) ? 'today-row' : '';
-                rows += `<tr class="${cls}"><td>${row.day}</td><td>${row.date}</td><td>${row.sehri} AM</td><td>${row.iftar} PM</td></tr>`;
+                calendarRows += `<tr class="${cls}">
+                    <td>${row.day}</td>
+                    <td>${row.date}</td>
+                    <td>${row.sehri} AM</td>
+                    <td>${row.iftar} PM</td>
+                </tr>`;
             });
             
-            const picHtml = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover;">` : `<i class="fas ${data.profileIcon}"></i>`;
+            const profilePicHtml = profilePic ? 
+                `<img src="${profilePic}" alt="profile">` : 
+                `<i class="fas ${data.profileIcon}"></i>`;
             
-            // NON-CLICKABLE HTML - تمام links ہٹا دیے
             const html = `
-                <div class="profile-card">
-                    <div class="profile-pic">${picHtml}</div>
+                <!-- Profile Card -->
+                <div class="profile-card" onclick="window.open('https://maps.google.com/?q=${encodeURIComponent(data.address)}', '_blank')">
+                    <div class="profile-pic">
+                        ${profilePicHtml}
+                    </div>
                     <div class="profile-info">
-                        <div class="profile-name">${data.businessName} <span class="pwa-badge">PWA</span></div>
+                        <div class="profile-name">${data.businessName}</div>
                         <div class="profile-detail"><i class="fas fa-tag"></i> ${data.businessType}</div>
                         <div class="profile-detail"><i class="fas fa-map-marker-alt"></i> ${data.address}</div>
                         <div>
-                            <span class="contact-badge"><i class="fas fa-phone"></i> ${data.phoneNumber}</span>
-                            ${data.email ? `<span class="contact-badge"><i class="fas fa-envelope"></i></span>` : ''}
+                            <a href="tel:${data.phoneNumber}" class="contact-badge" onclick="event.stopPropagation()">
+                                <i class="fas fa-phone"></i> ${data.phoneNumber}
+                            </a>
+                            ${data.email ? `<a href="mailto:${data.email}" class="contact-badge" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i> ای میل</a>` : ''}
                         </div>
                         ${data.businessDetails ? `<div class="profile-detail"><i class="fas fa-info-circle"></i> ${data.businessDetails}</div>` : ''}
                     </div>
                 </div>
                 
+                <!-- Top Ads -->
                 <div class="ads-row">
-                    ${data.ad1 && !data.ad1.deleted ? 
-                        `<div class="ad-card">
-                            <i class="fas ${data.ad1.icon}"></i><span>${data.ad1.text}</span>
-                        </div>` : ''}
-                    ${data.ad2 && !data.ad2.deleted ? 
-                        `<div class="ad-card">
-                            <i class="fas ${data.ad2.icon}"></i><span>${data.ad2.text}</span>
-                        </div>` : ''}
-                    ${data.ad3 && !data.ad3.deleted ? 
-                        `<div class="ad-card">
-                            <i class="fas ${data.ad3.icon}"></i><span>${data.ad3.text}</span>
-                        </div>` : ''}
+                    ${data.ad1Text ? `
+                    <a href="${data.ad1Link}" class="ad-card" target="_blank">
+                        <i class="fas ${data.ad1Icon}"></i>
+                        <span>${data.ad1Text}</span>
+                    </a>` : ''}
+                    ${data.ad2Text ? `
+                    <a href="${data.ad2Link}" class="ad-card" target="_blank">
+                        <i class="fas ${data.ad2Icon}"></i>
+                        <span>${data.ad2Text}</span>
+                    </a>` : ''}
+                    ${data.ad3Text ? `
+                    <a href="${data.ad3Link}" class="ad-card" target="_blank">
+                        <i class="fas ${data.ad3Icon}"></i>
+                        <span>${data.ad3Text}</span>
+                    </a>` : ''}
                 </div>
                 
+                <!-- Ramadan Header -->
                 <div class="ramadan-header">
                     <h2>🌙 رمضان 1447</h2>
                     <span>لاہور</span>
                 </div>
                 
+                <!-- Fixed Icons -->
                 <div class="icon-row">
-                    <div class="icon-item clickable" onclick="openTasbeeh()"><i class="fas fa-tasbih"></i><span>تسبیح</span></div>
-                    <div class="icon-item"><i class="fas fa-quran"></i><span>قرآن</span></div>
-                    <div class="icon-item"><i class="fas fa-headphones"></i><span>آڈیو</span></div>
-                    <div class="icon-item clickable" onclick="openDuas()"><i class="fas fa-hand-praying"></i><span>دعائیں</span></div>
+                    <div class="icon-item" onclick="openTasbeeh()">
+                        <i class="fas fa-tasbih"></i>
+                        <span>تسبیح</span>
+                    </div>
+                    <div class="icon-item" onclick="window.open('https://quran.com/ur', '_blank')">
+                        <i class="fas fa-quran"></i>
+                        <span>قرآن</span>
+                    </div>
+                    <div class="icon-item" onclick="window.open('https://equran.com/', '_blank')">
+                        <i class="fas fa-headphones"></i>
+                        <span>آڈیو</span>
+                    </div>
+                    <div class="icon-item" onclick="openDuas()">
+                        <i class="fas fa-hand-praying"></i>
+                        <span>دعائیں</span>
+                    </div>
                 </div>
                 
+                <!-- Live Timer -->
                 <div class="live-timer">
                     <div class="timer-row">
-                        <div class="timer-block"><i class="fas fa-utensils"></i><span>سحری</span><span class="timer-value" id="sehriTimer">05:18:00</span></div>
-                        <div class="timer-block"><i class="fas fa-sun"></i><span>افطاری</span><span class="timer-value" id="iftarTimer">05:54:00</span></div>
+                        <div class="timer-block">
+                            <i class="fas fa-utensils"></i>
+                            <span>سحری</span>
+                            <span class="timer-value" id="sehriTimer">05:18:00</span>
+                        </div>
+                        <div class="timer-block">
+                            <i class="fas fa-sun"></i>
+                            <span>افطاری</span>
+                            <span class="timer-value" id="iftarTimer">05:54:00</span>
+                        </div>
                     </div>
-                    <div class="dua-ticker" onclick="openDuas()" id="duaTicker">دعائے سحری</div>
+                    <div class="dua-ticker" onclick="openDuas()" id="duaTicker">
+                        دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ
+                    </div>
                 </div>
                 
-                <div class="quran-box">
+                <!-- Quran Box -->
+                <div class="quran-box" onclick="window.open('https://quran.com/ur', '_blank')">
                     <i class="fas fa-quran"></i>
                     <h2>القرآن الكريم</h2>
                 </div>
                 
+                <!-- Calendar -->
                 <div class="calendar-container">
-                    <div class="calendar-title"><i class="fas fa-clock"></i> سحری و افطاری · لاہور</div>
+                    <div class="calendar-title">
+                        <i class="fas fa-clock"></i> سحری و افطاری · لاہور
+                    </div>
                     <div class="table-scroll">
                         <table class="calendar-table">
-                            <thead><tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr></thead>
-                            <tbody>${rows}</tbody>
+                            <thead>
+                                <tr><th>روزہ</th><th>تاریخ</th><th>سحری</th><th>افطاری</th></tr>
+                            </thead>
+                            <tbody>${calendarRows}</tbody>
                         </table>
                     </div>
                 </div>
                 
+                <!-- Bottom Banners -->
                 <div class="bottom-banners">
-                    ${data.banner1 && !data.banner1.deleted ? 
-                        `<div class="bottom-banner">
-                            <i class="fas ${data.banner1.icon}"></i><span>${data.banner1.text}</span>
-                        </div>` : ''}
-                    ${data.banner2 && !data.banner2.deleted ? 
-                        `<div class="bottom-banner">
-                            <i class="fas ${data.banner2.icon}"></i><span>${data.banner2.text}</span>
-                        </div>` : ''}
-                    ${data.banner3 && !data.banner3.deleted ? 
-                        `<div class="bottom-banner">
-                            <i class="fas ${data.banner3.icon}"></i><span>${data.banner3.text}</span>
-                        </div>` : ''}
+                    ${data.banner1Text ? `
+                    <a href="${data.banner1Link}" class="bottom-banner" target="_blank">
+                        <i class="fas ${data.banner1Icon}"></i>
+                        <span>${data.banner1Text}</span>
+                    </a>` : ''}
+                    ${data.banner2Text ? `
+                    <a href="${data.banner2Link}" class="bottom-banner" target="_blank">
+                        <i class="fas ${data.banner2Icon}"></i>
+                        <span>${data.banner2Text}</span>
+                    </a>` : ''}
+                    ${data.banner3Text ? `
+                    <a href="${data.banner3Link}" class="bottom-banner" target="_blank">
+                        <i class="fas ${data.banner3Icon}"></i>
+                        <span>${data.banner3Text}</span>
+                    </a>` : ''}
                 </div>
                 
+                <!-- Footer -->
                 <div class="footer">
                     <p>🌙 رمضان مبارک 1447ھ · 2026ء</p>
                 </div>
@@ -671,36 +776,38 @@
             updateTimer();
         }
         
-        // Timer Functions
+        // Timer Function
         function updateTimer() {
-            const sehri = document.getElementById('sehriTimer');
-            const iftar = document.getElementById('iftarTimer');
-            const dua = document.getElementById('duaTicker');
+            let now = new Date();
+            let sehri = new Date(now); sehri.setHours(5, 18, 0);
+            let iftar = new Date(now); iftar.setHours(17, 54, 0);
             
-            if (!sehri || !iftar) return;
+            if(now > sehri) sehri.setDate(sehri.getDate() + 1);
+            if(now > iftar) iftar.setDate(iftar.getDate() + 1);
             
-            const now = new Date();
-            const sehriTime = new Date(now); sehriTime.setHours(5, 18, 0);
-            const iftarTime = new Date(now); iftarTime.setHours(17, 54, 0);
+            const sehriEl = document.getElementById('sehriTimer');
+            const iftarEl = document.getElementById('iftarTimer');
+            const duaEl = document.getElementById('duaTicker');
             
-            if (now > sehriTime) sehriTime.setDate(sehriTime.getDate() + 1);
-            if (now > iftarTime) iftarTime.setDate(iftarTime.getDate() + 1);
+            if(sehriEl && iftarEl) {
+                sehriEl.innerText = formatTime(sehri - now);
+                iftarEl.innerText = formatTime(iftar - now);
+            }
             
-            sehri.innerText = formatTime(sehriTime - now);
-            iftar.innerText = formatTime(iftarTime - now);
-            
-            if (now < iftarTime && now > new Date().setHours(5, 18, 0)) {
-                dua.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ";
-            } else {
-                dua.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
+            if(duaEl) {
+                if(now < iftar && now > new Date().setHours(5, 18, 0)) {
+                    duaEl.innerText = "دعائے افطار: ذَهَبَ الظَّمَأُ";
+                } else {
+                    duaEl.innerText = "دعائے سحری: وَبِصَوْمِ غَدٍ نَّوَيْتُ";
+                }
             }
         }
         
         function formatTime(ms) {
-            if (ms < 0) return "00:00:00";
-            const h = Math.floor(ms / (1000*60*60));
-            const m = Math.floor((ms % (1000*60*60)) / (1000*60));
-            const s = Math.floor((ms % (1000*60)) / 1000);
+            if(ms < 0) return "00:00:00";
+            let h = Math.floor(ms / (1000*60*60));
+            let m = Math.floor((ms % (1000*60*60)) / (1000*60));
+            let s = Math.floor((ms % (1000*60)) / 1000);
             return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
         }
         
@@ -709,21 +816,25 @@
         function openDuas() { document.getElementById('duasModal').style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         
+        // Tasbeeh Functions
         function addTasbeeh(val) { tasbeeh += val; document.getElementById('tasbeehCount').innerText = tasbeeh; }
         function resetTasbeeh() { tasbeeh = 0; document.getElementById('tasbeehCount').innerText = tasbeeh; }
-        function saveTasbeeh() { localStorage.setItem('tasbeeh', tasbeeh); alert('محفوظ ہو گیا'); }
+        function saveTasbeeh() { localStorage.setItem('tasbeeh', tasbeeh); alert('محفوظ ہو گیا: ' + tasbeeh); }
         function loadTasbeeh() { 
-            const saved = localStorage.getItem('tasbeeh');
-            if (saved) { tasbeeh = parseInt(saved); document.getElementById('tasbeehCount').innerText = tasbeeh; }
+            let saved = localStorage.getItem('tasbeeh');
+            if(saved) { tasbeeh = parseInt(saved); document.getElementById('tasbeehCount').innerText = tasbeeh; }
         }
         
-        window.onclick = (e) => {
-            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
-        };
+        // Close modal on outside click
+        window.onclick = function(e) {
+            if(e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        }
         
+        // Initialize
         loadCalendar();
         setInterval(updateTimer, 1000);
-        document.getElementById('tasbeehCount').innerText = tasbeeh;
     </script>
 </body>
 </html>
