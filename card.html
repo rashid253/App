@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رمضان مبارک 1447</title>
+    <title>رمضان کارڈ 1447</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b4d3a">
     <style>
@@ -26,34 +26,6 @@
             margin: 0 auto;
         }
 
-        /* Islamic Pattern */
-        .islamic-pattern {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .islamic-pattern::before {
-            content: "ﷲ";
-            position: absolute;
-            top: -30px;
-            right: -30px;
-            font-size: 200px;
-            opacity: 0.03;
-            transform: rotate(15deg);
-            pointer-events: none;
-        }
-
-        .islamic-pattern::after {
-            content: "محمد";
-            position: absolute;
-            bottom: -30px;
-            left: -30px;
-            font-size: 200px;
-            opacity: 0.03;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
         .card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 40px;
@@ -61,38 +33,8 @@
             margin-bottom: 20px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             border: 3px solid #d4af37;
-            position: relative;
-            backdrop-filter: blur(5px);
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .nav-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 50px;
-            background: white;
-            color: #0b4d3a;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            font-size: 16px;
-            border: 2px solid #d4af37;
-            transition: all 0.3s;
-        }
-
-        .nav-btn.active {
-            background: #0b4d3a;
-            color: #d4af37;
-        }
-
-        /* Header */
         .islamic-header {
             text-align: center;
             margin-bottom: 25px;
@@ -104,22 +46,14 @@
             font-size: 28px;
             color: #0b4d3a;
             margin-bottom: 10px;
-            font-weight: bold;
         }
 
         .ramadan-title {
             font-size: 36px;
             color: #d4af37;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             margin-bottom: 5px;
         }
 
-        .year {
-            font-size: 22px;
-            color: #666;
-        }
-
-        /* Profile Section */
         .profile-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 20px;
@@ -141,13 +75,6 @@
             color: #d4af37;
             text-align: center;
             margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .profile-details {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
         }
 
         .detail-item {
@@ -159,16 +86,14 @@
             padding: 8px 15px;
             background: white;
             border-radius: 50px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 8px;
         }
 
         .detail-item i {
             width: 30px;
             color: #d4af37;
-            font-size: 20px;
         }
 
-        /* Icons Row - Quran, Audio, Tasbeeh, Dua */
         .icons-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -184,13 +109,7 @@
             text-align: center;
             text-decoration: none;
             border: 2px solid #d4af37;
-            transition: all 0.3s;
             display: block;
-        }
-
-        .icon-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .icon-item i {
@@ -199,12 +118,6 @@
             margin-bottom: 8px;
         }
 
-        .icon-item span {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        /* Banners Row */
         .banners-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -221,10 +134,8 @@
             font-size: 18px;
             font-weight: 700;
             border: 2px solid #0b4d3a;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Time Section */
         .time-section {
             background: linear-gradient(135deg, #0b4d3a 0%, #1a7a5c 100%);
             padding: 25px;
@@ -276,7 +187,6 @@
             border-radius: 50px;
         }
 
-        /* Calendar Table */
         .calendar-section {
             margin: 25px 0;
             overflow-x: auto;
@@ -299,7 +209,6 @@
             background: white;
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .calendar-table th {
@@ -307,7 +216,6 @@
             color: #d4af37;
             padding: 15px;
             font-size: 18px;
-            font-weight: 600;
             border-bottom: 3px solid #d4af37;
         }
 
@@ -315,15 +223,6 @@
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #e0e0e0;
-            font-size: 16px;
-        }
-
-        .calendar-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .calendar-table tr:nth-child(even) {
-            background: #f8f9fa;
         }
 
         .today-row {
@@ -332,11 +231,6 @@
             border-right: 5px solid #d4af37;
         }
 
-        .today-row td {
-            color: #0b4d3a;
-        }
-
-        /* Footer Banner */
         .footer-banner {
             background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
             color: #0b4d3a;
@@ -349,7 +243,6 @@
             border: 3px solid #0b4d3a;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -364,13 +257,6 @@
             font-weight: bold;
         }
 
-        .footer-arabic {
-            color: white;
-            font-size: 20px;
-            margin-top: 10px;
-        }
-
-        /* Share Button */
         .share-btn {
             width: 100%;
             padding: 18px;
@@ -379,7 +265,6 @@
             border: none;
             border-radius: 50px;
             font-size: 20px;
-            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -387,131 +272,51 @@
             gap: 12px;
             margin: 25px 0;
             border: 2px solid #d4af37;
-            transition: all 0.3s;
         }
 
-        .share-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        .error-card {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .error-card i {
+            font-size: 60px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .error-card h2 {
+            color: #0b4d3a;
+            margin-bottom: 20px;
+        }
+
+        .error-card a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #0b4d3a;
+            color: #d4af37;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid #d4af37;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container islamic-pattern">
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-btn"><i class="fas fa-edit"></i> ترمیم</a>
-            <a href="card.html" class="nav-btn active"><i class="fas fa-id-card"></i> کارڈ</a>
-            <a href="calendar.html" class="nav-btn"><i class="fas fa-calendar"></i> کیلنڈر</a>
-        </div>
-
-        <div class="card" id="profileCard">
-            <!-- Islamic Header -->
-            <div class="islamic-header">
-                <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                <div class="ramadan-title">🌙 رمضان المبارک 🌙</div>
-                <div class="year">1447 ھ - 2026 ء</div>
-            </div>
-
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <div class="profile-name" id="cardName">رشید محمود</div>
-                <div class="profile-title" id="cardTitle">جیولری اسٹور</div>
-                <div class="profile-details">
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="cardAddress">مالک تازل، لاہور</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-phone"></i>
-                        <span id="cardPhone">03030066899</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-globe"></i>
-                        <span id="cardDetails">ہر قسم کی ڈیجیٹل سروسز</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Icons Row - Online Links -->
-            <div class="icons-row">
-                <a href="https://quran.com" target="_blank" class="icon-item">
-                    <i class="fas fa-quran"></i>
-                    <span>قرآن پڑھیں</span>
-                </a>
-                <a href="https://everyayah.com" target="_blank" class="icon-item">
-                    <i class="fas fa-headphones"></i>
-                    <span>آڈیو قرآن</span>
-                </a>
-                <a href="#" onclick="openTasbeeh()" class="icon-item">
-                    <i class="fas fa-praying-hands"></i>
-                    <span>تسبیح</span>
-                </a>
-                <a href="#" onclick="openDua()" class="icon-item">
-                    <i class="fas fa-book-open"></i>
-                    <span>دعائیں</span>
-                </a>
-            </div>
-
-            <!-- Banners Row (from localStorage) -->
-            <div id="cardBanners" class="banners-row"></div>
-
-            <!-- Time Section with Remaining -->
-            <div class="time-section">
-                <div class="time-header">⏰ اوقاتِ سحر و افطار</div>
-                <div class="time-grid">
-                    <div class="time-box">
-                        <div class="time-label">سحر کا آخری وقت</div>
-                        <div class="time-value" id="sehriTime">05:18 AM</div>
-                    </div>
-                    <div class="time-box">
-                        <div class="time-label">افطار کا وقت</div>
-                        <div class="time-value" id="iftarTime">05:54 PM</div>
-                    </div>
-                </div>
-                <div class="remaining-time" id="remainingMessage">
-                    افطار میں 2 گھنٹے 30 منٹ باقی
-                </div>
-            </div>
-
-            <!-- Calendar Table -->
-            <div class="calendar-section">
-                <div class="calendar-title">📅 رمضان 1447 کا کیلنڈر</div>
-                <table class="calendar-table" id="calendarTable">
-                    <thead>
-                        <tr>
-                            <th>روزہ</th>
-                            <th>تاریخ</th>
-                            <th>سحر</th>
-                            <th>افطار</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendarBody">
-                        <!-- Filled by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Footer Banner -->
-            <div class="footer-banner" id="footerBanner">
-                🌙 رمضان میں صدقہ و خیرات کریں 🌙
-            </div>
-
-            <!-- Footer -->
-            <div class="footer">
-                <div class="footer-text">رمضان مبارک 1447</div>
-                <div class="footer-arabic">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</div>
-            </div>
-
-            <!-- Share Button -->
-            <button class="share-btn" onclick="shareCard()">
-                <i class="fab fa-whatsapp"></i> واٹس ایپ پر شیئر کریں
-            </button>
-        </div>
+    <div class="container" id="mainContent">
+        <!-- Card will be loaded here -->
     </div>
 
     <script>
-        // Full 30 Days Ramadan Calendar 2026 (Pakistan)
+        // Get user from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user');
+
+        function getStorageKey(userId, type) {
+            return `ramadan_${userId}_${type}`;
+        }
+
+        // Full Calendar Data
         const calendarData = [
             {day: 1, date: '19 Feb', sehri: '5:18 AM', iftar: '5:54 PM'},
             {day: 2, date: '20 Feb', sehri: '5:17 AM', iftar: '5:55 PM'},
@@ -545,47 +350,45 @@
             {day: 30, date: '20 Mar', sehri: '4:43 AM', iftar: '6:17 PM'}
         ];
 
-        // Load Profile Data
-        function loadProfileCard() {
-            const savedProfile = localStorage.getItem('profile');
-            if (savedProfile) {
-                const profile = JSON.parse(savedProfile);
-                document.getElementById('cardName').textContent = profile.name || 'رشید محمود';
-                document.getElementById('cardTitle').textContent = profile.title || 'جیولری اسٹور';
-                document.getElementById('cardAddress').textContent = profile.address || 'مالک تازل، لاہور';
-                document.getElementById('cardPhone').textContent = profile.phone || '03030066899';
-                document.getElementById('cardDetails').textContent = profile.details || 'ہر قسم کی ڈیجیٹل سروسز';
-            }
-        }
+        function loadCard() {
+            const container = document.getElementById('mainContent');
 
-        // Load Text Banners
-        function loadBanners() {
-            const banners = JSON.parse(localStorage.getItem('banners')) || [
+            if (!userId) {
+                container.innerHTML = `
+                    <div class="card error-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h2>کوئی کارڈ نہیں ملا</h2>
+                        <p>براہ کرم اپنا منفرد لنک استعمال کریں</p>
+                        <a href="index.html">نیا کارڈ بنائیں</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Load user-specific data
+            const profileKey = getStorageKey(userId, 'profile');
+            const bannersKey = getStorageKey(userId, 'banners');
+            
+            const savedProfile = localStorage.getItem(profileKey);
+            const savedBanners = localStorage.getItem(bannersKey);
+
+            if (!savedProfile) {
+                container.innerHTML = `
+                    <div class="card error-card">
+                        <i class="fas fa-user-slash"></i>
+                        <h2>یوزر "${userId}" کا کوئی کارڈ نہیں</h2>
+                        <a href="index.html">اپنا کارڈ بنائیں</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const profile = JSON.parse(savedProfile);
+            const banners = savedBanners ? JSON.parse(savedBanners) : [
                 "رمضان المبارک 1447ھ",
                 "قرآن پڑھیں اور صدقہ کریں",
                 "شب قدر تلاش کریں"
             ];
-            
-            const container = document.getElementById('cardBanners');
-            container.innerHTML = '';
-            
-            banners.forEach(bannerText => {
-                const div = document.createElement('div');
-                div.className = 'banner-text-item';
-                div.textContent = `🕌 ${bannerText}`;
-                container.appendChild(div);
-            });
-
-            // Set footer banner
-            if (banners.length > 0) {
-                document.getElementById('footerBanner').textContent = `🌙 ${banners[banners.length-1]} 🌙`;
-            }
-        }
-
-        // Render Calendar Table
-        function renderCalendar() {
-            const tbody = document.getElementById('calendarBody');
-            tbody.innerHTML = '';
 
             // Get current Ramadan day
             const now = new Date();
@@ -601,101 +404,162 @@
             if (currentDay > 30) currentDay = 30;
             if (currentDay < 1) currentDay = 1;
 
-            calendarData.forEach(day => {
-                const row = document.createElement('tr');
-                if (day.day === currentDay) {
-                    row.className = 'today-row';
-                }
-                
-                row.innerHTML = `
-                    <td>${day.day}</td>
-                    <td>${day.date}</td>
-                    <td>${day.sehri}</td>
-                    <td>${day.iftar}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Update Live Timings
-        function updateTimings() {
-            const now = new Date();
-            const currentDay = getCurrentRamadanDay();
             const todayData = calendarData.find(d => d.day === currentDay) || calendarData[0];
-            
-            document.getElementById('sehriTime').textContent = todayData.sehri;
-            document.getElementById('iftarTime').textContent = todayData.iftar;
 
-            // Calculate remaining time for iftar
+            // Build calendar rows
+            let calendarRows = '';
+            calendarData.forEach(day => {
+                calendarRows += `
+                    <tr ${day.day === currentDay ? 'class="today-row"' : ''}>
+                        <td>${day.day}</td>
+                        <td>${day.date}</td>
+                        <td>${day.sehri}</td>
+                        <td>${day.iftar}</td>
+                    </tr>
+                `;
+            });
+
+            // Build banners HTML
+            let bannersHTML = '';
+            banners.forEach(banner => {
+                bannersHTML += `<div class="banner-text-item">🕌 ${banner}</div>`;
+            });
+
+            // Calculate remaining time
             const [iftarHour, iftarMinute] = todayData.iftar.replace(' PM', '').split(':').map(Number);
             const iftarTime = new Date();
             iftarTime.setHours(iftarHour + 12, iftarMinute, 0);
             
             const diff = iftarTime - now;
+            let remainingMsg = '';
             if (diff > 0) {
                 const hours = Math.floor(diff / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('remainingMessage').textContent = 
-                    `⏳ افطار میں ${hours} گھنٹے ${minutes} منٹ باقی`;
+                remainingMsg = `⏳ افطار میں ${hours} گھنٹے ${minutes} منٹ باقی`;
             } else {
-                document.getElementById('remainingMessage').textContent = 'افطار کا وقت ہو چکا ہے';
+                remainingMsg = 'افطار کا وقت ہو چکا ہے';
             }
+
+            // Build complete card
+            container.innerHTML = `
+                <div class="card">
+                    <div class="islamic-header">
+                        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                        <div class="ramadan-title">🌙 رمضان المبارک 🌙</div>
+                        <div style="color: #0b4d3a;">1447 ھ - 2026 ء</div>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="profile-name">${profile.name}</div>
+                        <div class="profile-title">${profile.title}</div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${profile.address}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>${profile.phone}</span>
+                        </div>
+                        ${profile.details ? `
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>${profile.details}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="icons-row">
+                        <a href="https://quran.com" target="_blank" class="icon-item">
+                            <i class="fas fa-quran"></i>
+                            <span>قرآن پڑھیں</span>
+                        </a>
+                        <a href="https://everyayah.com" target="_blank" class="icon-item">
+                            <i class="fas fa-headphones"></i>
+                            <span>آڈیو قرآن</span>
+                        </a>
+                        <a href="#" onclick="alert('📿 تسبیح:\n\n33 سُبْحَانَ اللَّهِ\n33 الْحَمْدُ لِلَّهِ\n34 اللَّهُ أَكْبَرُ')" class="icon-item">
+                            <i class="fas fa-praying-hands"></i>
+                            <span>تسبیح</span>
+                        </a>
+                        <a href="#" onclick="alert('🤲 دعائیں:\n\nسحر: وَبِصَوْمِ غَدٍ نَّوَيْتُ\nافطار: اللَّهُمَّ اِنِّی لَکَ صُمْتُ')" class="icon-item">
+                            <i class="fas fa-book-open"></i>
+                            <span>دعائیں</span>
+                        </a>
+                    </div>
+
+                    <div class="banners-row">
+                        ${bannersHTML}
+                    </div>
+
+                    <div class="time-section">
+                        <div class="time-header">⏰ اوقاتِ سحر و افطار</div>
+                        <div class="time-grid">
+                            <div class="time-box">
+                                <div class="time-label">سحر</div>
+                                <div class="time-value">${todayData.sehri}</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-label">افطار</div>
+                                <div class="time-value">${todayData.iftar}</div>
+                            </div>
+                        </div>
+                        <div class="remaining-time">${remainingMsg}</div>
+                    </div>
+
+                    <div class="calendar-section">
+                        <div class="calendar-title">📅 رمضان 1447 کا کیلنڈر</div>
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>روزہ</th>
+                                    <th>تاریخ</th>
+                                    <th>سحر</th>
+                                    <th>افطار</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${calendarRows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="footer-banner">
+                        🌙 ${banners[banners.length-1]} 🌙
+                    </div>
+
+                    <div class="footer">
+                        <div class="footer-text">رمضان مبارک 1447</div>
+                        <div style="color: white; margin-top: 10px;">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</div>
+                    </div>
+
+                    <button class="share-btn" onclick="shareCard('${profile.name}', '${profile.title}', '${profile.phone}', '${todayData.sehri}', '${todayData.iftar}')">
+                        <i class="fab fa-whatsapp"></i> واٹس ایپ پر شیئر کریں
+                    </button>
+                </div>
+            `;
         }
 
-        function getCurrentRamadanDay() {
-            const now = new Date();
-            const month = now.getMonth() + 1;
-            const date = now.getDate();
-            
-            if (month === 2) {
-                if (date >= 19) return date - 18;
-            } else if (month === 3) {
-                if (date <= 20) return date + 11;
-            }
-            return 1;
-        }
-
-        // Tasbeeh Counter
-        function openTasbeeh() {
-            alert('📿 تسبیح:\n\n33 مرتبہ سُبْحَانَ اللَّهِ\n33 مرتبہ الْحَمْدُ لِلَّهِ\n34 مرتبہ اللَّهُ أَكْبَرُ');
-        }
-
-        // Dua Collection
-        function openDua() {
-            alert('🤲 دعائیں:\n\nسحر کی دعا:\nوَ بِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ\n\nافطار کی دعا:\nاللَّهُمَّ اِنِّی لَکَ صُمْتُ وَبِکَ اٰمَنْتُ وَعَلَیْکَ تَوَکَّلْتُ وَعَلٰی رِزْقِکَ اَفْطَرْتُ');
-        }
-
-        // Share Card
-        function shareCard() {
-            const name = document.getElementById('cardName').textContent;
-            const title = document.getElementById('cardTitle').textContent;
-            const address = document.getElementById('cardAddress').textContent;
-            const phone = document.getElementById('cardPhone').textContent;
-            const sehri = document.getElementById('sehriTime').textContent;
-            const iftar = document.getElementById('iftarTime').textContent;
-            
-            const shareText = `🌙 *رمضان مبارک 1447* 🌙\n\n` +
+        function shareCard(name, title, phone, sehri, iftar) {
+            const text = `🌙 *رمضان مبارک 1447* 🌙\n\n` +
                 `👤 *${name}*\n` +
                 `🏪 ${title}\n` +
-                `📍 ${address}\n` +
                 `📞 ${phone}\n\n` +
                 `⏰ *اوقات:*\n` +
                 `🌅 سحر: ${sehri}\n` +
                 `🌇 افطار: ${iftar}\n\n` +
                 `🤲 تقبل الله منا ومنكم`;
-
-            const encodedText = encodeURIComponent(shareText);
-            window.open(`https://wa.me/?text=${encodedText}`, '_blank');
+            
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
 
-        // Initialize
-        loadProfileCard();
-        loadBanners();
-        renderCalendar();
-        updateTimings();
-        
-        // Update every minute
-        setInterval(updateTimings, 60000);
+        // Update timings every minute
+        function updateTime() {
+            if (userId) loadCard();
+        }
+
+        // Load card
+        loadCard();
+        setInterval(updateTime, 60000);
     </script>
 </body>
 </html>
