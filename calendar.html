@@ -3,389 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramadan Calendar 1447 - 2026</title>
+    <title>Ramadan Calendar 1447</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a472a">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background: #f0f2f5;
+            padding: 16px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             margin: 0 auto;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
         }
 
         .nav-buttons {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
         .nav-btn {
             flex: 1;
-            padding: 15px;
+            padding: 12px;
             border: none;
-            border-radius: 10px;
+            border-radius: 30px;
             background: white;
-            color: #667eea;
-            font-weight: bold;
+            color: #666;
+            font-weight: 600;
             cursor: pointer;
-            text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            transition: all 0.3s;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .nav-btn.active {
-            background: #667eea;
+            background: #4CAF50;
             color: white;
         }
 
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .calendar-header {
+        h1 {
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .calendar-header h1 {
-            color: #667eea;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .calendar-header p {
-            color: #666;
-            font-size: 18px;
-        }
-
-        .share-calendar-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin: 15px 0;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
         }
 
         .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin-top: 20px;
         }
 
         .calendar-day {
-            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 16px;
             text-align: center;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .calendar-day:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .calendar-day.today {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            border: 3px solid gold;
+            border: 2px solid gold;
         }
 
         .day-number {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 10px;
-            background: rgba(255,255,255,0.2);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 25px;
-        }
-
-        .date {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #ffd700;
-        }
-
-        .timings {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-        }
-
-        .timing-item {
-            text-align: center;
-        }
-
-        .timing-label {
-            font-size: 12px;
-            opacity: 0.8;
             margin-bottom: 5px;
         }
 
-        .timing-value {
-            font-size: 16px;
-            font-weight: bold;
+        .date {
+            font-size: 14px;
+            opacity: 0.9;
         }
 
-        .search-box {
-            margin-bottom: 20px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .ramadan-greeting {
-            text-align: center;
-            font-size: 24px;
-            color: gold;
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4CAF50;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateX(-50%) translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
+        .timings {
+            margin-top: 8px;
+            font-size: 12px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="nav-buttons">
-            <a href="index.html" class="nav-btn">Home</a>
+            <a href="index.html" class="nav-btn">Edit</a>
+            <a href="card.html" class="nav-btn">Card</a>
             <a href="calendar.html" class="nav-btn active">Calendar</a>
         </div>
 
         <div class="card">
-            <div class="calendar-header">
-                <h1>رمضان 1447</h1>
-                <p>Ramadan 2026 - Sehri & Iftar Times</p>
-                <button class="share-calendar-btn" onclick="shareCalendar()">
-                    <i class="fab fa-whatsapp"></i> Share Calendar
-                </button>
-            </div>
-
-            <div class="search-box">
-                <input type="text" id="searchDay" placeholder="Search by day number or date..." onkeyup="searchCalendar()">
-            </div>
-
-            <div class="calendar-grid" id="calendarGrid">
-                <!-- Calendar days will be added here dynamically -->
-            </div>
-
-            <div class="ramadan-greeting" id="currentDate">
-                Loading...
-            </div>
+            <h1>رمضان 1447</h1>
+            <div class="calendar-grid" id="calendarGrid"></div>
         </div>
     </div>
 
-    <div id="toast" class="toast" style="display: none;"></div>
-
     <script>
-        // Show toast message
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            toast.textContent = message;
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
-        }
-
-        // Ramadan 2026 Calendar Data
         const calendarData = [
             {day: 1, date: '19 Feb', sehri: '5:18 AM', iftar: '5:54 PM'},
             {day: 2, date: '20 Feb', sehri: '5:17 AM', iftar: '5:55 PM'},
             {day: 3, date: '21 Feb', sehri: '5:16 AM', iftar: '5:56 PM'},
             {day: 4, date: '22 Feb', sehri: '5:15 AM', iftar: '5:57 PM'},
-            {day: 5, date: '23 Feb', sehri: '5:14 AM', iftar: '5:58 PM'},
-            {day: 6, date: '24 Feb', sehri: '5:12 AM', iftar: '5:59 PM'},
-            {day: 7, date: '25 Feb', sehri: '5:11 AM', iftar: '5:59 PM'},
-            {day: 8, date: '26 Feb', sehri: '5:10 AM', iftar: '6:00 PM'},
-            {day: 9, date: '27 Feb', sehri: '5:09 AM', iftar: '6:01 PM'},
-            {day: 10, date: '28 Feb', sehri: '5:08 AM', iftar: '6:01 PM'},
-            {day: 11, date: '01 Mar', sehri: '5:07 AM', iftar: '6:02 PM'},
-            {day: 12, date: '02 Mar', sehri: '5:06 AM', iftar: '6:03 PM'},
-            {day: 13, date: '03 Mar', sehri: '5:04 AM', iftar: '6:04 PM'},
-            {day: 14, date: '04 Mar', sehri: '5:03 AM', iftar: '6:05 PM'},
-            {day: 15, date: '05 Mar', sehri: '5:02 AM', iftar: '6:05 PM'},
-            {day: 16, date: '06 Mar', sehri: '5:01 AM', iftar: '6:06 PM'},
-            {day: 17, date: '07 Mar', sehri: '4:59 AM', iftar: '6:07 PM'},
-            {day: 18, date: '08 Mar', sehri: '4:58 AM', iftar: '6:08 PM'},
-            {day: 19, date: '09 Mar', sehri: '4:57 AM', iftar: '6:09 PM'},
-            {day: 20, date: '10 Mar', sehri: '4:56 AM', iftar: '6:09 PM'},
-            {day: 21, date: '11 Mar', sehri: '4:54 AM', iftar: '6:10 PM'},
-            {day: 22, date: '12 Mar', sehri: '4:53 AM', iftar: '6:11 PM'},
-            {day: 23, date: '13 Mar', sehri: '4:52 AM', iftar: '6:12 PM'},
-            {day: 24, date: '14 Mar', sehri: '4:51 AM', iftar: '6:13 PM'},
-            {day: 25, date: '15 Mar', sehri: '4:49 AM', iftar: '6:13 PM'},
-            {day: 26, date: '16 Mar', sehri: '4:48 AM', iftar: '6:14 PM'},
-            {day: 27, date: '17 Mar', sehri: '4:47 AM', iftar: '6:15 PM'},
-            {day: 28, date: '18 Mar', sehri: '4:45 AM', iftar: '6:16 PM'},
-            {day: 29, date: '19 Mar', sehri: '4:44 AM', iftar: '6:17 PM'},
-            {day: 30, date: '20 Mar', sehri: '4:43 AM', iftar: '6:17 PM'}
+            {day: 5, date: '23 Feb', sehri: '5:14 AM', iftar: '5:58 PM'}
         ];
 
-        function renderCalendar(filteredData = calendarData) {
+        function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
 
-            const today = new Date();
-            const currentDay = getCurrentRamadanDay();
-
-            filteredData.forEach(day => {
-                const dayCard = document.createElement('div');
-                dayCard.className = `calendar-day ${day.day === currentDay ? 'today' : ''}`;
-                dayCard.onclick = () => showDayDetails(day);
-                
-                dayCard.innerHTML = `
+            calendarData.forEach(day => {
+                const div = document.createElement('div');
+                div.className = 'calendar-day';
+                div.innerHTML = `
                     <div class="day-number">Day ${day.day}</div>
                     <div class="date">${day.date}</div>
-                    <div class="timings">
-                        <div class="timing-item">
-                            <div class="timing-label">Sehri</div>
-                            <div class="timing-value">${day.sehri}</div>
-                        </div>
-                        <div class="timing-item">
-                            <div class="timing-label">Iftar</div>
-                            <div class="timing-value">${day.iftar}</div>
-                        </div>
-                    </div>
+                    <div class="timings">${day.sehri} - ${day.iftar}</div>
                 `;
-                
-                grid.appendChild(dayCard);
+                grid.appendChild(div);
             });
-
-            // Update greeting
-            const today_data = calendarData.find(d => d.day === currentDay) || calendarData[0];
-            document.getElementById('currentDate').innerHTML = 
-                `Today: Ramadan ${currentDay}, ${today_data.date} - Sehri: ${today_data.sehri} | Iftar: ${today_data.iftar}`;
         }
 
-        function getCurrentRamadanDay() {
-            const now = new Date();
-            const month = now.getMonth() + 1;
-            const date = now.getDate();
-            
-            if (month === 2) {
-                if (date >= 19) return date - 18;
-            } else if (month === 3) {
-                if (date <= 20) return date + 11;
-            }
-            return 1;
-        }
-
-        function searchCalendar() {
-            const searchTerm = document.getElementById('searchDay').value.toLowerCase();
-            
-            if (!searchTerm) {
-                renderCalendar();
-                return;
-            }
-
-            const filtered = calendarData.filter(day => 
-                day.day.toString().includes(searchTerm) || 
-                day.date.toLowerCase().includes(searchTerm)
-            );
-            
-            renderCalendar(filtered);
-        }
-
-        function showDayDetails(day) {
-            alert(`Ramadan ${day.day} - ${day.date}\nSehri: ${day.sehri}\nIftar: ${day.iftar}`);
-        }
-
-        function shareCalendar() {
-            const today = getCurrentRamadanDay();
-            const todayData = calendarData.find(d => d.day === today) || calendarData[0];
-            
-            let calendarText = `*Ramadan 1447 Calendar* 🌙\n\n`;
-            calendarText += `Today: Day ${today} - ${todayData.date}\n`;
-            calendarText += `Sehri: ${todayData.sehri}\n`;
-            calendarText += `Iftar: ${todayData.iftar}\n\n`;
-            calendarText += `*Full Month*\n`;
-            
-            // Add next 5 days
-            for (let i = today; i <= Math.min(today + 4, 30); i++) {
-                const day = calendarData.find(d => d.day === i);
-                if (day) {
-                    calendarText += `Day ${day.day} (${day.date}): ${day.sehri} - ${day.iftar}\n`;
-                }
-            }
-            
-            calendarText += `\n🕌 Ramadan Mubarak 1447`;
-            
-            const encodedText = encodeURIComponent(calendarText);
-            window.open(`https://wa.me/?text=${encodedText}`, '_blank');
-        }
-
-        // Initialize
         renderCalendar();
-        
-        // Save to localStorage for index.html
-        localStorage.setItem('calendar', JSON.stringify(calendarData));
     </script>
 </body>
 </html>
